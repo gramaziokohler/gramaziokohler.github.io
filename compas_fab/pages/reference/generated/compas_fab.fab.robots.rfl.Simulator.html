@@ -219,7 +219,7 @@ with the <code class="docutils literal"><span class="pre">with</span></code> sta
 
 <dl class="method">
 <dt id="compas_fab.fab.robots.rfl.Simulator._find_path_plan">
-<code class="descname">_find_path_plan</code><span class="sig-paren">(</span><em>robot</em>, <em>goal</em>, <em>metric_values</em>, <em>collision_meshes</em>, <em>algorithm</em>, <em>trials</em>, <em>resolution</em>, <em>gantry_joint_limits</em>, <em>arm_joint_limits</em>, <em>shallow_state_search</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator._find_path_plan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator._find_path_plan" title="Permalink to this definition">¶</a></dt>
+<code class="descname">_find_path_plan</code><span class="sig-paren">(</span><em>robot</em>, <em>goal</em>, <em>metric_values</em>, <em>collision_meshes</em>, <em>algorithm</em>, <em>trials</em>, <em>resolution</em>, <em>gantry_joint_limits</em>, <em>arm_joint_limits</em>, <em>shallow_state_search</em>, <em>optimize_path_length</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator._find_path_plan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator._find_path_plan" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -276,9 +276,8 @@ of meshes to add to the current simulation scene.</td>
 
 <dl class="method">
 <dt id="compas_fab.fab.robots.rfl.Simulator.find_path_plan">
-<code class="descname">find_path_plan</code><span class="sig-paren">(</span><em>robot</em>, <em>goal_pose</em>, <em>metric_values=None</em>, <em>collision_meshes=None</em>, <em>algorithm='rrtconnect'</em>, <em>trials=1</em>, <em>resolution=0.02</em>, <em>gantry_joint_limits=None</em>, <em>arm_joint_limits=None</em>, <em>shallow_state_search=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator.find_path_plan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator.find_path_plan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds a path plan to move the selected robot from its current position
-to the <cite>goal_pose</cite>.</p>
+<code class="descname">find_path_plan</code><span class="sig-paren">(</span><em>robot</em>, <em>goal_pose</em>, <em>metric_values=None</em>, <em>collision_meshes=None</em>, <em>algorithm='rrtconnect'</em>, <em>trials=1</em>, <em>resolution=0.02</em>, <em>gantry_joint_limits=None</em>, <em>arm_joint_limits=None</em>, <em>shallow_state_search=True</em>, <em>optimize_path_length=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator.find_path_plan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator.find_path_plan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a path plan to move the selected robot from its current position to the <cite>goal_pose</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -304,6 +303,8 @@ gantry joints. Use this if you want to restrict the working area of the path pla
 arm joints. Use this if you want to restrict the working area of the path planner.</li>
 <li><strong>shallow_state_search</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>) &#8211; True to search only a minimum of
 valid states before searching a path, False to search states intensively.</li>
+<li><strong>optimize_path_length</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>) &#8211; True to search the path with minimal total length among all <cite>trials</cite>,
+False to return the first valid path found. It only affects the output if <cite>trials &gt; 1</cite>.</li>
 </ul>
 </td>
 </tr>
@@ -317,9 +318,8 @@ collision-free path to the <code class="docutils literal"><span class="pre">goal
 
 <dl class="method">
 <dt id="compas_fab.fab.robots.rfl.Simulator.find_path_plan_to_config">
-<code class="descname">find_path_plan_to_config</code><span class="sig-paren">(</span><em>robot</em>, <em>goal_configs</em>, <em>metric_values=None</em>, <em>collision_meshes=None</em>, <em>algorithm='rrtconnect'</em>, <em>trials=1</em>, <em>resolution=0.02</em>, <em>gantry_joint_limits=None</em>, <em>arm_joint_limits=None</em>, <em>shallow_state_search=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator.find_path_plan_to_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator.find_path_plan_to_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds a path plan to move the selected robot from its current position
-to one of the <cite>goal_configs</cite>.</p>
+<code class="descname">find_path_plan_to_config</code><span class="sig-paren">(</span><em>robot</em>, <em>goal_configs</em>, <em>metric_values=None</em>, <em>collision_meshes=None</em>, <em>algorithm='rrtconnect'</em>, <em>trials=1</em>, <em>resolution=0.02</em>, <em>gantry_joint_limits=None</em>, <em>arm_joint_limits=None</em>, <em>shallow_state_search=True</em>, <em>optimize_path_length=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/compas_fab/fab/robots/rfl/simulator.html#Simulator.find_path_plan_to_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compas_fab.fab.robots.rfl.Simulator.find_path_plan_to_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a path plan to move the selected robot from its current position to one of the <cite>goal_configs</cite>.</p>
 <p>This function is useful when it is required to get a path plan that ends in one
 specific goal configuration.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -347,6 +347,8 @@ gantry joints. Use this if you want to restrict the working area of the path pla
 arm joints. Use this if you want to restrict the working area of the path planner.</li>
 <li><strong>shallow_state_search</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>) &#8211; True to search only a minimum of
 valid states before searching a path, False to search states intensively.</li>
+<li><strong>optimize_path_length</strong> (<a class="reference external" href="https://docs.python.org/2/library/functions.html#bool" title="(in Python v2.7)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>) &#8211; True to search the path with minimal total length among all <cite>trials</cite>,
+False to return the first valid path found. It only affects the output if <cite>trials &gt; 1</cite>.</li>
 </ul>
 </td>
 </tr>
