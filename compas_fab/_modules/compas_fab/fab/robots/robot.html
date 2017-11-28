@@ -223,11 +223,11 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_tool0_tcp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">transformation_T0_T</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">transformation_tool0_tcp</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_tcp_tool0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">transformation_T_T0</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool</span><span class="o">.</span><span class="n">transformation_tcp_tool0</span>
 
     <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the tcp frame according to the joint angles q.</span>
@@ -257,12 +257,16 @@
     
             
     <span class="k">def</span> <span class="nf">get_tool0_frame_from_tcp_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_tcp</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get the tool0 frame (frame at robot) from the tool frame (tcp),</span>
-<span class="sd">        according to the set tool.</span>
-
+        <span class="sd">&quot;&quot;&quot;Get the tool0 frame (frame at robot) from the tool frame (frame_tcp).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame_tcp</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_tool0_tcp</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">get_tcp_frame_from_tool0_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_tool0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the tcp frame from the tool0 frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame_tool0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_tcp_tool0</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="BaseConfiguration"><a class="viewcode-back" href="../../../../pages/reference/generated/compas_fab.fab.robots.BaseConfiguration.html#compas_fab.fab.robots.BaseConfiguration">[docs]</a><span class="k">class</span> <span class="nc">BaseConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
