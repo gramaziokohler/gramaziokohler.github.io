@@ -257,7 +257,8 @@
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
         <span class="c1"># First check if the start state is reachable</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_robot_states</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">())</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_robot_states</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="n">joints</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Cannot find a valid config for the given pose&#39;</span><span class="p">)</span>
@@ -340,15 +341,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
+        <span class="n">joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">metric_values</span><span class="p">:</span>
-            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span>
+            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">joints</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_robot_metric</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">metric_values</span><span class="p">)</span>
 
         <span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_raw_robot_states</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame_to_vrep_pose</span><span class="p">(</span><span class="n">goal_frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">),</span> <span class="n">gantry_joint_limits</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="p">,</span> <span class="n">max_trials</span><span class="p">,</span> <span class="n">max_results</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">[</span><span class="n">config_from_vrep</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">),</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span><span class="p">)]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">config_from_vrep</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">joints</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">),</span> <span class="n">joints</span><span class="p">)]</span></div>
 
     <span class="k">def</span> <span class="nf">_find_raw_robot_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_vrep_pose</span><span class="p">,</span> <span class="n">gantry_joint_limits</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -403,8 +405,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
+        <span class="n">joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">metric_values</span><span class="p">:</span>
-            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span>
+            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">joints</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_robot_pose</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">pickup_frame</span><span class="p">)</span>
 
@@ -413,8 +416,10 @@
     <span class="k">def</span> <span class="nf">_find_path_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">metric_values</span><span class="p">,</span> <span class="n">collision_meshes</span><span class="p">,</span>
                         <span class="n">algorithm</span><span class="p">,</span> <span class="n">trials</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span>
                         <span class="n">gantry_joint_limits</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="p">,</span> <span class="n">shallow_state_search</span><span class="p">,</span> <span class="n">optimize_path_length</span><span class="p">):</span>
+
+        <span class="n">joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">())</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">metric_values</span><span class="p">:</span>
-            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span>
+            <span class="n">metric_values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="n">joints</span>
 
         <span class="k">if</span> <span class="n">algorithm</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_ALGORITHMS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unsupported algorithm. Must be one of: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUPPORTED_ALGORITHMS</span><span class="p">))</span>
@@ -472,8 +477,8 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="n">LOG</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Execution time: total=</span><span class="si">%.2f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">first_start</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="p">[</span><span class="n">config_from_vrep</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">robot</span><span class="o">.</span><span class="n">dof</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">config_from_vrep</span><span class="p">(</span><span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">joints</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">joints</span><span class="p">)]</span>
 
 <div class="viewcode-block" id="VrepClient.find_path_plan_to_config"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.find_path_plan_to_config.html#compas_fab.backends.VrepClient.find_path_plan_to_config">[docs]</a>    <span class="k">def</span> <span class="nf">find_path_plan_to_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_configs</span><span class="p">,</span> <span class="n">metric_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                                  <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span>
@@ -720,14 +725,59 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">*</span> <span class="n">scale</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">list_of_floats</span><span class="p">]</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="k">import</span> <span class="n">Joint</span><span class="p">,</span> <span class="n">Link</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">Robot</span><span class="o">.</span><span class="n">basic</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="p">[</span><span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;e1&#39;</span><span class="p">,</span> <span class="s1">&#39;prismatic&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;g1&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;g2&#39;</span><span class="p">),</span>
-                                 <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;e2&#39;</span><span class="p">,</span> <span class="s1">&#39;prismatic&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;g2&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;g3&#39;</span><span class="p">)],</span>
-                         <span class="n">links</span><span class="o">=</span><span class="p">[</span><span class="n">Link</span><span class="p">(</span><span class="s1">&#39;g1&#39;</span><span class="p">),</span> <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;g2&#39;</span><span class="p">),</span> <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;g3&#39;</span><span class="p">),</span> <span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">joints</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">()))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># if __name__ == &#39;__main__&#39;:</span>
+<span class="c1">#     import logging</span>
+<span class="c1">#     import time</span>
+
+<span class="c1">#     from compas.geometry import Frame</span>
+<span class="c1">#     from compas.datastructures import Mesh</span>
+
+<span class="c1">#     from compas_fab.robots import *</span>
+<span class="c1">#     from compas_fab.robots import rfl</span>
+<span class="c1">#     from compas_fab.backends import VrepClient</span>
+
+<span class="c1">#     # Configure logging to DEBUG to see detailed timing of the path planning</span>
+<span class="c1">#     logging.basicConfig(level=logging.DEBUG)</span>
+
+<span class="c1">#     # Configure parameters for path planning</span>
+<span class="c1">#     start_pose = Frame.from_list([1.0, 0.0, 0.0, 7.453,</span>
+<span class="c1">#                                   0.0, -1.0, 0.0, 2.905,</span>
+<span class="c1">#                                   0.0, 0.0, -1.0, 0.679])</span>
+<span class="c1">#     from compas.geometry.xforms import Rotation</span>
+<span class="c1">#     from compas.geometry.xforms import Transformation</span>
+<span class="c1">#     r = Rotation.from_axis_and_angle([1,0,0], math.radians(90), start_pose.point)</span>
+<span class="c1">#     goal_pose = Frame.from_list([-1.0, 0.0, 0.0, 8.110,</span>
+<span class="c1">#                                  8.97e-13, 0.0, -1.0, 6.920,</span>
+<span class="c1">#                                  0.0, -1.0, 0.0, 1.810])</span>
+<span class="c1">#     algorithm = &#39;rrtconnect&#39;</span>
+<span class="c1">#     max_trials = 1</span>
+<span class="c1">#     resolution = 0.02</span>
+<span class="c1">#     building_member = Mesh.from_obj(&#39;C:\\Users\\gcasas\\eth\\Projects\\research\\compas_fab\\data\\timber_beam.obj&#39;)</span>
+<span class="c1">#     structure = [Mesh.from_obj(&#39;C:\\Users\\gcasas\\eth\\Projects\\research\\compas_fab\\data\\timber_structure.obj&#39;)]</span>
+<span class="c1">#     metric = [0.1] * 9</span>
+<span class="c1">#     fast_search = True</span>
+
+<span class="c1">#     with VrepClient(debug=True) as client:</span>
+<span class="c1">#         # client.add_meshes(structure)</span>
+<span class="c1">#         robot = rfl.Robot(&#39;A&#39;, client=client)</span>
+<span class="c1">#         # print(Transformation.from_frame(start_pose))</span>
+<span class="c1">#         # # start_pose.transform(r)</span>
+<span class="c1">#         # print(Transformation.from_frame(start_pose))</span>
+
+<span class="c1">#         client.pick_building_member(robot, building_member, start_pose)</span>
+<span class="c1">#         print(&#39;Added building member&#39;)</span>
+<span class="c1">#         time.sleep(4)</span>
+<span class="c1">#         # path = client.find_path_plan(robot,</span>
+<span class="c1">#         #                              goal_pose,</span>
+<span class="c1">#         #                              metric_values=metric,</span>
+<span class="c1">#         #                              collision_meshes=structure,</span>
+<span class="c1">#         #                              algorithm=algorithm,</span>
+<span class="c1">#         #                              trials=max_trials,</span>
+<span class="c1">#         #                              resolution=resolution,</span>
+<span class="c1">#         #                              shallow_state_search=fast_search)</span>
+
+<span class="c1">#         # print(&#39;Found path of %d steps&#39; % len(path))</span>
+<span class="c1">#         time.sleep(10)</span>
 </code></pre></div>
                         
                     
