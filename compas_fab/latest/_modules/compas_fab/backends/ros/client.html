@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>compas_fab</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+
+        <link rel="shortcut icon" href="../../../../_static/images/compas.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../_static/css/prism.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas.css" />
+        <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas-reference.css" />
+
+        
+        
+        
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    </head>
+    <body data-spy="scroll" data-target="#compas-localnav">
+
+        <header class="navbar navbar-expand compas-navbar justify-content-between">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../../../../index.html">
+                    compas_fab 0.1.0
+                </a>
+            </div>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://compas-dev.github.io">
+                        <img src="../../../../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                    </a>
+                </li>
+            </ul>
+        </header>
+        
+        <div class="container-fluid compas-container">
+            <div class="row flex-xl-nowrap">
+
+                <!-- main content -->
+
+                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+
+                    
+
+                        
+
+                        <h1>Source code for compas_fab.backends.ros.client</h1><div class="highlight"><pre><code>
+<span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Ros</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">ServiceRequest</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">ActionClient</span>
+<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">Goal</span>
+
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetCartesianPathRequest</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetCartesianPathResponse</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionFKRequest</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionFKResponse</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionIKRequest</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionIKResponse</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">Header</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">JointState</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">MultiDOFJointState</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">PoseStamped</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">PositionIKRequest</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">RobotState</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;RosClient&#39;</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="RosClient"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient">[docs]</a><span class="k">class</span> <span class="nc">RosClient</span><span class="p">(</span><span class="n">Ros</span><span class="p">):</span>
+
+<div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">):</span>
+
+        <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
+        <span class="n">pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        <span class="n">pose_stamped</span> <span class="o">=</span> <span class="n">PoseStamped</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">pose</span><span class="p">)</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+
+        <span class="n">multi_dof_joint_state</span> <span class="o">=</span> <span class="n">MultiDOFJointState</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">start_state</span> <span class="o">=</span> <span class="n">RobotState</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">multi_dof_joint_state</span><span class="p">)</span>
+        <span class="n">ik_request</span> <span class="o">=</span> <span class="n">PositionIKRequest</span><span class="p">(</span><span class="n">group_name</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                                       <span class="n">robot_state</span><span class="o">=</span><span class="n">start_state</span><span class="p">,</span>
+                                       <span class="n">pose_stamped</span><span class="o">=</span><span class="n">pose_stamped</span><span class="p">,</span>
+                                       <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">reqmsg</span> <span class="o">=</span> <span class="n">GetPositionIKRequest</span><span class="p">(</span><span class="n">ik_request</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">GetPositionIKResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">MoveItErrorCodes</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
+                <span class="n">configuration</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">joint_state</span><span class="o">.</span><span class="n">position</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error_code</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+
+        <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_ik&#39;</span><span class="p">,</span> <span class="s1">&#39;GetPositionIK&#39;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RosClient.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">):</span>
+
+        <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
+        <span class="n">fk_link_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ee_link</span><span class="p">]</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">multi_dof_joint_state</span> <span class="o">=</span> <span class="n">MultiDOFJointState</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">robot_state</span> <span class="o">=</span> <span class="n">RobotState</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">multi_dof_joint_state</span><span class="p">)</span>
+        <span class="n">reqmsg</span> <span class="o">=</span> <span class="n">GetPositionFKRequest</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="n">fk_link_names</span><span class="p">,</span> <span class="n">robot_state</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">GetPositionFKResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">MoveItErrorCodes</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
+                <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">frame</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">pose_stamped</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error_code</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+
+        <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_fk&#39;</span><span class="p">,</span> <span class="s1">&#39;GetPositionFK&#39;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RosClient.compute_cartesian_path"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.compute_cartesian_path.html#compas_fab.backends.RosClient.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
+                               <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span>
+                               <span class="n">avoid_collisions</span><span class="p">):</span>
+
+        <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
+        <span class="n">waypoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pose</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">]</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">joint_positions</span><span class="p">)</span>
+        <span class="n">multi_dof_joint_state</span> <span class="o">=</span> <span class="n">MultiDOFJointState</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">start_state</span> <span class="o">=</span> <span class="n">RobotState</span><span class="p">(</span><span class="n">joint_state</span><span class="o">=</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">multi_dof_joint_state</span><span class="o">=</span><span class="n">multi_dof_joint_state</span><span class="p">)</span>
+        <span class="n">reqmsg</span> <span class="o">=</span> <span class="n">GetCartesianPathRequest</span><span class="p">(</span><span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
+                                         <span class="n">start_state</span><span class="o">=</span><span class="n">start_state</span><span class="p">,</span>
+                                         <span class="n">group_name</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                                         <span class="n">link_name</span><span class="o">=</span><span class="n">ee_link</span><span class="p">,</span>
+                                         <span class="n">waypoints</span><span class="o">=</span><span class="n">waypoints</span><span class="p">,</span>
+                                         <span class="n">max_step</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">max_step</span><span class="p">)</span><span class="o">/</span><span class="mf">1000.</span><span class="p">,</span>
+                                         <span class="n">avoid_collisions</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">avoid_collisions</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">GetCartesianPathResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_cartesian_path&#39;</span><span class="p">,</span> <span class="s1">&#39;GetCartesianPath&#39;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RosClient.follow_joint_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">follow_joint_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Follow the joint trajectory as computed by Moveit Planner.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            joint_trajectory (JointTrajectory)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">handle_result</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">FollowJointTrajectoryResult</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+
+        <span class="n">action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/follow_joint_trajectory&#39;</span><span class="p">,</span>
+                       <span class="s1">&#39;control_msgs/FollowJointTrajectoryAction&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">joint_trajectory</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
+
+        <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">result</span><span class="p">:</span> <span class="n">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">action_client</span><span class="p">))</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;feedback&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">feedback</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">feedback</span><span class="p">))</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TIMEOUT&#39;</span><span class="p">))</span>
+        <span class="n">action_client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CLIENT TIMEOUT&#39;</span><span class="p">))</span>
+
+        <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">60000</span><span class="p">)</span></div>
+
+
+    <span class="c1"># NOTE: Suggested method signature</span>
+    <span class="c1"># def set_robot_pose(self, robot, frame):</span>
+<div class="viewcode-block" id="RosClient.send_frame"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_frame.html#compas_fab.backends.RosClient.send_frame">[docs]</a>    <span class="k">def</span> <span class="nf">send_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># (check service name with ros)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="c1"># NOTE: Suggested method signature</span>
+    <span class="c1"># def set_robot_config(self, robot, configuration):</span>
+<div class="viewcode-block" id="RosClient.send_configuration"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_configuration.html#compas_fab.backends.RosClient.send_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">send_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># (check service name with ros)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="RosClient.send_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_trajectory.html#compas_fab.backends.RosClient.send_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">send_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># (check service name with ros)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+</code></pre></div>
+                        
+                    
+
+                </main>
+
+                <!-- site navigation sidebar -->
+
+                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                    <div class="navbar-light">
+
+                        <form id="" class="d-flex compas-searchbox" action="../../../../search.html" method="get">
+                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                            <input type="hidden" name="check_keywords" value="yes" />
+                            <input type="hidden" name="area" value="default" />
+
+                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </form>
+
+                        
+                        
+
+                            <div class="navbar-expand-md">
+                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
+
+                                <ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../overview.html">Overview</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../getting_started.html">Getting started</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../backends.html">Working with backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../examples.html">Examples</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../reference.html">API Reference</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../contributing.html">Contributor’s Guide</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../license.html">License</a></li>
+</ul>
+
+
+                                </div>
+                            </div>
+
+                        
+
+                    </div>
+                </div>
+
+                <!-- table of contents of main content -->
+                
+                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
+                    
+
+                    
+
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="compas-footer">
+            
+                
+                    &#169; Copyright 2018, Gramazio Kohler Research.
+                
+            
+
+            
+                Last updated on Sep 06, 2018.
+            
+
+            
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+            
+        </footer>
+
+        
+
+            <script type="text/javascript">
+var DOCUMENTATION_OPTIONS = {
+    URL_ROOT          : '',
+    VERSION           : '0.1.0',
+    COLLAPSE_INDEX    : false,
+    FILE_SUFFIX       : '.html',
+    HAS_SOURCE        : 'false',
+    SOURCELINK_SUFFIX : '.txt'
+};
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
+            <script src="../../../../_static/underscore.js"></script>
+            <script src="../../../../_static/doctools.js"></script>
+            <script src="../../../../_static/js/searchtools_.js"></script>
+            <script src="../../../../_static/js/prism.js" data-manual></script>
+
+            <script>
+$(document).ready(function() {
+
+    $(".language-default pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-bash pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-python pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-c pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-cpp pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-fortran pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-markdown pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-rest pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    anchors.add();
+});
+            </script>
+
+        
+    </body>
+</html>

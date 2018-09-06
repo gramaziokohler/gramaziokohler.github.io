@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>compas_fab</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+
+        <link rel="shortcut icon" href="../_static/images/compas.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+
+        <link rel="stylesheet" type="text/css" href="../_static/css/prism.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/css/compas.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
+
+        
+            <link rel="next" title="compas_fab.backends" href="compas_fab.backends.html" />
+        
+        
+        
+            <link rel="prev" title="API Reference" href="../reference.html" />
+        
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    </head>
+    <body data-spy="scroll" data-target="#compas-localnav">
+
+        <header class="navbar navbar-expand compas-navbar justify-content-between">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../index.html">
+                    compas_fab 0.1.0
+                </a>
+            </div>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://compas-dev.github.io">
+                        <img src="../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                    </a>
+                </li>
+            </ul>
+        </header>
+        
+        <div class="container-fluid compas-container">
+            <div class="row flex-xl-nowrap">
+
+                <!-- main content -->
+
+                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+
+                    
+
+                        
+
+                        <span class="target" id="module-compas_fab"></span><div class="section" id="compas-fab">
+<h1>compas_fab</h1>
+<p>This library provides tools to plan and execute robotic fabrication processes using
+the COMPAS Framework with a special focus on enabling its usage from within CAD
+environments.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.backends.html">compas_fab.backends</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#v-rep">V-REP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.VrepClient.html">VrepClient</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#ros">ROS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.RosClient.html">RosClient</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#exceptions">Exceptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.geometry.html#classes">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Frame.html">Frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Transformation.html">Transformation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Rotation.html">Rotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Translation.html">Translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Scale.html">Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Reflection.html">Reflection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Projection.html">Projection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Shear.html">Shear</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.geometry.html#transformations">Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.axis_and_angle_from_matrix.html">axis_and_angle_from_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.axis_angle_vector_from_matrix.html">axis_angle_vector_from_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.basis_vectors_from_matrix.html">basis_vectors_from_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.compose_matrix.html">compose_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.decompose_matrix.html">decompose_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.determinant.html">determinant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.euler_angles_from_matrix.html">euler_angles_from_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.identity_matrix.html">identity_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.inverse.html">inverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_and_angle.html">matrix_from_axis_and_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_angle_vector.html">matrix_from_axis_angle_vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_basis_vectors.html">matrix_from_basis_vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_euler_angles.html">matrix_from_euler_angles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_frame.html">matrix_from_frame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_perspective_entries.html">matrix_from_perspective_entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_quaternion.html">matrix_from_quaternion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_scale_factors.html">matrix_from_scale_factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear.html">matrix_from_shear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear_entries.html">matrix_from_shear_entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_translation.html">matrix_from_translation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.quaternion_from_matrix.html">quaternion_from_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.translation_from_matrix.html">translation_from_matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.ghpython.html#artists">Artists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.ghpython.RobotArtist.html">RobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.ghpython.html#path-planning">Path planning</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.robots.html">compas_fab.robots</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#classses">Classses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Robot.html">Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.UrdfImporter.html">UrdfImporter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#artists">Artists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.BaseRobotArtist.html">BaseRobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#unit-conversion">Unit conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.sensors.SerialSensor.html">SerialSensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.sensors.SerialSensor.__init__.html">SerialSensor.__init__</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.sensors.html#baumer-sensors">Baumer sensors</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.utilities.html#file-system-functions">File system functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.read_csv_to_dictionary.html">read_csv_to_dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.write_data_to_json.html">write_data_to_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.read_data_from_json.html">read_data_from_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.list_files_in_directory.html">list_files_in_directory</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.utilities.html#numerical-functions">Numerical functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.map_range.html">map_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.arange.html">arange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.allclose.html">allclose</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.utilities.html#other-functions">Other functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.sign.html">sign</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.utilities.argsort.html">argsort</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+                        
+                    
+
+                </main>
+
+                <!-- site navigation sidebar -->
+
+                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                    <div class="navbar-light">
+
+                        <form id="" class="d-flex compas-searchbox" action="../search.html" method="get">
+                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                            <input type="hidden" name="check_keywords" value="yes" />
+                            <input type="hidden" name="area" value="default" />
+
+                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </form>
+
+                        
+                        
+
+                            <div class="navbar-expand-md">
+                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
+
+                                <ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="../overview.html">Overview</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../backends.html">Working with backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../reference.html">API Reference</a><ul class="nav active">
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../contributing.html">Contributor’s Guide</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../changelog.html">Changelog</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+                                </div>
+                            </div>
+
+                        
+
+                    </div>
+                </div>
+
+                <!-- table of contents of main content -->
+                
+                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
+                    
+
+                    <ul class="nav flex-column" id="compas-localnav">
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab</a></li>
+</ul>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="compas-footer">
+            
+                
+                    &#169; Copyright 2018, Gramazio Kohler Research.
+                
+            
+
+            
+                Last updated on Sep 06, 2018.
+            
+
+            
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+            
+        </footer>
+
+        
+
+            <script type="text/javascript">
+var DOCUMENTATION_OPTIONS = {
+    URL_ROOT          : '',
+    VERSION           : '0.1.0',
+    COLLAPSE_INDEX    : false,
+    FILE_SUFFIX       : '.html',
+    HAS_SOURCE        : 'false',
+    SOURCELINK_SUFFIX : '.txt'
+};
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
+            <script src="../_static/underscore.js"></script>
+            <script src="../_static/doctools.js"></script>
+            <script src="../_static/js/searchtools_.js"></script>
+            <script src="../_static/js/prism.js" data-manual></script>
+
+            <script>
+$(document).ready(function() {
+
+    $(".language-default pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-bash pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-python pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-c pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-cpp pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-fortran pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-markdown pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-rest pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    anchors.add();
+});
+            </script>
+
+        
+    </body>
+</html>

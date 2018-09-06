@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>compas_fab</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+        <meta name="author" content="" />
+        <meta name="description" content="" />
+
+        <link rel="shortcut icon" href="../_static/images/compas.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+
+        <link rel="stylesheet" type="text/css" href="../_static/css/prism.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/css/compas.css" />
+        <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
+
+        
+            <link rel="next" title="Frame" href="generated/compas_fab.geometry.Frame.html" />
+        
+        
+        
+            <link rel="prev" title="VrepError" href="generated/compas_fab.backends.VrepError.html" />
+        
+
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    </head>
+    <body data-spy="scroll" data-target="#compas-localnav">
+
+        <header class="navbar navbar-expand compas-navbar justify-content-between">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="../index.html">
+                    compas_fab 0.1.0
+                </a>
+            </div>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://compas-dev.github.io">
+                        <img src="../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                    </a>
+                </li>
+            </ul>
+        </header>
+        
+        <div class="container-fluid compas-container">
+            <div class="row flex-xl-nowrap">
+
+                <!-- main content -->
+
+                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+
+                    
+
+                        
+
+                        <span class="target" id="module-compas_fab.geometry"></span><div class="section" id="compas-fab-geometry">
+<h1>compas_fab.geometry</h1>
+<p><a class="reference internal" href="#module-compas_fab.geometry" title="compas_fab.geometry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">compas_fab.geometry</span></code></a> contains classes and functions for
+geometry representation and manipulation.</p>
+<div class="section" id="classes">
+<h2>Classes</h2>
+<table class="longtable docutils">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Frame.html#compas_fab.geometry.Frame" title="compas_fab.geometry.Frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frame</span></code></a></p></td>
+<td><p>A frame is defined by a base point and two orthonormal base vectors.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Transformation.html#compas_fab.geometry.Transformation" title="compas_fab.geometry.Transformation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transformation</span></code></a></p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> represents a 4x4 transformation matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Rotation.html#compas_fab.geometry.Rotation" title="compas_fab.geometry.Rotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rotation</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Rotation</span></code> extends <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> to represent a 4x4 rotation matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Translation.html#compas_fab.geometry.Translation" title="compas_fab.geometry.Translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Translation</span></code></a></p></td>
+<td><p>Creates a translation transformation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Scale.html#compas_fab.geometry.Scale" title="compas_fab.geometry.Scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Scale</span></code></a></p></td>
+<td><p>Creates a scaling transformation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Reflection.html#compas_fab.geometry.Reflection" title="compas_fab.geometry.Reflection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Reflection</span></code></a></p></td>
+<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">Reflection</span></code> that mirrors points at a plane, defined by point and normal vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Projection.html#compas_fab.geometry.Projection" title="compas_fab.geometry.Projection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Projection</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.Shear.html#compas_fab.geometry.Shear" title="compas_fab.geometry.Shear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Shear</span></code></a></p></td>
+<td><p>Constructs a <code class="docutils literal notranslate"><span class="pre">Shear</span></code> transformation by an angle along the direction vector on the shear plane (defined by point and normal).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="transformations">
+<h2>Transformations</h2>
+<table class="longtable docutils">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.axis_and_angle_from_matrix.html#compas_fab.geometry.axis_and_angle_from_matrix" title="compas_fab.geometry.axis_and_angle_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axis_and_angle_from_matrix</span></code></a></p></td>
+<td><p>Returns the axis and the angle of the rotation matrix M.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.axis_angle_vector_from_matrix.html#compas_fab.geometry.axis_angle_vector_from_matrix" title="compas_fab.geometry.axis_angle_vector_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">axis_angle_vector_from_matrix</span></code></a></p></td>
+<td><p>Returns the axis-angle vector of the rotation matrix M.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.basis_vectors_from_matrix.html#compas_fab.geometry.basis_vectors_from_matrix" title="compas_fab.geometry.basis_vectors_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basis_vectors_from_matrix</span></code></a></p></td>
+<td><p>Returns the basis vectors from the rotation matrix R.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.compose_matrix.html#compas_fab.geometry.compose_matrix" title="compas_fab.geometry.compose_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compose_matrix</span></code></a></p></td>
+<td><p>Calculates a matrix from the components of scale, shear, euler_angles, translation and perspective.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.decompose_matrix.html#compas_fab.geometry.decompose_matrix" title="compas_fab.geometry.decompose_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decompose_matrix</span></code></a></p></td>
+<td><p>Calculates the components of rotation, translation, scale, shear, and perspective of a given transformation matrix M.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.determinant.html#compas_fab.geometry.determinant" title="compas_fab.geometry.determinant"><code class="xref py py-obj docutils literal notranslate"><span class="pre">determinant</span></code></a></p></td>
+<td><p>Calculates the determinant of a square matrix M.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.euler_angles_from_matrix.html#compas_fab.geometry.euler_angles_from_matrix" title="compas_fab.geometry.euler_angles_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">euler_angles_from_matrix</span></code></a></p></td>
+<td><p>Returns Euler angles from the rotation matrix M according to specified axis sequence and type of rotation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.identity_matrix.html#compas_fab.geometry.identity_matrix" title="compas_fab.geometry.identity_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">identity_matrix</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.inverse.html#compas_fab.geometry.inverse" title="compas_fab.geometry.inverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse</span></code></a></p></td>
+<td><p>Calculates the inverse of a square matrix M.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_and_angle.html#compas_fab.geometry.matrix_from_axis_and_angle" title="compas_fab.geometry.matrix_from_axis_and_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_axis_and_angle</span></code></a></p></td>
+<td><p>Calculates a rotation matrix from an rotation axis, an angle and an optional point of rotation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_angle_vector.html#compas_fab.geometry.matrix_from_axis_angle_vector" title="compas_fab.geometry.matrix_from_axis_angle_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_axis_angle_vector</span></code></a></p></td>
+<td><p>Calculates a rotation matrix from an axis-angle vector.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_basis_vectors.html#compas_fab.geometry.matrix_from_basis_vectors" title="compas_fab.geometry.matrix_from_basis_vectors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_basis_vectors</span></code></a></p></td>
+<td><p>Creates a rotation matrix from basis vectors (= orthonormal vectors).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_euler_angles.html#compas_fab.geometry.matrix_from_euler_angles" title="compas_fab.geometry.matrix_from_euler_angles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_euler_angles</span></code></a></p></td>
+<td><p>Calculates a rotation matrix from Euler angles.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_frame.html#compas_fab.geometry.matrix_from_frame" title="compas_fab.geometry.matrix_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_frame</span></code></a></p></td>
+<td><p>Computes a change of basis transformation from world XY to the frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_perspective_entries.html#compas_fab.geometry.matrix_from_perspective_entries" title="compas_fab.geometry.matrix_from_perspective_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_perspective_entries</span></code></a></p></td>
+<td><p>Returns a matrix from perspective entries.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_quaternion.html#compas_fab.geometry.matrix_from_quaternion" title="compas_fab.geometry.matrix_from_quaternion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_quaternion</span></code></a></p></td>
+<td><p>Calculates a rotation matrix from quaternion coefficients.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_scale_factors.html#compas_fab.geometry.matrix_from_scale_factors" title="compas_fab.geometry.matrix_from_scale_factors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_scale_factors</span></code></a></p></td>
+<td><p>Returns a 4x4 scaling transformation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear.html#compas_fab.geometry.matrix_from_shear" title="compas_fab.geometry.matrix_from_shear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_shear</span></code></a></p></td>
+<td><p>Constructs a shear matrix by an angle along the direction vector on the shear plane (defined by point and normal).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear_entries.html#compas_fab.geometry.matrix_from_shear_entries" title="compas_fab.geometry.matrix_from_shear_entries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_shear_entries</span></code></a></p></td>
+<td><p>Returns a shear matrix from the 3 factors for x-y, x-z, and y-z axes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_translation.html#compas_fab.geometry.matrix_from_translation" title="compas_fab.geometry.matrix_from_translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_from_translation</span></code></a></p></td>
+<td><p>Returns a 4x4 translation matrix in row-major order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.geometry.quaternion_from_matrix.html#compas_fab.geometry.quaternion_from_matrix" title="compas_fab.geometry.quaternion_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quaternion_from_matrix</span></code></a></p></td>
+<td><p>Returns the 4 quaternion coefficients from a rotation matrix.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.geometry.translation_from_matrix.html#compas_fab.geometry.translation_from_matrix" title="compas_fab.geometry.translation_from_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translation_from_matrix</span></code></a></p></td>
+<td><p>Returns the 3 values of translation from the matrix M.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+                        
+                    
+
+                </main>
+
+                <!-- site navigation sidebar -->
+
+                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                    <div class="navbar-light">
+
+                        <form id="" class="d-flex compas-searchbox" action="../search.html" method="get">
+                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                            <input type="hidden" name="check_keywords" value="yes" />
+                            <input type="hidden" name="area" value="default" />
+
+                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </form>
+
+                        
+                        
+
+                            <div class="navbar-expand-md">
+                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
+
+                                <ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="../overview.html">Overview</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../backends.html">Working with backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../reference.html">API Reference</a><ul class="nav active">
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.html">compas_fab</a><ul class="nav active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.geometry</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../contributing.html">Contributor’s Guide</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../changelog.html">Changelog</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../license.html">License</a></li>
+</ul>
+
+
+                                </div>
+                            </div>
+
+                        
+
+                    </div>
+                </div>
+
+                <!-- table of contents of main content -->
+                
+                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
+                    
+
+                    <ul class="nav flex-column" id="compas-localnav">
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.geometry</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#classes">Classes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#transformations">Transformations</a></li>
+</ul>
+</li>
+</ul>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <footer class="compas-footer">
+            
+                
+                    &#169; Copyright 2018, Gramazio Kohler Research.
+                
+            
+
+            
+                Last updated on Sep 06, 2018.
+            
+
+            
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+            
+        </footer>
+
+        
+
+            <script type="text/javascript">
+var DOCUMENTATION_OPTIONS = {
+    URL_ROOT          : '',
+    VERSION           : '0.1.0',
+    COLLAPSE_INDEX    : false,
+    FILE_SUFFIX       : '.html',
+    HAS_SOURCE        : 'false',
+    SOURCELINK_SUFFIX : '.txt'
+};
+            </script>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
+            <script src="../_static/underscore.js"></script>
+            <script src="../_static/doctools.js"></script>
+            <script src="../_static/js/searchtools_.js"></script>
+            <script src="../_static/js/prism.js" data-manual></script>
+
+            <script>
+$(document).ready(function() {
+
+    $(".language-default pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-bash pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-python pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-c pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-cpp pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-fortran pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-markdown pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    $(".language-rest pre").each(function(i, element) {
+        Prism.highlightElement(element);
+    });
+
+    anchors.add();
+});
+            </script>
+
+        
+    </body>
+</html>
