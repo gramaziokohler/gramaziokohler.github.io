@@ -215,15 +215,21 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_RCF_WCF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># transformation matrix from world coordinate system to robot coordinate system</span>
+        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from world coordinate system to </span>
+<span class="sd">            robot coordinate system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">RCF</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_WCF_RCF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-         <span class="c1"># transformation matrix from robot coordinate system to world coordinate system</span>
+        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from robot coordinate system to </span>
+<span class="sd">            world coordinate system</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RCF</span><span class="p">,</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">())</span>
 
 <div class="viewcode-block" id="Robot.set_RCF"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.set_RCF.html#compas_fab.robots.Robot.set_RCF">[docs]</a>    <span class="k">def</span> <span class="nf">set_RCF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_coordinate_frame</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Moves the origin frame of the robot to the robot_coordinate_frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">RCF</span> <span class="o">=</span> <span class="n">robot_coordinate_frame</span></div>
 
 <div class="viewcode-block" id="Robot.get_configuration"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_configuration.html#compas_fab.robots.Robot.get_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -252,19 +258,112 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;This method is only callable once a semantic model is assigned&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-        <span class="n">configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">configuration</span></div>
+<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">current_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                           <span class="n">callback_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic.</span>
 
-<div class="viewcode-block" id="Robot.forward_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            frame (:class:`Frame`): The frame to calculate the inverse for</span>
+<span class="sd">            current_configuration (:class:`Configuration`, optional): If passed,</span>
+<span class="sd">                the inverse will be calculated such that the calculated joint </span>
+<span class="sd">                positions differ the least from the current configuration.</span>
+<span class="sd">                Defaults to the zero position for all joints.</span>
+<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">                processing the result. Defaults to the print function.</span>
+<span class="sd">            group (str, optional): The planning group used for calculation.</span>
+<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="c1"># ensure semantics</span>
+        <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">current_configuration</span><span class="p">:</span>
+            <span class="n">joint_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">current_configuration</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">callback_result</span><span class="p">:</span>
+            <span class="n">callback_result</span> <span class="o">=</span> <span class="nb">print</span>
+        <span class="n">frame_scaled</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="c1"># must be in meters</span>
 
-<div class="viewcode-block" id="Robot.compute_cartesian_path"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.compute_cartesian_path.html#compas_fab.robots.Robot.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">frame_scaled</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
+                                       <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Robot.forward_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">callback_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            configuration (:class:`Configuration`, optional): The configuration</span>
+<span class="sd">                to calculate the forward kinematic for.</span>
+<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">                processing the result. Defaults to the print function.</span>
+<span class="sd">            group (str, optional): The planning group used for calculation.</span>
+<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="c1"># ensure semantics</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">callback_result</span><span class="p">:</span>
+            <span class="n">callback_result</span> <span class="o">=</span> <span class="nb">print</span>
+        <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> 
+                                       <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span></div>
+        
+
+<div class="viewcode-block" id="Robot.compute_cartesian_path"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.compute_cartesian_path.html#compas_fab.robots.Robot.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span>
+                               <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callback_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculates a path defined by frames (Cartesian coordinate system).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            frames (:class:`Frame`): The frames of which the path is defined.</span>
+<span class="sd">            start_configuration (:class:`Configuration`, optional): The robot&#39;s</span>
+<span class="sd">                configuration at the starting position.</span>
+<span class="sd">            max_step (float): the approximate distance between the calculated </span>
+<span class="sd">                points. (Defined in the robot&#39;s units)</span>
+<span class="sd">            avoid_collisions (bool)</span>
+<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">                processing the result. Defaults to the print function.</span>
+<span class="sd">            group (str, optional): The planning group used for calculation.</span>
+<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
+<span class="sd">        </span>
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="c1"># ensure semantics</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">callback_result</span><span class="p">:</span>
+            <span class="n">callback_result</span> <span class="o">=</span> <span class="nb">print</span>
+        <span class="n">frames_scaled</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="n">frame_scaled</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="n">frames_scaled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame_scaled</span><span class="p">)</span>
+        <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">start_configuration</span><span class="p">:</span>
+            <span class="n">joint_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">start_configuration</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">max_step_scaled</span> <span class="o">=</span> <span class="n">max_step</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">compute_cartesian_path</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">frames_scaled</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> 
+                                           <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span>
+                                           <span class="n">max_step_scaled</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.send_frame"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.send_frame.html#compas_fab.robots.Robot.send_frame">[docs]</a>    <span class="k">def</span> <span class="nf">send_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># (check service name with ros)</span>
@@ -289,6 +388,15 @@
     <span class="k">def</span> <span class="nf">axes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_axes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Robot.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw_visual.html#compas_fab.robots.Robot.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Robot.draw_collision"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw_collision.html#compas_fab.robots.Robot.draw_collision">[docs]</a>    <span class="k">def</span> <span class="nf">draw_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">draw_collision</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Robot.draw"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw.html#compas_fab.robots.Robot.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="Robot.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scale the robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -299,8 +407,6 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">scale_factor</span></div>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="k">pass</span>
 </code></pre></div>
                         
                     
@@ -370,7 +476,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             

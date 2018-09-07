@@ -57,13 +57,17 @@
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Ros</span>
 <span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Service</span>
 <span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">ServiceRequest</span>
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">Goal</span>
 
+<span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="k">import</span> <span class="n">BackendError</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">DirectUrActionClient</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryGoal</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryResult</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetCartesianPathRequest</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetCartesianPathResponse</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionFKRequest</span>
@@ -72,20 +76,68 @@
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">GetPositionIKResponse</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">Header</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">JointState</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">JointTrajectory</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">JointTrajectoryPoint</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">MoveItErrorCodes</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">MultiDOFJointState</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">Pose</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">PoseStamped</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">PositionIKRequest</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">RobotState</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros</span> <span class="k">import</span> <span class="n">Time</span>
+
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages.direct_ur</span> <span class="k">import</span> <span class="n">URGoal</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages.direct_ur</span> <span class="k">import</span> <span class="n">URMovej</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages.direct_ur</span> <span class="k">import</span> <span class="n">URMovel</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages.direct_ur</span> <span class="k">import</span> <span class="n">URPose</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages.direct_ur</span> <span class="k">import</span> <span class="n">URPoseTrajectoryPoint</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;RosClient&#39;</span>
+    <span class="s1">&#39;RosClient&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RosError&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="RosClient"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient">[docs]</a><span class="k">class</span> <span class="nc">RosClient</span><span class="p">(</span><span class="n">Ros</span><span class="p">):</span>
+<div class="viewcode-block" id="RosError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError">[docs]</a><span class="k">class</span> <span class="nc">RosError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wraps an exception that occurred on the communication with ROS.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">):</span>
+
+<div class="viewcode-block" id="RosClient"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient">[docs]</a><span class="k">class</span> <span class="nc">RosClient</span><span class="p">(</span><span class="n">Ros</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Interface to use ROS as backend via the **rosbridge**.</span>
+
+<span class="sd">    The connection is managed by ``roslibpy``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    host : :obj:`str`</span>
+<span class="sd">        ROS bridge host. Defaults to ``localhost``.</span>
+<span class="sd">    port : :obj:`int`</span>
+<span class="sd">        Port of the ROS Bridge. Defaults to ``9090``.</span>
+<span class="sd">    is_secure : :obj:`bool`</span>
+<span class="sd">        ``True`` to indicate it should use a secure web socket, otherwise ``False``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; from compas_fab.backends import RosClient</span>
+<span class="sd">    &gt;&gt;&gt; client = RosClient()</span>
+<span class="sd">    &gt;&gt;&gt; def hello_ros():</span>
+<span class="sd">    &gt;&gt;&gt;     print(&#39;Connected: %s&#39; % client.is_connected)</span>
+<span class="sd">    &gt;&gt;&gt;     client.terminate()</span>
+<span class="sd">    &gt;&gt;&gt; client.on_ready(hello_ros)</span>
+<span class="sd">    &gt;&gt;&gt; client.run_forever()</span>
+<span class="sd">    Connected: True</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    For more examples, check out the :ref:`ROS examples page &lt;ros_examples&gt;`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RosClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.__init__.html#compas_fab.backends.RosClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9090</span><span class="p">,</span> <span class="n">is_secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RosClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">is_secure</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">):</span>
 
         <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
         <span class="n">pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
@@ -102,19 +154,20 @@
 
         <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">GetPositionIKResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">MoveItErrorCodes</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
-                <span class="n">configuration</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">joint_state</span><span class="o">.</span><span class="n">position</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error_code</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+            <span class="n">callback_result</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            if response.error_code == MoveItErrorCodes.SUCCESS:</span>
+<span class="sd">                configuration = response.solution.joint_state.position</span>
+<span class="sd">            print(response.error_code.human_readable)</span>
+<span class="sd">            &quot;&quot;&quot;</span>
 
         <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_ik&#39;</span><span class="p">,</span> <span class="s1">&#39;GetPositionIK&#39;</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="RosClient.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">):</span>
+<div class="viewcode-block" id="RosClient.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">):</span>
 
-        <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span>
         <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="n">frame_id</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
         <span class="n">fk_link_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">ee_link</span><span class="p">]</span>
         <span class="n">joint_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
@@ -124,15 +177,16 @@
 
         <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">GetPositionFKResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">MoveItErrorCodes</span><span class="o">.</span><span class="n">SUCCESS</span><span class="p">:</span>
-                <span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">frame</span> <span class="k">for</span> <span class="n">ps</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">pose_stamped</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">error_code</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+            <span class="c1">#if response.error_code == MoveItErrorCodes.SUCCESS:</span>
+            <span class="c1">#    frames = [ps.pose.frame for ps in response.pose_stamped]</span>
+            <span class="c1">#print(response.error_code.human_readable)</span>
+            <span class="n">callback_result</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
         <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_fk&#39;</span><span class="p">,</span> <span class="s1">&#39;GetPositionFK&#39;</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.compute_cartesian_path"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.compute_cartesian_path.html#compas_fab.backends.RosClient.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
+<div class="viewcode-block" id="RosClient.compute_cartesian_path"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.compute_cartesian_path.html#compas_fab.backends.RosClient.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
                                <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span>
                                <span class="n">avoid_collisions</span><span class="p">):</span>
 
@@ -151,52 +205,72 @@
 
         <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">GetCartesianPathResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">callback_result</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
         <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/compute_cartesian_path&#39;</span><span class="p">,</span> <span class="s1">&#39;GetCartesianPath&#39;</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
         <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.follow_joint_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">follow_joint_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">):</span>
+<div class="viewcode-block" id="RosClient.follow_configurations"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_configurations.html#compas_fab.backends.RosClient.follow_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">follow_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">configurations</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">configurations</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">timesteps</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> configurations must have </span><span class="si">%d</span><span class="s2"> timesteps, but </span><span class="si">%d</span><span class="s2"> given.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">configurations</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">timesteps</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">timesteps</span><span class="p">)))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">timeout</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="n">timesteps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_joints</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">configurations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">config</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">configurations</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">):</span>
+            <span class="n">pt</span> <span class="o">=</span> <span class="n">JointTrajectoryPoint</span><span class="p">(</span><span class="n">positions</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">num_joints</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="n">Time</span><span class="p">(</span><span class="n">secs</span><span class="o">=</span><span class="p">(</span><span class="n">time</span><span class="p">)))</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
+
+        <span class="n">joint_trajectory</span> <span class="o">=</span> <span class="n">JointTrajectory</span><span class="p">(</span><span class="n">Header</span><span class="p">(),</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span> <span class="c1"># specify header necessary?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">follow_joint_trajectory</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RosClient.follow_joint_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">follow_joint_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Follow the joint trajectory as computed by Moveit Planner.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            joint_trajectory (JointTrajectory)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">FollowJointTrajectoryGoal</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="n">joint_trajectory</span><span class="p">)</span>
+
         <span class="k">def</span> <span class="nf">handle_result</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">FollowJointTrajectoryResult</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">human_readable</span><span class="p">)</span>
+            <span class="n">callback_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="c1">#print(result.human_readable)</span>
 
         <span class="n">action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/follow_joint_trajectory&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;control_msgs/FollowJointTrajectoryAction&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
-        <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">joint_trajectory</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
+                       <span class="s1">&#39;control_msgs/FollowJointTrajectory&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">goal</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
 
         <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">result</span><span class="p">:</span> <span class="n">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">action_client</span><span class="p">))</span>
         <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;feedback&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">feedback</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">feedback</span><span class="p">))</span>
         <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TIMEOUT&#39;</span><span class="p">))</span>
         <span class="n">action_client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CLIENT TIMEOUT&#39;</span><span class="p">))</span>
-
         <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="mi">60000</span><span class="p">)</span></div>
 
 
-    <span class="c1"># NOTE: Suggested method signature</span>
-    <span class="c1"># def set_robot_pose(self, robot, frame):</span>
-<div class="viewcode-block" id="RosClient.send_frame"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_frame.html#compas_fab.backends.RosClient.send_frame">[docs]</a>    <span class="k">def</span> <span class="nf">send_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># (check service name with ros)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+<div class="viewcode-block" id="RosClient.direct_ur_movel"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.direct_ur_movel.html#compas_fab.backends.RosClient.direct_ur_movel">[docs]</a>    <span class="k">def</span> <span class="nf">direct_ur_movel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">acceleration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
-    <span class="c1"># NOTE: Suggested method signature</span>
-    <span class="c1"># def set_robot_config(self, robot, configuration):</span>
-<div class="viewcode-block" id="RosClient.send_configuration"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_configuration.html#compas_fab.backends.RosClient.send_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">send_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># (check service name with ros)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+        <span class="n">action_client</span> <span class="o">=</span> <span class="n">DirectUrActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RosClient.send_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.send_trajectory.html#compas_fab.backends.RosClient.send_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">send_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># (check service name with ros)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div></div>
+        <span class="n">script_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
+            <span class="n">ptp</span> <span class="o">=</span> <span class="n">URPoseTrajectoryPoint</span><span class="p">(</span><span class="n">URPose</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">),</span> <span class="n">acceleration</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+            <span class="c1">#move = URMovej(ptp)</span>
+            <span class="n">move</span> <span class="o">=</span> <span class="n">URMovel</span><span class="p">(</span><span class="n">ptp</span><span class="p">)</span>
+            <span class="n">script_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+
+        <span class="n">urgoal</span> <span class="o">=</span> <span class="n">URGoal</span><span class="p">(</span><span class="n">script_lines</span><span class="p">)</span>
+
+        <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">urgoal</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
+        <span class="n">action_client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CLIENT TIMEOUT&#39;</span><span class="p">))</span>
+        <span class="c1"># goal.on(&#39;feedback&#39;, lambda feedback: print(feedback))</span>
+        <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="n">callback_result</span><span class="p">)</span>
+        <span class="n">action_client</span><span class="o">.</span><span class="n">send_goal</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span></div></div>
 </code></pre></div>
                         
                     
@@ -266,7 +340,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             

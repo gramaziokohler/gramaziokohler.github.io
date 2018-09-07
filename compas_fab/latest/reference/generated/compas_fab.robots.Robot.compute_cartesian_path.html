@@ -18,7 +18,7 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="Robot.ensure_client" href="compas_fab.robots.Robot.ensure_client.html" />
+            <link rel="next" title="Robot.draw" href="compas_fab.robots.Robot.draw.html" />
         
         
         
@@ -61,8 +61,22 @@
 <h1>Robot.compute_cartesian_path</h1>
 <dl class="method">
 <dt id="compas_fab.robots.Robot.compute_cartesian_path">
-<code class="descclassname">Robot.</code><code class="descname">compute_cartesian_path</code><span class="sig-paren">(</span><em>frames</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.compute_cartesian_path"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
+<code class="descclassname">Robot.</code><code class="descname">compute_cartesian_path</code><span class="sig-paren">(</span><em>frames</em>, <em>start_configuration</em>, <em>max_step</em>, <em>avoid_collisions=True</em>, <em>callback_result=None</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.compute_cartesian_path"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Calculates a path defined by frames (Cartesian coordinate system).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frames (:class:`Frame`)</strong> (<em>The frames of which the path is defined.</em>)</p></li>
+<li><p><strong>start_configuration (:class:`Configuration`, optional)</strong> (<em>The robot’s</em>) – configuration at the starting position.</p></li>
+<li><p><strong>max_step (float)</strong> (<em>the approximate distance between the calculated</em>) – points. (Defined in the robot’s units)</p></li>
+<li><p><strong>avoid_collisions (bool)</strong></p></li>
+<li><p><strong>callback_result (function, optional)</strong> (<em>the function to call for the</em>) – processing the result. Defaults to the print function.</p></li>
+<li><p><strong>group (str, optional)</strong> (<em>The planning group used for calculation.</em>) – Defaults to the robot’s main planning group.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+</dd></dl>
 
 </div>
 
@@ -101,10 +115,11 @@
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
 </li>
 </ul>
@@ -148,7 +163,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             

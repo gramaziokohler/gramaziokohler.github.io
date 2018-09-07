@@ -18,11 +18,11 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="RosClient.send_on_ready" href="compas_fab.backends.RosClient.send_on_ready.html" />
+            <link rel="next" title="RobotArtist.update_link" href="compas_fab.rhino.RobotArtist.update_link.html" />
         
         
         
-            <link rel="prev" title="RosClient.send_configuration" href="compas_fab.backends.RosClient.send_configuration.html" />
+            <link rel="prev" title="RobotArtist.transform" href="compas_fab.rhino.RobotArtist.transform.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -57,12 +57,22 @@
 
                         
 
-                        <div class="detail section" id="rosclient-send-frame">
-<h1>RosClient.send_frame</h1>
+                        <div class="detail section" id="robotartist-update">
+<h1>RobotArtist.update</h1>
 <dl class="method">
-<dt id="compas_fab.backends.RosClient.send_frame">
-<code class="descclassname">RosClient.</code><code class="descname">send_frame</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient.send_frame"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
+<dt id="compas_fab.rhino.RobotArtist.update">
+<code class="descclassname">RobotArtist.</code><code class="descname">update</code><span class="sig-paren">(</span><em>configuration</em>, <em>collision=True</em><span class="sig-paren">)</span></dt>
+<dd><p>Trigger the update of the robot geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configuration</strong> (<cite>compas_fab.robots.Configuration</cite>) – Instance of the configuration (joint state) to move to.</p></li>
+<li><p><strong>collision</strong> (<em>bool, optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the collision geometry should be also updated, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 
@@ -99,12 +109,13 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
 </li>
 </ul>
@@ -131,7 +142,7 @@
                     
 
                     <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">RosClient.send_frame</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">RobotArtist.update</a></li>
 </ul>
 
 
@@ -148,7 +159,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             

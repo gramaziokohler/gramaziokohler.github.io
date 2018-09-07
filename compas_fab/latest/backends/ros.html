@@ -59,7 +59,50 @@
 
                         <div class="section" id="ros">
 <span id="ros-backend"></span><h1>ROS</h1>
-<p>…</p>
+<p>The Robot Operating System (<a class="reference external" href="http://www.ros.org/">ROS</a>) is a flexible framework
+for writing robot software. It is a collection of tools, libraries, and conventions
+that aim to simplify the task of creating complex and robust robot behavior across
+a wide variety of robotic platforms.</p>
+<p>Running a ROS system usually involves multiple nodes (i.e. computers, real or virtual),
+interconnected through a master controller. To massively simplify the use of these
+tools, we package entire ROS systems into sets of <a class="reference external" href="https://www.docker.com/">Docker</a> containers. Each of
+these sets runs in a virtualized network within your computer.</p>
+<p>In order to run a ROS system that includes a graphical interface, first make sure
+to install and start an <code class="docutils literal notranslate"><span class="pre">X11</span></code> server:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sourceforge.net/projects/xming/">XMing For Windows</a></p></li>
+<li><p><a class="reference external" href="https://www.xquartz.org/">XQuartz For Mac</a> (see here for <a class="reference external" href="https://medium.com/&#64;mreichelt/how-to-show-x11-windows-within-docker-on-mac-50759f4b65cb">more details</a>).</p></li>
+</ul>
+<p>Besides simplifying the deployment, using containers has the added benefit of ensuring
+repeatability.</p>
+<p>Once you made sure <a class="reference external" href="https://www.docker.com/">Docker</a> is running, you can pull and run some ROS
+containers. The <strong>compas_fab</strong> team publishes some images on <a class="reference external" href="https://hub.docker.com/r/gramaziokohler/">Docker Hub</a>
+but there are many more to be found online. You can start a single ROS Master
+with the following commands on the command line:</p>
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">11311</span><span class="p">:</span><span class="mi">11311</span> <span class="o">-</span><span class="n">t</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span> <span class="n">roscore</span>
+</code></pre></div>
+</div>
+<div class="section" id="entire-ros-systems">
+<h2>Entire ROS systems</h2>
+<p>It is usually not enough to run single ROS nodes. ROS systems are networks of
+multiple interconnected nodes. Docker provides a way to compose virtualized networks
+using the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> command. These commands takes one simple configuration
+file as input, and take care of pulling, running and connecting all the nodes.</p>
+<p>Download <a class="reference download internal" href="../_downloads/docker-compose.yml" download=""><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">basic</span> <span class="pre">ROS</span> <span class="pre">system</span></code></a> into any
+folder of your computer, open the command line, go to the folder where the file was
+downloaded, and run the following command:</p>
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</code></pre></div>
+</div>
+<p>You now have a ROS system with two nodes running: <code class="docutils literal notranslate"><span class="pre">roscore</span></code> (<strong>master</strong>) and
+the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate to ROS.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An alternative way to install ROS on Windows is to use
+<a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL: Windows Subsystem for Linux</a>.</p>
+</div>
+</div>
 <div class="section" id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
@@ -128,6 +171,7 @@
 
                     <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">ROS</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#entire-ros-systems">Entire ROS systems</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
@@ -147,7 +191,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             

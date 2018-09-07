@@ -83,7 +83,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosClient</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Interface to use ROS as backend via the <strong>rosbridge</strong>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -99,7 +99,10 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.BackendError.html#compas_fab.backends.BackendError" title="compas_fab.backends.BackendError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackendError</span></code></a></p></td>
 <td><p>Indicates an exceptional state that caused an error within the backend engine.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError" title="compas_fab.backends.VrepError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError" title="compas_fab.backends.RosError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosError</span></code></a></p></td>
+<td><p>Wraps an exception that occurred on the communication with ROS.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError" title="compas_fab.backends.VrepError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepError</span></code></a></p></td>
 <td><p>Wraps an exception that occurred inside the simulation engine.</p></td>
 </tr>
 </tbody>
@@ -142,10 +145,11 @@
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
 </li>
 </ul>
@@ -194,7 +198,7 @@
             
 
             
-                Last updated on Sep 06, 2018.
+                Last updated on Sep 07, 2018.
             
 
             
