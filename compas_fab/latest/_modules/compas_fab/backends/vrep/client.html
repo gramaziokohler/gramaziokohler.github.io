@@ -317,6 +317,28 @@
                                                       <span class="p">[],</span> <span class="p">[])</span>
         <span class="k">return</span> <span class="n">config_from_vrep</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="VrepClient.get_end_effector_pose"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.get_end_effector_pose.html#compas_fab.backends.VrepClient.get_end_effector_pose">[docs]</a>    <span class="k">def</span> <span class="nf">get_end_effector_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the current end-effector pose.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot (:class:`Robot`): Robot instance.</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; from compas_fab.robots import *</span>
+<span class="sd">            &gt;&gt;&gt; with VrepClient() as client:</span>
+<span class="sd">            ...     frame = client.get_end_effector_pose(Robot.basic(&#39;A&#39;, index=0))</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            An instance of :class:`Frame`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+
+        <span class="n">_res</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_child_script</span><span class="p">(</span><span class="s1">&#39;getIkTipPose&#39;</span><span class="p">,</span>
+                                                      <span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]],</span>
+                                                      <span class="p">[],</span> <span class="p">[])</span>
+        <span class="k">return</span> <span class="n">vrep_pose_to_frame</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="VrepClient.find_robot_states"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.find_robot_states.html#compas_fab.backends.VrepClient.find_robot_states">[docs]</a>    <span class="k">def</span> <span class="nf">find_robot_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_frame</span><span class="p">,</span> <span class="n">metric_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gantry_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Finds valid robot configurations for the specified goal frame.</span>
 
@@ -690,6 +712,9 @@
 <span class="c1"># all transformations from and to V-REP are consistent</span>
 <span class="c1"># --------------------------------------------------------------------------</span>
 
+<span class="k">def</span> <span class="nf">vrep_pose_to_frame</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">floats_from_vrep</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="n">scale</span><span class="p">))</span>
+
 
 <span class="k">def</span> <span class="nf">frame_to_vrep_pose</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
     <span class="c1"># compas_fab uses meters, just like V-REP,</span>
@@ -724,67 +749,69 @@
 <span class="k">def</span> <span class="nf">floats_from_vrep</span><span class="p">(</span><span class="n">list_of_floats</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">v</span> <span class="o">*</span> <span class="n">scale</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">list_of_floats</span><span class="p">]</span>
 
-
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hola&#39;</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Vector</span>
-    <span class="n">v</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+    <span class="kn">import</span> <span class="nn">logging</span>
+    <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="c1"># if __name__ == &#39;__main__&#39;:</span>
-<span class="c1">#     import logging</span>
-<span class="c1">#     import time</span>
+    <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+    <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">Mesh</span>
 
-<span class="c1">#     from compas.geometry import Frame</span>
-<span class="c1">#     from compas.datastructures import Mesh</span>
+    <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="o">*</span>
+    <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">rfl</span>
+    <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">VrepClient</span>
 
-<span class="c1">#     from compas_fab.robots import *</span>
-<span class="c1">#     from compas_fab.robots import rfl</span>
-<span class="c1">#     from compas_fab.backends import VrepClient</span>
+    <span class="c1"># from compas.geometry.xforms import Rotation</span>
+    <span class="c1"># from compas.geometry.xforms import Transformation</span>
+    <span class="c1"># r = Rotation.from_axis_and_angle([0,1,0], math.radians(270), goal_pose.point)</span>
 
-<span class="c1">#     # Configure logging to DEBUG to see detailed timing of the path planning</span>
-<span class="c1">#     logging.basicConfig(level=logging.DEBUG)</span>
+    <span class="c1"># print(Transformation.from_frame(goal_pose))</span>
+    <span class="c1"># goal_pose.transform(r)</span>
+    <span class="c1"># print(Transformation.from_frame(goal_pose))</span>
+    <span class="c1"># print(goal_pose)</span>
 
-<span class="c1">#     # Configure parameters for path planning</span>
-<span class="c1">#     start_pose = Frame.from_list([1.0, 0.0, 0.0, 7.453,</span>
-<span class="c1">#                                   0.0, -1.0, 0.0, 2.905,</span>
-<span class="c1">#                                   0.0, 0.0, -1.0, 0.679])</span>
-<span class="c1">#     from compas.geometry.xforms import Rotation</span>
-<span class="c1">#     from compas.geometry.xforms import Transformation</span>
-<span class="c1">#     r = Rotation.from_axis_and_angle([1,0,0], math.radians(90), start_pose.point)</span>
-<span class="c1">#     goal_pose = Frame.from_list([-1.0, 0.0, 0.0, 8.110,</span>
-<span class="c1">#                                  8.97e-13, 0.0, -1.0, 6.920,</span>
-<span class="c1">#                                  0.0, -1.0, 0.0, 1.810])</span>
-<span class="c1">#     algorithm = &#39;rrtconnect&#39;</span>
-<span class="c1">#     max_trials = 1</span>
-<span class="c1">#     resolution = 0.02</span>
-<span class="c1">#     building_member = Mesh.from_obj(&#39;C:\\Users\\gcasas\\eth\\Projects\\research\\compas_fab\\data\\timber_beam.obj&#39;)</span>
-<span class="c1">#     structure = [Mesh.from_obj(&#39;C:\\Users\\gcasas\\eth\\Projects\\research\\compas_fab\\data\\timber_structure.obj&#39;)]</span>
-<span class="c1">#     metric = [0.1] * 9</span>
-<span class="c1">#     fast_search = True</span>
+    <span class="c1"># Configure logging to DEBUG to see detailed timing of the path planning</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
-<span class="c1">#     with VrepClient(debug=True) as client:</span>
-<span class="c1">#         # client.add_meshes(structure)</span>
-<span class="c1">#         robot = rfl.Robot(&#39;A&#39;, client=client)</span>
-<span class="c1">#         # print(Transformation.from_frame(start_pose))</span>
-<span class="c1">#         # # start_pose.transform(r)</span>
-<span class="c1">#         # print(Transformation.from_frame(start_pose))</span>
+    <span class="c1"># Configure parameters for path planning</span>
+    <span class="n">start_pose</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">7.453</span><span class="p">,</span> <span class="mf">2.905</span><span class="p">,</span> <span class="mf">0.679</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">5.510</span><span class="p">,</span> <span class="mf">5.900</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">algorithm</span> <span class="o">=</span> <span class="s1">&#39;rrtconnect&#39;</span>
+    <span class="n">max_trials</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">resolution</span> <span class="o">=</span> <span class="mf">0.02</span>
+    <span class="n">building_member</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">gcasas</span><span class="se">\\</span><span class="s1">eth</span><span class="se">\\</span><span class="s1">Projects</span><span class="se">\\</span><span class="s1">research</span><span class="se">\\</span><span class="s1">compas_fab</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">timber_beam.obj&#39;</span><span class="p">)</span>
+    <span class="n">structure</span> <span class="o">=</span> <span class="p">[</span><span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">gcasas</span><span class="se">\\</span><span class="s1">eth</span><span class="se">\\</span><span class="s1">Projects</span><span class="se">\\</span><span class="s1">research</span><span class="se">\\</span><span class="s1">compas_fab</span><span class="se">\\</span><span class="s1">data</span><span class="se">\\</span><span class="s1">timber_structure.obj&#39;</span><span class="p">)]</span>
+    <span class="n">metric</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span>
+    <span class="n">fast_search</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">start_pose</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">VrepClient</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="c1"># client.add_meshes(structure)</span>
+        <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
 
-<span class="c1">#         client.pick_building_member(robot, building_member, start_pose)</span>
-<span class="c1">#         print(&#39;Added building member&#39;)</span>
-<span class="c1">#         time.sleep(4)</span>
-<span class="c1">#         # path = client.find_path_plan(robot,</span>
-<span class="c1">#         #                              goal_pose,</span>
-<span class="c1">#         #                              metric_values=metric,</span>
-<span class="c1">#         #                              collision_meshes=structure,</span>
-<span class="c1">#         #                              algorithm=algorithm,</span>
-<span class="c1">#         #                              trials=max_trials,</span>
-<span class="c1">#         #                              resolution=resolution,</span>
-<span class="c1">#         #                              shallow_state_search=fast_search)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">set_robot_pose</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_pose</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_end_effector_pose</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
-<span class="c1">#         # print(&#39;Found path of %d steps&#39; % len(path))</span>
-<span class="c1">#         time.sleep(10)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;frame&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="c1"># robot = rfl.Robot(&#39;A&#39;, client=client)</span>
+
+        <span class="c1"># client.pick_building_member(robot, building_member, start_pose)</span>
+        <span class="c1"># print(&#39;Added building member&#39;)</span>
+        <span class="c1"># time.sleep(2)</span>
+
+        <span class="c1"># # config = client.set_robot_pose(robot, goal_pose)</span>
+        <span class="c1"># # client.add_meshes(structure)</span>
+        <span class="c1"># # time.sleep(4)</span>
+
+        <span class="c1"># path = client.find_path_plan(robot,</span>
+        <span class="c1">#                              goal_pose,</span>
+        <span class="c1">#                              metric_values=metric,</span>
+        <span class="c1">#                              collision_meshes=structure,</span>
+        <span class="c1">#                              algorithm=algorithm,</span>
+        <span class="c1">#                              trials=max_trials,</span>
+        <span class="c1">#                              resolution=resolution,</span>
+        <span class="c1">#                              shallow_state_search=fast_search)</span>
+
+        <span class="c1"># print(&#39;Found path of %d steps&#39; % len(path))</span>
+        <span class="c1"># # time.sleep(10)</span>
 </code></pre></div>
                         
                     

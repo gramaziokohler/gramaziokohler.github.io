@@ -63,6 +63,36 @@
 backend.</p>
 <p>Before running them, make sure you have configured the
 <a class="reference internal" href="../backends/ros.html#ros-backend"><span class="std std-ref">ROS backend</span></a> correctly.</p>
+<div class="section" id="first-step">
+<h2>First step</h2>
+<p>The first step is to connect to ROS to verify that the system is working.</p>
+<p>Copy and paste the following example into any Python environment
+(a standalong script, a CAD environment, etc) and run it, you should
+see the output <code class="docutils literal notranslate"><span class="pre">Connected:</span> <span class="pre">True</span></code> if everything is working properly:</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">hello_ros</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="n">hello_ros</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<p>The first thing to notice in this example is that the ROS client relies
+on <strong>callbacks</strong> to work. This allows to use event-based programming and
+build more reactive software that does not need to block when it is not
+required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <em>callback</em> is a function that is passed to another function as a
+parameter such that the latter function can call the former at any time
+during its own execution. Whenever code needs to respond to an event,
+one of the easiest ways to achieve it is to pass a <em>callback</em> function
+that the framework will invoke when the event is fired.</p>
+</div>
+</div>
 </div>
 
                         
@@ -99,7 +129,6 @@ backend.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="01_frame_and_transformation.html">Frame and Transformation</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="02_coordinate_frames.html">Coordinate frames</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="03_kinematic_model.html">Kinematic model</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_robot_control.html">The control of robotic manipulators</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="05_simulation_with_vrep.html">Simulation examples with V-REP</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Using ROS</a></li>
 </ul>
@@ -127,7 +156,10 @@ backend.</p>
                     
 
                     <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Using ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">Using ROS</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#first-step">First step</a></li>
+</ul>
+</li>
 </ul>
 
 

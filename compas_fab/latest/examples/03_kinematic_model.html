@@ -18,7 +18,7 @@
         <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="The control of robotic manipulators" href="04_robot_control.html" />
+            <link rel="next" title="Simulation examples with V-REP" href="05_simulation_with_vrep.html" />
         
         
         
@@ -118,8 +118,42 @@ kind of movements. The three major types of joints are:</p>
 </code></pre></div>
 </div>
 <div class="figure" id="id3">
-<img alt="../_images/03_robot_model.jpg" class="figure-img img-fluid" src="../_images/03_robot_model.jpg" />
+<img alt="../_images/03_robot_model.jpg" class="figure-img img-fluid w-50" src="../_images/03_robot_model.jpg" />
 <p class="caption"><span class="caption-text">Coordinate frames in each joint of the robot.</span></p>
+</div>
+</div>
+<div class="section" id="forward-kinematics">
+<h2>Forward Kinematics</h2>
+<p>The Forward Kinematics function/algorithm takes the joint states, or configuration,
+as the input, and calculates the pose of the end effector in the task space
+as the output. This means the state of each joint in the articulated body
+of a robot needs to be defined.</p>
+<p>Joint states are described in <strong>compas_fab</strong> with the
+<a class="reference internal" href="../reference/generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a> class.</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">(</span><span class="n">to_radians</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_end_effector_pose</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;End effector pose: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+<div class="section" id="inverse-kinematics">
+<h2>Inverse Kinematics</h2>
+<p>Inverse Kinematics is the inverse function/algorithm of Forward Kinematics. The
+Forward Kinematics function/algorithm takes a target end-effector pose in the
+task space as the input, and calculates the joint states required for the
+end effector to reach the target pose . The output of an inverse kinematics
+are the joint states, i.e. the configuration of the robot.</p>
+<p>The following code exemplifies how to calculate this:</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">8.110</span><span class="p">,</span> <span class="mf">7.020</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">set_robot_pose</span><span class="p">(</span><span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">),</span> <span class="n">goal_pose</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Found configuration: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+</code></pre></div>
 </div>
 </div>
 <div class="section" id="id1">
@@ -165,7 +199,6 @@ kind of movements. The three major types of joints are:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="01_frame_and_transformation.html">Frame and Transformation</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="02_coordinate_frames.html">Coordinate frames</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Kinematic model</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_robot_control.html">The control of robotic manipulators</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="05_simulation_with_vrep.html">Simulation examples with V-REP</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="06_ros_examples.html">Using ROS</a></li>
 </ul>
@@ -196,6 +229,8 @@ kind of movements. The three major types of joints are:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="#">Kinematic model</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#links">Links</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#joints">Joints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#forward-kinematics">Forward Kinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#inverse-kinematics">Inverse Kinematics</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#id1">Links</a></li>
 </ul>
 </li>

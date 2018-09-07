@@ -22,7 +22,7 @@
         
         
         
-            <link rel="prev" title="The control of robotic manipulators" href="04_robot_control.html" />
+            <link rel="prev" title="Kinematic model" href="03_kinematic_model.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -106,6 +106,10 @@ and not colliding with each other at start, otherwise path planning will fail.</
     <span class="n">robot_b</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">robot_a</span><span class="p">,</span> <span class="n">config_robot_a</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">robot_b</span><span class="p">,</span> <span class="n">config_robot_b</span><span class="p">)</span>
+
+    <span class="n">frame_a</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_end_effector_pose</span><span class="p">(</span><span class="n">robot_a</span><span class="p">)</span>
+    <span class="n">frame_b</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_end_effector_pose</span><span class="p">(</span><span class="n">robot_b</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;End effector poses: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_b</span><span class="p">))</span>
 </code></pre></div>
 </div>
 </div>
@@ -120,9 +124,7 @@ valid configuration to reach the goal pose.</p>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">rfl</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">VrepClient</span>
 
-<span class="n">goal_pose</span>       <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">8.110</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">7.020</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">])</span>
+<span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">8.110</span><span class="p">,</span> <span class="mf">7.020</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
 <span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
@@ -144,9 +146,7 @@ of such a request:</p>
 
 <span class="n">start_config</span>    <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">([</span><span class="mf">8.260</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.320</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.690</span><span class="p">],</span>
                                                                    <span class="n">to_radians</span><span class="p">([</span><span class="o">-</span><span class="mi">143</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="o">-</span><span class="mi">112</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">126</span><span class="p">]))</span>
-<span class="n">goal_pose</span>       <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">8.110</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">7.020</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">])</span>
+<span class="n">goal_pose</span>       <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">8.110</span><span class="p">,</span> <span class="mf">7.020</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
 <span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
@@ -174,12 +174,8 @@ calculating a path plan:</p>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
 
 <span class="c1"># Configure parameters for path planning</span>
-<span class="n">start_pose</span>      <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">7.453</span><span class="p">,</span>
-                                   <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">10.919</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.609</span><span class="p">])</span>
-<span class="n">goal_pose</span>       <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">8.110</span><span class="p">,</span>
-                                   <span class="mf">8.97e-13</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">6.920</span><span class="p">,</span>
-                                   <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">])</span>
+<span class="n">start_pose</span>      <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">7.453</span><span class="p">,</span> <span class="mf">2.905</span><span class="p">,</span> <span class="mf">0.679</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">goal_pose</span>       <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">5.510</span><span class="p">,</span> <span class="mf">5.900</span><span class="p">,</span> <span class="mf">1.810</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">algorithm</span>       <span class="o">=</span> <span class="s1">&#39;rrtconnect&#39;</span>
 <span class="n">max_trials</span>      <span class="o">=</span> <span class="mi">1</span>
 <span class="n">resolution</span>      <span class="o">=</span> <span class="mf">0.02</span>
@@ -251,7 +247,6 @@ a ready-made integration for Grasshopper that allows configuration of most avail
 <li class="nav-item"><a class="nav-link reference internal" href="01_frame_and_transformation.html">Frame and Transformation</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="02_coordinate_frames.html">Coordinate frames</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="03_kinematic_model.html">Kinematic model</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_robot_control.html">The control of robotic manipulators</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Simulation examples with V-REP</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="06_ros_examples.html">Using ROS</a></li>
 </ul>

@@ -118,37 +118,40 @@ with the <code class="docutils literal notranslate"><span class="pre">with</span
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_all_visible_handles.html#compas_fab.backends.VrepClient.get_all_visible_handles" title="compas_fab.backends.VrepClient.get_all_visible_handles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_visible_handles</span></code></a>()</p></td>
 <td><p>Gets a list of object handles (identifiers) for all visible shapes of the 3D model.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_object_handle.html#compas_fab.backends.VrepClient.get_object_handle" title="compas_fab.backends.VrepClient.get_object_handle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_handle</span></code></a>(object_name)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_end_effector_pose.html#compas_fab.backends.VrepClient.get_end_effector_pose" title="compas_fab.backends.VrepClient.get_end_effector_pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_pose</span></code></a>(robot)</p></td>
+<td><p>Gets the current end-effector pose.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_object_handle.html#compas_fab.backends.VrepClient.get_object_handle" title="compas_fab.backends.VrepClient.get_object_handle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_handle</span></code></a>(object_name)</p></td>
 <td><p>Gets the object handle (identifier) for a given object name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_object_matrices.html#compas_fab.backends.VrepClient.get_object_matrices" title="compas_fab.backends.VrepClient.get_object_matrices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_matrices</span></code></a>(object_handles)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_object_matrices.html#compas_fab.backends.VrepClient.get_object_matrices" title="compas_fab.backends.VrepClient.get_object_matrices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_object_matrices</span></code></a>(object_handles)</p></td>
 <td><p>Gets a dictionary of matrices keyed by object handle.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_robot_config.html#compas_fab.backends.VrepClient.get_robot_config" title="compas_fab.backends.VrepClient.get_robot_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_robot_config</span></code></a>(robot)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.get_robot_config.html#compas_fab.backends.VrepClient.get_robot_config" title="compas_fab.backends.VrepClient.get_robot_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_robot_config</span></code></a>(robot)</p></td>
 <td><p>Gets the current configuration of the specified robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.is_connected.html#compas_fab.backends.VrepClient.is_connected" title="compas_fab.backends.VrepClient.is_connected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_connected</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.is_connected.html#compas_fab.backends.VrepClient.is_connected" title="compas_fab.backends.VrepClient.is_connected"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_connected</span></code></a>()</p></td>
 <td><p>Indicates whether the client has an active connection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.pick_building_member.html#compas_fab.backends.VrepClient.pick_building_member" title="compas_fab.backends.VrepClient.pick_building_member"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_building_member</span></code></a>(robot, …[, metric_values])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.pick_building_member.html#compas_fab.backends.VrepClient.pick_building_member" title="compas_fab.backends.VrepClient.pick_building_member"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pick_building_member</span></code></a>(robot, …[, metric_values])</p></td>
 <td><p>Picks up a building member and attaches it to the robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.remove_meshes.html#compas_fab.backends.VrepClient.remove_meshes" title="compas_fab.backends.VrepClient.remove_meshes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_meshes</span></code></a>(mesh_handles)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.remove_meshes.html#compas_fab.backends.VrepClient.remove_meshes" title="compas_fab.backends.VrepClient.remove_meshes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_meshes</span></code></a>(mesh_handles)</p></td>
 <td><p>Removes meshes from the 3D scene.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.remove_objects.html#compas_fab.backends.VrepClient.remove_objects" title="compas_fab.backends.VrepClient.remove_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_objects</span></code></a>(object_handles)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.remove_objects.html#compas_fab.backends.VrepClient.remove_objects" title="compas_fab.backends.VrepClient.remove_objects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_objects</span></code></a>(object_handles)</p></td>
 <td><p>Removes objects from the 3D scene.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.run_child_script.html#compas_fab.backends.VrepClient.run_child_script" title="compas_fab.backends.VrepClient.run_child_script"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_child_script</span></code></a>(function_name, in_ints, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.run_child_script.html#compas_fab.backends.VrepClient.run_child_script" title="compas_fab.backends.VrepClient.run_child_script"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_child_script</span></code></a>(function_name, in_ints, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_config.html#compas_fab.backends.VrepClient.set_robot_config" title="compas_fab.backends.VrepClient.set_robot_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_config</span></code></a>(robot, config)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_config.html#compas_fab.backends.VrepClient.set_robot_config" title="compas_fab.backends.VrepClient.set_robot_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_config</span></code></a>(robot, config)</p></td>
 <td><p>Moves the robot to the specified configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_metric.html#compas_fab.backends.VrepClient.set_robot_metric" title="compas_fab.backends.VrepClient.set_robot_metric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_metric</span></code></a>(robot, metric_values)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_metric.html#compas_fab.backends.VrepClient.set_robot_metric" title="compas_fab.backends.VrepClient.set_robot_metric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_metric</span></code></a>(robot, metric_values)</p></td>
 <td><p>Assigns a metric defining relations between axis values of a robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_pose.html#compas_fab.backends.VrepClient.set_robot_pose" title="compas_fab.backends.VrepClient.set_robot_pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_pose</span></code></a>(robot, frame)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.set_robot_pose.html#compas_fab.backends.VrepClient.set_robot_pose" title="compas_fab.backends.VrepClient.set_robot_pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_robot_pose</span></code></a>(robot, frame)</p></td>
 <td><p>Moves the robot to a given pose, specified as a frame.</p></td>
 </tr>
 </tbody>
