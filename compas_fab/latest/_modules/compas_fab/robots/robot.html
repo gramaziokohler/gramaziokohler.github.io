@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.2.0
+                    compas_fab 0.2.1
                 </a>
             </div>
 
@@ -62,6 +62,7 @@
 
 <span class="kn">import</span> <span class="nn">compas.robots.model</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">compas.geometry.xforms</span> <span class="k">import</span> <span class="n">Transformation</span>
 
 <span class="kn">from</span> <span class="nn">.configuration</span> <span class="k">import</span> <span class="n">Configuration</span>
@@ -215,14 +216,14 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_RCF_WCF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from world coordinate system to </span>
+        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from world coordinate system to</span>
 <span class="sd">            robot coordinate system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">RCF</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">transformation_WCF_RCF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from robot coordinate system to </span>
+        <span class="sd">&quot;&quot;&quot;Returns the transformation matrix from robot coordinate system to</span>
 <span class="sd">            world coordinate system</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RCF</span><span class="p">,</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">())</span>
@@ -231,7 +232,7 @@
         <span class="sd">&quot;&quot;&quot;Moves the origin frame of the robot to the robot_coordinate_frame.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">RCF</span> <span class="o">=</span> <span class="n">robot_coordinate_frame</span></div>
-    
+
 <div class="viewcode-block" id="Robot.get_RCF"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_RCF.html#compas_fab.robots.Robot.get_RCF">[docs]</a>    <span class="k">def</span> <span class="nf">get_RCF</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the origin frame of the robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -239,15 +240,15 @@
 
 <div class="viewcode-block" id="Robot.represent_frame_in_RCF"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.represent_frame_in_RCF.html#compas_fab.robots.Robot.represent_frame_in_RCF">[docs]</a>    <span class="k">def</span> <span class="nf">represent_frame_in_RCF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the representation of a frame in the world coordinate frame </span>
+<span class="sd">        Returns the representation of a frame in the world coordinate frame</span>
 <span class="sd">        in the robot&#39;s coordinate frame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">frame_WCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">frame_RCF</span></div>
-    
+
 <div class="viewcode-block" id="Robot.represent_frame_in_WCF"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.represent_frame_in_WCF.html#compas_fab.robots.Robot.represent_frame_in_WCF">[docs]</a>    <span class="k">def</span> <span class="nf">represent_frame_in_WCF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_RCF</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the representation of a frame in the robot&#39;s coordinate frame </span>
+<span class="sd">        Returns the representation of a frame in the robot&#39;s coordinate frame</span>
 <span class="sd">        in the world coordinate frame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">frame_RCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_WCF_RCF</span><span class="p">)</span>
@@ -279,7 +280,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;This method is only callable once a semantic model is assigned&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">current_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">current_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">callback_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic.</span>
 
@@ -287,14 +288,14 @@
 <span class="sd">        ----------</span>
 <span class="sd">            frame (:class:`Frame`): The frame to calculate the inverse for</span>
 <span class="sd">            current_configuration (:class:`Configuration`, optional): If passed,</span>
-<span class="sd">                the inverse will be calculated such that the calculated joint </span>
+<span class="sd">                the inverse will be calculated such that the calculated joint</span>
 <span class="sd">                positions differ the least from the current configuration.</span>
 <span class="sd">                Defaults to the zero position for all joints.</span>
-<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">            callback_result (function, optional): the function to call for the</span>
 <span class="sd">                processing the result. Defaults to the print function.</span>
 <span class="sd">            group (str, optional): The planning group used for calculation.</span>
-<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
-<span class="sd">        </span>
+<span class="sd">                Defaults to the robot&#39;s main planning group.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -310,7 +311,14 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">callback_result</span><span class="p">:</span>
             <span class="n">callback_result</span> <span class="o">=</span> <span class="nb">print</span>
         <span class="n">frame_scaled</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="c1"># must be in meters</span>
+        <span class="c1"># must be in meters</span>
+        <span class="c1"># TODO: current compas release (0.3.2) does not implement</span>
+        <span class="c1"># point division correctly, next release does it, so this</span>
+        <span class="c1"># line could be replaced by the one commented out.</span>
+        <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span>
+                                   <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span>
+                                   <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
+        <span class="c1"># frame_scaled.point /= self.scale_factor</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">frame_scaled</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
                                        <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">)</span></div>
@@ -322,11 +330,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">            configuration (:class:`Configuration`, optional): The configuration</span>
 <span class="sd">                to calculate the forward kinematic for.</span>
-<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">            callback_result (function, optional): the function to call for the</span>
 <span class="sd">                processing the result. Defaults to the print function.</span>
 <span class="sd">            group (str, optional): The planning group used for calculation.</span>
-<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
-<span class="sd">        </span>
+<span class="sd">                Defaults to the robot&#39;s main planning group.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -339,9 +347,9 @@
         <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span>
                                        <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span></div>
-        
+
 
 <div class="viewcode-block" id="Robot.compute_cartesian_path"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.compute_cartesian_path.html#compas_fab.robots.Robot.compute_cartesian_path">[docs]</a>    <span class="k">def</span> <span class="nf">compute_cartesian_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span>
                                <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callback_result</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -352,14 +360,14 @@
 <span class="sd">            frames (:class:`Frame`): The frames of which the path is defined.</span>
 <span class="sd">            start_configuration (:class:`Configuration`, optional): The robot&#39;s</span>
 <span class="sd">                configuration at the starting position.</span>
-<span class="sd">            max_step (float): the approximate distance between the calculated </span>
+<span class="sd">            max_step (float): the approximate distance between the calculated</span>
 <span class="sd">                points. (Defined in the robot&#39;s units)</span>
 <span class="sd">            avoid_collisions (bool)</span>
-<span class="sd">            callback_result (function, optional): the function to call for the </span>
+<span class="sd">            callback_result (function, optional): the function to call for the</span>
 <span class="sd">                processing the result. Defaults to the print function.</span>
 <span class="sd">            group (str, optional): The planning group used for calculation.</span>
-<span class="sd">                Defaults to the robot&#39;s main planning group. </span>
-<span class="sd">        </span>
+<span class="sd">                Defaults to the robot&#39;s main planning group.</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -371,7 +379,13 @@
         <span class="n">frames_scaled</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
             <span class="n">frame_scaled</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-            <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="c1"># TODO: current compas release (0.3.2) does not implement</span>
+            <span class="c1"># point division correctly, next release does it, so this</span>
+            <span class="c1"># line could be replaced by the one commented out.</span>
+            <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span>
+                                       <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">,</span>
+                                       <span class="n">frame_scaled</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">z</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="c1"># frame_scaled.point /= self.scale_factor</span>
             <span class="n">frames_scaled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame_scaled</span><span class="p">)</span>
         <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
@@ -381,8 +395,8 @@
             <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">start_configuration</span><span class="o">.</span><span class="n">values</span>
         <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">max_step_scaled</span> <span class="o">=</span> <span class="n">max_step</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">compute_cartesian_path</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">frames_scaled</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> 
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">compute_cartesian_path</span><span class="p">(</span><span class="n">callback_result</span><span class="p">,</span> <span class="n">frames_scaled</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
                                            <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span>
                                            <span class="n">max_step_scaled</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="p">)</span></div>
 
@@ -426,8 +440,6 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">scale_factor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">scale_factor</span></div>
-
-
 </code></pre></div>
                         
                     
@@ -497,7 +509,7 @@
             
 
             
-                Last updated on Sep 08, 2018.
+                Last updated on Sep 09, 2018.
             
 
             
@@ -510,7 +522,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.0',
+    VERSION           : '0.2.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.2.0
+                    compas_fab 0.2.1
                 </a>
             </div>
 
@@ -156,6 +156,44 @@ are the joint states, i.e. the configuration of the robot.</p>
 </code></pre></div>
 </div>
 </div>
+<div class="section" id="visualizing-robot-models">
+<h2>Visualizing robot models</h2>
+<p><strong>COMPAS</strong> includes the concept of <cite>artists</cite>: classes that assist with the
+visualization of datastructures and models, in a way that maintains the data
+separated from the specific CAD interfaces, while providing a way to leverage
+native performance of the CAD environment.</p>
+<p>In the main library there are artists for various datastructures (meshes, networks,
+etc), and <strong>compas_fab</strong> adds a <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> to them. Robot artists allow
+visualizing robot models easily and efficiently.</p>
+<p>The following example illustrates how to load an entire robot model from an open source
+repository and render it in Rhino:</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">compas</span>
+<span class="n">compas</span><span class="o">.</span><span class="n">PRECISION</span> <span class="o">=</span> <span class="s1">&#39;12f&#39;</span>
+
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">compas_fab.rhino</span> <span class="kn">import</span> <span class="n">RobotArtist</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;ros-industrial/abb&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;abb_irb6600_support&#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;kinetic-devel&#39;</span>
+
+<span class="n">github</span> <span class="o">=</span> <span class="n">GithubPackageMeshLoader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">urdf</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">(</span><span class="s1">&#39;irb6640.urdf&#39;</span><span class="p">)</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="n">github</span><span class="p">)</span>
+
+<span class="n">RobotArtist</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="card bg-light">
+<div class="card-body">
+<div class="card-title">Downloads</div><ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/robot-artist-rhino.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">(Rhino)</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" href="../_downloads/robot-artist-blender.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">(Blender)</span> <span class="pre">(.PY)</span></code></a></p></li>
+</ul>
+</div>
+</div></div>
 <div class="section" id="id1">
 <h2>Links</h2>
 <ul class="simple">
@@ -231,6 +269,7 @@ are the joint states, i.e. the configuration of the robot.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="#joints">Joints</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#forward-kinematics">Forward Kinematics</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#inverse-kinematics">Inverse Kinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#visualizing-robot-models">Visualizing robot models</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#id1">Links</a></li>
 </ul>
 </li>
@@ -250,7 +289,7 @@ are the joint states, i.e. the configuration of the robot.</p>
             
 
             
-                Last updated on Sep 08, 2018.
+                Last updated on Sep 09, 2018.
             
 
             
@@ -263,7 +302,7 @@ are the joint states, i.e. the configuration of the robot.</p>
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.0',
+    VERSION           : '0.2.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

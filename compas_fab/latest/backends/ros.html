@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.2.0
+                    compas_fab 0.2.1
                 </a>
             </div>
 
@@ -78,7 +78,7 @@ repeatability.</p>
 <p>Once you made sure <a class="reference external" href="https://www.docker.com/">Docker</a> is running, you can pull and run some ROS
 containers. The <strong>compas_fab</strong> team publishes some images on <a class="reference external" href="https://hub.docker.com/r/gramaziokohler/">Docker Hub</a>
 but there are many more to be found online. You can start a single ROS Master
-with the following commands on the command line:</p>
+with the following commands on the command prompt:</p>
 <div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">11311</span><span class="p">:</span><span class="mi">11311</span> <span class="o">-</span><span class="n">t</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span> <span class="n">roscore</span>
 </code></pre></div>
@@ -90,7 +90,7 @@ multiple interconnected nodes. Docker provides a way to compose virtualized netw
 using the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> command. These commands takes one simple configuration
 file as input, and take care of pulling, running and connecting all the nodes.</p>
 <p>Download <a class="reference download internal" href="../_downloads/docker-compose.yml" download=""><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">basic</span> <span class="pre">ROS</span> <span class="pre">system</span></code></a> into any
-folder of your computer, open the command line, go to the folder where the file was
+folder of your computer, open the command prompt, go to the folder where the file was
 downloaded, and run the following command:</p>
 <div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
 </code></pre></div>
@@ -191,7 +191,7 @@ the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS
             
 
             
-                Last updated on Sep 08, 2018.
+                Last updated on Sep 09, 2018.
             
 
             
@@ -204,7 +204,7 @@ the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.0',
+    VERSION           : '0.2.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

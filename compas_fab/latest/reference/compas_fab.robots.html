@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.2.0
+                    compas_fab 0.2.1
                 </a>
             </div>
 
@@ -83,24 +83,6 @@ simulation, planning and execution backends to exchange information.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.UrdfImporter.html#compas_fab.robots.UrdfImporter" title="compas_fab.robots.UrdfImporter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UrdfImporter</span></code></a></p></td>
 <td><p>Allows to retrieve the mesh files specified in the robot urdf from the ROS file_server and to store it on the local file system.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="artists">
-<h2>Artists</h2>
-<p>In <strong>COMPAS</strong>, the <cite>artists</cite> are classes that assist with the visualization of
-datastructures and models, in a way that maintains the data separated from the
-specific CAD interfaces, while providing a way to leverage native performance
-of the CAD environment.</p>
-<table class="longtable docutils">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.BaseRobotArtist.html#compas_fab.robots.BaseRobotArtist" title="compas_fab.robots.BaseRobotArtist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseRobotArtist</span></code></a></p></td>
-<td><p>Provides common functionality to most robot artist implementations.</p></td>
 </tr>
 </tbody>
 </table>
@@ -159,10 +141,12 @@ The following functions help with converting units from one system to the other.
 <li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../reference.html">API Reference</a><ul class="nav active">
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.html">compas_fab</a><ul class="nav active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
@@ -193,7 +177,6 @@ The following functions help with converting units from one system to the other.
                     <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.robots</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#classes">Classes</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#artists">Artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#unit-conversion">Unit conversion</a></li>
 </ul>
 </li>
@@ -213,7 +196,7 @@ The following functions help with converting units from one system to the other.
             
 
             
-                Last updated on Sep 08, 2018.
+                Last updated on Sep 09, 2018.
             
 
             
@@ -226,7 +209,7 @@ The following functions help with converting units from one system to the other.
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.0',
+    VERSION           : '0.2.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

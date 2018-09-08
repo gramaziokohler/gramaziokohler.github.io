@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.2.0
+                    compas_fab 0.2.1
                 </a>
             </div>
 
@@ -180,7 +180,7 @@
         <span class="k">def</span> <span class="nf">write_binary_response_to_file</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Saving </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">resource_file_uri</span><span class="p">,</span> <span class="n">local_filename</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_file</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="n">binascii</span><span class="o">.</span><span class="n">a2b_base64</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
-            <span class="c1"># self.write_file(local_filename, response.data[&#39;value&#39;])</span>
+            <span class="c1">#self.write_file(local_filename, response.data[&#39;value&#39;])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update_file_request_status</span><span class="p">(</span><span class="n">resource_file_uri</span><span class="p">)</span>
 
         <span class="n">service</span> <span class="o">=</span> <span class="n">roslibpy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ros</span><span class="p">,</span> <span class="s2">&quot;/file_server/get_file&quot;</span><span class="p">,</span>
@@ -203,7 +203,6 @@
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Resource file already exists in </span><span class="si">%s</span><span class="s2">, aborting download.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">local_filename</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">update_file_request_status</span><span class="p">(</span><span class="n">resource_file_uri</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading </span><span class="si">%s</span><span class="s1"> from </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">local_filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">resource_file_uri</span><span class="p">))</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">receive_resource_file</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">resource_file_uri</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="UrdfImporter.write_file"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.UrdfImporter.write_file.html#compas_fab.robots.UrdfImporter.write_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filecontents</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">):</span>
@@ -218,52 +217,72 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">requested_resource_files</span><span class="p">[</span><span class="n">resource_file_uri</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">requested_resource_files</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;resource_files_received&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">check_status</span><span class="p">()</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">check_status</span><span class="p">()</span></div>
 
-    <span class="c1"># def read_mesh_from_resource_file_uri(self, resource_file_uri, meshcls):</span>
-    <span class="c1">#     &quot;&quot;&quot;Reads the mesh from a file uri and creates a mesh type based on the</span>
-    <span class="c1">#     passed mesh class.</span>
+<div class="viewcode-block" id="UrdfImporter.read_mesh_from_resource_file_uri"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.UrdfImporter.read_mesh_from_resource_file_uri.html#compas_fab.robots.UrdfImporter.read_mesh_from_resource_file_uri">[docs]</a>    <span class="k">def</span> <span class="nf">read_mesh_from_resource_file_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_file_uri</span><span class="p">,</span> <span class="n">meshcls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads the mesh from a file uri and creates a mesh type based on the</span>
+<span class="sd">        passed mesh class.</span>
 
-    <span class="c1">#     Args:</span>
-    <span class="c1">#         resource_file_uri (str): The resourec file starting with package://</span>
-    <span class="c1">#         meshcls (:class:): A class that allows to create a custom mesh type</span>
-    <span class="c1">#             and is created with a :class:`Mesh`</span>
-    <span class="c1">#     &quot;&quot;&quot;</span>
-    <span class="c1">#     filename = self.robot_resource_filename(resource_file_uri)</span>
-    <span class="c1">#     return self.read_mesh_from_filename(filename, meshcls)</span>
+<span class="sd">        Args:</span>
+<span class="sd">            resource_file_uri (str): The resourec file starting with package://</span>
+<span class="sd">            meshcls (:class:): A class that allows to create a custom mesh type</span>
+<span class="sd">                and is created with a :class:`Mesh`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_resource_filename</span><span class="p">(</span><span class="n">resource_file_uri</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_mesh_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">meshcls</span><span class="p">)</span></div>
 
-    <span class="c1"># def read_mesh_from_filename(self, filename, meshcls):</span>
-    <span class="c1">#     if not os.path.isfile(filename):</span>
-    <span class="c1">#         raise FileNotFoundError(&quot;No such file: &#39;%s&#39;&quot; % filename)</span>
-    <span class="c1">#     extension = filename[(filename.rfind(&quot;.&quot;) + 1):]</span>
-    <span class="c1">#     if extension == &quot;dae&quot;: # no dae support yet</span>
-    <span class="c1">#         #mesh = Mesh.from_dae(filename)</span>
-    <span class="c1">#         obj_filename = filename.replace(&quot;.dae&quot;, &quot;.obj&quot;)</span>
-    <span class="c1">#         if os.path.isfile(obj_filename):</span>
-    <span class="c1">#             mesh = Mesh.from_obj(obj_filename)</span>
-    <span class="c1">#             # former DAE files have yaxis and zaxis swapped</span>
-    <span class="c1">#             # TODO: already fix in conversion to obj</span>
-    <span class="c1">#             frame = Frame([0,0,0], [1,0,0], [0,0,1])</span>
-    <span class="c1">#             T = Transformation.from_frame(frame)</span>
-    <span class="c1">#             mesh_transform(mesh, T)</span>
-    <span class="c1">#         else:</span>
-    <span class="c1">#             raise FileNotFoundError(&quot;Please convert &#39;%s&#39; into an OBJ file, \</span>
-    <span class="c1">#                                      since DAE is currently not supported \</span>
-    <span class="c1">#                                      yet.&quot; % filename)</span>
-    <span class="c1">#     elif extension == &quot;obj&quot;:</span>
-    <span class="c1">#         mesh = Mesh.from_obj(filename)</span>
-    <span class="c1">#     elif extension == &quot;stl&quot;:</span>
-    <span class="c1">#         mesh = Mesh.from_stl(filename)</span>
-    <span class="c1">#     else:</span>
-    <span class="c1">#         raise ValueError(&quot;%s file types not yet supported&quot; %</span>
-    <span class="c1">#             extension.upper())</span>
+<div class="viewcode-block" id="UrdfImporter.read_mesh_from_filename"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.UrdfImporter.read_mesh_from_filename.html#compas_fab.robots.UrdfImporter.read_mesh_from_filename">[docs]</a>    <span class="k">def</span> <span class="nf">read_mesh_from_filename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">meshcls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;No such file: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">extension</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[(</span><span class="n">filename</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):]</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;dae&quot;</span><span class="p">:</span> <span class="c1"># no dae support yet</span>
+            <span class="c1">#mesh = Mesh.from_dae(filename)</span>
+            <span class="n">obj_filename</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.dae&quot;</span><span class="p">,</span> <span class="s2">&quot;.obj&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">obj_filename</span><span class="p">):</span>
+                <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="n">obj_filename</span><span class="p">)</span>
+                <span class="c1"># former DAE files have yaxis and zaxis swapped</span>
+                <span class="c1"># TODO: already fix in conversion to obj</span>
+                <span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                <span class="n">mesh_transform</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Please convert &#39;</span><span class="si">%s</span><span class="s2">&#39; into an OBJ file, </span><span class="se">\</span>
+<span class="s2">                                         since DAE is currently not supported </span><span class="se">\</span>
+<span class="s2">                                         yet.&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;obj&quot;</span><span class="p">:</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;stl&quot;</span><span class="p">:</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> file types not yet supported&quot;</span> <span class="o">%</span>
+                <span class="n">extension</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 
-    <span class="c1">#     return meshcls(mesh)</span>
+        <span class="k">return</span> <span class="n">meshcls</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="UrdfImporter.check_mesh_class"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.UrdfImporter.check_mesh_class.html#compas_fab.robots.UrdfImporter.check_mesh_class">[docs]</a>    <span class="k">def</span> <span class="nf">check_mesh_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meshcls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if the passed mesh class has the necessary constructor and </span>
+<span class="sd">        methods.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO: is this even necessary if we add a RobotMesh to each CAD</span>
+        <span class="kn">import</span> <span class="nn">compas</span>
+        <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">Mesh</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cm</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="n">compas</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;faces.obj&#39;</span><span class="p">))</span>
+            <span class="n">meshcls</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The class </span><span class="si">%s</span><span class="s2"> cannot be constructed from a </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">meshcls</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">meshcls</span><span class="p">,</span> <span class="s1">&#39;transform&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The class </span><span class="si">%s</span><span class="s2"> has no method named &#39;transform&#39;&quot;</span> <span class="o">%</span> <span class="n">meshcls</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">meshcls</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;The class </span><span class="si">%s</span><span class="s2"> has no method named &#39;draw&#39;&quot;</span> <span class="o">%</span> <span class="n">meshcls</span><span class="p">)</span></div></div>
 
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-
+    
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Start following processes on client side:</span>
 <span class="sd">    roslaunch YOUR_ROBOT_moveit_config demo.launch rviz_tutorial:=true</span>
@@ -279,7 +298,6 @@
     <span class="n">ros</span> <span class="o">=</span> <span class="n">roslibpy</span><span class="o">.</span><span class="n">Ros</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">9090</span><span class="p">)</span>
 
     <span class="n">local_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s2">&quot;workspace&quot;</span><span class="p">,</span> <span class="s2">&quot;robot_description&quot;</span><span class="p">)</span>
-    <span class="n">local_directory</span> <span class="o">=</span> <span class="s2">&quot;C:</span><span class="se">\\</span><span class="s2">Users</span><span class="se">\\</span><span class="s2">gcasas</span><span class="se">\\</span><span class="s2">eth</span><span class="se">\\</span><span class="s2">Labs</span><span class="se">\\</span><span class="s2">robot_description</span><span class="se">\\</span><span class="s2">panda_test&quot;</span>
     <span class="n">importer</span> <span class="o">=</span> <span class="n">UrdfImporter</span><span class="p">(</span><span class="n">ros</span><span class="p">,</span> <span class="n">local_directory</span><span class="p">)</span>
     <span class="n">importer</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
     <span class="n">ros</span><span class="o">.</span><span class="n">call_later</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">ros</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
@@ -354,7 +372,7 @@
             
 
             
-                Last updated on Sep 08, 2018.
+                Last updated on Sep 09, 2018.
             
 
             
@@ -367,7 +385,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.0',
+    VERSION           : '0.2.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',
