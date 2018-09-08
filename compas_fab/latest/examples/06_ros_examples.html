@@ -93,6 +93,94 @@ one of the easiest ways to achieve it is to pass a <em>callback</em> function
 that the framework will invoke when the event is fired.</p>
 </div>
 </div>
+<div class="section" id="hello-world">
+<h2>Hello World</h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code> of ROS is to start two nodes: a talker and a listener.
+The nodes are extremely simple but they exemplify a distributed system with
+two communication between processes over the ROS infrastructure.</p>
+<div class="section" id="writing-the-talker-node">
+<h3>Writing the talker node</h3>
+<p>The following example starts a ROS node and begins to publish
+messages in loop (to terminate, press <code class="docutils literal notranslate"><span class="pre">ctrl+c</span></code>):</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Topic</span>
+
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
+<span class="n">talker</span> <span class="o">=</span> <span class="n">Topic</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s1">&#39;/chatter&#39;</span><span class="p">,</span> <span class="s1">&#39;std_msgs/String&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">start_talking</span><span class="p">():</span>
+    <span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
+        <span class="n">talker</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Message</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello RobArch World!&#39;</span><span class="p">}))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Sending message...&#39;</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">talker</span><span class="o">.</span><span class="n">unadvertise</span><span class="p">()</span>
+
+
+<span class="n">client</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="n">start_talking</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="card bg-light">
+<div class="card-body">
+<div class="card-title">Downloads</div><ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/ros-hello-world-talker.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+</ul>
+</div>
+</div></div>
+<div class="section" id="writing-the-listener-node">
+<h3>Writing the listener node</h3>
+<p>Now let’s move on to the listener side:</p>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Topic</span>
+
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
+<span class="n">listener</span> <span class="o">=</span> <span class="n">Topic</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="s1">&#39;/chatter&#39;</span><span class="p">,</span> <span class="s1">&#39;std_msgs/String&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">start_listening</span><span class="p">():</span>
+    <span class="n">listener</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">receive_message</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Heard talking: &#39;</span> <span class="o">+</span> <span class="n">message</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="n">start_listening</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="card bg-light">
+<div class="card-body">
+<div class="card-title">Downloads</div><ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/ros-hello-world-listener.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+</ul>
+</div>
+</div></div>
+<div class="section" id="running-the-example">
+<h3>Running the example</h3>
+<p>Open a command line prompts and start the talker:</p>
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="n">ros</span><span class="o">-</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">talker</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+</div>
+<p>Now open a second command line prompt and start the listener:</p>
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="n">ros</span><span class="o">-</span><span class="n">hello</span><span class="o">-</span><span class="n">world</span><span class="o">-</span><span class="n">listener</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not relevant where the files are located. They can be in different
+folders or even in different computers as long as the ROS master is the same.</p>
+</div>
+</div>
+</div>
 </div>
 
                         
@@ -158,6 +246,12 @@ that the framework will invoke when the event is fired.</p>
                     <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Using ROS</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#first-step">First step</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#hello-world">Hello World</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#writing-the-talker-node">Writing the talker node</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#writing-the-listener-node">Writing the listener node</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#running-the-example">Running the example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
