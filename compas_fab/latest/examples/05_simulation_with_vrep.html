@@ -160,11 +160,22 @@ of such a request:</p>
 <div class="section" id="complete-path-planning-example">
 <h3>Complete path planning example</h3>
 <p>The following example showcases a lot of the configuration options available when
-calculating a path plan:</p>
+calculating a path plan.</p>
+<p>To run this example, first download the following meshes:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/timber_beam.obj" download=""><code class="xref download docutils literal notranslate"><span class="pre">Timber</span> <span class="pre">beam</span> <span class="pre">(.OBJ)</span></code></a></p></li>
+<li><p><a class="reference download internal" href="../_downloads/timber_structure.obj" download=""><code class="xref download docutils literal notranslate"><span class="pre">Timber</span> <span class="pre">structure</span> <span class="pre">(.OBJ)</span></code></a></p></li>
+</ul>
+<p>For convenience, you can also download the full script:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/complete_path_planning_example.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Path</span> <span class="pre">planning</span> <span class="pre">example</span> <span class="pre">(.PY)</span></code></a></p></li>
+</ul>
+<p>Or Copy &amp; Paste the following code into a Python file, making sure it
+resides in the same folder where the two mesh files are stored:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">rfl</span>
@@ -185,8 +196,9 @@ calculating a path plan:</p>
 <span class="n">fast_search</span>     <span class="o">=</span> <span class="bp">True</span>
 
 <span class="k">with</span> <span class="n">VrepClient</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">pick_building_member</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">building_member</span><span class="p">,</span> <span class="n">start_pose</span><span class="p">)</span>
+
     <span class="n">path</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">find_path_plan</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span>
                                  <span class="n">goal_pose</span><span class="p">,</span>
                                  <span class="n">metric_values</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
@@ -206,10 +218,14 @@ calculating a path plan:</p>
 <div class="figure">
 <img alt="../_images/05_grasshopper.png" class="figure-img img-fluid" src="../_images/05_grasshopper.png" />
 </div>
-<p>Besides the examples above that can be run standalone or inside CAD software, this package contains
-a ready-made integration for Grasshopper that allows configuration of most available parameters.</p>
-<p>See <a class="reference download internal" href="../_downloads/grasshopper-basic-example.ghx" download=""><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">basic</span> <span class="pre">example</span></code></a> and then
-<a class="reference download internal" href="../_downloads/grasshopper-path-planner.ghx" download=""><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">complete</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a> for Grasshopper.</p>
+<p>Besides the examples above that can be run standalone or inside CAD software,
+this package contains a ready-made integration for Grasshopper that allows
+configuration of most available parameters.</p>
+<p>Download the following Grasshoper examples:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" href="../_downloads/grasshopper-basic-example.ghx" download=""><code class="xref download docutils literal notranslate"><span class="pre">Basic</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a></p></li>
+<li><p><a class="reference download internal" href="../_downloads/grasshopper-path-planner.ghx" download=""><code class="xref download docutils literal notranslate"><span class="pre">Complete</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a>.</p></li>
+</ul>
 </div>
 </div>
 
@@ -304,7 +320,7 @@ a ready-made integration for Grasshopper that allows configuration of most avail
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             

@@ -243,7 +243,7 @@
             <span class="c1">#print(result.human_readable)</span>
 
         <span class="n">action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/follow_joint_trajectory&#39;</span><span class="p">,</span>
-                       <span class="s1">&#39;control_msgs/FollowJointTrajectory&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+                       <span class="s1">&#39;control_msgs/FollowJointTrajectoryAction&#39;</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
         <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">goal</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
 
         <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">result</span><span class="p">:</span> <span class="n">handle_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">action_client</span><span class="p">))</span>
@@ -260,12 +260,11 @@
         <span class="n">script_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames</span><span class="p">:</span>
             <span class="n">ptp</span> <span class="o">=</span> <span class="n">URPoseTrajectoryPoint</span><span class="p">(</span><span class="n">URPose</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">),</span> <span class="n">acceleration</span><span class="p">,</span> <span class="n">velocity</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-            <span class="c1">#move = URMovej(ptp)</span>
             <span class="n">move</span> <span class="o">=</span> <span class="n">URMovel</span><span class="p">(</span><span class="n">ptp</span><span class="p">)</span>
             <span class="n">script_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
 
         <span class="n">urgoal</span> <span class="o">=</span> <span class="n">URGoal</span><span class="p">(</span><span class="n">script_lines</span><span class="p">)</span>
-
+        
         <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">urgoal</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
         <span class="n">action_client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;CLIENT TIMEOUT&#39;</span><span class="p">))</span>
         <span class="c1"># goal.on(&#39;feedback&#39;, lambda feedback: print(feedback))</span>
@@ -340,7 +339,7 @@
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             

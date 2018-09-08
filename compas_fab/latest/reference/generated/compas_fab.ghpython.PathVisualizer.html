@@ -18,11 +18,11 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="SerialSensor.__init__" href="compas_fab.sensors.SerialSensor.__init__.html" />
+            <link rel="next" title="PathVisualizer.__init__" href="compas_fab.ghpython.PathVisualizer.__init__.html" />
         
         
         
-            <link rel="prev" title="compas_fab.sensors" href="../compas_fab.sensors.html" />
+            <link rel="prev" title="RobotArtist.update_links" href="compas_fab.ghpython.RobotArtist.update_links.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -57,26 +57,14 @@
 
                         
 
-                        <div class="detail section" id="serialsensor">
-<h1>SerialSensor</h1>
+                        <div class="detail section" id="pathvisualizer">
+<h1>PathVisualizer</h1>
 <dl class="class">
-<dt id="compas_fab.sensors.SerialSensor">
-<em class="property">class </em><code class="descclassname">compas_fab.sensors.</code><code class="descname">SerialSensor</code><span class="sig-paren">(</span><em>serial</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/base.html#SerialSensor"><span class="viewcode-link">[source]</span></a></dt>
+<dt id="compas_fab.ghpython.PathVisualizer">
+<em class="property">class </em><code class="descclassname">compas_fab.ghpython.</code><code class="descname">PathVisualizer</code><span class="sig-paren">(</span><em>simulator</em>, <em>robot</em>, <em>building_member=None</em>, <em>building_member_pickup_config=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/ghpython/path_planning.html#PathVisualizer"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Base class for all sensors with a serial
-interface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>serial</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">serial.Serial</span></code>) – Instance of the serial
-port used to communicate with the sensor.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">serial</span> <span class="k">import</span> <span class="n">Serial</span>                           
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Serial</span><span class="p">(</span><span class="s1">&#39;COM5&#39;</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">serial</span><span class="p">:</span>    
-<span class="gp">... </span>    <span class="n">sensor</span> <span class="o">=</span> <span class="n">SerialSensor</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>                   
-</code></pre></div>
-</div>
+<p>Handles the generation of meshes to visualize a full path plan
+in Rhino/Grasshopper.</p>
 <p class="rubric">Methods</p>
 <table class="longtable docutils">
 <colgroup>
@@ -84,8 +72,23 @@ port used to communicate with the sensor.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.sensors.SerialSensor.__init__.html#compas_fab.sensors.SerialSensor.__init__" title="compas_fab.sensors.SerialSensor.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(serial)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.ghpython.PathVisualizer.__init__.html#compas_fab.ghpython.PathVisualizer.__init__" title="compas_fab.ghpython.PathVisualizer.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(simulator, robot[, …])</p></td>
 <td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.ghpython.PathVisualizer.get_frame_meshes.html#compas_fab.ghpython.PathVisualizer.get_frame_meshes" title="compas_fab.ghpython.PathVisualizer.get_frame_meshes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_frame_meshes</span></code></a>(path, frame, ctx)</p></td>
+<td><p>Retrieves all meshes required to render a specific frame of a path plan.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable docutils">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">debug</span></code></p></td>
+<td><p>Indicates whether the path visualizer is in debug mode or not.</p></td>
 </tr>
 </tbody>
 </table>
@@ -129,9 +132,8 @@ port used to communicate with the sensor.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
 </li>
@@ -159,7 +161,7 @@ port used to communicate with the sensor.</p>
                     
 
                     <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">SerialSensor</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">PathVisualizer</a></li>
 </ul>
 
 
@@ -176,7 +178,7 @@ port used to communicate with the sensor.</p>
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             

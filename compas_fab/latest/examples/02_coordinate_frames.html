@@ -111,17 +111,59 @@ coordinate frame (WCF).</p>
 <p>Here is a simple example of how to express the frame of an object that is defined
 in the world coordinate frame in the robot’s own coordinate frame before sending
 it as a target pose to the robot.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.geometry.xforms</span> <span class="kn">import</span> <span class="n">Transformation</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
 
-<span class="n">point</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Robot</span> <span class="k">as</span> <span class="n">URDFRobot</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Joint</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Link</span>
+
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Transformation</span>
+
+
+<span class="n">robot_model</span> <span class="o">=</span> <span class="n">URDFRobot</span><span class="p">(</span><span class="s1">&#39;ur5&#39;</span><span class="p">,</span>
+            <span class="n">joints</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;shoulder_pan_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;base_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;shoulder_link&#39;</span><span class="p">),</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;shoulder_lift_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;shoulder_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;upper_arm_link&#39;</span><span class="p">),</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;elbow_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;upper_arm_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;forearm_link&#39;</span><span class="p">),</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;wrist_1_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;forearm_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;wrist_1_link&#39;</span><span class="p">),</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;wrist_2_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;wrist_1_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;wrist_2_link&#39;</span><span class="p">),</span>
+                <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;wrist_3_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;wrist_2_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;wrist_3_link&#39;</span><span class="p">),</span>
+            <span class="p">],</span> <span class="n">links</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;base_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;shoulder_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;upper_arm_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;forearm_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;wrist_1_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;wrist_2_link&#39;</span><span class="p">),</span>
+                <span class="n">Link</span><span class="p">(</span><span class="s1">&#39;wrist_3_link&#39;</span><span class="p">),</span>
+            <span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;robot model: &quot;</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">robot_model</span><span class="p">)</span>
+
+<span class="n">point</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 <span class="n">xaxis</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 <span class="n">yaxis</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
 
-<span class="n">object_frame_WCS</span> <span class="o">=</span> <span class="n">frame</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
-<span class="n">object_frame_RCS</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_frame_in_RCS</span><span class="p">(</span><span class="n">object_frame_WCS</span><span class="p">)</span>
+<span class="n">robot_coordinate_frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">set_RCF</span><span class="p">(</span><span class="n">robot_coordinate_frame</span><span class="p">)</span>
 
-<span class="n">robot</span><span class="o">.</span><span class="n">send_pose</span><span class="p">(</span><span class="n">object_frame_RCS</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;robot coordinate frame&quot;</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_RCF</span><span class="p">())</span>
+
+<span class="n">point</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+<span class="n">xaxis</span> <span class="o">=</span>  <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<span class="n">yaxis</span> <span class="o">=</span>  <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;frame in WCF&quot;</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">)</span>
+
+<span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">represent_frame_in_RCF</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;frame in RCF&quot;</span><span class="p">,</span> <span class="n">frame_RCF</span><span class="p">)</span>
+
+<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">represent_frame_in_WCF</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;frame in WCF&quot;</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -221,7 +263,7 @@ it as a target pose to the robot.</p>
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             

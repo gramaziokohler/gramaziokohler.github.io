@@ -18,9 +18,11 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
+            <link rel="next" title="compas_fab.rhino" href="../compas_fab.rhino.html" />
         
         
-            <link rel="prev" title="SerialSensor" href="compas_fab.sensors.SerialSensor.html" />
+        
+            <link rel="prev" title="PathVisualizer.__init__" href="compas_fab.ghpython.PathVisualizer.__init__.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -55,12 +57,27 @@
 
                         
 
-                        <div class="detail section" id="serialsensor-init">
-<h1>SerialSensor.__init__</h1>
+                        <div class="detail section" id="pathvisualizer-get-frame-meshes">
+<h1>PathVisualizer.get_frame_meshes</h1>
 <dl class="method">
-<dt id="compas_fab.sensors.SerialSensor.__init__">
-<code class="descclassname">SerialSensor.</code><code class="descname">__init__</code><span class="sig-paren">(</span><em>serial</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/base.html#SerialSensor.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dt id="compas_fab.ghpython.PathVisualizer.get_frame_meshes">
+<code class="descclassname">PathVisualizer.</code><code class="descname">get_frame_meshes</code><span class="sig-paren">(</span><em>path</em>, <em>frame</em>, <em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/ghpython/path_planning.html#PathVisualizer.get_frame_meshes"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Retrieves all meshes required to render a specific frame of a path plan.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>) – Represents a collision-free
+path to a goal pose. It is the output of the path planning generated
+by a <code class="xref py py-class docutils literal notranslate"><span class="pre">Simulator</span></code> object.</p></li>
+<li><p><strong>frame</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Frame number to retrieve.</p></li>
+<li><p><strong>ctx</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>) – A dictionary to keep context. Within Grasshopper, this is
+normally the <code class="docutils literal notranslate"><span class="pre">sc.sticky</span></code> object.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>list</em> – list of Rhino meshes that can be used to visualize the selected frame.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -101,9 +118,8 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
 </li>
@@ -131,7 +147,7 @@
                     
 
                     <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">SerialSensor.__init__</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">PathVisualizer.get_frame_meshes</a></li>
 </ul>
 
 
@@ -148,7 +164,7 @@
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             

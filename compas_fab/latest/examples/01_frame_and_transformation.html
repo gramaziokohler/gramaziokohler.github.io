@@ -121,17 +121,17 @@ as Euler angles, axis-angle representation, and quaternion.</p>
 <span class="n">Ry</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">(</span><span class="n">yaxis</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
 <span class="n">Rz</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_and_angle</span><span class="p">(</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
 <span class="n">F2</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
-<span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">Rx</span> <span class="o">*</span> <span class="n">Ry</span> <span class="o">*</span> <span class="n">Rz</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Are equal?&#39;</span><span class="p">,</span> <span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">Rx</span> <span class="o">*</span> <span class="n">Ry</span> <span class="o">*</span> <span class="n">Rz</span><span class="p">))</span>
 
 <span class="c1"># quaternion</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">F1</span><span class="o">.</span><span class="n">quaternion</span>
 <span class="n">F2</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_quaternion</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-<span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Are equal?&#39;</span><span class="p">,</span> <span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span><span class="p">)</span>
 
 <span class="c1"># axis-angle</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">F1</span><span class="o">.</span><span class="n">axis_angle_vector</span>
 <span class="n">F2</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_axis_angle_vector</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
-<span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Are equal?&#39;</span><span class="p">,</span> <span class="n">F1</span> <span class="o">==</span> <span class="n">F2</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="section" id="further-information">
@@ -226,7 +226,7 @@ as Euler angles, axis-angle representation, and quaternion.</p>
             
 
             
-                Last updated on Sep 07, 2018.
+                Last updated on Sep 08, 2018.
             
 
             
