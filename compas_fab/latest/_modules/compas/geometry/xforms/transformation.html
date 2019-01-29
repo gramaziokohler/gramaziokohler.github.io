@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -70,8 +70,8 @@
 
 <span class="kn">from</span> <span class="nn">compas.geometry.basic</span> <span class="k">import</span> <span class="n">multiply_matrices</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry.objects</span> <span class="k">import</span> <span class="n">Point</span>
-<span class="kn">from</span> <span class="nn">compas.geometry.objects</span> <span class="k">import</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">compas.geometry._primitives</span> <span class="k">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">compas.geometry._primitives</span> <span class="k">import</span> <span class="n">Vector</span>
 
 <span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">inverse</span>
 <span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">identity_matrix</span>
@@ -144,7 +144,7 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">except</span> <span class="ne">BaseException</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Wrong input type.&quot;</span><span class="p">)</span>
-    
+
 <div class="viewcode-block" id="Transformation.copy"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.geometry.Transformation.copy.html#compas_fab.geometry.Transformation.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a copy of the transformation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -152,15 +152,10 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;[[</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-                                   <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-                                    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-                                    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">]]&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-                                  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
-        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span>  <span class="o">=</span> <span class="s2">&quot;[[</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; [</span><span class="si">%s</span><span class="s2">]]</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([(</span><span class="s2">&quot;</span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
         <span class="k">return</span> <span class="n">s</span>
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -468,7 +463,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -481,7 +476,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

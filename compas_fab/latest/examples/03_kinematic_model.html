@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -93,11 +93,11 @@ kind of movements. The three major types of joints are:</p>
 <li><p><strong>Fixed</strong>: Not really a joint because it cannot move, all degrees of freedom are locked.</p></li>
 </ul>
 <p><strong>COMPAS</strong> Framework provides classes to describe robot models. The following snippet shows how to describe a UR5 robot:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
 <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Joint</span>
 <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Link</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;ur5&#39;</span><span class="p">,</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="p">(</span><span class="s1">&#39;ur5&#39;</span><span class="p">,</span>
               <span class="n">joints</span><span class="o">=</span><span class="p">[</span>
                   <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;shoulder_pan_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;base_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;shoulder_link&#39;</span><span class="p">),</span>
                   <span class="n">Joint</span><span class="p">(</span><span class="s1">&#39;shoulder_lift_joint&#39;</span><span class="p">,</span> <span class="s1">&#39;revolute&#39;</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="s1">&#39;shoulder_link&#39;</span><span class="p">,</span> <span class="n">child</span><span class="o">=</span><span class="s1">&#39;upper_arm_link&#39;</span><span class="p">),</span>
@@ -180,7 +180,7 @@ repository and render it in Rhino:</p>
 <span class="n">github</span> <span class="o">=</span> <span class="n">GithubPackageMeshLoader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">urdf</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">(</span><span class="s1">&#39;irb6640.urdf&#39;</span><span class="p">)</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
 <span class="n">robot</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="n">github</span><span class="p">)</span>
 
 <span class="n">RobotArtist</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
@@ -240,6 +240,9 @@ repository and render it in Rhino:</p>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Kinematic model</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="05_simulation_with_vrep.html">Simulation examples with V-REP</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="06_ros_examples.html">Using ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../reference.html">API Reference</a></li>
@@ -290,7 +293,7 @@ repository and render it in Rhino:</p>
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -303,7 +306,7 @@ repository and render it in Rhino:</p>
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

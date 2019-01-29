@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -61,14 +61,14 @@
 <h1>RobotArtist.update_link</h1>
 <dl class="method">
 <dt id="compas_fab.blender.RobotArtist.update_link">
-<code class="descclassname">RobotArtist.</code><code class="descname">update_link</code><span class="sig-paren">(</span><em>link</em>, <em>joint_state</em>, <em>parent_transformation</em>, <em>collision=True</em><span class="sig-paren">)</span></dt>
+<code class="descclassname">RobotArtist.</code><code class="descname">update_link</code><span class="sig-paren">(</span><em>link</em>, <em>joint_state</em>, <em>parent_transformation</em>, <em>reset_transformation</em>, <em>collision=True</em><span class="sig-paren">)</span></dt>
 <dd><p>Recursive function to apply the transformations given by the joint state.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">joint_state</span></code> is given as absolute values,
 so it is necessary to reset the current transformation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>link</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Link</span></code></a>) – Link instance to update.</p></li>
+<li><p><strong>link</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v0.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Link</span></code></a>) – Link instance to update.</p></li>
 <li><p><strong>joint_state</strong> (<em>dict</em>) – A dictionary with the joint names as keys and values
 in radians and meters (depending on the joint type).</p></li>
 <li><p><strong>parent_transformation</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code>) – The transfomation of the parent joint.</p></li>
@@ -165,7 +165,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">True</s
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -178,7 +178,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">True</s
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

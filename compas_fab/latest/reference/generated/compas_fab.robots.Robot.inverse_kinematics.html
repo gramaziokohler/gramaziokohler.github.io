@@ -18,11 +18,11 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="Robot.represent_frame_in_RCF" href="compas_fab.robots.Robot.represent_frame_in_RCF.html" />
+            <link rel="next" title="Robot.joint_positions_to_configuration" href="compas_fab.robots.Robot.joint_positions_to_configuration.html" />
         
         
         
-            <link rel="prev" title="Robot.get_end_effector_link_name" href="compas_fab.robots.Robot.get_end_effector_link_name.html" />
+            <link rel="prev" title="Robot.init_configuration" href="compas_fab.robots.Robot.init_configuration.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -61,17 +61,18 @@
 <h1>Robot.inverse_kinematics</h1>
 <dl class="method">
 <dt id="compas_fab.robots.Robot.inverse_kinematics">
-<code class="descclassname">Robot.</code><code class="descname">inverse_kinematics</code><span class="sig-paren">(</span><em>frame</em>, <em>current_configuration=None</em>, <em>callback_result=None</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.inverse_kinematics"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descclassname">Robot.</code><code class="descname">inverse_kinematics</code><span class="sig-paren">(</span><em>frame_WCF</em>, <em>start_configuration=None</em>, <em>group=None</em>, <em>avoid_collisions=True</em>, <em>constraints=None</em>, <em>attempts=8</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.inverse_kinematics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculate the robot’s inverse kinematic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame (:class:`Frame`)</strong> (<em>The frame to calculate the inverse for</em>)</p></li>
-<li><p><strong>current_configuration (:class:`Configuration`, optional)</strong> (<em>If passed,</em>) – the inverse will be calculated such that the calculated joint
+<li><p><strong>start_configuration (:class:`Configuration`, optional)</strong> (<em>If passed,</em>) – the inverse will be calculated such that the calculated joint
 positions differ the least from the current configuration.
 Defaults to the zero position for all joints.</p></li>
-<li><p><strong>callback_result (function, optional)</strong> (<em>the function to call for the</em>) – processing the result. Defaults to the print function.</p></li>
 <li><p><strong>group (str, optional)</strong> (<em>The planning group used for calculation.</em>) – Defaults to the robot’s main planning group.</p></li>
+<li><p><strong>avoid_collisions (bool)</strong></p></li>
+<li><p><strong>constraints (:class:`Frame`)</strong> (<em>A set of constraints that the request</em>) – must obey. Defaults to None.</p></li>
 </ul>
 </dd>
 </dl>
@@ -164,7 +165,7 @@ Defaults to the zero position for all joints.</p></li>
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -177,7 +178,7 @@ Defaults to the zero position for all joints.</p></li>
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

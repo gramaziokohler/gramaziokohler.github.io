@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -75,7 +75,7 @@ to geometry (<a class="reference internal" href="compas_fab.artists.BaseRobotArt
 <dl class="attribute">
 <dt id="compas_fab.artists.BaseRobotArtist.robot">
 <code class="descname">robot</code></dt>
-<dd><p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.robots.Robot.html#compas.robots.Robot" title="(in COMPAS v0.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Robot</span></code></a> – Instance of a robot model.</p>
+<dd><p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.robots.RobotModel.html#compas.robots.RobotModel" title="(in COMPAS v0.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code></a> – Instance of a robot model.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
@@ -86,7 +86,7 @@ to geometry (<a class="reference internal" href="compas_fab.artists.BaseRobotArt
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.__init__.html#compas_fab.artists.BaseRobotArtist.__init__" title="compas_fab.artists.BaseRobotArtist.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(robot)</p></td>
-<td><p>Initialize self.</p></td>
+<td><p>x.__init__(…) initializes x; see help(type(x)) for signature</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.create.html#compas_fab.artists.BaseRobotArtist.create" title="compas_fab.artists.BaseRobotArtist.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>(link, parent_transformation)</p></td>
 <td><p>Triggers the drawing of the robot geometry.</p></td>
@@ -94,22 +94,31 @@ to geometry (<a class="reference internal" href="compas_fab.artists.BaseRobotArt
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.draw_collision.html#compas_fab.artists.BaseRobotArtist.draw_collision" title="compas_fab.artists.BaseRobotArtist.draw_collision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_collision</span></code></a>()</p></td>
 <td><p>Draws all collision geometry of the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.draw_mesh.html#compas_fab.artists.BaseRobotArtist.draw_mesh" title="compas_fab.artists.BaseRobotArtist.draw_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_mesh</span></code></a>(mesh)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.draw_mesh.html#compas_fab.artists.BaseRobotArtist.draw_mesh" title="compas_fab.artists.BaseRobotArtist.draw_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_mesh</span></code></a>(mesh[, color])</p></td>
 <td><p>Draw a <strong>COMPAS</strong> mesh into the CAD environment.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.draw_visual.html#compas_fab.artists.BaseRobotArtist.draw_visual" title="compas_fab.artists.BaseRobotArtist.draw_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_visual</span></code></a>()</p></td>
 <td><p>Draws all visual geometry of the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.transform.html#compas_fab.artists.BaseRobotArtist.transform" title="compas_fab.artists.BaseRobotArtist.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(native_mesh, transformation)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.scale.html#compas_fab.artists.BaseRobotArtist.scale" title="compas_fab.artists.BaseRobotArtist.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
+<td><p>Scales the robot geometry by factor (absolute).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.scale_link.html#compas_fab.artists.BaseRobotArtist.scale_link" title="compas_fab.artists.BaseRobotArtist.scale_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_link</span></code></a>(link, transformation)</p></td>
+<td><p>Recursive function to apply the scale transformation on each link geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.scale_links.html#compas_fab.artists.BaseRobotArtist.scale_links" title="compas_fab.artists.BaseRobotArtist.scale_links"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_links</span></code></a>(transformation)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.transform.html#compas_fab.artists.BaseRobotArtist.transform" title="compas_fab.artists.BaseRobotArtist.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(native_mesh, transformation)</p></td>
 <td><p>Transforms a CAD-specific mesh using a <strong>COMPAS</strong> transformation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update" title="compas_fab.artists.BaseRobotArtist.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, collision])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update" title="compas_fab.artists.BaseRobotArtist.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, collision, names])</p></td>
 <td><p>Trigger the update of the robot geometry.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update_link.html#compas_fab.artists.BaseRobotArtist.update_link" title="compas_fab.artists.BaseRobotArtist.update_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_link</span></code></a>(link, joint_state, …[, collision])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update_link.html#compas_fab.artists.BaseRobotArtist.update_link" title="compas_fab.artists.BaseRobotArtist.update_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_link</span></code></a>(link, joint_state, …[, collision])</p></td>
 <td><p>Recursive function to apply the transformations given by the joint state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update_links.html#compas_fab.artists.BaseRobotArtist.update_links" title="compas_fab.artists.BaseRobotArtist.update_links"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_links</span></code></a>(names, positions[, collision])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.artists.BaseRobotArtist.update_links.html#compas_fab.artists.BaseRobotArtist.update_links" title="compas_fab.artists.BaseRobotArtist.update_links"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_links</span></code></a>(names, positions[, collision])</p></td>
 <td><p>Updates the joints and link geometries.</p></td>
 </tr>
 </tbody>
@@ -202,7 +211,7 @@ to geometry (<a class="reference internal" href="compas_fab.artists.BaseRobotArt
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -215,7 +224,7 @@ to geometry (<a class="reference internal" href="compas_fab.artists.BaseRobotArt
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -109,6 +109,10 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="n">_wrapper_callback</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Kick-starts a non-blocking event loop.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
     <span class="k">def</span> <span class="nf">run_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Kick-starts a blocking loop to wait for events.</span>
 
@@ -138,12 +142,26 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a callback to an arbitrary named event.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Add a callback to an arbitrary named event.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event_name (:obj:`str`): Name of the event to which to subscribe.</span>
+<span class="sd">            callback: Callable function to be executed when the event is triggered.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove a callback from an arbitrary named event.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">off</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">off</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove a callback from an arbitrary named event.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event_name (:obj:`str`): Name of the event from which to unsubscribe.</span>
+<span class="sd">            callback: Callable function. If ``None``, all callbacks of the event</span>
+<span class="sd">                will be removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">off</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">remove_all_listeners</span><span class="p">(</span><span class="n">event_name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Trigger a named event.&quot;&quot;&quot;</span>
@@ -383,7 +401,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -396,7 +414,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

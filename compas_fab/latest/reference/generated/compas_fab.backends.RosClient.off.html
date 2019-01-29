@@ -22,7 +22,7 @@
         
         
         
-            <link rel="prev" title="RosClient.inverse_kinematics" href="compas_fab.backends.RosClient.inverse_kinematics.html" />
+            <link rel="prev" title="RosClient.motion_plan_goal_joint_positions_async" href="compas_fab.backends.RosClient.motion_plan_goal_joint_positions_async.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -61,8 +61,17 @@
 <h1>RosClient.off</h1>
 <dl class="method">
 <dt id="compas_fab.backends.RosClient.off">
-<code class="descclassname">RosClient.</code><code class="descname">off</code><span class="sig-paren">(</span><em>event_name</em>, <em>callback</em><span class="sig-paren">)</span></dt>
+<code class="descclassname">RosClient.</code><code class="descname">off</code><span class="sig-paren">(</span><em>event_name</em>, <em>callback=None</em><span class="sig-paren">)</span></dt>
 <dd><p>Remove a callback from an arbitrary named event.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of the event from which to unsubscribe.</p></li>
+<li><p><strong>callback</strong> – Callable function. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, all callbacks of the event
+will be removed.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -151,7 +160,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -164,7 +173,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

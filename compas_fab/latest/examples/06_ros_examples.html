@@ -18,7 +18,7 @@
         <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="&lt;no title&gt;" href="ros_setup_ur.html" />
+            <link rel="next" title="Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
         
         
         
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -97,7 +97,7 @@ that the framework will invoke when the event is fired.</p>
 <h2>Hello World</h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code> of ROS is to start two nodes: a talker and a listener.
 The nodes are extremely simple but they exemplify a distributed system with
-two communication between processes over the ROS infrastructure.</p>
+communication between two processes over the ROS infrastructure.</p>
 <div class="section" id="writing-the-talker-node">
 <h3>Writing the talker node</h3>
 <p>The following example starts a ROS node and begins to publish
@@ -219,6 +219,9 @@ folders or even in different computers as long as the ROS master is the same.</p
 <li class="nav-item"><a class="nav-link reference internal" href="03_kinematic_model.html">Kinematic model</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="05_simulation_with_vrep.html">Simulation examples with V-REP</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Using ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../reference.html">API Reference</a></li>
@@ -270,7 +273,7 @@ folders or even in different computers as long as the ROS master is the same.</p
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -283,7 +286,7 @@ folders or even in different computers as long as the ROS master is the same.</p
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

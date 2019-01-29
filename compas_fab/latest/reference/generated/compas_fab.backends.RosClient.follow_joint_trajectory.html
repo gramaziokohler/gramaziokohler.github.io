@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -61,11 +61,22 @@
 <h1>RosClient.follow_joint_trajectory</h1>
 <dl class="method">
 <dt id="compas_fab.backends.RosClient.follow_joint_trajectory">
-<code class="descclassname">RosClient.</code><code class="descname">follow_joint_trajectory</code><span class="sig-paren">(</span><em>callback_result</em>, <em>joint_trajectory</em>, <em>timeout=3000</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient.follow_joint_trajectory"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Follow the joint trajectory as computed by Moveit Planner.</p>
+<code class="descclassname">RosClient.</code><code class="descname">follow_joint_trajectory</code><span class="sig-paren">(</span><em>joint_trajectory</em>, <em>callback=None</em>, <em>errback=None</em>, <em>feedback_callback=None</em>, <em>timeout=60000</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient.follow_joint_trajectory"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Follow the joint trajectory as computed by MoveIt planner.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>joint_trajectory</strong> (<em>JointTrajectory</em>)</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_trajectory</strong> (<em>JointTrajectory</em>) – Joint trajectory message as computed by MoveIt planner</p></li>
+<li><p><strong>callback</strong> (<em>callable</em>) – Function to be invoked when the goal is completed, requires
+one positional parameter <code class="docutils literal notranslate"><span class="pre">result</span></code>.</p></li>
+<li><p><strong>errback</strong> (<em>callable</em>) – Function to be invoked in case of error or timeout, requires
+one position parameter <code class="docutils literal notranslate"><span class="pre">exception</span></code>.</p></li>
+<li><p><strong>feedback_callback</strong> (<em>callable</em>) – Function to be invoked during execution to provide feedback.</p></li>
+<li><p><strong>timeout</strong> (<em>int</em>) – Timeout for goal completion in milliseconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask" title="compas_fab.backends.CancellableTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancellableTask</span></code></a> – An instance of a cancellable tasks.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -156,7 +167,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -169,7 +180,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

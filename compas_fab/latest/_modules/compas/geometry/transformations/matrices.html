@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -74,10 +74,11 @@
 <span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">_EPS</span>
 <span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">_SPEC2TUPLE</span>
 <span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">_NEXT_SPEC</span>
-<span class="kn">from</span> <span class="nn">compas.geometry.transformations</span> <span class="k">import</span> <span class="n">identity_matrix</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;identity_matrix&#39;</span><span class="p">,</span>
+
     <span class="s1">&#39;matrix_from_frame&#39;</span><span class="p">,</span>
     <span class="s1">&#39;matrix_from_euler_angles&#39;</span><span class="p">,</span>
     <span class="s1">&#39;matrix_from_axis_and_angle&#39;</span><span class="p">,</span>
@@ -100,6 +101,10 @@
     <span class="s1">&#39;basis_vectors_from_matrix&#39;</span><span class="p">,</span>
     <span class="s1">&#39;translation_from_matrix&#39;</span><span class="p">,</span>
 <span class="p">]</span>
+
+
+<div class="viewcode-block" id="identity_matrix"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.geometry.identity_matrix.html#compas_fab.geometry.identity_matrix">[docs]</a><span class="k">def</span> <span class="nf">identity_matrix</span><span class="p">(</span><span class="n">dim</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="mf">1.</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span> <span class="k">else</span> <span class="mf">0.</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span></div>
 
 
 <span class="c1"># ==============================================================================</span>
@@ -976,7 +981,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -989,7 +994,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

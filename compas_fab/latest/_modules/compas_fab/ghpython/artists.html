@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -58,6 +58,8 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
+<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="k">import</span> <span class="n">rgb_to_rgb</span>
+
 <span class="kn">from</span> <span class="nn">compas_ghpython</span> <span class="k">import</span> <span class="n">mesh_draw</span>
 <span class="kn">from</span> <span class="nn">compas_ghpython.geometry</span> <span class="k">import</span> <span class="n">xform_from_transformation</span>
 
@@ -78,8 +80,10 @@
         <span class="n">T</span> <span class="o">=</span> <span class="n">xform_from_transformation</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span>
         <span class="n">native_mesh</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">T</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotArtist.draw_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.draw_mesh.html#compas_fab.ghpython.RobotArtist.draw_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">draw_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compas_mesh</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">mesh_draw</span><span class="p">(</span><span class="n">compas_mesh</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="RobotArtist.draw_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.draw_mesh.html#compas_fab.ghpython.RobotArtist.draw_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">draw_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compas_mesh</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">color</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">rgb_to_rgb</span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">mesh_draw</span><span class="p">(</span><span class="n">compas_mesh</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span></div></div>
 
     <span class="c1"># def set_color(self, color_rgba):</span>
     <span class="c1">#     r, g, b, a = color_rgba</span>
@@ -152,7 +156,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -165,7 +169,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',

@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.2.1
+                    compas_fab 0.3.0
                 </a>
             </div>
 
@@ -62,6 +62,7 @@
 
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Transformation</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Scale</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;BaseRobotArtist&#39;</span>
@@ -83,14 +84,15 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    robot : :class:`compas.robots.Robot`</span>
+<span class="sd">    robot : :class:`compas.robots.RobotModel`</span>
 <span class="sd">        Instance of a robot model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="BaseRobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.__init__.html#compas_fab.artists.BaseRobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BaseRobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">robot</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">())</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span></div>
 
 <div class="viewcode-block" id="BaseRobotArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.transform.html#compas_fab.artists.BaseRobotArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transforms a CAD-specific mesh using a **COMPAS** transformation.</span>
@@ -104,7 +106,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-<div class="viewcode-block" id="BaseRobotArtist.draw_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.draw_mesh.html#compas_fab.artists.BaseRobotArtist.draw_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">draw_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobotArtist.draw_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.draw_mesh.html#compas_fab.artists.BaseRobotArtist.draw_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">draw_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Draw a **COMPAS** mesh into the CAD environment.</span>
 
 <span class="sd">        Note</span>
@@ -136,21 +138,54 @@
 <span class="sd">            Parent transformation to apply to the link when creating the structure.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">):</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">native_geometry_reset</span> <span class="o">=</span> <span class="n">parent_transformation</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_mesh</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geo</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">parent_transformation</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geo</span><span class="p">:</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;get_color&#39;</span><span class="p">):</span>
+                    <span class="n">color</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_color</span><span class="p">()</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_mesh</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">parent_transformation</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">for</span> <span class="n">child_joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
-            <span class="n">child_joint</span><span class="o">.</span><span class="n">reset_transform</span><span class="p">()</span>
-            <span class="n">child_joint</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">parent_transformation</span><span class="p">)</span>
-
+            <span class="n">child_joint</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">parent_transformation</span><span class="p">)</span>
             <span class="c1"># Recursively call creation</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">child_joint</span><span class="o">.</span><span class="n">child_link</span><span class="p">,</span> <span class="n">child_joint</span><span class="o">.</span><span class="n">current_transformation</span><span class="p">)</span></div>
 
-    <span class="c1"># TODO: Move this method to compas_fab robot</span>
-<div class="viewcode-block" id="BaseRobotArtist.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobotArtist.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.scale.html#compas_fab.artists.BaseRobotArtist.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Scales the robot geometry by factor (absolute).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        factor : float</span>
+<span class="sd">            The factor to scale the robot with.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">relative_factor</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="c1"># relative scaling factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">factor</span>
+        <span class="n">transformation</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">relative_factor</span><span class="p">,</span> <span class="n">relative_factor</span><span class="p">,</span> <span class="n">relative_factor</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_links</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseRobotArtist.scale_links"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.scale_links.html#compas_fab.artists.BaseRobotArtist.scale_links">[docs]</a>    <span class="k">def</span> <span class="nf">scale_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseRobotArtist.scale_link"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.scale_link.html#compas_fab.artists.BaseRobotArtist.scale_link">[docs]</a>    <span class="k">def</span> <span class="nf">scale_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recursive function to apply the scale transformation on each link</span>
+<span class="sd">            geometry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">relative_factor</span> <span class="o">=</span> <span class="n">transformation</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">):</span>
+            <span class="c1"># some links have only collision geometry, not visual. These meshes</span>
+            <span class="c1"># have not been loaded.</span>
+            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">child_joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
+            <span class="n">child_joint</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">relative_factor</span><span class="p">)</span>
+            <span class="c1"># Recursive call</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scale_link</span><span class="p">(</span><span class="n">child_joint</span><span class="o">.</span><span class="n">child_link</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseRobotArtist.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[]):</span>
         <span class="sd">&quot;&quot;&quot;Trigger the update of the robot geometry.</span>
 
 <span class="sd">        Parameters</span>
@@ -161,8 +196,8 @@
 <span class="sd">            ``True`` if the collision geometry should be also updated, otherwise ``False``.</span>
 <span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1">#        return self.srdf_model.get_configurable_joint_names(group)</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_links</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">collision</span><span class="p">)</span></div>
 
@@ -180,12 +215,11 @@
 <span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">):</span>
-            <span class="k">return</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;len(names): </span><span class="si">%d</span><span class="s2"> is not len(positions) </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)))</span>
-
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;len(names): </span><span class="si">%d</span><span class="s2"> is not len(positions) </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)))</span>
         <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">positions</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">(),</span> <span class="n">collision</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">Transformation</span><span class="p">(),</span> <span class="n">Transformation</span><span class="p">(),</span> <span class="n">collision</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BaseRobotArtist.update_link"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update_link.html#compas_fab.artists.BaseRobotArtist.update_link">[docs]</a>    <span class="k">def</span> <span class="nf">update_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">parent_transformation</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobotArtist.update_link"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update_link.html#compas_fab.artists.BaseRobotArtist.update_link">[docs]</a>    <span class="k">def</span> <span class="nf">update_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">parent_transformation</span><span class="p">,</span> <span class="n">reset_transformation</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Recursive function to apply the transformations given by the joint state.</span>
 
 <span class="sd">        The parameter ``joint_state`` is given as absolute values,</span>
@@ -204,19 +238,22 @@
 <span class="sd">            ``True`` if the collision geometry should be also updated, otherwise ``False``.</span>
 <span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">relative_transformation</span> <span class="o">=</span> <span class="n">parent_transformation</span> <span class="o">*</span> <span class="n">reset_transformation</span>
+
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">parent_transformation</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry_reset</span><span class="p">)</span>
-            <span class="n">item</span><span class="o">.</span><span class="n">native_geometry_reset</span> <span class="o">=</span> <span class="n">parent_transformation</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">relative_transformation</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">collision</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">parent_transformation</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry_reset</span><span class="p">)</span>
-                <span class="n">item</span><span class="o">.</span><span class="n">native_geometry_reset</span> <span class="o">=</span> <span class="n">parent_transformation</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
+                <span class="c1"># some links have only collision geometry, not visual. These meshes have not been loaded.</span>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">relative_transformation</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">child_joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
+            <span class="n">reset_transformation</span> <span class="o">=</span> <span class="n">child_joint</span><span class="o">.</span><span class="n">reset_transformation</span>
             <span class="c1"># 1. Reset child joint transformation</span>
             <span class="n">child_joint</span><span class="o">.</span><span class="n">reset_transform</span><span class="p">()</span>
-
             <span class="c1"># 2. Calculate transformation for next joints in the chain</span>
             <span class="k">if</span> <span class="n">child_joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">joint_state</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="n">position</span> <span class="o">=</span> <span class="n">joint_state</span><span class="p">[</span><span class="n">child_joint</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
@@ -230,7 +267,7 @@
             <span class="n">child_joint</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span>
 
             <span class="c1"># 4. Apply function to all children in the chain</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">update_link</span><span class="p">(</span><span class="n">child_joint</span><span class="o">.</span><span class="n">child_link</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">child_joint</span><span class="o">.</span><span class="n">current_transformation</span><span class="p">,</span> <span class="n">collision</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_link</span><span class="p">(</span><span class="n">child_joint</span><span class="o">.</span><span class="n">child_link</span><span class="p">,</span> <span class="n">joint_state</span><span class="p">,</span> <span class="n">transformation</span><span class="p">,</span> <span class="n">reset_transformation</span><span class="p">,</span> <span class="n">collision</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BaseRobotArtist.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.draw_visual.html#compas_fab.artists.BaseRobotArtist.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Draws all visual geometry of the robot.&quot;&quot;&quot;</span>
@@ -242,7 +279,8 @@
         <span class="sd">&quot;&quot;&quot;Draws all collision geometry of the robot.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_links</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span></div></div>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span></div></div>
 </code></pre></div>
                         
                     
@@ -312,7 +350,7 @@
             
 
             
-                Last updated on Sep 09, 2018.
+                Last updated on Jan 29, 2019.
             
 
             
@@ -325,7 +363,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.2.1',
+    VERSION           : '0.3.0',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',
