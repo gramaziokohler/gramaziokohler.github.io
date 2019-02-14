@@ -33,14 +33,14 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.0
+                    compas_fab 0.4.1
                 </a>
             </div>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                        <img src="../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
                     </a>
                 </li>
             </ul>
@@ -80,18 +80,18 @@ your end-effector in a ROS-friendly format, like .stl or .obj (see below).</p>
 <div class="section" id="prepare-your-catkin-workspace">
 <h2>2. Prepare your catkin workspace</h2>
 <p>Open your command prompt and go to your home directory:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
 </code></pre></div>
 </div>
 <p>If not yet there, make a new catkin workspace for all your robotic setups:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
 </code></pre></div>
 </div>
 <p>Then go to your src folder and make a package with your new setup
 <code class="docutils literal notranslate"><span class="pre">ur5_with_measurement_tool</span></code>:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 <span class="n">catkin_create_pkg</span> <span class="n">ur5_with_measurement_tool</span>
 </code></pre></div>
 </div>
@@ -112,7 +112,7 @@ following lines after the line <code class="docutils literal notranslate"><span 
 </div>
 <p>Optionally, modify <code class="docutils literal notranslate"><span class="pre">email</span></code> and <code class="docutils literal notranslate"><span class="pre">licence</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code> tags.</p>
 <p>Then create 4(+2) folders: <code class="docutils literal notranslate"><span class="pre">launch</span></code>, <code class="docutils literal notranslate"><span class="pre">rviz</span></code>, <code class="docutils literal notranslate"><span class="pre">urdf</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes</span></code> (with visual and collision folders):</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="p">{</span><span class="n">launch</span><span class="p">,</span><span class="n">rviz</span><span class="p">,</span><span class="n">urdf</span><span class="p">,</span><span class="n">meshes</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">visual</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">collision</span><span class="p">}</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="p">{</span><span class="n">launch</span><span class="p">,</span><span class="n">rviz</span><span class="p">,</span><span class="n">urdf</span><span class="p">,</span><span class="n">meshes</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">visual</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">collision</span><span class="p">}</span>
 </code></pre></div>
 </div>
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
@@ -129,7 +129,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File">Xacro tutorials on the ROS Wiki</a>.</p>
 </div>
 <p>Go to the <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder and create a xacro file for your end-effector with the text editor of your choice (e.g. <code class="docutils literal notranslate"><span class="pre">pico</span></code>):</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">urdf</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">urdf</span>
 <span class="n">pico</span> <span class="n">measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
@@ -185,7 +185,7 @@ we would need to use both with different prefixes to distinguish them.
 Whatever is defined like <code class="docutils literal notranslate"><span class="pre">${}</span></code> will later be replaced when generating the
 urdf.</p>
 <p>Now we create a new xacro file, which combines the ur5 with the end-effector:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
 <p>Paste the following:</p>
@@ -233,16 +233,16 @@ Typically this frame is the first frame of the robot tied to the first link.</p>
 <p>To define the base_link name we search in the robot’s xacro file the link which
 is never child to a joint (first link).</p>
 <p>Now create the urdf.:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
 <p>This will create ur5_with_measurement_tool.urdf in the directory.</p>
 <p>You can also check the urdf with:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">check_urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">check_urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span>
 </code></pre></div>
 </div>
 <p>This will output:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">robot</span> <span class="n">name</span> <span class="ow">is</span><span class="p">:</span> <span class="n">ur5_with_measurement_tool</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">robot</span> <span class="n">name</span> <span class="ow">is</span><span class="p">:</span> <span class="n">ur5_with_measurement_tool</span>
 <span class="o">----------</span> <span class="n">Successfully</span> <span class="n">Parsed</span> <span class="n">XML</span> <span class="o">---------------</span>
 <span class="n">root</span> <span class="n">Link</span><span class="p">:</span> <span class="n">world</span> <span class="n">has</span> <span class="mi">1</span> <span class="n">child</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
     <span class="n">child</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>  <span class="n">base_link</span>
@@ -264,14 +264,14 @@ is never child to a joint (first link).</p>
 <div class="section" id="view-urdf">
 <h2>4. View urdf</h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
 <span class="n">cp</span> <span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 </code></pre></div>
 </div>
 <p>Now modify <code class="docutils literal notranslate"><span class="pre">display.launch</span></code> in the <code class="docutils literal notranslate"><span class="pre">launch</span></code> directory:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
 <p>Change the 2 <code class="docutils literal notranslate"><span class="pre">arg</span></code> tags with <code class="docutils literal notranslate"><span class="pre">name=&quot;model&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">name=&quot;rvizconfig&quot;</span></code> such
@@ -293,13 +293,13 @@ that they match the following:</p>
 </code></pre></div>
 </div>
 <p>Now we need to source the package path in our catkin workspace:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
 <span class="n">source</span> <span class="n">devel</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
 </code></pre></div>
 </div>
 <p>And then run:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
 <div class="figure" id="id2">
@@ -311,7 +311,7 @@ that they match the following:</p>
 <div class="section" id="add-path-to-search-paths">
 <h2>Add path to search paths</h2>
 <p>For convenience, add the path to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> in order to make it available on every start of ROS:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </code></pre></div>
 </div>
 </div>
@@ -413,17 +413,11 @@ that they match the following:</p>
 
         <footer class="compas-footer">
             
-                
-                    &#169; Copyright 2018, Gramazio Kohler Research.
-                
+                Last updated on Feb 14, 2019.
             
 
             
-                Last updated on Feb 11, 2019.
-            
-
-            
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
             
         </footer>
 
@@ -432,7 +426,7 @@ that they match the following:</p>
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.4.0',
+    VERSION           : '0.4.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',
@@ -451,42 +445,42 @@ var DOCUMENTATION_OPTIONS = {
             <script src="../_static/underscore.js"></script>
             <script src="../_static/doctools.js"></script>
             <script src="../_static/js/searchtools_.js"></script>
-            <script src="../_static/js/prism.js" data-manual></script>
+            <script src="../_static/js/prism.js"></script>
 
             <script>
 $(document).ready(function() {
 
-    $(".language-default pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-default pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-bash pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-bash pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-python pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-python pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-c pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-c pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-cpp pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-cpp pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-fortran pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-fortran pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-markdown pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-markdown pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-rest pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-rest pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
     anchors.add();
 });

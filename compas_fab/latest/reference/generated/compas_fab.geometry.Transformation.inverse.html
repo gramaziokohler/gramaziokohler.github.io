@@ -33,14 +33,14 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.4.0
+                    compas_fab 0.4.1
                 </a>
             </div>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                        <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
                     </a>
                 </li>
             </ul>
@@ -64,7 +64,7 @@
 <code class="descclassname">Transformation.</code><code class="descname">inverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas/geometry/xforms/transformation.html#Transformation.inverse"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns the inverse transformation.</p>
 <p class="rubric">Example</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">I</span> <span class="o">=</span> <span class="n">Transformation</span><span class="p">()</span> <span class="c1"># identity matrix</span>
@@ -154,17 +154,11 @@
 
         <footer class="compas-footer">
             
-                
-                    &#169; Copyright 2018, Gramazio Kohler Research.
-                
+                Last updated on Feb 14, 2019.
             
 
             
-                Last updated on Feb 11, 2019.
-            
-
-            
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
             
         </footer>
 
@@ -173,7 +167,7 @@
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.4.0',
+    VERSION           : '0.4.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',
@@ -192,42 +186,42 @@ var DOCUMENTATION_OPTIONS = {
             <script src="../../_static/underscore.js"></script>
             <script src="../../_static/doctools.js"></script>
             <script src="../../_static/js/searchtools_.js"></script>
-            <script src="../../_static/js/prism.js" data-manual></script>
+            <script src="../../_static/js/prism.js"></script>
 
             <script>
 $(document).ready(function() {
 
-    $(".language-default pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-default pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-bash pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-bash pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-python pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-python pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-c pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-c pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-cpp pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-cpp pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-fortran pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-fortran pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-markdown pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-markdown pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-rest pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-rest pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
     anchors.add();
 });

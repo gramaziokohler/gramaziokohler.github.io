@@ -26,6 +26,7 @@ h3 {
 
 a {
 	text-decoration: none;
+	color: #0092d2;
 }
 
 a:hover {
@@ -42,6 +43,10 @@ ol ol, ol ul, ul ol, ul ul {
 	margin-bottom: 1rem;
 }
 
+table {
+	margin: 2rem 0;
+}
+
 /*li .py-mod {
 	word-wrap: break-word;
 }*/
@@ -49,36 +54,34 @@ ol ol, ol ul, ul ol, ul ul {
 .compas-navbar {
 	height: 4rem;
 	z-index: 1053;
-	background-color: #eee;
-	border-bottom: 1px solid #ccc;
+	background-color: #0092d2;
+	border-bottom: 0px solid #ccc;
 }
 
 .compas-navbar .navbar-brand,
 .compas-navbar .nav-link {
-	color: #888;
+	color: #eee;
 }
 
 .compas-navbar .navbar-brand:hover,
 .compas-navbar .nav-link:hover,
 .compas-navbar .navbar-brand.active,
 .compas-navbar .nav-link.active {
-	color: #222;
+	color: #fff;
 }
 
 .compas-navbar .navbar-brand.active,
 .compas-navbar .nav-link.active {
-	font-weight: 600;
 }
 
 .compas-container {
-	/*max-width: 1440px;*/
+	max-width: 1440px;
 }
 
 .compas-footer {
 	width: 100%;
 	min-height: 8rem;
 	background-color: #eee;
-	background-color: #fff;
 	border-top: 1px solid #ccc;
 	padding: 2rem;
 	color: #888;
@@ -222,7 +225,7 @@ ol ol, ol ul, ul ol, ul ul {
 
 .compas-searchbox {
 	padding: 1rem;
-	border-bottom: 1px solid #eee;
+	border-bottom: 0px solid #eee;
 	position: relative;
 }
 
@@ -235,13 +238,13 @@ ol ol, ol ul, ul ol, ul ul {
 }
 
 .compas-navigation {
-	padding-top: 1rem;
-	padding-bottom: 2rem;
+	padding-top: 0.5rem;
+	padding-bottom: 1rem;
 }
 
 .compas-navigation .nav {
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .compas-navigation .nav-item {
@@ -259,21 +262,6 @@ ol ol, ol ul, ul ol, ul ul {
 	margin-bottom: 1rem;
 }
 
-.compas-navigation .nav .nav .nav-link {
-	padding: 0.25rem 0.5rem 0.25rem 1rem;
-	color: #222;
-}
-
-.compas-navigation .nav .nav .nav .nav-link {
-	padding: 0.25rem 0.5rem 0.25rem 1.5rem;
-	color: #888;
-}
-
-.compas-navigation .nav .nav .nav .active .nav-link,
-.compas-navigation .nav .nav .nav .nav-link:hover {
-	color: #222;
-}
-
 .compas-navigation .nav-item .nav {
 	display: none;
 }
@@ -286,24 +274,27 @@ ol ol, ol ul, ul ol, ul ul {
 	font-size: 1rem;
 }
 
-.compas-navigation .nav-item .nav-item {
+.compas-navigation .nav-item .nav-item .nav-link {
 	font-size: 0.875rem;
+    color: #222;
 }
 
-.compas-navigation .nav-item .nav-item .nav-item {
+.compas-navigation .nav-item .nav-item.active > .nav-link {
+    color: #222;
+}
+
+.compas-navigation .nav-item .nav-item .nav-item .nav-link {
 	font-size: 0.75rem;
+    color: #ccc;
+}
+
+.compas-navigation .nav-item .nav-item .nav-item.active > .nav-link {
+    color: #222;
 }
 
 .compas-navigation .active > .nav-link {
 	font-weight: 600;
-}
-
-.compas-navigation .nav .nav .nav .active .nav-link {
-	font-weight: normal;
-}
-
-.compas-navigation > .nav > .nav-item.active:first-child {
-	margin-top: 0rem;
+    color: #222;
 }
 
 /* Content */
@@ -374,7 +365,7 @@ ol ol, ol ul, ul ol, ul ul {
 	padding: 2rem;
 }
 
-.language-none pre {
+.nohighlight pre {
 	background-color: #eee;
 }
 

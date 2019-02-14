@@ -33,14 +33,14 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.0
+                    compas_fab 0.4.1
                 </a>
             </div>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../_static/images/compas_icon.png" width="36px" height="36px" alt="compas" />
+                        <img src="../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
                     </a>
                 </li>
             </ul>
@@ -79,7 +79,7 @@ repeatability.</p>
 containers. The <strong>compas_fab</strong> team publishes some images on <a class="reference external" href="https://hub.docker.com/r/gramaziokohler/">Docker Hub</a>
 but there are many more to be found online. You can start a single ROS Master
 with the following commands on the command prompt:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">11311</span><span class="p">:</span><span class="mi">11311</span> <span class="o">-</span><span class="n">t</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">base</span> <span class="n">roscore</span>
 </code></pre></div>
 </div>
@@ -89,10 +89,10 @@ with the following commands on the command prompt:</p>
 multiple interconnected nodes. Docker provides a way to compose virtualized networks
 using the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> command. These commands takes one simple configuration
 file as input, and take care of pulling, running and connecting all the nodes.</p>
-<p>Download <a class="reference download internal" href="../_downloads/docker-compose.yml" download=""><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">basic</span> <span class="pre">ROS</span> <span class="pre">system</span></code></a> into any
+<p>Download <a class="reference download internal" download="" href="../_downloads/3c413f61d95f521969201af31a50b074/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">this</span> <span class="pre">basic</span> <span class="pre">ROS</span> <span class="pre">system</span></code></a> into any
 folder of your computer, open the command prompt, go to the folder where the file was
 downloaded, and run the following command:</p>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
 </code></pre></div>
 </div>
 <p>You now have a ROS system with two nodes running: <code class="docutils literal notranslate"><span class="pre">roscore</span></code> (<strong>master</strong>) and
@@ -186,17 +186,11 @@ the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS
 
         <footer class="compas-footer">
             
-                
-                    &#169; Copyright 2018, Gramazio Kohler Research.
-                
+                Last updated on Feb 14, 2019.
             
 
             
-                Last updated on Feb 11, 2019.
-            
-
-            
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
             
         </footer>
 
@@ -205,7 +199,7 @@ the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS
             <script type="text/javascript">
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT          : '',
-    VERSION           : '0.4.0',
+    VERSION           : '0.4.1',
     COLLAPSE_INDEX    : false,
     FILE_SUFFIX       : '.html',
     HAS_SOURCE        : 'false',
@@ -224,42 +218,42 @@ var DOCUMENTATION_OPTIONS = {
             <script src="../_static/underscore.js"></script>
             <script src="../_static/doctools.js"></script>
             <script src="../_static/js/searchtools_.js"></script>
-            <script src="../_static/js/prism.js" data-manual></script>
+            <script src="../_static/js/prism.js"></script>
 
             <script>
 $(document).ready(function() {
 
-    $(".language-default pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-default pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-bash pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-bash pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-python pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-python pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-c pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-c pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-cpp pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-cpp pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-fortran pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-fortran pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-markdown pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-markdown pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
-    $(".language-rest pre").each(function(i, element) {
-        Prism.highlightElement(element);
-    });
+    // $(".language-rest pre").each(function(i, element) {
+    //     Prism.highlightElement(element);
+    // });
 
     anchors.add();
 });
