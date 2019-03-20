@@ -796,7 +796,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">collision_mesh</span><span class="p">(</span><span class="n">id_name</span><span class="p">,</span> <span class="n">root_link_name</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Robot.create_collision_mesh_attached_to_end_effector"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.create_collision_mesh_attached_to_end_effector.html#compas_fab.robots.Robot.create_collision_mesh_attached_to_end_effector">[docs]</a>    <span class="k">def</span> <span class="nf">create_collision_mesh_attached_to_end_effector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_name</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.create_collision_mesh_attached_to_end_effector"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.create_collision_mesh_attached_to_end_effector.html#compas_fab.robots.Robot.create_collision_mesh_attached_to_end_effector">[docs]</a>    <span class="k">def</span> <span class="nf">create_collision_mesh_attached_to_end_effector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_name</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Creates a collision object that is added to the end effector&#39;s tcp.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
@@ -808,7 +808,12 @@
             <span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh_transformed</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
 
         <span class="n">last_link_with_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_links_with_geometry</span><span class="p">(</span><span class="n">group</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">touch_links</span><span class="o">=</span><span class="p">[</span><span class="n">last_link_with_geometry</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">touch_links</span><span class="p">:</span>
+            <span class="n">touch_links</span><span class="o">=</span><span class="p">[</span><span class="n">last_link_with_geometry</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">touch_links</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">touch_links</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">last_link_with_geometry</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">touch_links</span><span class="p">:</span>
+                <span class="n">touch_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">last_link_with_geometry</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">build_attached_collision_mesh</span><span class="p">(</span><span class="n">ee_link_name</span><span class="p">,</span> <span class="n">id_name</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="n">touch_links</span><span class="p">)</span></div>
 
@@ -987,7 +992,7 @@
 
         <footer class="compas-footer">
             
-                Last updated on Feb 14, 2019.
+                Last updated on Mar 20, 2019.
             
 
             
