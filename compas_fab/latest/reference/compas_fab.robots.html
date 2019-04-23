@@ -18,11 +18,11 @@
         <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="Configuration" href="generated/compas_fab.robots.Configuration.html" />
+            <link rel="next" title="Robot" href="generated/compas_fab.robots.Robot.html" />
         
         
         
-            <link rel="prev" title="translation_from_matrix" href="generated/compas_fab.geometry.translation_from_matrix.html" />
+            <link rel="prev" title="VrepError" href="generated/compas_fab.backends.VrepError.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -61,37 +61,100 @@
 <h1>compas_fab.robots</h1>
 <p>This package contains classes for robot modeling and they are used by the
 simulation, planning and execution backends to exchange information.</p>
-<div class="section" id="classes">
-<h2>Classes</h2>
-<table class="longtable docutils">
+<div class="section" id="main-classes">
+<h2>Main classes</h2>
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Configuration</span></code></a></p></td>
-<td><p>Represents the configuration of a robot based on the state of its joints.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html#compas_fab.robots.PathPlan" title="compas_fab.robots.PathPlan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathPlan</span></code></a></p></td>
-<td><p>Describes a complete path plan for one or more robots.</p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
-<td><p>Represents a <strong>robot</strong> instance.</p></td>
+<td><p>Represents a robot.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotSemantics</span></code></a></p></td>
 <td><p>Represents semantic information of a robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.RosFileServerLoader.html#compas_fab.robots.RosFileServerLoader" title="compas_fab.robots.RosFileServerLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosFileServerLoader</span></code></a></p></td>
-<td><p>Allows to retrieve the mesh files specified in the robot urdf from the ROS file_server, stores it on the local file system and allows to load the meshes afterwards.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Configuration</span></code></a></p></td>
+<td><p>Represents the configuration of a robot based on the state of its joints.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
+<td><p>Duration consists of two integers: seconds and nanoseconds.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="path-planning">
+<h2>Path planning</h2>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointTrajectory</span></code></a></p></td>
+<td><p>Describes a joint trajectory as a list of trajectory points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a></p></td>
+<td><p>Defines a point within a trajectory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html#compas_fab.robots.PathPlan" title="compas_fab.robots.PathPlan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathPlan</span></code></a></p></td>
+<td><p>Describes a complete path plan for one or more robots.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="planning-scene">
+<h2>Planning scene</h2>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></a></p></td>
+<td><p>Represents a collision mesh that is attached to a robot’s link.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionMesh</span></code></a></p></td>
+<td><p>Represents a collision mesh.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PlanningScene.html#compas_fab.robots.PlanningScene" title="compas_fab.robots.PlanningScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanningScene</span></code></a></p></td>
+<td><p>Represents the planning scene.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="constraints">
+<h2>Constraints</h2>
+<table class="longtable docutils align-center">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.BoundingVolume.html#compas_fab.robots.BoundingVolume" title="compas_fab.robots.BoundingVolume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingVolume</span></code></a></p></td>
+<td><p>A container for describing a bounding volume.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraint</span></code></a></p></td>
+<td><p>Base class for robot constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointConstraint.html#compas_fab.robots.JointConstraint" title="compas_fab.robots.JointConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointConstraint</span></code></a></p></td>
+<td><p>Constrains the value of a joint to be within a certain bound.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.OrientationConstraint.html#compas_fab.robots.OrientationConstraint" title="compas_fab.robots.OrientationConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a></p></td>
+<td><p>Constrains a link to be within a certain orientation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PositionConstraint.html#compas_fab.robots.PositionConstraint" title="compas_fab.robots.PositionConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PositionConstraint</span></code></a></p></td>
+<td><p>Constrains a link to be within a certain bounding volume.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="unit-conversion">
 <h2>Unit conversion</h2>
-<p>The unit systems most commonly used in <strong>compas_fab</strong> are <strong>meters</strong> and <strong>radians</strong>.
+<p>The unit systems most commonly used in <strong>COMPAS FAB</strong> are <strong>meters</strong> and <strong>radians</strong>.
 The following functions help with converting units from one system to the other.</p>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -143,7 +206,6 @@ The following functions help with converting units from one system to the other.
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
@@ -176,7 +238,10 @@ The following functions help with converting units from one system to the other.
 
                     <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.robots</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#classes">Classes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#main-classes">Main classes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#path-planning">Path planning</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#planning-scene">Planning scene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#constraints">Constraints</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#unit-conversion">Unit conversion</a></li>
 </ul>
 </li>
@@ -190,11 +255,11 @@ The following functions help with converting units from one system to the other.
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

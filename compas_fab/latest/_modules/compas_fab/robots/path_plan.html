@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -58,8 +58,6 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="k">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots.robot</span> <span class="k">import</span> <span class="n">Robot</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;PathPlan&#39;</span><span class="p">,</span>
@@ -71,49 +69,51 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    paths : :obj:`dict`</span>
+<span class="sd">    trajectories : :obj:`dict`</span>
 <span class="sd">        Dictionary keyed by the robot identifier where the values</span>
-<span class="sd">        are instances of :class:`Configuration`. Robots that do not move during the</span>
-<span class="sd">        plan only have one configuration in their values.</span>
+<span class="sd">        are instances of :class:`compas_fab.robots.Trajectory`.</span>
+<span class="sd">        Robots that do not move during the plan have an empty</span>
+<span class="sd">        trajectory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PathPlan.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.__init__.html#compas_fab.robots.PathPlan.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="p">{}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="PathPlan.add_robot_plan"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.add_robot_plan.html#compas_fab.robots.PathPlan.add_robot_plan">[docs]</a>    <span class="k">def</span> <span class="nf">add_robot_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">path_plan</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds a path plan for a specific robot.</span>
+<div class="viewcode-block" id="PathPlan.add_robot_trajectory"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.add_robot_trajectory.html#compas_fab.robots.PathPlan.add_robot_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">add_robot_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">trajectory</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds a trajectory for a specific robot.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        robot : :class:`Robot`</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
 <span class="sd">            Instance of robot.</span>
-<span class="sd">        path_plan : :obj:`list` of :class:`Configuration`</span>
-<span class="sd">            List of configurations representing a full path.</span>
+<span class="sd">        trajectory : :class:`compas_fab.robots.Trajectory`</span>
+<span class="sd">            Trajectory of the robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_plan</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">trajectory</span></div>
 
-<div class="viewcode-block" id="PathPlan.get_robot_plan"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.get_robot_plan.html#compas_fab.robots.PathPlan.get_robot_plan">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_plan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Gets the path plan for a specific robot.</span>
+<div class="viewcode-block" id="PathPlan.get_robot_trajectory"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.get_robot_trajectory.html#compas_fab.robots.PathPlan.get_robot_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the trajectory for a specific robot.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        robot : :class:`Robot`</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
 <span class="sd">            Instance of robot.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        list</span>
-<span class="sd">            List of configurations representing a full path.</span>
+<span class="sd">        :class:`compas_fab.robots.Trajectory`</span>
+<span class="sd">            Trajectory of the robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No path plan stored for the specified robot: &#39;</span> <span class="o">+</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No trajectory stored for the specified robot: &#39;</span>
+                             <span class="o">+</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span><span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="PathPlan.all_paths"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.all_paths.html#compas_fab.robots.PathPlan.all_paths">[docs]</a>    <span class="k">def</span> <span class="nf">all_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Iterator over all paths currently defined.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div></div>
+<div class="viewcode-block" id="PathPlan.all_trajectories"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PathPlan.all_trajectories.html#compas_fab.robots.PathPlan.all_trajectories">[docs]</a>    <span class="k">def</span> <span class="nf">all_trajectories</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterator over all trajectories currently defined.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">trajectories</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div></div>
 </code></pre></div>
                         
                     
@@ -177,11 +177,11 @@
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

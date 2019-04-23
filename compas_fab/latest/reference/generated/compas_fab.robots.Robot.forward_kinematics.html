@@ -18,7 +18,7 @@
         <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
         
-            <link rel="next" title="Robot.from_resource_path" href="compas_fab.robots.Robot.from_resource_path.html" />
+            <link rel="next" title="Robot.get_RCF" href="compas_fab.robots.Robot.get_RCF.html" />
         
         
         
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -66,12 +66,18 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>configuration (:class:`Configuration`, optional)</strong> (<em>The configuration</em>) – to calculate the forward kinematic for.</p></li>
-<li><p><strong>group (str, optional)</strong> (<em>The planning group used for calculation.</em>) – Defaults to the robot’s main planning group.</p></li>
+<li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The configuration to calculate the forward kinematic for.</p></li>
+<li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for the calculation. Defaults to the robot’s
+main planning group.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
+<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">response</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+</code></pre></div>
+</div>
 </dd></dl>
 
 </div>
@@ -111,7 +117,6 @@
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
@@ -154,11 +159,11 @@
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

@@ -22,7 +22,7 @@
         
         
         
-            <link rel="prev" title="Configuration.to_data" href="compas_fab.robots.Configuration.to_data.html" />
+            <link rel="prev" title="JointTrajectoryPoint.to_data" href="compas_fab.robots.JointTrajectoryPoint.to_data.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -65,11 +65,12 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Describes a complete path plan for one or more robots.</p>
 <dl class="attribute">
-<dt id="compas_fab.robots.PathPlan.paths">
-<code class="descname">paths</code></dt>
+<dt id="compas_fab.robots.PathPlan.trajectories">
+<code class="descname">trajectories</code></dt>
 <dd><p>Dictionary keyed by the robot identifier where the values
-are instances of <a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>. Robots that do not move during the
-plan only have one configuration in their values.</p>
+are instances of <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Trajectory</span></code>.
+Robots that do not move during the plan have an empty
+trajectory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></p>
@@ -78,7 +79,7 @@ plan only have one configuration in their values.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -87,17 +88,23 @@ plan only have one configuration in their values.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.__init__.html#compas_fab.robots.PathPlan.__init__" title="compas_fab.robots.PathPlan.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>()</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.add_robot_plan.html#compas_fab.robots.PathPlan.add_robot_plan" title="compas_fab.robots.PathPlan.add_robot_plan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_robot_plan</span></code></a>(robot, path_plan)</p></td>
-<td><p>Adds a path plan for a specific robot.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.add_robot_trajectory.html#compas_fab.robots.PathPlan.add_robot_trajectory" title="compas_fab.robots.PathPlan.add_robot_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_robot_trajectory</span></code></a>(robot, trajectory)</p></td>
+<td><p>Adds a trajectory for a specific robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.all_paths.html#compas_fab.robots.PathPlan.all_paths" title="compas_fab.robots.PathPlan.all_paths"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_paths</span></code></a>()</p></td>
-<td><p>Iterator over all paths currently defined.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.all_trajectories.html#compas_fab.robots.PathPlan.all_trajectories" title="compas_fab.robots.PathPlan.all_trajectories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">all_trajectories</span></code></a>()</p></td>
+<td><p>Iterator over all trajectories currently defined.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.get_robot_plan.html#compas_fab.robots.PathPlan.get_robot_plan" title="compas_fab.robots.PathPlan.get_robot_plan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_robot_plan</span></code></a>(robot)</p></td>
-<td><p>Gets the path plan for a specific robot.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PathPlan.get_robot_trajectory.html#compas_fab.robots.PathPlan.get_robot_trajectory" title="compas_fab.robots.PathPlan.get_robot_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_robot_trajectory</span></code></a>(robot)</p></td>
+<td><p>Gets the trajectory for a specific robot.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="compas_fab.robots.PathPlan.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/path_plan.html#PathPlan.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -137,7 +144,6 @@ plan only have one configuration in their values.</p>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
@@ -180,11 +186,11 @@ plan only have one configuration in their values.</p>
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

@@ -22,7 +22,7 @@
         
         
         
-            <link rel="prev" title="ROS on WSL" href="ros_on_wsl.html" />
+            <link rel="prev" title="ROS" href="ros.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -62,14 +62,13 @@
 <p><a class="reference external" href="http://www.coppeliarobotics.com/">V-REP</a> is a robotic simulation tool
 by Coppelia Robotics with an integrated development environment and various
 programmable interfaces.</p>
-<p>In order to use it as a backend for <strong>compas_fab</strong>, it is possible to download
-and install it as a normal application (see details below), but it can also be executed as a service
-inside a container in only a few steps with the added benefit of ensuring
-repeatability.</p>
+<p>In order to use it as a backend for <strong>COMPAS FAB</strong>, it is possible to download
+and install it as a normal application (see details below), but it can also be
+executed as a service inside a container in only a few steps with the added
+benefit of ensuring repeatability.</p>
 <p>Once you made sure <a class="reference external" href="https://www.docker.com/">Docker</a> is running, you can download and install the V-REP
 container with the following commands on the command prompt:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">vrep</span><span class="o">-</span><span class="n">rfl</span>
-<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span> <span class="o">-</span><span class="n">p</span> <span class="mi">19997</span><span class="p">:</span><span class="mi">19997</span> <span class="o">-</span><span class="n">d</span> <span class="n">gramaziokohler</span><span class="o">/</span><span class="n">vrep</span><span class="o">-</span><span class="n">rfl</span>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run --restart<span class="o">=</span>always -p <span class="m">19997</span>:19997 -d gramaziokohler/vrep-rfl
 </code></pre></div>
 </div>
 <div class="admonition note">
@@ -86,8 +85,8 @@ install it as a normal application.</p>
 <div class="section" id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="../examples.html#examples"><span class="std std-ref">Examples</span></a></p></li>
-<li><p><a class="reference internal" href="../reference.html#reference"><span class="std std-ref">API Reference</span></a></p></li>
+<li><p><a class="reference internal" href="../examples/04_backends_vrep.html#examples-vrep"><span class="std std-ref">Examples: V-REP Backend</span></a></p></li>
+<li><p><a class="reference internal" href="../reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
 </ul>
 </div>
 </div>
@@ -123,7 +122,6 @@ install it as a normal application.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../backends.html">Working with backends</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="ros.html">ROS</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="ros_on_wsl.html">ROS on WSL</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">V-REP</a></li>
 </ul>
 </li>
@@ -165,11 +163,11 @@ install it as a normal application.</p>
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

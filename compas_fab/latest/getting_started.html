@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -61,50 +61,88 @@
 <h1>Getting started</h1>
 <div class="section" id="installation">
 <h2>Installation</h2>
-<p>The recommended way to install <strong>compas_fab</strong> is to use <a class="reference external" href="https://conda.io/docs/">Anaconda/conda</a>:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="n">add</span> <span class="n">channels</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="n">compas_fab</span>
+<p>The recommended way to install <strong>COMPAS FAB</strong> is to use <a class="reference external" href="https://conda.io/docs/">Anaconda/conda</a>:</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -c conda-forge compas_fab
 </code></pre></div>
 </div>
 <p>But it can also be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">compas_fab</span>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install compas_fab
 </code></pre></div>
 </div>
-<p>Once installed, you can verify your setup. Start Python from the command prompt and run the following:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">compas_fab</span>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Windows, you may need to install
+<a class="reference external" href="https://www.scivision.co/python-windows-visual-c++-14-required/">Microsoft Visual C++ 14.0</a>.</p>
+</div>
+<p>Once the installation is completed, you can verify your setup.
+Start Python from the command prompt and run the following:</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>&gt;&gt;&gt; import compas_fab
 </code></pre></div>
 </div>
+<p>You are ready to use <strong>COMPAS FAB</strong>!</p>
 </div>
-<div class="section" id="environments">
-<h2>Environments</h2>
-<p>Just like the main library of <strong>COMPAS</strong>, the core functionality of <strong>compas_fab</strong>
-is independent of CAD software and can be used from the command prompt,
-in standalone scripts.</p>
 <div class="section" id="working-in-rhino">
-<h3>Working in Rhino</h3>
-<p><em>Installing</em> <strong>compas_fab</strong> for Rhino is very simple. Just open the <em>command prompt</em>
-and type the following</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">rhino</span><span class="o">.</span><span class="n">install</span>
+<h2>Working in Rhino</h2>
+<p>To make <strong>COMPAS FAB</strong> available inside Rhino, open the <em>command prompt</em>
+and type the following which will install it on both Rhino 5.0 and 6.0:</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>python -m compas_fab.rhino.install -v <span class="m">5</span>.0
+python -m compas_fab.rhino.install -v <span class="m">6</span>.0
 </code></pre></div>
 </div>
-<p>Optionally, you could provide a Rhino version number (<code class="docutils literal notranslate"><span class="pre">5.0,</span> <span class="pre">6.0</span></code>).
-The default is <code class="docutils literal notranslate"><span class="pre">6.0</span></code>.</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">rhino</span><span class="o">.</span><span class="n">install</span> <span class="o">-</span><span class="n">v</span> <span class="mf">6.0</span>
-</code></pre></div>
-</div>
+<p>Open Rhino, start the Python script editor, type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">compas</span></code> and
+run it to verify that your installation is working.</p>
 </div>
 <div class="section" id="working-in-blender">
-<h3>Working in Blender</h3>
-<p>Once <strong>COMPAS</strong> itself is installed for Blender following the documented procedure,
-<strong>compas_fab</strong> will automatically be available as well after installing it.</p>
+<h2>Working in Blender</h2>
+<p>Once <strong>COMPAS</strong> itself is installed for Blender following the
+<a class="reference external" href="https://compas-dev.github.io/main/environments/blender.html">documented procedure</a>,
+<strong>COMPAS FAB</strong> will automatically be available as well after installing it.</p>
+</div>
+<div class="section" id="working-in-visual-studio-code">
+<h2>Working in Visual Studio Code</h2>
+<p><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> is a free and open source text
+editor with very good support for Python programming.</p>
+<p>We recommend installing the following VS Code extensions:</p>
+<ul>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a></p>
+<p><em>Official extension to add support for Python programming, including
+debugging, auto-complete, formatting, etc.</em></p>
+</li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">EditorConfig</a></p>
+<p><em>Add support for ``.editorconfig`` files to VS Code.</em></p>
+</li>
+</ul>
+<p>To install the above extensions, open the <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> view  by clicking on
+the corresponding icon in the <strong>Activity Bar</strong> on the left side of VS Code
+and search the extension name in the search box. Once found, select it and
+click <code class="docutils literal notranslate"><span class="pre">Install</span></code>.</p>
+<p>By default, VS Code will use <code class="docutils literal notranslate"><span class="pre">Pylint</span></code> to verify your code. To select a
+different linter: open the <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Palette</span></code> (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) and
+select the <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Select</span> <span class="pre">Linter</span></code> command.</p>
+<div class="section" id="run-scripts">
+<h3>Run scripts</h3>
+<p>To run Python scripts from within VS Code, simply open the file and press
+<code class="docutils literal notranslate"><span class="pre">F5</span></code>. This will start the script with the debugger attached, which means
+you can add breakpoints (clicking on the gutter, next to the line numbers),
+inspect variables and step into your code for debugging.</p>
+<p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">Ctrl+F5</span></code> to start the script without debugger.</p>
+</div>
+<div class="section" id="virtual-environments">
+<h3>Virtual environments</h3>
+<p>If you are using <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your virtual environments, VS Code has
+built-in support for them. When a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is open on VS Code, the bottom
+left side of the <strong>Status bar</strong> will show the Python interpreter used to run
+scripts. Click on it and a list of all available interpreters including all
+environments will be shown. Select one, and the next time you run a script,
+the newly selected interpreter will be used.</p>
 </div>
 </div>
-<div class="section" id="first-steps">
-<h2>First Steps</h2>
+<div class="section" id="next-steps">
+<h2>Next Steps</h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="backends.html#backends"><span class="std std-ref">Working with backends</span></a></p></li>
-<li><p><a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a></p></li>
-<li><p><a class="reference internal" href="reference.html#reference"><span class="std std-ref">API Reference</span></a></p></li>
+<li><p><a class="reference internal" href="examples.html#examples"><span class="std std-ref">COMPAS FAB Examples</span></a></p></li>
+<li><p><a class="reference internal" href="reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
 <li><p><a class="reference external" href="https://compas-dev.github.io/main/examples.html">COMPAS Examples</a></p></li>
 <li><p><a class="reference external" href="https://compas-dev.github.io/main/tutorial.html">COMPAS Tutorials</a></p></li>
 <li><p><a class="reference external" href="https://compas-dev.github.io/main/api.html">COMPAS API Reference</a></p></li>
@@ -168,12 +206,14 @@ The default is <code class="docutils literal notranslate"><span class="pre">6.0<
                     <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Getting started</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#installation">Installation</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#environments">Environments</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#working-in-rhino">Working in Rhino</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#working-in-blender">Working in Blender</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#working-in-visual-studio-code">Working in Visual Studio Code</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#run-scripts">Run scripts</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#virtual-environments">Virtual environments</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#first-steps">First Steps</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 </ul>
@@ -186,11 +226,11 @@ The default is <code class="docutils literal notranslate"><span class="pre">6.0<
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

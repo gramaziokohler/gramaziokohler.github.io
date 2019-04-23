@@ -22,7 +22,7 @@
         
         
         
-            <link rel="prev" title="compas_fab.robots" href="../compas_fab.robots.html" />
+            <link rel="prev" title="RobotSemantics.get_end_effector_link_name" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html" />
         
 
         <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -63,9 +63,8 @@
 <dt id="compas_fab.robots.Configuration">
 <em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Configuration</code><span class="sig-paren">(</span><em>values=[]</em>, <em>types=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/configuration.html#Configuration"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Represents the configuration of a robot based on the
-state of its joints. This concept is also refered to
-as <cite>Joint State</cite>.</p>
+<p>Represents the configuration of a robot based on the state of its joints.
+This concept is also refered to as <cite>Joint State</cite>.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.Configuration.values">
 <code class="descname">values</code></dt>
@@ -80,10 +79,10 @@ as <cite>Joint State</cite>.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.Configuration.types">
 <code class="descname">types</code></dt>
-<dd><p>Joint types, e.g. a list of <code class="docutils literal notranslate"><span class="pre">Joint.REVOLUTE</span></code> for revolute joints.</p>
+<dd><p>Joint types, e.g. a list of <cite>compas.robots.Joint.REVOLUTE</cite> for revolute joints.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-class docutils literal notranslate"><span class="pre">Joint.TYPE</span></code></p>
+<dd class="field-odd"><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -112,7 +111,7 @@ as <cite>Joint State</cite>.</p>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -133,13 +132,16 @@ as <cite>Joint State</cite>.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.from_revolute_values.html#compas_fab.robots.Configuration.from_revolute_values" title="compas_fab.robots.Configuration.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a>(values)</p></td>
 <td><p>Construct a configuration from revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scale.html#compas_fab.robots.Configuration.scale" title="compas_fab.robots.Configuration.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
+<td><p>Scales the joint positions of the current configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
 <td><p>Return the data dictionary that represents the configuration, and from which it can be reconstructed.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -156,6 +158,12 @@ as <cite>Joint State</cite>.</p>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="compas_fab.robots.Configuration.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>values=[]</em>, <em>types=[]</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/configuration.html#Configuration.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -195,7 +203,6 @@ as <cite>Joint State</cite>.</p>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
@@ -238,11 +245,11 @@ as <cite>Joint State</cite>.</p>
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

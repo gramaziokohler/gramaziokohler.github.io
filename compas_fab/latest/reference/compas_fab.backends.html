@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -62,7 +62,7 @@
 <p>This package contains classes backends for simulation, planning and execution.</p>
 <div class="section" id="v-rep">
 <h2>V-REP</h2>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -76,7 +76,7 @@
 </div>
 <div class="section" id="ros">
 <h2>ROS</h2>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -85,26 +85,29 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosClient</span></code></a></p></td>
 <td><p>Interface to use ROS as backend via the <strong>rosbridge</strong>.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosFileServerLoader.html#compas_fab.backends.RosFileServerLoader" title="compas_fab.backends.RosFileServerLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosFileServerLoader</span></code></a></p></td>
+<td><p>Allows to retrieve the mesh files specified in the robot model from the ROS File Server.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks</h2>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask" title="compas_fab.backends.CancellableTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancellableTask</span></code></a></p></td>
-<td><p>Preemtable task represents a long-running operation that can be cancelled.</p></td>
+<td><p>Preemptable task represents a long-running operation that can be cancelled.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="exceptions">
 <h2>Exceptions</h2>
-<table class="longtable docutils">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -116,7 +119,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError" title="compas_fab.backends.RosError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosError</span></code></a></p></td>
 <td><p>Wraps an exception that occurred on the communication with ROS.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError" title="compas_fab.backends.VrepError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosValidationError.html#compas_fab.backends.RosValidationError" title="compas_fab.backends.RosValidationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosValidationError</span></code></a></p></td>
+<td><p>Wraps an exception that occurred on validation of a ROS response.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError" title="compas_fab.backends.VrepError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepError</span></code></a></p></td>
 <td><p>Wraps an exception that occurred inside the simulation engine.</p></td>
 </tr>
 </tbody>
@@ -159,7 +165,6 @@
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.html">compas_fab</a><ul class="nav active">
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
@@ -208,11 +213,11 @@
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

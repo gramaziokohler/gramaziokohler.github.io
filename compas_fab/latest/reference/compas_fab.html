@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -78,6 +78,7 @@ environments.</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#ros">ROS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#tasks">Tasks</a><ul>
@@ -87,57 +88,38 @@ environments.</p>
 <li class="toctree-l2"><a class="reference internal" href="compas_fab.backends.html#exceptions">Exceptions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.BackendError.html">BackendError</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.RosError.html">RosError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.VrepError.html">VrepError</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="compas_fab.geometry.html#classes">Classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Frame.html">Frame</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Transformation.html">Transformation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Rotation.html">Rotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Translation.html">Translation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Scale.html">Scale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Reflection.html">Reflection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Projection.html">Projection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.Shear.html">Shear</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="compas_fab.geometry.html#transformations">Transformations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.axis_and_angle_from_matrix.html">axis_and_angle_from_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.axis_angle_vector_from_matrix.html">axis_angle_vector_from_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.basis_vectors_from_matrix.html">basis_vectors_from_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.compose_matrix.html">compose_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.decompose_matrix.html">decompose_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.determinant.html">determinant</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.euler_angles_from_matrix.html">euler_angles_from_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.identity_matrix.html">identity_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.inverse.html">inverse</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_and_angle.html">matrix_from_axis_and_angle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_axis_angle_vector.html">matrix_from_axis_angle_vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_basis_vectors.html">matrix_from_basis_vectors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_euler_angles.html">matrix_from_euler_angles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_frame.html">matrix_from_frame</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_perspective_entries.html">matrix_from_perspective_entries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_quaternion.html">matrix_from_quaternion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_scale_factors.html">matrix_from_scale_factors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear.html">matrix_from_shear</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_shear_entries.html">matrix_from_shear_entries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.matrix_from_translation.html">matrix_from_translation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.quaternion_from_matrix.html">quaternion_from_matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.geometry.translation_from_matrix.html">translation_from_matrix</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="compas_fab.robots.html">compas_fab.robots</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#classes">Classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Configuration.html">Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#main-classes">Main classes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Robot.html">Robot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Duration.html">Duration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#path-planning">Path planning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#planning-scene">Planning scene</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#constraints">Constraints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="compas_fab.robots.html#unit-conversion">Unit conversion</a><ul>
@@ -232,7 +214,6 @@ environments.</p>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.geometry.html">compas_fab.geometry</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
@@ -275,11 +256,11 @@ environments.</p>
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

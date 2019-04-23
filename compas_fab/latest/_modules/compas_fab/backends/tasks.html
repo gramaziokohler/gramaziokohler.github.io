@@ -29,7 +29,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../../../index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -64,11 +64,16 @@
 
 
 <div class="viewcode-block" id="CancellableTask"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask">[docs]</a><span class="k">class</span> <span class="nc">CancellableTask</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Preemtable task represents a long-running operation that can be cancelled.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Preemptable task represents a long-running operation that can be cancelled.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="CancellableTask.cancel"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableTask.cancel.html#compas_fab.backends.CancellableTask.cancel">[docs]</a>    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Concrete tasks need to provide an implementation&#39;</span><span class="p">)</span></div></div>
+        <span class="sd">&quot;&quot;&quot;Attempt to cancel the task.</span>
 
+<span class="sd">        If the task is currently being executed and cannot be cancelled</span>
+<span class="sd">        then the method will return ``False``, otherwise the call will</span>
+<span class="sd">        be cancelled and the method will return ``True``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Concrete tasks need to provide an implementation&#39;</span><span class="p">)</span></div></div>
 </code></pre></div>
                         
                     
@@ -132,11 +137,11 @@
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 

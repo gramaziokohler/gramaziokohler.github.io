@@ -33,7 +33,7 @@
         <header class="navbar navbar-expand compas-navbar justify-content-between">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">
-                    compas_fab 0.4.1
+                    COMPAS FAB 0.4.1
                 </a>
             </div>
 
@@ -64,6 +64,40 @@
 and this project adheres to <a class="reference external" href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <div class="section" id="unreleased">
 <h2>Unreleased</h2>
+<p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>ROS Client: renamed <code class="docutils literal notranslate"><span class="pre">compute_cartesian_path</span></code> to <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></p></li>
+<li><p>ROS Client: renamed <code class="docutils literal notranslate"><span class="pre">motion_plan_goal_frame</span></code> and
+<code class="docutils literal notranslate"><span class="pre">motion_plan_goal_configuration</span></code> to <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code></p></li>
+<li><p>ROS Client: removed methods from <code class="docutils literal notranslate"><span class="pre">Robot</span></code> that are now handled with
+<code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">add_collision_mesh</span></code> and
+<code class="docutils literal notranslate"><span class="pre">add_attached_collision_mesh</span></code></p></li>
+<li><p>ROS Client: change the return type of <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code> and <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code>
+to the new trajectory classes.</p></li>
+<li><p>ROS File Server Loader: moved to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends</span></code> package</p></li>
+<li><p>ROS File Server Loader: renamed <code class="docutils literal notranslate"><span class="pre">load</span></code> to <code class="docutils literal notranslate"><span class="pre">load_urdf</span></code> and sync’d API to other loaders.</p></li>
+<li><p>V-REP Client: renamed <code class="docutils literal notranslate"><span class="pre">get_end_effector_pose</span></code> to <code class="docutils literal notranslate"><span class="pre">forward_kinematics</span></code></p></li>
+<li><p>V-REP Client: renamed <code class="docutils literal notranslate"><span class="pre">find_robot_states</span></code> to <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></p></li>
+<li><p>V-REP Client: renamed <code class="docutils literal notranslate"><span class="pre">find_path_plan_to_config</span></code> to
+<code class="docutils literal notranslate"><span class="pre">plan_motion_to_config</span></code></p></li>
+<li><p>V-REP Client: renamed <code class="docutils literal notranslate"><span class="pre">find_path_plan</span></code> to <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code></p></li>
+<li><p>V-REP Client: changed <code class="docutils literal notranslate"><span class="pre">is_connected</span></code> to become a property</p></li>
+<li><p>Made <code class="docutils literal notranslate"><span class="pre">robot_artist</span></code> default <code class="docutils literal notranslate"><span class="pre">None</span></code> on <code class="docutils literal notranslate"><span class="pre">Robot</span></code> constructor</p></li>
+<li><p>Changed <code class="docutils literal notranslate"><span class="pre">PathPlan</span></code> class to use the new trajectory classes</p></li>
+</ul>
+<p><strong>Added</strong></p>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">scale</span></code> method to <code class="docutils literal notranslate"><span class="pre">Configuration</span></code></p></li>
+<li><p>Implemented Constraints (<code class="docutils literal notranslate"><span class="pre">OrientationConstraint</span></code>, <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code>, <code class="docutils literal notranslate"><span class="pre">JointConstraint</span></code>) to use with <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code></p></li>
+<li><p>Implemented <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code>, <code class="docutils literal notranslate"><span class="pre">CollisionMesh</span></code> and <code class="docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></p></li>
+<li><p>Added generic representations for motion planning requests (<code class="docutils literal notranslate"><span class="pre">JointTrajectory</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>, <code class="docutils literal notranslate"><span class="pre">Duration</span></code>)</p></li>
+<li><p>Added UR5 robot model data for example purposes</p></li>
+<li><p>Added several doc examples</p></li>
+</ul>
+<p><strong>Removed</strong></p>
+<ul class="simple">
+<li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
+</ul>
 </div>
 <div class="section" id="id1">
 <h2>0.4.1</h2>
@@ -200,11 +234,11 @@ and this project adheres to <a class="reference external" href="http://semver.or
 
         <footer class="compas-footer">
             
-                Last updated on Mar 20, 2019.
+                Last updated on Apr 23, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.4.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </footer>
 
