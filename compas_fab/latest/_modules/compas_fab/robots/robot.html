@@ -1,64 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>compas_fab</title>
+<head>
+    <title>compas_fab</title>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="../../../_static/images/compas.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/compas-reference.css" />
+
     
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+    
+    
 
-        <link rel="shortcut icon" href="../../../_static/images/compas.ico" type="image/x-icon">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+</head>
 
-        <link rel="stylesheet" type="text/css" href="../../../_static/css/prism.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/css/compas.css" />
-        <link rel="stylesheet" type="text/css" href="../../../_static/css/compas-reference.css" />
+<body data-spy="scroll" data-target="#compas-localnav">
 
-        
-        
-        
+    <nav class="navbar navbar-expand compas-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="../../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+        </a>
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="../../../index.html">COMPAS FAB</a></li>
+        </ul>
 
-    </head>
-    <body data-spy="scroll" data-target="#compas-localnav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/compas-dev/compas_fab">Github</a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://compas-dev.github.io">COMPAS framework</a></li>
+        </ul>
+    </nav>    
 
-        <header class="navbar navbar-expand compas-navbar justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="../../../index.html">
-                    COMPAS FAB 0.5.0
-                </a>
-            </div>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
-                    </a>
-                </li>
-            </ul>
-        </header>
-        
-        <div class="container-fluid compas-container">
-            <div class="row flex-xl-nowrap">
-
-                <!-- main content -->
-
-                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+            <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+                <div class="container">
+                
 
                     
 
-                        
-
-                        <h1>Source code for compas_fab.robots.robot</h1><div class="highlight"><pre><code>
+                    <h1>Source code for compas_fab.robots.robot</h1><div class="highlight"><pre><code>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Sphere</span>
@@ -92,7 +92,7 @@
 <span class="sd">    ----------</span>
 <span class="sd">    model : :class:`compas.robots.RobotModel`</span>
 <span class="sd">        The robot model, usually created from an URDF structure.</span>
-<span class="sd">    artist : :class:`compas_fab.artists.BaseRobotArtist`, optional</span>
+<span class="sd">    artist : :class:`BaseRobotArtist`, optional</span>
 <span class="sd">        Instance of the artist used to visualize the robot. Defaults to ``None``.</span>
 <span class="sd">    semantics : :class:`compas_fab.robots.RobotSemantics`, optional</span>
 <span class="sd">        The semantic model of the robot. Defaults to ``None``.</span>
@@ -102,11 +102,21 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Robot.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.__init__.html#compas_fab.robots.Robot.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">artist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scale_factor</span> <span class="o">=</span> <span class="mf">1.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">artist</span> <span class="o">=</span> <span class="n">artist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">artist</span> <span class="o">=</span> <span class="n">artist</span>  <span class="c1"># setter and getter (because of scale)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">semantics</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>  <span class="c1"># setter and getter ?</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>  <span class="c1"># setter and getter ?</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">artist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The artist which is used to visualize the robot.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_artist</span>
+
+    <span class="nd">@artist</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">artist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artist</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_artist</span> <span class="o">=</span> <span class="n">artist</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scale_factor</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Robot.basic"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.basic.html#compas_fab.robots.Robot.basic">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">basic</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="p">[],</span> <span class="n">links</span><span class="o">=</span><span class="p">[],</span> <span class="n">materials</span><span class="o">=</span><span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -248,7 +258,7 @@
         <span class="c1"># TODO: check this</span>
         <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">parent_joint</span><span class="p">:</span>
-            <span class="n">base_frame</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">parent_joint</span><span class="o">.</span><span class="n">init_origin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">base_frame</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">parent_joint</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">base_frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="p">:</span>
@@ -280,7 +290,6 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
 
         <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="c1"># the group&#39;s original base_frame</span>
@@ -293,9 +302,10 @@
         <span class="c1"># configurable joints, but we cannot be sure that this group exists.</span>
         <span class="c1"># That&#39;s why we have to do the workaround with the Transformation.</span>
 
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">base_link</span><span class="p">)</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">))</span>
+        <span class="n">base_frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="n">base_link</span><span class="p">)</span>
+        <span class="n">base_frame_RCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">represent_frame_in_RCF</span><span class="p">(</span><span class="n">base_frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
 
-        <span class="n">base_frame_RCF</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pose_stamped</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">frame</span>
         <span class="n">base_frame_RCF</span><span class="o">.</span><span class="n">point</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">base_frame</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">base_frame_RCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -416,17 +426,20 @@
         <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Robot.get_configuration"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_configuration.html#compas_fab.robots.Robot.get_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the current configuration.</span>
+<div class="viewcode-block" id="Robot.random_configuration"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.random_configuration.html#compas_fab.robots.Robot.random_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">random_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns a random configuration.</span>
+
+<span class="sd">        Note that no collision checking is involved, so the configuration may be invalid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
-            <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
-            <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span></div>
+        <span class="n">configurable_joints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">configurable_joints</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">configurable_joints</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">limit</span><span class="p">:</span>
+                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">limit</span><span class="o">.</span><span class="n">lower</span> <span class="o">+</span> <span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">limit</span><span class="o">.</span><span class="n">upper</span> <span class="o">-</span> <span class="n">joint</span><span class="o">.</span><span class="n">limit</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.get_group_configuration"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_group_configuration.html#compas_fab.robots.Robot.get_group_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_group_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">full_configuration</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the group&#39;s configuration.</span>
@@ -441,6 +454,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            The configuration of the group.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
@@ -452,19 +466,35 @@
         <span class="k">return</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.merge_group_with_full_configuration"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.merge_group_with_full_configuration.html#compas_fab.robots.Robot.merge_group_with_full_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">merge_group_with_full_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_configuration</span><span class="p">,</span> <span class="n">full_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the robot&#39;s full configuration by merging with the group&#39;s configuration.</span>
+        <span class="sd">&quot;&quot;&quot;Returns a robot&#39;s full configuration by merging a group&#39;s configuration with a full configuration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        group_configuration : :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            The configuration for one of the robot&#39;s planning groups.</span>
+<span class="sd">        full_configuration : :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            The configuration for all configurable joints of the robot.</span>
+<span class="sd">        group : str</span>
+<span class="sd">            The name of the group.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            A full configuration: with values for all configurable joints.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">all_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Please pass a full configuration with </span><span class="si">%d</span><span class="s2"> values&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">))</span>
-        <span class="n">group_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="n">configuration</span> <span class="o">=</span> <span class="n">full_configuration</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">group_joint_names</span><span class="p">:</span>
-                <span class="n">gi</span> <span class="o">=</span> <span class="n">group_joint_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-                <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">configuration</span></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Please pass a full configuration with </span><span class="si">%d</span><span class="s2"> values&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">group_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>  <span class="c1"># group config == full config</span>
+            <span class="k">return</span> <span class="n">group_configuration</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">group_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+            <span class="n">configuration</span> <span class="o">=</span> <span class="n">full_configuration</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_joint_names</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">group_joint_names</span><span class="p">:</span>
+                    <span class="n">gi</span> <span class="o">=</span> <span class="n">group_joint_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">group_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">gi</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">configuration</span></div>
 
 <div class="viewcode-block" id="Robot.get_position_by_joint_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_position_by_joint_name.html#compas_fab.robots.Robot.get_position_by_joint_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_position_by_joint_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">joint_name</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the value of the joint_name in the passed configuration.</span>
@@ -474,20 +504,6 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Please pass a configuration with </span><span class="si">%d</span><span class="s2"> values or specify group&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">joint_name</span><span class="p">)]</span></div>
-
-<div class="viewcode-block" id="Robot.get_links_with_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_links_with_geometry.html#compas_fab.robots.Robot.get_links_with_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">get_links_with_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the links with either visual or collision geometry.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO: needed?</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
-        <span class="n">base_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="n">ee_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="n">links_with_geometry</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">iter_link_chain</span><span class="p">(</span><span class="n">base_link_name</span><span class="p">,</span> <span class="n">ee_link_name</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">):</span>
-                <span class="n">links_with_geometry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">links_with_geometry</span></div>
 
     <span class="k">def</span> <span class="nf">_scale_joint_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scales the scaleable joint values with scale_factor.</span>
@@ -511,12 +527,11 @@
         <span class="n">joint_positions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">start_configuration</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;Please pass a configuration with </span><span class="si">%d</span><span class="s2"> values&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Please pass a configuration with </span><span class="si">%d</span><span class="s2"> values&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_names</span><span class="p">))</span>
             <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">start_configuration</span><span class="o">.</span><span class="n">values</span>
         <span class="c1"># scale the prismatic joints</span>
         <span class="n">joint_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale_joint_values</span><span class="p">(</span>
-            <span class="n">joint_positions</span><span class="p">,</span> <span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">joint_positions</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">joint_positions</span>
 
     <span class="c1"># ==========================================================================</span>
@@ -768,8 +783,8 @@
 <span class="sd">        configuration: :class:`compas_fab.robots.Configuration`</span>
 <span class="sd">            The target configuration.</span>
 <span class="sd">        tolerances: list of float</span>
-<span class="sd">            The tolerances on each of the joints defining the bound to be</span>
-<span class="sd">            achieved. If only one value is passed it will be used to create</span>
+<span class="sd">            The tolerances (as +/-) on each of the joints defining the bound in radian</span>
+<span class="sd">            to be achieved. If only one value is passed it will be used to create</span>
 <span class="sd">            bounds for all joint constraints.</span>
 <span class="sd">        group: str, optional</span>
 <span class="sd">            The planning group for which we specify the constraint. Defaults to</span>
@@ -819,7 +834,8 @@
 
 <div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                           <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+                           <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                           <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic for a given frame.</span>
 
 <span class="sd">        Parameters</span>
@@ -839,6 +855,8 @@
 <span class="sd">            A set of constraints that the request must obey. Defaults to None.</span>
 <span class="sd">        attempts: int, optional</span>
 <span class="sd">            The maximum number of inverse kinematic attempts. Defaults to 8.</span>
+<span class="sd">        attached_collision_meshes: list of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
+<span class="sd">            Defaults to None.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -872,18 +890,17 @@
 
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
                                                   <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span>
-                                                  <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">attempts</span><span class="p">)</span>
+                                                  <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">attempts</span><span class="p">,</span>
+                                                  <span class="n">attached_collision_meshes</span><span class="p">)</span>
 
         <span class="n">joint_positions</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">solution</span><span class="o">.</span><span class="n">joint_state</span><span class="o">.</span><span class="n">position</span>
-        <span class="n">joint_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale_joint_values</span><span class="p">(</span>
-            <span class="n">joint_positions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
+        <span class="n">joint_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale_joint_values</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
         <span class="c1"># full configuration # TODO group config?</span>
-        <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span>
-            <span class="n">joint_positions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">())</span>
+        <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">())</span>
 
-        <span class="k">return</span> <span class="n">configuration</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_group_configuration</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">configuration</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Robot.forward_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.forward_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic.</span>
 
 <span class="sd">        Parameters</span>
@@ -893,42 +910,98 @@
 <span class="sd">        group : str, optional</span>
 <span class="sd">            The planning group used for the calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
+<span class="sd">        backend : None or str</span>
+<span class="sd">            If `None` calculates fk with the client if it exists or with the robot model.</span>
+<span class="sd">            If &#39;model&#39; use the robot model to calculate fk. Anything else is open</span>
+<span class="sd">            for implementation, possibly &#39;kdl&#39;, &#39;ikfast&#39;</span>
+<span class="sd">        link_name : str, optional</span>
+<span class="sd">            The name of the link to calculate the forward kinematics for.</span>
+<span class="sd">            Defaults to the group&#39;s end effector link.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`Frame`</span>
+<span class="sd">            The frame in the robot&#39;s coordinate system (RCF).</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; configuration = Configuration.from_revolute_values([-2.238, -1.153, -2.174, 0.185, 0.667, 0.000])</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
-<span class="sd">        &gt;&gt;&gt; response = robot.forward_kinematics(configuration, group)</span>
+<span class="sd">        &gt;&gt;&gt; frame_RCF_c = robot.forward_kinematics(configuration, group)</span>
+<span class="sd">        &gt;&gt;&gt; frame_RCF_m = robot.forward_kinematics(configuration, group, backend=&#39;model&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; frame_RCF_c == frame_RCF_m</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; frame_WCF = robot.represent_frame_in_WCF(frame_RCF_m, group)</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># TODO implement with no service, only geometry transformations</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>  <span class="c1"># ensure semantics</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
 
-        <span class="n">joint_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_scaled_joint_positions_from_start_configuration</span><span class="p">(</span>
-            <span class="n">configuration</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">link_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># check</span>
+            <span class="k">if</span> <span class="n">link_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Link name </span><span class="si">%s</span><span class="s2"> does not exist in planning group&quot;</span> <span class="o">%</span> <span class="n">link_name</span><span class="p">)</span>
 
-        <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
-        <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">full_configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_group_with_full_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">(),</span> <span class="n">group</span><span class="p">)</span>
+        <span class="n">full_joint_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_scaled_joint_positions_from_start_configuration</span><span class="p">(</span><span class="n">full_configuration</span><span class="p">)</span>
+        <span class="n">full_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
+        <span class="n">base_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span>
-            <span class="n">joint_positions</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span>
+        <span class="n">group_configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_group_configuration</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">full_configuration</span><span class="p">)</span>
+        <span class="n">group_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">group_joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">group_joint_names</span><span class="p">,</span> <span class="n">group_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>  <span class="c1"># assuming configuration is group configuration</span>
 
-        <span class="c1"># TODO implement response types</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">backend</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">full_joint_positions</span><span class="p">,</span> <span class="n">base_link_name</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">full_joint_names</span><span class="p">,</span> <span class="n">link_name</span><span class="p">)</span>
+                <span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pose_stamped</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">frame</span>
+                <span class="n">frame_RCF</span><span class="o">.</span><span class="n">point</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">group_joint_state</span><span class="p">,</span> <span class="n">link_name</span><span class="p">)</span>
+                <span class="n">frame_RCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">represent_frame_in_RCF</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span>
+            <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">group_joint_state</span><span class="p">,</span> <span class="n">link_name</span><span class="p">)</span>
+            <span class="n">frame_RCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">represent_frame_in_RCF</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># pass to backend, kdl, ikfast,...</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
-        <span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">pose_stamped</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">frame</span>
-        <span class="n">frame_RCF</span><span class="o">.</span><span class="n">point</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">frame_RCF</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">represent_frame_in_WCF</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">frame_RCF</span></div>
 
-        <span class="k">return</span> <span class="n">response</span></div>
+<div class="viewcode-block" id="Robot.forward_kinematics_robot_model"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics_robot_model.html#compas_fab.robots.Robot.forward_kinematics_robot_model">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics_robot_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic with the robot model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        configuration : :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            The configuration to calculate the forward kinematic for.</span>
+<span class="sd">        group : str, optional</span>
+<span class="sd">            The planning group used for the calculation. Defaults to the robot&#39;s</span>
+<span class="sd">            main planning group.</span>
+<span class="sd">        link_name : str</span>
+<span class="sd">            The name of the link to calculate the forward kinematics for.</span>
+<span class="sd">            Defaults to the group&#39;s end effector link.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; configuration = Configuration.from_revolute_values([-2.238, -1.153, -2.174, 0.185, 0.667, 0.000])</span>
+<span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
+<span class="sd">        &gt;&gt;&gt; frame_WCF = robot.forward_kinematics(configuration, group)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">link_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">link_name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.plan_cartesian_motion"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_cartesian_motion.html#compas_fab.robots.Robot.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="o">=</span><span class="mf">1.57</span><span class="p">,</span>
+                              <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                               <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                              <span class="n">attached_collision_object</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                              <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a cartesian motion path (linear in tool space).</span>
 
 <span class="sd">        Parameters</span>
@@ -941,11 +1014,23 @@
 <span class="sd">        max_step: float</span>
 <span class="sd">            The approximate distance between the calculated points. (Defined in</span>
 <span class="sd">            the robot&#39;s units)</span>
+<span class="sd">        jump_threshold: float</span>
+<span class="sd">            The maximum allowed distance of joint positions between consecutive</span>
+<span class="sd">            points. If the distance is found to be above this threshold, the</span>
+<span class="sd">            path computation fails. It must be specified in relation to max_step.</span>
+<span class="sd">            If this theshhold is 0, &#39;jumps&#39; might occur, resulting in an invalid</span>
+<span class="sd">            cartesian path. Defaults to pi/2.</span>
 <span class="sd">        avoid_collisions: bool, optional</span>
 <span class="sd">            Whether or not to avoid collisions. Defaults to True.</span>
 <span class="sd">        group: str, optional</span>
 <span class="sd">            The planning group used for calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
+<span class="sd">        path_constraints: list of :class:`compas_fab.robots.Constraint`, optional</span>
+<span class="sd">            Optional constraints that can be imposed along the solution path.</span>
+<span class="sd">            Note that path calculation won&#39;t work if the start_configuration</span>
+<span class="sd">            violates these constraints. Defaults to None.</span>
+<span class="sd">        attached_collision_meshes: list of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
+<span class="sd">            Defaults to None.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -956,6 +1041,7 @@
 <span class="sd">        &gt;&gt;&gt; response = robot.plan_cartesian_motion(frames,\</span>
 <span class="sd">                                                   start_configuration,\</span>
 <span class="sd">                                                   max_step=0.01,\</span>
+<span class="sd">                                                   jump_threshold=1.57,\</span>
 <span class="sd">                                                   avoid_collisions=True,\</span>
 <span class="sd">                                                   group=group)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -971,6 +1057,7 @@
         <span class="n">base_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
 
         <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
+        <span class="n">joint_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">start_configuration</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">start_configuration</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">()</span>
         <span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
@@ -994,10 +1081,12 @@
             <span class="n">path_constraints_RCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames_RCF</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
-                                                       <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
-                                                       <span class="n">max_step_scaled</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="p">,</span>
+                                                       <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span>
+                                                       <span class="n">joint_types</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
+                                                       <span class="n">max_step_scaled</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="p">,</span>
+                                                       <span class="n">avoid_collisions</span><span class="p">,</span>
                                                        <span class="n">path_constraints_RCF_scaled</span><span class="p">,</span>
-                                                       <span class="n">attached_collision_object</span><span class="p">)</span>
+                                                       <span class="n">attached_collision_meshes</span><span class="p">)</span>
         <span class="c1"># Scale everything back to robot&#39;s scale</span>
         <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
             <span class="n">pt</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
@@ -1011,7 +1100,7 @@
                     <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
                     <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                     <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                    <span class="n">attached_collision_object</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                    <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a motion path.</span>
 
 <span class="sd">        Parameters</span>
@@ -1047,7 +1136,7 @@
 <span class="sd">            Defaults to 1.</span>
 <span class="sd">        max_acceleration_scaling_factor: float</span>
 <span class="sd">            Defaults to 1.</span>
-<span class="sd">        attached_collision_object: :class:`compas_fab.robots.AttachedCollisionMesh`</span>
+<span class="sd">        attached_collision_meshes: list of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
 <span class="sd">            Defaults to None.</span>
 
 
@@ -1113,6 +1202,7 @@
             <span class="n">path_constraints_RCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
+        <span class="n">joint_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">start_configuration</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">start_configuration</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">()</span>
         <span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
@@ -1122,6 +1212,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_types</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints_RCF_scaled</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;trajectory_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1130,7 +1221,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;allowed_planning_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowed_planning_time</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_velocity_scaling_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_velocity_scaling_factor</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_acceleration_scaling_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_acceleration_scaling_factor</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_object&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_object</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;workspace_parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1142,8 +1233,6 @@
         <span class="n">trajectory</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">trajectory</span></div>
-
-
 
 <div class="viewcode-block" id="Robot.send_frame"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.send_frame.html#compas_fab.robots.Robot.send_frame">[docs]</a>    <span class="k">def</span> <span class="nf">send_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># (check service name with ros)</span>
@@ -1160,25 +1249,41 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">frames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The robot&#39;s frames.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">frames</span>
+<div class="viewcode-block" id="Robot.transformed_frames"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames">[docs]</a>    <span class="k">def</span> <span class="nf">transformed_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the robot&#39;s transformed frames.&quot;&quot;&quot;</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transformed_frames</span><span class="p">(</span><span class="n">joint_state</span><span class="p">)</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">axes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The robot&#39;s axes.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">axes</span>
+<div class="viewcode-block" id="Robot.transformed_axes"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes">[docs]</a>    <span class="k">def</span> <span class="nf">transformed_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the robot&#39;s transformed axes.&quot;&quot;&quot;</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transformed_axes</span><span class="p">(</span><span class="n">joint_state</span><span class="p">)</span></div>
 
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># drawing</span>
     <span class="c1"># ==========================================================================</span>
 
-<div class="viewcode-block" id="Robot.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Updates the robot&#39;s geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        configuration : :class:`compas_fab.robots.Configuration`</span>
+<span class="sd">            Instance of the configuration (joint state) to move to.</span>
+<span class="sd">        group: str, optional</span>
+<span class="sd">            The name of the group to plan for. Defaults to the robot&#39;s main</span>
+<span class="sd">            planning group.</span>
+<span class="sd">        visual : bool, optional</span>
+<span class="sd">            ``True`` if the visual geometry should be also updated, otherwise ``False``.</span>
+<span class="sd">            Defaults to ``True``.</span>
+<span class="sd">        collision : bool, optional</span>
+<span class="sd">            ``True`` if the collision geometry should be also updated, otherwise ``False``.</span>
+<span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">collision</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">visual</span><span class="p">,</span> <span class="n">collision</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw_visual.html#compas_fab.robots.Robot.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Draws the visual geometry of the robot in the respective CAD environment.</span>
@@ -1196,8 +1301,18 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Robot.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Scale the robot.</span>
+        <span class="sd">&quot;&quot;&quot;Scales the robot geometry by factor (absolute).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        factor : float</span>
+<span class="sd">            The factor to scale the robot with.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1254,141 +1369,115 @@
     <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">client</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
 </code></pre></div>
-                        
+                    
+                
+                </div>
+            </main>
+
+            <!-- site navigation sidebar -->
+
+            <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                <div class="navbar-light">
+
+                    <form id="" class="d-flex compas-searchbox" action="../../../search.html" method="get">
+                        <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+
+                        <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
+
+                    
                     
 
-                </main>
+                        <div class="navbar-expand-md">
+                            <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                <!-- site navigation sidebar -->
-
-                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
-                    <div class="navbar-light">
-
-                        <form id="" class="d-flex compas-searchbox" action="../../../search.html" method="get">
-                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
-                            <input type="hidden" name="check_keywords" value="yes" />
-                            <input type="hidden" name="area" value="default" />
-
-                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </form>
-
-                        
-                        
-
-                            <div class="navbar-expand-md">
-                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
-
-                                <ul class="nav flex-column">
+                            <ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="../../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../examples.html">Examples</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../contributing.html">Contributor’s Guide</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../license.html">License</a></li>
 </ul>
 
 
-                                </div>
                             </div>
+                        </div>
 
-                        
+                    
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- table of contents of main content -->
+            <!-- table of contents of main content -->
+            
+            <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
                 
-                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
 
-                    
-
-                    
-
-                </div>
+                
 
             </div>
-        </div>
 
-        <footer class="compas-footer">
+        </div>
+    </div>
+
+    <footer class="bg-dark pb-5">
+        <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Apr 23, 2019.
+                Last updated on Oct 02, 2019.
             
 
             
                 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
-        </footer>
+        </div>
+    </footer>
 
-        
+    
+        <script type="text/javascript">
+            var DOCUMENTATION_OPTIONS = {
+            URL_ROOT          : '',
+            VERSION           : '0.6.0',
+            COLLAPSE_INDEX    : false,
+            FILE_SUFFIX       : '.html',
+            HAS_SOURCE        : 'false',
+            SOURCELINK_SUFFIX : '.txt'
+            };
+        </script>
 
-            <script type="text/javascript">
-var DOCUMENTATION_OPTIONS = {
-    URL_ROOT          : '',
-    VERSION           : '0.5.0',
-    COLLAPSE_INDEX    : false,
-    FILE_SUFFIX       : '.html',
-    HAS_SOURCE        : 'false',
-    SOURCELINK_SUFFIX : '.txt'
-};
-            </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../../_static/js/prism.js"></script> -->
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script>
+        $(document).ready(function() {
+        $(".language-default code").addClass("python");
+        $(".language-python code").addClass("python");
+        $(".language-bash code").addClass("bash");
+        $(".language-cpp code").addClass("cpp");
+        $(".language-json code").addClass("json");
+        $(".language-none code").addClass("plaintext");
 
-            <script src="../../../_static/underscore.js"></script>
-            <script src="../../../_static/doctools.js"></script>
-            <script src="../../../_static/js/searchtools_.js"></script>
-            <script src="../../../_static/js/prism.js"></script>
-
-            <script>
-$(document).ready(function() {
-
-    // $(".language-default pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-bash pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-python pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-c pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-cpp pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-fortran pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-markdown pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-rest pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    anchors.add();
-});
-            </script>
-
-        
-    </body>
+        hljs.initHighlighting();
+        anchors.add();
+        });
+        </script>
+    
+</body>
 </html>

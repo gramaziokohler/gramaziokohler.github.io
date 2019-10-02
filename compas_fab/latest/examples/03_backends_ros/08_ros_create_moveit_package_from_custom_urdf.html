@@ -1,76 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>compas_fab</title>
+<head>
+    <title>compas_fab</title>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+
     
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+        <link rel="next" title="3.7. Creating a URDF of the UR10 on two linear axes" href="09_ros_create_urdf_ur10_on_tower.html" />
+    
+    
+    
+        <link rel="prev" title="3.5. Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
+    
 
-        <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+</head>
 
-        <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+<body data-spy="scroll" data-target="#compas-localnav">
 
-        
-            <link rel="next" title="3.7. Creating a URDF of the UR10 on two linear axes" href="09_ros_create_urdf_ur10_on_tower.html" />
-        
-        
-        
-            <link rel="prev" title="3.5. Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
-        
+    <nav class="navbar navbar-expand compas-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+        </a>
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="../../index.html">COMPAS FAB</a></li>
+        </ul>
 
-    </head>
-    <body data-spy="scroll" data-target="#compas-localnav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/compas-dev/compas_fab">Github</a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://compas-dev.github.io">COMPAS framework</a></li>
+        </ul>
+    </nav>    
 
-        <header class="navbar navbar-expand compas-navbar justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="../../index.html">
-                    COMPAS FAB 0.5.0
-                </a>
-            </div>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
-                    </a>
-                </li>
-            </ul>
-        </header>
-        
-        <div class="container-fluid compas-container">
-            <div class="row flex-xl-nowrap">
-
-                <!-- main content -->
-
-                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+            <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+                <div class="container">
+                
 
                     
 
-                        
-
-                        <div class="section" id="creating-a-moveit-package-from-the-custom-created-urdf">
+                    <div class="section" id="creating-a-moveit-package-from-the-custom-created-urdf">
 <span id="ros-examples-create-moveit-package-from-custom-urdf"></span><h1>3.6. Creating a MoveIt! package from the custom created URDF</h1>
 <p>This example is mainly copied from <a class="reference external" href="http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html">MoveIt! Setup Assistant Tutorial</a></p>
 <p>It is based on the previous example:
 :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>Creating a URDF with an UR5 robot and a custom end-effector &lt;ros_examples_create_urdf_ur5_with_measurement_tool&gt;</p>
 <div class="section" id="start-the-moveit-setup-assistant">
-<h2>3.6.1. 1. Start the MoveIt! Setup Assistant</h2>
+<h2>3.6.1. Start the MoveIt! Setup Assistant</h2>
 <p>The MoveIt! Setup Assistant is a graphical user interface for configuring any
 robot for use with MoveIt!. Its primary functions are to generate a Semantic Robot
 Description Format (SRDF) file, to create the collision matrix of your robot
 and to define the planning groups.</p>
 <ul>
 <li><p>To start the MoveIt! Setup Assistant, launch the following from your Linux command prompt:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">moveit_setup_assistant</span> <span class="n">setup_assistant</span><span class="o">.</span><span class="n">launch</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">moveit_setup_assistant</span> <span class="n">setup_assistant</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
 </li>
@@ -85,7 +84,7 @@ seconds) and present you with this screen:</p></li>
 </div>
 </div>
 <div class="section" id="generate-self-collision-matrix">
-<h2>3.6.2. 2. Generate Self-Collision Matrix</h2>
+<h2>3.6.2. Generate Self-Collision Matrix</h2>
 <ul class="simple">
 <li><p>Click on the <em>Self-Collisions</em> pane selector on the left-hand side.</p></li>
 <li><p>Click on the <em>Generate Collision Matrix</em> button. The Setup Assistant will work for a few
@@ -101,7 +100,7 @@ collision. The default value of 10‘000 collision checks should be fine.</p>
 </div>
 </div>
 <div class="section" id="add-virtual-joints">
-<h2>3.6.3. 3. Add Virtual Joints</h2>
+<h2>3.6.3. Add Virtual Joints</h2>
 <p>Virtual joints are used primarily to attach the robot to the world coordinate
 frame. We will define only one virtual joint, attaching the
 <code class="docutils literal notranslate"><span class="pre">ur5_with_measurement_tool</span></code> to the world coordinate frame.</p>
@@ -117,7 +116,7 @@ frame. We will define only one virtual joint, attaching the
 </div>
 </div>
 <div class="section" id="add-planning-groups">
-<h2>3.6.4. 4. Add Planning Groups</h2>
+<h2>3.6.4. Add Planning Groups</h2>
 <p>Planning groups are used for semantically describing different parts of your
 robot, such as defining what an arm is, or an end-effector. The planning group
 is later used for path- and motion planning.</p>
@@ -172,7 +171,7 @@ is later used for path- and motion planning.</p>
 </div>
 </div>
 <div class="section" id="add-robot-poses">
-<h2>3.6.5. 5. Add Robot Poses</h2>
+<h2>3.6.5. Add Robot Poses</h2>
 <p>The <em>Setup Assistant</em> allows you to add certain fixed poses into the
 configuration. This helps if, for example, you want to define a certain position
 of the robot as a <em>Home</em> position.</p>
@@ -193,7 +192,7 @@ with the joint limits in your URDF, you should be able to see it immediately her
 </div>
 </div>
 <div class="section" id="label-end-effectors">
-<h2>3.6.6. 6. Label End-Effectors</h2>
+<h2>3.6.6. Label End-Effectors</h2>
 <p>We have already added the measurement_tool of the ur5. Now, we will designate
 this group as a special group: end effectors.</p>
 <ul class="simple">
@@ -210,18 +209,18 @@ this group as a special group: end effectors.</p>
 </div>
 </div>
 <div class="section" id="add-passive-joints">
-<h2>3.6.7. 7. Add Passive Joints</h2>
+<h2>3.6.7. Add Passive Joints</h2>
 <p>Skip this step.</p>
 </div>
 <div class="section" id="add-author-information">
-<h2>3.6.8. 8. Add Author Information</h2>
+<h2>3.6.8. Add Author Information</h2>
 <ul class="simple">
 <li><p>Click on the <em>Author Information</em> pane.</p></li>
 <li><p>Enter your name and email address.</p></li>
 </ul>
 </div>
 <div class="section" id="generate-configuration-files">
-<h2>3.6.9. 9. Generate Configuration Files</h2>
+<h2>3.6.9. Generate Configuration Files</h2>
 <p>You are almost there. One last step!</p>
 <ul class="simple">
 <li><p>Click on the Configuration Files pane.</p></li>
@@ -238,9 +237,9 @@ can click on each of them for a description of what they contain.</p></li>
 </div>
 </div>
 <div class="section" id="start-the-newly-generated-moveit-configuration">
-<h2>3.6.10. 10. Start the newly generated MoveIt! Configuration</h2>
+<h2>3.6.10. Start the newly generated MoveIt! Configuration</h2>
 <p>Now, optionally, you can already start the MoveIt! Demo and play:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
 <span class="n">source</span> <span class="n">devel</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
 <span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool_moveit_config</span>  <span class="n">demo</span><span class="o">.</span><span class="n">launch</span> <span class="n">rviz_tutorial</span><span class="p">:</span><span class="o">=</span><span class="n">true</span>
@@ -259,33 +258,33 @@ can click on each of them for a description of what they contain.</p></li>
 </div>
 </div>
 
-                        
+                    
+                
+                </div>
+            </main>
+
+            <!-- site navigation sidebar -->
+
+            <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                <div class="navbar-light">
+
+                    <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
+                        <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+
+                        <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
+
+                    
                     
 
-                </main>
+                        <div class="navbar-expand-md">
+                            <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                <!-- site navigation sidebar -->
-
-                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
-                    <div class="navbar-light">
-
-                        <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
-                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
-                            <input type="hidden" name="check_keywords" value="yes" />
-                            <input type="hidden" name="area" value="default" />
-
-                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </form>
-
-                        
-                        
-
-                            <div class="navbar-expand-md">
-                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
-
-                                <ul class="nav flex-column active">
+                            <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
@@ -307,128 +306,102 @@ can click on each of them for a description of what they contain.</p></li>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../license.html">License</a></li>
 </ul>
 
 
-                                </div>
                             </div>
-
-                        
-
-                    </div>
-                </div>
-
-                <!-- table of contents of main content -->
-                
-                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+                        </div>
 
                     
 
-                    <ul class="nav flex-column" id="compas-localnav">
+                </div>
+            </div>
+
+            <!-- table of contents of main content -->
+            
+            <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
+                
+
+                <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">3.6. Creating a MoveIt! package from the custom created URDF</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#start-the-moveit-setup-assistant">3.6.1. 1. Start the MoveIt! Setup Assistant</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#generate-self-collision-matrix">3.6.2. 2. Generate Self-Collision Matrix</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-virtual-joints">3.6.3. 3. Add Virtual Joints</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-planning-groups">3.6.4. 4. Add Planning Groups</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#start-the-moveit-setup-assistant">3.6.1. Start the MoveIt! Setup Assistant</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#generate-self-collision-matrix">3.6.2. Generate Self-Collision Matrix</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-virtual-joints">3.6.3. Add Virtual Joints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-planning-groups">3.6.4. Add Planning Groups</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#add-the-arm">3.6.4.1. Add the arm</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#add-the-gripper">3.6.4.2. Add the gripper</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-robot-poses">3.6.5. 5. Add Robot Poses</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#label-end-effectors">3.6.6. 6. Label End-Effectors</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-passive-joints">3.6.7. 7. Add Passive Joints</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-author-information">3.6.8. 8. Add Author Information</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#generate-configuration-files">3.6.9. 9. Generate Configuration Files</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#start-the-newly-generated-moveit-configuration">3.6.10. 10. Start the newly generated MoveIt! Configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-robot-poses">3.6.5. Add Robot Poses</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#label-end-effectors">3.6.6. Label End-Effectors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-passive-joints">3.6.7. Add Passive Joints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-author-information">3.6.8. Add Author Information</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#generate-configuration-files">3.6.9. Generate Configuration Files</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#start-the-newly-generated-moveit-configuration">3.6.10. Start the newly generated MoveIt! Configuration</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.6.11. Further links</a></li>
 </ul>
 </li>
 </ul>
 
 
-                </div>
-
             </div>
-        </div>
 
-        <footer class="compas-footer">
+        </div>
+    </div>
+
+    <footer class="bg-dark pb-5">
+        <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Apr 23, 2019.
+                Last updated on Oct 02, 2019.
             
 
             
                 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
-        </footer>
+        </div>
+    </footer>
 
-        
+    
+        <script type="text/javascript">
+            var DOCUMENTATION_OPTIONS = {
+            URL_ROOT          : '',
+            VERSION           : '0.6.0',
+            COLLAPSE_INDEX    : false,
+            FILE_SUFFIX       : '.html',
+            HAS_SOURCE        : 'false',
+            SOURCELINK_SUFFIX : '.txt'
+            };
+        </script>
 
-            <script type="text/javascript">
-var DOCUMENTATION_OPTIONS = {
-    URL_ROOT          : '',
-    VERSION           : '0.5.0',
-    COLLAPSE_INDEX    : false,
-    FILE_SUFFIX       : '.html',
-    HAS_SOURCE        : 'false',
-    SOURCELINK_SUFFIX : '.txt'
-};
-            </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../_static/js/prism.js"></script> -->
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script>
+        $(document).ready(function() {
+        $(".language-default code").addClass("python");
+        $(".language-python code").addClass("python");
+        $(".language-bash code").addClass("bash");
+        $(".language-cpp code").addClass("cpp");
+        $(".language-json code").addClass("json");
+        $(".language-none code").addClass("plaintext");
 
-            <script src="../../_static/underscore.js"></script>
-            <script src="../../_static/doctools.js"></script>
-            <script src="../../_static/js/searchtools_.js"></script>
-            <script src="../../_static/js/prism.js"></script>
-
-            <script>
-$(document).ready(function() {
-
-    // $(".language-default pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-bash pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-python pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-c pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-cpp pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-fortran pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-markdown pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-rest pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    anchors.add();
-});
-            </script>
-
-        
-    </body>
+        hljs.initHighlighting();
+        anchors.add();
+        });
+        </script>
+    
+</body>
 </html>

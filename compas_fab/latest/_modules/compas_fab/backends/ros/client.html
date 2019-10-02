@@ -1,78 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>compas_fab</title>
+<head>
+    <title>compas_fab</title>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="../../../../_static/images/compas.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas-reference.css" />
+
     
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+    
+    
 
-        <link rel="shortcut icon" href="../../../../_static/images/compas.ico" type="image/x-icon">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+</head>
 
-        <link rel="stylesheet" type="text/css" href="../../../../_static/css/prism.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas.css" />
-        <link rel="stylesheet" type="text/css" href="../../../../_static/css/compas-reference.css" />
+<body data-spy="scroll" data-target="#compas-localnav">
 
-        
-        
-        
+    <nav class="navbar navbar-expand compas-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="../../../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+        </a>
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="../../../../index.html">COMPAS FAB</a></li>
+        </ul>
 
-    </head>
-    <body data-spy="scroll" data-target="#compas-localnav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/compas-dev/compas_fab">Github</a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://compas-dev.github.io">COMPAS framework</a></li>
+        </ul>
+    </nav>    
 
-        <header class="navbar navbar-expand compas-navbar justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="../../../../index.html">
-                    COMPAS FAB 0.5.0
-                </a>
-            </div>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
-                    </a>
-                </li>
-            </ul>
-        </header>
-        
-        <div class="container-fluid compas-container">
-            <div class="row flex-xl-nowrap">
-
-                <!-- main content -->
-
-                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+            <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+                <div class="container">
+                
 
                     
 
-                        
-
-                        <h1>Source code for compas_fab.backends.ros.client</h1><div class="highlight"><pre><code>
+                    <h1>Source code for compas_fab.backends.ros.client</h1><div class="highlight"><pre><code>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="k">import</span> <span class="n">await_callback</span>
 <span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Ros</span>
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Service</span>
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">ServiceRequest</span>
 <span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">ActionClient</span>
 <span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">Goal</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.exceptions</span> <span class="k">import</span> <span class="n">RosError</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryGoal</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryResult</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">GetPlanningSceneRequest</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">GetPlanningSceneResponse</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">Header</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">JointTrajectory</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">JointTrajectoryPoint</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">PlanningSceneComponents</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">Time</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.planner_backend_moveit</span> <span class="k">import</span> <span class="n">MoveItPlanner</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.tasks</span> <span class="k">import</span> <span class="n">CancellableTask</span>
@@ -142,17 +136,25 @@
         <span class="n">planner_backend_type</span> <span class="o">=</span> <span class="n">PLANNER_BACKENDS</span><span class="p">[</span><span class="n">planner_backend</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;RosClient_&#39;</span> <span class="o">+</span> <span class="n">planner_backend_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">planner_backend_type</span><span class="p">,</span> <span class="n">RosClient</span><span class="p">),</span> <span class="p">{})</span></div>
 
+
     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+        <span class="c1"># Planners usually need to initialize/advertise topics and/or services</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_planner</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dispose_planner</span><span class="p">()</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
                            <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                           <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+                           <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                           <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
@@ -180,32 +182,35 @@
         <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RosClient.plan_cartesian_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_cartesian_motion.html#compas_fab.backends.RosClient.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
-                              <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
-                              <span class="n">max_step</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">path_constraints</span><span class="p">,</span>
-                              <span class="n">attached_collision_object</span><span class="p">):</span>
+                              <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span>
+                              <span class="n">start_configuration</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="p">,</span>
+                              <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">path_constraints</span><span class="p">,</span>
+                              <span class="n">attached_collision_meshes</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;frames&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frames</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_link</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_types</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_step&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_step</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;jump_threshold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jump_threshold</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;avoid_collisions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">avoid_collisions</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_object&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_object</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;errback_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;errback&#39;</span>
 
         <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RosClient.plan_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_motion.html#compas_fab.backends.RosClient.plan_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
-                    <span class="n">joint_names</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">trajectory_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                     <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
                     <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                     <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                    <span class="n">attached_collision_object</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">workspace_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -214,6 +219,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_link</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_types</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;trajectory_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trajectory_constraints</span>
@@ -222,7 +228,7 @@
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;allowed_planning_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allowed_planning_time</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_velocity_scaling_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_velocity_scaling_factor</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_acceleration_scaling_factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_acceleration_scaling_factor</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_object&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_object</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;workspace_parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">workspace_parameters</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;errback_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;errback&#39;</span>
@@ -242,8 +248,17 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;No planner backend assigned&#39;</span><span class="p">)</span></div>
 
     <span class="c1"># ==========================================================================</span>
-    <span class="c1"># collision objects</span>
+    <span class="c1"># collision objects and planning scene</span>
     <span class="c1"># ==========================================================================</span>
+
+<div class="viewcode-block" id="RosClient.get_planning_scene"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.get_planning_scene.html#compas_fab.backends.RosClient.get_planning_scene">[docs]</a>    <span class="k">def</span> <span class="nf">get_planning_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;errback_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;errback&#39;</span>
+
+        <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_planning_scene_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RosClient.get_planning_scene_async"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.get_planning_scene_async.html#compas_fab.backends.RosClient.get_planning_scene_async">[docs]</a>    <span class="k">def</span> <span class="nf">get_planning_scene_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;No planner plugin assigned&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RosClient.add_collision_mesh"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.add_collision_mesh.html#compas_fab.backends.RosClient.add_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;No planner backend assigned&#39;</span><span class="p">)</span></div>
@@ -263,6 +278,9 @@
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># executing</span>
     <span class="c1"># ==========================================================================</span>
+
+<div class="viewcode-block" id="RosClient.get_configuration"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.get_configuration.html#compas_fab.backends.RosClient.get_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="RosClient.follow_configurations"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_configurations.html#compas_fab.backends.RosClient.follow_configurations">[docs]</a>    <span class="k">def</span> <span class="nf">follow_configurations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">configurations</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
@@ -284,13 +302,15 @@
             <span class="n">Header</span><span class="p">(),</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>  <span class="c1"># specify header necessary?</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">follow_joint_trajectory</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.follow_joint_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">follow_joint_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feedback_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">):</span>
+<div class="viewcode-block" id="RosClient.follow_joint_trajectory"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory">[docs]</a>    <span class="k">def</span> <span class="nf">follow_joint_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_trajectory</span><span class="p">,</span> <span class="n">action_name</span><span class="o">=</span><span class="s1">&#39;/joint_trajectory_action&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">feedback_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Follow the joint trajectory as computed by MoveIt planner.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        joint_trajectory : JointTrajectory</span>
 <span class="sd">            Joint trajectory message as computed by MoveIt planner</span>
+<span class="sd">        action_name : string</span>
+<span class="sd">            ROS action name, defaults to ``/joint_trajectory_action`` but some drivers need ``/follow_joint_trajectory``.</span>
 <span class="sd">        callback : callable</span>
 <span class="sd">            Function to be invoked when the goal is completed, requires</span>
 <span class="sd">            one positional parameter ``result``.</span>
@@ -318,9 +338,8 @@
         <span class="k">def</span> <span class="nf">handle_failure</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
             <span class="n">errback</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 
-        <span class="n">connection_timeout</span> <span class="o">=</span> <span class="mi">3000</span>
-        <span class="n">action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/joint_trajectory_action&#39;</span><span class="p">,</span>  <span class="c1"># &#39;/follow_joint_trajectory&#39;,</span>
-                                     <span class="s1">&#39;control_msgs/FollowJointTrajectoryAction&#39;</span><span class="p">,</span> <span class="n">connection_timeout</span><span class="p">)</span>
+        <span class="n">action_client</span> <span class="o">=</span> <span class="n">ActionClient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_name</span><span class="p">,</span>
+                                     <span class="s1">&#39;control_msgs/FollowJointTrajectoryAction&#39;</span><span class="p">)</span>
 
         <span class="n">goal</span> <span class="o">=</span> <span class="n">Goal</span><span class="p">(</span><span class="n">action_client</span><span class="p">,</span> <span class="n">Message</span><span class="p">(</span><span class="n">trajectory_goal</span><span class="o">.</span><span class="n">msg</span><span class="p">))</span>
 
@@ -334,162 +353,121 @@
         <span class="k">if</span> <span class="n">errback</span><span class="p">:</span>
             <span class="n">goal</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">handle_failure</span><span class="p">(</span>
                 <span class="n">RosError</span><span class="p">(</span><span class="s2">&quot;Action Goal timeout&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
-            <span class="n">action_client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">handle_failure</span><span class="p">(</span>
-                <span class="n">RosError</span><span class="p">(</span><span class="s2">&quot;Actionlib client timeout&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
 
         <span class="n">goal</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">CancellableRosAction</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">CancellableRosAction</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span></div></div>
 
-<div class="viewcode-block" id="RosClient.get_planning_scene"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.get_planning_scene.html#compas_fab.backends.RosClient.get_planning_scene">[docs]</a>    <span class="k">def</span> <span class="nf">get_planning_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">components</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">reqmsg</span> <span class="o">=</span> <span class="n">GetPlanningSceneRequest</span><span class="p">(</span><span class="n">PlanningSceneComponents</span><span class="p">(</span><span class="n">components</span><span class="p">))</span>
-
-        <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">GetPlanningSceneResponse</span><span class="o">.</span><span class="n">from_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="n">callback</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-
-        <span class="n">srv</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/get_planning_scene&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;moveit_msgs/GetPlanningScene&#39;</span><span class="p">)</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ServiceRequest</span><span class="p">(</span><span class="n">reqmsg</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
-        <span class="n">srv</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">,</span> <span class="n">receive_message</span><span class="p">)</span></div></div>
 </code></pre></div>
-                        
+                    
+                
+                </div>
+            </main>
+
+            <!-- site navigation sidebar -->
+
+            <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                <div class="navbar-light">
+
+                    <form id="" class="d-flex compas-searchbox" action="../../../../search.html" method="get">
+                        <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+
+                        <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
+
+                    
                     
 
-                </main>
+                        <div class="navbar-expand-md">
+                            <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                <!-- site navigation sidebar -->
-
-                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
-                    <div class="navbar-light">
-
-                        <form id="" class="d-flex compas-searchbox" action="../../../../search.html" method="get">
-                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
-                            <input type="hidden" name="check_keywords" value="yes" />
-                            <input type="hidden" name="area" value="default" />
-
-                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </form>
-
-                        
-                        
-
-                            <div class="navbar-expand-md">
-                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
-
-                                <ul class="nav flex-column">
+                            <ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../examples.html">Examples</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../contributing.html">Contributor’s Guide</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
 
-                                </div>
                             </div>
+                        </div>
 
-                        
+                    
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- table of contents of main content -->
+            <!-- table of contents of main content -->
+            
+            <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
                 
-                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
 
-                    
-
-                    
-
-                </div>
+                
 
             </div>
-        </div>
 
-        <footer class="compas-footer">
+        </div>
+    </div>
+
+    <footer class="bg-dark pb-5">
+        <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Apr 23, 2019.
+                Last updated on Oct 02, 2019.
             
 
             
                 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
-        </footer>
+        </div>
+    </footer>
 
-        
+    
+        <script type="text/javascript">
+            var DOCUMENTATION_OPTIONS = {
+            URL_ROOT          : '',
+            VERSION           : '0.6.0',
+            COLLAPSE_INDEX    : false,
+            FILE_SUFFIX       : '.html',
+            HAS_SOURCE        : 'false',
+            SOURCELINK_SUFFIX : '.txt'
+            };
+        </script>
 
-            <script type="text/javascript">
-var DOCUMENTATION_OPTIONS = {
-    URL_ROOT          : '',
-    VERSION           : '0.5.0',
-    COLLAPSE_INDEX    : false,
-    FILE_SUFFIX       : '.html',
-    HAS_SOURCE        : 'false',
-    SOURCELINK_SUFFIX : '.txt'
-};
-            </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../../../_static/js/prism.js"></script> -->
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script>
+        $(document).ready(function() {
+        $(".language-default code").addClass("python");
+        $(".language-python code").addClass("python");
+        $(".language-bash code").addClass("bash");
+        $(".language-cpp code").addClass("cpp");
+        $(".language-json code").addClass("json");
+        $(".language-none code").addClass("plaintext");
 
-            <script src="../../../../_static/underscore.js"></script>
-            <script src="../../../../_static/doctools.js"></script>
-            <script src="../../../../_static/js/searchtools_.js"></script>
-            <script src="../../../../_static/js/prism.js"></script>
-
-            <script>
-$(document).ready(function() {
-
-    // $(".language-default pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-bash pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-python pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-c pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-cpp pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-fortran pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-markdown pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-rest pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    anchors.add();
-});
-            </script>
-
-        
-    </body>
+        hljs.initHighlighting();
+        anchors.add();
+        });
+        </script>
+    
+</body>
 </html>

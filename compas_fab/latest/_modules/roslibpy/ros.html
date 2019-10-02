@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>compas_fab</title>
+<head>
+    <title>compas_fab</title>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+
     
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+    
+    
 
-        <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+</head>
 
-        <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+<body data-spy="scroll" data-target="#compas-localnav">
 
-        
-        
-        
+    <nav class="navbar navbar-expand compas-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+        </a>
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="../../index.html">COMPAS FAB</a></li>
+        </ul>
 
-    </head>
-    <body data-spy="scroll" data-target="#compas-localnav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/compas-dev/compas_fab">Github</a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://compas-dev.github.io">COMPAS framework</a></li>
+        </ul>
+    </nav>    
 
-        <header class="navbar navbar-expand compas-navbar justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="../../index.html">
-                    COMPAS FAB 0.5.0
-                </a>
-            </div>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
-                    </a>
-                </li>
-            </ul>
-        </header>
-        
-        <div class="container-fluid compas-container">
-            <div class="row flex-xl-nowrap">
-
-                <!-- main content -->
-
-                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+            <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+                <div class="container">
+                
 
                     
 
-                        
-
-                        <h1>Source code for roslibpy.ros</h1><div class="highlight"><pre><code>
+                    <h1>Source code for roslibpy.ros</h1><div class="highlight"><pre><code>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">Service</span><span class="p">,</span> <span class="n">ServiceRequest</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Param</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">ServiceRequest</span>
 <span class="kn">from</span> <span class="nn">.comm</span> <span class="k">import</span> <span class="n">RosBridgeClientFactory</span>
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ros&#39;</span><span class="p">]</span>
+
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;roslibpy&#39;</span><span class="p">)</span>
+<span class="n">CONNECTION_TIMEOUT</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">ROSAPI_TIMEOUT</span> <span class="o">=</span> <span class="mi">3</span>
 
 
 <span class="k">class</span> <span class="nc">Ros</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -116,9 +123,19 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="n">_wrapper_callback</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Kick-starts a non-blocking event loop.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">CONNECTION_TIMEOUT</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Kick-starts a non-blocking event loop.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            timeout: Timeout to wait until connection is ready.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+        <span class="n">wait_connect</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">wait_connect</span><span class="o">.</span><span class="n">set</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">wait_connect</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Failed to connect to ROS&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run_forever</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Kick-starts a blocking loop to wait for events.</span>
@@ -129,8 +146,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">run_event_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Deprecation warning: use run_forever instead of run_event_loop &#39;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s1">&#39;Deprecation warning: use run_forever instead of run_event_loop &#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">call_in_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Call the given function in a thread.</span>
+
+<span class="sd">        The threading implementation is deferred to the factory.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            callback (:obj:`callable`): Callable function to be invoked.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">call_in_thread</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">call_later</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delay</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Call the given function after a certain period of time has passed.</span>
@@ -232,54 +260,248 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">send_on_ready</span><span class="p">(</span><span class="n">level_message</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_topics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of topics in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of topics if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topics&#39;</span><span class="p">,</span> <span class="s1">&#39;rosapi/Topics&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span>
+                              <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;topics&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;topics&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_topic_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the type of a topic in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Topic type if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topic_type&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/TopicType&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;topic&#39;</span><span class="p">:</span> <span class="n">topic</span><span class="p">}),</span>
+                              <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_topics_for_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic_type</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of topics in ROS matching the specified type.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of topics matching the specified type if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topics_for_type&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/TopicsForType&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">topic_type</span><span class="p">}),</span>
+                              <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;topics&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;topics&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_services</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of active service names in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of services if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/services&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/Services&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span>
+                              <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;services&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;services&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_service_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the type of a service in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Service type if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_type&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/ServiceType&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="n">service_name</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_services_for_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_type</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of services in ROS matching the specified type.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of services matching the specified type if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/services_for_type&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/ServicesForType&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">service_type</span><span class="p">}),</span>
+                              <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;services&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;services&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_service_request_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve details of a ROS Service Request.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Service Request details if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_request_details&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/ServiceRequestDetails&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">}),</span>
+                              <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">get_service_response_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve details of a ROS Service Response.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Service Response details if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_response_details&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/ServiceResponseDetails&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">}),</span>
+                              <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">get_message_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_type</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve details of a message type in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Message type details if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/message_details&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/MessageDetails&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(</span>
+            <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">message_type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of param names from the ROS Parameter Server.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of parameters if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/get_param_names&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;rosapi/GetParamNames&#39;</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span>
+                              <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;names&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the value of a parameter from the ROS Parameter Server.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Parameter value if blocking, otherwise ``None``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the value of a parameter from the ROS Parameter Server.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">delete_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete parameter from the ROS Parameter Server.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">ROSAPI_TIMEOUT</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">get_action_servers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieve list of action servers in ROS.&quot;&quot;&quot;</span>
         <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/action_servers&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;rosapi/GetActionServers&#39;</span><span class="p">)</span>
 
         <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_topics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of topics in ROS.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topics&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/Topics&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_topics_for_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic_type</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of topics in ROS matching the specified type.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topics_for_type&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/TopicsForType&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">topic_type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_services</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of active service names in ROS.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/services&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/Services&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_services_for_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_type</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of services in ROS matching the specified type.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/services_for_type&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/ServicesForType&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">service_type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_service_request_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve details of a ROS Service Request.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_request_details&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/ServiceRequestDetails&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_service_response_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve details of a ROS Service Response.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_response_details&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/ServiceResponseDetails&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieve list of active node names in ROS.&quot;&quot;&quot;</span>
@@ -295,40 +517,8 @@
 
         <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;node&#39;</span><span class="p">:</span> <span class="n">node</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of param names from the ROS Parameter Server.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/get_param_names&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/GetParamNames&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_topic_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve the type of a topic in ROS.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/topic_type&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/TopicType&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;topic&#39;</span><span class="p">:</span> <span class="n">topic</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_service_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve the type of a service in ROS.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/service_type&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/ServiceType&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(</span>
-            <span class="p">{</span><span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="n">service_name</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_message_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_type</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve details of a message type in ROS.&quot;&quot;&quot;</span>
-        <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/message_details&#39;</span><span class="p">,</span>
-                          <span class="s1">&#39;rosapi/MessageDetails&#39;</span><span class="p">)</span>
-
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(</span>
-            <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">message_type</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
-
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">logging</span>
-
     <span class="n">FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)-15s</span><span class="s1"> [</span><span class="si">%(levelname)s</span><span class="s1">] </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">FORMAT</span><span class="p">)</span>
 
@@ -340,141 +530,115 @@
 
     <span class="n">ros_client</span><span class="o">.</span><span class="n">run_forever</span><span class="p">()</span>
 </code></pre></div>
-                        
+                    
+                
+                </div>
+            </main>
+
+            <!-- site navigation sidebar -->
+
+            <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                <div class="navbar-light">
+
+                    <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
+                        <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+
+                        <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
+
+                    
                     
 
-                </main>
+                        <div class="navbar-expand-md">
+                            <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                <!-- site navigation sidebar -->
-
-                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
-                    <div class="navbar-light">
-
-                        <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
-                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
-                            <input type="hidden" name="check_keywords" value="yes" />
-                            <input type="hidden" name="area" value="default" />
-
-                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </form>
-
-                        
-                        
-
-                            <div class="navbar-expand-md">
-                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
-
-                                <ul class="nav flex-column">
+                            <ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../license.html">License</a></li>
 </ul>
 
 
-                                </div>
                             </div>
+                        </div>
 
-                        
+                    
 
-                    </div>
                 </div>
+            </div>
 
-                <!-- table of contents of main content -->
+            <!-- table of contents of main content -->
+            
+            <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
                 
-                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
 
-                    
-
-                    
-
-                </div>
+                
 
             </div>
-        </div>
 
-        <footer class="compas-footer">
+        </div>
+    </div>
+
+    <footer class="bg-dark pb-5">
+        <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Apr 23, 2019.
+                Last updated on Oct 02, 2019.
             
 
             
                 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
-        </footer>
+        </div>
+    </footer>
 
-        
+    
+        <script type="text/javascript">
+            var DOCUMENTATION_OPTIONS = {
+            URL_ROOT          : '',
+            VERSION           : '0.6.0',
+            COLLAPSE_INDEX    : false,
+            FILE_SUFFIX       : '.html',
+            HAS_SOURCE        : 'false',
+            SOURCELINK_SUFFIX : '.txt'
+            };
+        </script>
 
-            <script type="text/javascript">
-var DOCUMENTATION_OPTIONS = {
-    URL_ROOT          : '',
-    VERSION           : '0.5.0',
-    COLLAPSE_INDEX    : false,
-    FILE_SUFFIX       : '.html',
-    HAS_SOURCE        : 'false',
-    SOURCELINK_SUFFIX : '.txt'
-};
-            </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../_static/js/prism.js"></script> -->
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script>
+        $(document).ready(function() {
+        $(".language-default code").addClass("python");
+        $(".language-python code").addClass("python");
+        $(".language-bash code").addClass("bash");
+        $(".language-cpp code").addClass("cpp");
+        $(".language-json code").addClass("json");
+        $(".language-none code").addClass("plaintext");
 
-            <script src="../../_static/underscore.js"></script>
-            <script src="../../_static/doctools.js"></script>
-            <script src="../../_static/js/searchtools_.js"></script>
-            <script src="../../_static/js/prism.js"></script>
-
-            <script>
-$(document).ready(function() {
-
-    // $(".language-default pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-bash pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-python pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-c pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-cpp pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-fortran pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-markdown pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-rest pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    anchors.add();
-});
-            </script>
-
-        
-    </body>
+        hljs.initHighlighting();
+        anchors.add();
+        });
+        </script>
+    
+</body>
 </html>

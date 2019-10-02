@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>compas_fab</title>
+<head>
+    <title>compas_fab</title>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+
+    <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+
     
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+        <link rel="next" title="3.6. Creating a MoveIt! package from the custom created URDF" href="08_ros_create_moveit_package_from_custom_urdf.html" />
+    
+    
+    
+        <link rel="prev" title="3.4. Plan motion" href="04_plan_motion.html" />
+    
 
-        <link rel="shortcut icon" href="../../_static/images/compas.ico" type="image/x-icon">
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+</head>
 
-        <link rel="stylesheet" type="text/css" href="../../_static/css/prism.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas.css" />
-        <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
+<body data-spy="scroll" data-target="#compas-localnav">
 
-        
-            <link rel="next" title="3.6. Creating a MoveIt! package from the custom created URDF" href="08_ros_create_moveit_package_from_custom_urdf.html" />
-        
-        
-        
-            <link rel="prev" title="3.4. Plan motion" href="04_plan_motion.html" />
-        
+    <nav class="navbar navbar-expand compas-navbar">
+        <a class="navbar-brand" href="/">
+            <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
+        </a>
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="../../index.html">COMPAS FAB</a></li>
+        </ul>
 
-    </head>
-    <body data-spy="scroll" data-target="#compas-localnav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/compas-dev/compas_fab">Github</a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://compas-dev.github.io">COMPAS framework</a></li>
+        </ul>
+    </nav>    
 
-        <header class="navbar navbar-expand compas-navbar justify-content-between">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="../../index.html">
-                    COMPAS FAB 0.5.0
-                </a>
-            </div>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="https://compas-dev.github.io">
-                        <img src="../../_static/images/compas_icon_white.png" width="36px" height="36px" alt="compas" />
-                    </a>
-                </li>
-            </ul>
-        </header>
-        
-        <div class="container-fluid compas-container">
-            <div class="row flex-xl-nowrap">
-
-                <!-- main content -->
-
-                <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+            <main class="col-12 col-md-9 col-xl-8 compas-content" role="main">
+                <div class="container">
+                
 
                     
 
-                        
-
-                        <div class="section" id="creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector">
+                    <div class="section" id="creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector">
 <span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1>3.5. Creating a URDF with an UR5 robot and a custom end-effector</h1>
 <div class="section" id="export-your-meshes">
-<h2>3.5.1. 1. Export your meshes</h2>
+<h2>3.5.1. Export your meshes</h2>
 <p>In ROS, robot link (and end-effector) geometry is defined with 2 different
 meshes: <em>visual</em> and <em>collision</em>. The visual mesh represents how the robot looks
 like and the collision mesh is used for collision detection. You could have the
@@ -78,20 +77,20 @@ your end-effector in a ROS-friendly format, like .stl or .obj (see below).</p>
 </div>
 </div>
 <div class="section" id="prepare-your-catkin-workspace">
-<h2>3.5.2. 2. Prepare your catkin workspace</h2>
+<h2>3.5.2. Prepare your catkin workspace</h2>
 <p>Open your command prompt and go to your home directory:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
 </code></pre></div>
 </div>
 <p>If not yet there, make a new catkin workspace for all your robotic setups:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
 </code></pre></div>
 </div>
 <p>Then go to your src folder and make a package with your new setup
 <code class="docutils literal notranslate"><span class="pre">ur5_with_measurement_tool</span></code>:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 <span class="n">catkin_create_pkg</span> <span class="n">ur5_with_measurement_tool</span>
 </code></pre></div>
 </div>
@@ -112,13 +111,13 @@ following lines after the line <code class="docutils literal notranslate"><span 
 </div>
 <p>Optionally, modify <code class="docutils literal notranslate"><span class="pre">email</span></code> and <code class="docutils literal notranslate"><span class="pre">licence</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code> tags.</p>
 <p>Then create 4(+2) folders: <code class="docutils literal notranslate"><span class="pre">launch</span></code>, <code class="docutils literal notranslate"><span class="pre">rviz</span></code>, <code class="docutils literal notranslate"><span class="pre">urdf</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes</span></code> (with visual and collision folders):</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="p">{</span><span class="n">launch</span><span class="p">,</span><span class="n">rviz</span><span class="p">,</span><span class="n">urdf</span><span class="p">,</span><span class="n">meshes</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">visual</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">collision</span><span class="p">}</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="p">{</span><span class="n">launch</span><span class="p">,</span><span class="n">rviz</span><span class="p">,</span><span class="n">urdf</span><span class="p">,</span><span class="n">meshes</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">visual</span><span class="p">,</span><span class="n">meshes</span><span class="o">/</span><span class="n">collision</span><span class="p">}</span>
 </code></pre></div>
 </div>
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
 </div>
 <div class="section" id="create-xacros-and-generate-urdf">
-<h2>3.5.3. 3. Create xacros and generate urdf</h2>
+<h2>3.5.3. Create xacros and generate urdf</h2>
 <p>Rather than writing urdf files directly, it is more convinient to write xacro
 files from which urdfs are generated. As its name implies, xacro is a macro
 language. The language allows to use constants, to perform simple math
@@ -129,7 +128,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File">Xacro tutorials on the ROS Wiki</a>.</p>
 </div>
 <p>Go to the <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder and create a xacro file for your end-effector with the text editor of your choice (e.g. <code class="docutils literal notranslate"><span class="pre">pico</span></code>):</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">urdf</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">urdf</span>
 <span class="n">pico</span> <span class="n">measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
@@ -185,7 +184,7 @@ we would need to use both with different prefixes to distinguish them.
 Whatever is defined like <code class="docutils literal notranslate"><span class="pre">${}</span></code> will later be replaced when generating the
 urdf.</p>
 <p>Now we create a new xacro file, which combines the ur5 with the end-effector:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
 <p>Paste the following:</p>
@@ -233,16 +232,16 @@ Typically this frame is the first frame of the robot tied to the first link.</p>
 <p>To define the base_link name we search in the robot’s xacro file the link which
 is never child to a joint (first link).</p>
 <p>Now create the urdf.:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
 </div>
 <p>This will create ur5_with_measurement_tool.urdf in the directory.</p>
 <p>You can also check the urdf with:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">check_urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">check_urdf</span> <span class="n">ur5_with_measurement_tool</span><span class="o">.</span><span class="n">urdf</span>
 </code></pre></div>
 </div>
 <p>This will output:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">robot</span> <span class="n">name</span> <span class="ow">is</span><span class="p">:</span> <span class="n">ur5_with_measurement_tool</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">robot</span> <span class="n">name</span> <span class="ow">is</span><span class="p">:</span> <span class="n">ur5_with_measurement_tool</span>
 <span class="o">----------</span> <span class="n">Successfully</span> <span class="n">Parsed</span> <span class="n">XML</span> <span class="o">---------------</span>
 <span class="n">root</span> <span class="n">Link</span><span class="p">:</span> <span class="n">world</span> <span class="n">has</span> <span class="mi">1</span> <span class="n">child</span><span class="p">(</span><span class="n">ren</span><span class="p">)</span>
     <span class="n">child</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>  <span class="n">base_link</span>
@@ -262,16 +261,16 @@ is never child to a joint (first link).</p>
 </div>
 </div>
 <div class="section" id="view-urdf">
-<h2>3.5.4. 4. View urdf</h2>
+<h2>3.5.4. View urdf</h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
 <span class="n">cp</span> <span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 </code></pre></div>
 </div>
 <p>Now modify <code class="docutils literal notranslate"><span class="pre">display.launch</span></code> in the <code class="docutils literal notranslate"><span class="pre">launch</span></code> directory:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">launch</span><span class="o">/</span><span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
 <p>Change the 2 <code class="docutils literal notranslate"><span class="pre">arg</span></code> tags with <code class="docutils literal notranslate"><span class="pre">name=&quot;model&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">name=&quot;rvizconfig&quot;</span></code> such
@@ -293,13 +292,13 @@ that they match the following:</p>
 </code></pre></div>
 </div>
 <p>Now we need to source the package path in our catkin workspace:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
 <span class="n">source</span> <span class="n">devel</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
 </code></pre></div>
 </div>
 <p>And then run:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
 <div class="figure align-center" id="id2">
@@ -311,7 +310,7 @@ that they match the following:</p>
 <div class="section" id="add-path-to-search-paths">
 <h2>3.5.5. Add path to search paths</h2>
 <p>For convenience, add the path to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> in order to make it available on every start of ROS:</p>
-<div class="nohighlight notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </code></pre></div>
 </div>
 </div>
@@ -327,33 +326,33 @@ that they match the following:</p>
 </div>
 </div>
 
-                        
+                    
+                
+                </div>
+            </main>
+
+            <!-- site navigation sidebar -->
+
+            <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
+                <div class="navbar-light">
+
+                    <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
+                        <input class="form-control" type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+
+                        <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
+
+                    
                     
 
-                </main>
+                        <div class="navbar-expand-md">
+                            <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                <!-- site navigation sidebar -->
-
-                <div class="col-12 col-md-3 col-xl-2 compas-sidebar" role="navigation"> 
-                    <div class="navbar-light">
-
-                        <form id="" class="d-flex compas-searchbox" action="../../search.html" method="get">
-                            <input class="form-control" type="text" name="q" placeholder="Search docs" />
-                            <input type="hidden" name="check_keywords" value="yes" />
-                            <input type="hidden" name="area" value="default" />
-
-                            <button class="navbar-toggler d-md-none compas-navigation-toggler" type="button" data-toggle="collapse" data-target="#compas-navigation" aria-controls="compas-navigation" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        </form>
-
-                        
-                        
-
-                            <div class="navbar-expand-md">
-                                <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
-
-                                <ul class="nav flex-column active">
+                            <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
@@ -375,35 +374,35 @@ that they match the following:</p>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Authors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../license.html">License</a></li>
 </ul>
 
 
-                                </div>
                             </div>
-
-                        
-
-                    </div>
-                </div>
-
-                <!-- table of contents of main content -->
-                
-                <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+                        </div>
 
                     
 
-                    <ul class="nav flex-column" id="compas-localnav">
+                </div>
+            </div>
+
+            <!-- table of contents of main content -->
+            
+            <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
+
+                
+
+                <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">3.5. Creating a URDF with an UR5 robot and a custom end-effector</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#export-your-meshes">3.5.1. 1. Export your meshes</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#prepare-your-catkin-workspace">3.5.2. 2. Prepare your catkin workspace</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#create-xacros-and-generate-urdf">3.5.3. 3. Create xacros and generate urdf</a><ul class="nav">
+<li class="nav-item"><a class="nav-link reference internal" href="#export-your-meshes">3.5.1. Export your meshes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#prepare-your-catkin-workspace">3.5.2. Prepare your catkin workspace</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#create-xacros-and-generate-urdf">3.5.3. Create xacros and generate urdf</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#explanation">3.5.3.1. Explanation</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#view-urdf">3.5.4. 4. View urdf</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#view-urdf">3.5.4. View urdf</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#add-path-to-search-paths">3.5.5. Add path to search paths</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.5.6. Further links</a></li>
 </ul>
@@ -411,86 +410,60 @@ that they match the following:</p>
 </ul>
 
 
-                </div>
-
             </div>
-        </div>
 
-        <footer class="compas-footer">
+        </div>
+    </div>
+
+    <footer class="bg-dark pb-5">
+        <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Apr 23, 2019.
+                Last updated on Oct 02, 2019.
             
 
             
                 Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
-        </footer>
+        </div>
+    </footer>
 
-        
+    
+        <script type="text/javascript">
+            var DOCUMENTATION_OPTIONS = {
+            URL_ROOT          : '',
+            VERSION           : '0.6.0',
+            COLLAPSE_INDEX    : false,
+            FILE_SUFFIX       : '.html',
+            HAS_SOURCE        : 'false',
+            SOURCELINK_SUFFIX : '.txt'
+            };
+        </script>
 
-            <script type="text/javascript">
-var DOCUMENTATION_OPTIONS = {
-    URL_ROOT          : '',
-    VERSION           : '0.5.0',
-    COLLAPSE_INDEX    : false,
-    FILE_SUFFIX       : '.html',
-    HAS_SOURCE        : 'false',
-    SOURCELINK_SUFFIX : '.txt'
-};
-            </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/searchtools_.js"></script>
+        <!-- <script src="../../_static/js/prism.js"></script> -->
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-            
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.0.0/anchor.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script>
+        $(document).ready(function() {
+        $(".language-default code").addClass("python");
+        $(".language-python code").addClass("python");
+        $(".language-bash code").addClass("bash");
+        $(".language-cpp code").addClass("cpp");
+        $(".language-json code").addClass("json");
+        $(".language-none code").addClass("plaintext");
 
-            <script src="../../_static/underscore.js"></script>
-            <script src="../../_static/doctools.js"></script>
-            <script src="../../_static/js/searchtools_.js"></script>
-            <script src="../../_static/js/prism.js"></script>
-
-            <script>
-$(document).ready(function() {
-
-    // $(".language-default pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-bash pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-python pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-c pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-cpp pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-fortran pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-markdown pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    // $(".language-rest pre").each(function(i, element) {
-    //     Prism.highlightElement(element);
-    // });
-
-    anchors.add();
-});
-            </script>
-
-        
-    </body>
+        hljs.initHighlighting();
+        anchors.add();
+        });
+        </script>
+    
+</body>
 </html>
