@@ -67,17 +67,17 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code>) – Robot instance.</p></li>
 <li><p><strong>goal_frame</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code>) – Target or goal frame.</p></li>
-<li><p><strong>metric_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – List containing one value
+<li><p><strong>metric_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – List containing one value
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
 move during inverse kinematic solving.</p></li>
-<li><p><strong>gantry_joint_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <cite>float</cite>) – List of 6 floats defining the upper/lower limits of
+<li><p><strong>gantry_joint_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <cite>float</cite>) – List of 6 floats defining the upper/lower limits of
 gantry joints. Use this if you want to restrict the area in which to search for states.</p></li>
-<li><p><strong>arm_joint_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <cite>float</cite>) – List of 12 floats defining the upper/lower limits of
+<li><p><strong>arm_joint_limits</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <cite>float</cite>) – List of 12 floats defining the upper/lower limits of
 arm joints. Use this if you want to restrict the working area in which to search for states.</p></li>
-<li><p><strong>max_trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of trials to run. Set to <code class="docutils literal notranslate"><span class="pre">None</span></code>
+<li><p><strong>max_trials</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Number of trials to run. Set to <code class="docutils literal notranslate"><span class="pre">None</span></code>
 to retry infinitely.</p></li>
-<li><p><strong>max_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Maximum number of result states to return.</p></li>
+<li><p><strong>max_results</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Maximum number of result states to return.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -126,6 +126,7 @@ the collision-free configuration for the <code class="docutils literal notransla
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -167,7 +168,7 @@ the collision-free configuration for the <code class="docutils literal notransla
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -180,7 +181,7 @@ the collision-free configuration for the <code class="docutils literal notransla
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

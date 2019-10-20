@@ -76,7 +76,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">([</span><span class="mf">7.600</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.500</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.500</span><span class="p">],</span>
 <span class="gp">... </span>                                                              <span class="n">to_radians</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">]))</span>
-<span class="gp">... </span>    <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">Robot</span><span class="o">.</span><span class="n">basic</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span>
 <span class="gp">...</span>
 </code></pre></div>
 </div>
@@ -121,6 +121,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -162,7 +163,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -175,7 +176,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -79,7 +79,7 @@ factor.</p></li>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span> <span class="o">=</span> <span class="n">PlanningScene</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/floor.stl&#39;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;floor&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>                <span class="c1"># doctest: +SKIP</span>
 </code></pre></div>
 </div>
 </dd></dl>
@@ -123,6 +123,7 @@ factor.</p></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -164,7 +165,7 @@ factor.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -177,7 +178,7 @@ factor.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

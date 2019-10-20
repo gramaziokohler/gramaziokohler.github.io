@@ -60,7 +60,7 @@
 <h1>JointTrajectory</h1>
 <dl class="class">
 <dt id="compas_fab.robots.JointTrajectory">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">JointTrajectory</code><span class="sig-paren">(</span><em>trajectory_points=[]</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">JointTrajectory</code><span class="sig-paren">(</span><em>trajectory_points=[]</em>, <em>joint_names=[]</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.trajectory.Trajectory</span></code></p>
 <p>Describes a joint trajectory as a list of trajectory points.</p>
 <dl class="attribute">
@@ -69,7 +69,18 @@
 <dd><p>List of points composing the trajectory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="compas_fab.robots.JointTrajectory.joint_names">
+<code class="descname">joint_names</code></dt>
+<dd><p>List of joint names of the trajectory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -92,7 +103,7 @@
 e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code> means the full trajectory was found.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -104,7 +115,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__" title="compas_fab.robots.JointTrajectory.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([trajectory_points, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__" title="compas_fab.robots.JointTrajectory.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([trajectory_points, joint_names, …])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.from_data.html#compas_fab.robots.JointTrajectory.from_data" title="compas_fab.robots.JointTrajectory.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a>(data)</p></td>
@@ -132,7 +143,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
 </table>
 <dl class="method">
 <dt id="compas_fab.robots.JointTrajectory.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>trajectory_points=[]</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>trajectory_points=[]</em>, <em>joint_names=[]</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -177,6 +188,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -218,7 +230,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -231,7 +243,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

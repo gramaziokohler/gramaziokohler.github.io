@@ -61,7 +61,7 @@
 <dl class="class">
 <dt id="compas_fab.backends.VrepClient">
 <em class="property">class </em><code class="descclassname">compas_fab.backends.</code><code class="descname">VrepClient</code><span class="sig-paren">(</span><em>host='127.0.0.1'</em>, <em>port=19997</em>, <em>scale=1.0</em>, <em>lua_script='RFL'</em>, <em>debug=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/client.html#VrepClient"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Interface to run simulations using VREP as
 the engine for kinematics and path planning.</p>
 <p><a class="reference internal" href="#compas_fab.backends.VrepClient" title="compas_fab.backends.VrepClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">VrepClient</span></code></a> is a context manager type, so it’s best used in combination
@@ -69,19 +69,18 @@ with the <code class="docutils literal notranslate"><span class="pre">with</span
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – IP address or DNS name of the V-REP simulator.</p></li>
-<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Port of the V-REP simulator.</p></li>
-<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Scaling of the model. Defaults to meters (<code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></li>
-<li><p><strong>lua_script</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of the LUA script on the V-REP scene.</p></li>
-<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – True to enable debug messages, False otherwise.</p></li>
+<li><p><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – IP address or DNS name of the V-REP simulator.</p></li>
+<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Port of the V-REP simulator.</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Scaling of the model. Defaults to meters (<code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></li>
+<li><p><strong>lua_script</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of the LUA script on the V-REP scene.</p></li>
+<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – True to enable debug messages, False otherwise.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">VrepClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span>
-<span class="gp">...</span>
+<span class="gp">... </span>    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 <span class="go">Connected: True</span>
 </code></pre></div>
 </div>
@@ -214,6 +213,7 @@ with the <code class="docutils literal notranslate"><span class="pre">with</span
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -255,7 +255,7 @@ with the <code class="docutils literal notranslate"><span class="pre">with</span
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -268,7 +268,7 @@ with the <code class="docutils literal notranslate"><span class="pre">with</span
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -77,24 +77,20 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; from math import pi</span>
-<span class="sd">    &gt;&gt;&gt; from compas_fab.robots import Configuration</span>
-<span class="sd">    &gt;&gt;&gt; config = Configuration.from_revolute_values([pi/2, 0., 0.])</span>
+<span class="sd">    &gt;&gt;&gt; config = Configuration.from_revolute_values([math.pi/2, 0., 0.])</span>
 <span class="sd">    &gt;&gt;&gt; config.values</span>
 <span class="sd">    [1.5707963267948966, 0.0, 0.0]</span>
 
-<span class="sd">    &gt;&gt;&gt; from math import pi</span>
 <span class="sd">    &gt;&gt;&gt; from compas_fab.robots import Configuration</span>
-<span class="sd">    &gt;&gt;&gt; config = Configuration.from_prismatic_and_revolute_values([8.312], [pi/2, 0., 0., 0., 2*pi, 0.8])</span>
+<span class="sd">    &gt;&gt;&gt; config = Configuration.from_prismatic_and_revolute_values([8.312], [math.pi/2, 0., 0., 0., 2*math.pi, 0.8])</span>
 <span class="sd">    &gt;&gt;&gt; str(config)</span>
-<span class="sd">    &#39;Configuration(8.312, 1.571, 0.000, 0.000, 0.000, 6.283, 0.800)&#39;</span>
+<span class="sd">    &#39;Configuration((8.312, 1.571, 0.000, 0.000, 0.000, 6.283, 0.800), (2, 0, 0, 0, 0, 0, 0))&#39;</span>
 
-<span class="sd">    &gt;&gt;&gt; from math import pi</span>
 <span class="sd">    &gt;&gt;&gt; from compas_fab.robots import Configuration</span>
 <span class="sd">    &gt;&gt;&gt; from compas.robots import Joint</span>
-<span class="sd">    &gt;&gt;&gt; config = Configuration([pi/2, 3., 0.1], [Joint.REVOLUTE, Joint.PRISMATIC, Joint.PLANAR])</span>
+<span class="sd">    &gt;&gt;&gt; config = Configuration([math.pi/2, 3., 0.1], [Joint.REVOLUTE, Joint.PRISMATIC, Joint.PLANAR])</span>
 <span class="sd">    &gt;&gt;&gt; str(config)</span>
-<span class="sd">    &#39;Configuration(1.571, 3.000, 0.100)&#39;</span>
+<span class="sd">    &#39;Configuration((1.571, 3.000, 0.100), (0, 2, 5))&#39;</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -229,32 +225,6 @@
             <span class="n">values_scaled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values_scaled</span></div></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">pi</span>
-    <span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">radians</span>
-
-    <span class="n">q</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">]</span>
-    <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">(</span>
-        <span class="p">[</span><span class="mf">8.312</span><span class="p">],</span> <span class="p">[</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
-
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">(</span>
-        <span class="p">[</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">PRISMATIC</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">PLANAR</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
-
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">(</span>
-        <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">1.33</span><span class="p">],</span> <span class="nb">map</span><span class="p">(</span><span class="n">radians</span><span class="p">,</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">]))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">revolute_values</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">prismatic_values</span><span class="p">)</span>
 </code></pre></div>
                     
                 
@@ -319,7 +289,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -332,7 +302,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

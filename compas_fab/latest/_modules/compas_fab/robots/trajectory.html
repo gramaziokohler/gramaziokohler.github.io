@@ -197,6 +197,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    points: :obj:`list` of :class:`JointTrajectoryPoint`</span>
 <span class="sd">        List of points composing the trajectory.</span>
+<span class="sd">    joint_names: :obj:`list` of :obj:`str`</span>
+<span class="sd">        List of joint names of the trajectory.</span>
 <span class="sd">    start_configuration: :class:`Configuration`</span>
 <span class="sd">        Start configuration for the trajectory.</span>
 <span class="sd">    fraction: float</span>
@@ -204,9 +206,10 @@
 <span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="p">[],</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="p">[],</span> <span class="n">joint_names</span><span class="o">=</span><span class="p">[],</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">trajectory_points</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="n">joint_names</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">start_configuration</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">fraction</span></div>
 
@@ -236,16 +239,20 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;:obj:`dict` : The data representing the trajectory.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s1">&#39;points&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">],</span>
-            <span class="s1">&#39;start_configuration&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">to_data</span><span class="p">(),</span>
-            <span class="s1">&#39;fraction&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="n">data_obj</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">]</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;fraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span>
+
+        <span class="k">return</span> <span class="n">data_obj</span>
 
     <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">JointTrajectoryPoint</span><span class="o">.</span><span class="n">from_data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;joint_names&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fraction&#39;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -256,25 +263,6 @@
             <span class="k">return</span> <span class="mf">0.</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">time_from_start</span><span class="o">.</span><span class="n">seconds</span></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">p1</span> <span class="o">=</span> <span class="n">JointTrajectoryPoint</span><span class="p">([</span><span class="mf">1.571</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.262</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
-    <span class="n">p1</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">Duration</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1293</span><span class="p">)</span>
-
-    <span class="n">p2</span> <span class="o">=</span> <span class="n">JointTrajectoryPoint</span><span class="p">([</span><span class="mf">0.571</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.262</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mf">3.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
-    <span class="n">p2</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">Duration</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">trj</span> <span class="o">=</span> <span class="n">JointTrajectory</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">trj</span><span class="p">)</span>
-    <span class="c1"># p.accelerations = [2,3,4,3,5,1]</span>
-    <span class="c1"># p.time_from_start = [Duration(1, 23)]</span>
-    <span class="c1"># print(p1.to_data())</span>
-    <span class="c1"># print(JointTrajectoryPoint.from_data(p1.to_data()))</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">trj</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">trj</span><span class="o">.</span><span class="n">to_data</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">JointTrajectory</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">trj</span><span class="o">.</span><span class="n">to_data</span><span class="p">())</span><span class="o">.</span><span class="n">to_data</span><span class="p">())</span>
 </code></pre></div>
                     
                 
@@ -339,7 +327,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -352,7 +340,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

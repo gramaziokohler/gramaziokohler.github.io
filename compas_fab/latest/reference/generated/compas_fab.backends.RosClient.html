@@ -70,9 +70,9 @@ resource deallocation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – ROS bridge host. Defaults to <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p></li>
-<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Port of the ROS Bridge. Defaults to <code class="docutils literal notranslate"><span class="pre">9090</span></code>.</p></li>
-<li><p><strong>is_secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> to indicate it should use a secure web socket, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – ROS bridge host. Defaults to <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p></li>
+<li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Port of the ROS Bridge. Defaults to <code class="docutils literal notranslate"><span class="pre">9090</span></code>.</p></li>
+<li><p><strong>is_secure</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> to indicate it should use a secure web socket, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
 <li><p><strong>planner_backend</strong> (<em>str</em>) – Name of the planner backend plugin to use. The plugin must be a sub-class of
 <code class="xref py py-class docutils literal notranslate"><span class="pre">PlannerBackend</span></code>. Defaults to <code class="xref py py-class docutils literal notranslate"><span class="pre">moveit</span></code>.</p></li>
 </ul>
@@ -80,9 +80,8 @@ resource deallocation.</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">RosClient</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 <span class="go">Connected: True</span>
 </code></pre></div>
 </div>
@@ -127,124 +126,127 @@ resource deallocation.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.emit.html#compas_fab.backends.RosClient.emit" title="compas_fab.backends.RosClient.emit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">emit</span></code></a>(event_name, *args)</p></td>
 <td><p>Trigger a named event.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.follow_configurations.html#compas_fab.backends.RosClient.follow_configurations" title="compas_fab.backends.RosClient.follow_configurations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_configurations</span></code></a>(callback, joint_names, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.execute_joint_trajectory.html#compas_fab.backends.RosClient.execute_joint_trajectory" title="compas_fab.backends.RosClient.execute_joint_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execute_joint_trajectory</span></code></a>(joint_trajectory[, …])</p></td>
+<td><p>Execute a joint trajectory via the MoveIt infrastructure.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.follow_configurations.html#compas_fab.backends.RosClient.follow_configurations" title="compas_fab.backends.RosClient.follow_configurations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_configurations</span></code></a>(callback, joint_names, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory" title="compas_fab.backends.RosClient.follow_joint_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_joint_trajectory</span></code></a>(joint_trajectory[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory" title="compas_fab.backends.RosClient.follow_joint_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_joint_trajectory</span></code></a>(joint_trajectory[, …])</p></td>
 <td><p>Follow the joint trajectory as computed by MoveIt planner.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics" title="compas_fab.backends.RosClient.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(joint_positions, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics" title="compas_fab.backends.RosClient.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(joint_positions, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics_async.html#compas_fab.backends.RosClient.forward_kinematics_async" title="compas_fab.backends.RosClient.forward_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics_async.html#compas_fab.backends.RosClient.forward_kinematics_async" title="compas_fab.backends.RosClient.forward_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_action_servers.html#compas_fab.backends.RosClient.get_action_servers" title="compas_fab.backends.RosClient.get_action_servers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_action_servers</span></code></a>(callback[, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_action_servers.html#compas_fab.backends.RosClient.get_action_servers" title="compas_fab.backends.RosClient.get_action_servers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_action_servers</span></code></a>(callback[, errback])</p></td>
 <td><p>Retrieve list of action servers in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_configuration.html#compas_fab.backends.RosClient.get_configuration" title="compas_fab.backends.RosClient.get_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configuration</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_configuration.html#compas_fab.backends.RosClient.get_configuration" title="compas_fab.backends.RosClient.get_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configuration</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_message_details.html#compas_fab.backends.RosClient.get_message_details" title="compas_fab.backends.RosClient.get_message_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_message_details</span></code></a>(message_type[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_message_details.html#compas_fab.backends.RosClient.get_message_details" title="compas_fab.backends.RosClient.get_message_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_message_details</span></code></a>(message_type[, …])</p></td>
 <td><p>Retrieve details of a message type in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_node_details.html#compas_fab.backends.RosClient.get_node_details" title="compas_fab.backends.RosClient.get_node_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_node_details</span></code></a>(node, callback[, errback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_node_details.html#compas_fab.backends.RosClient.get_node_details" title="compas_fab.backends.RosClient.get_node_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_node_details</span></code></a>(node, callback[, errback])</p></td>
 <td><p>Retrieve list subscribed topics, publishing topics and services of a specific node name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_nodes.html#compas_fab.backends.RosClient.get_nodes" title="compas_fab.backends.RosClient.get_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodes</span></code></a>(callback[, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_nodes.html#compas_fab.backends.RosClient.get_nodes" title="compas_fab.backends.RosClient.get_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodes</span></code></a>(callback[, errback])</p></td>
 <td><p>Retrieve list of active node names in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_param.html#compas_fab.backends.RosClient.get_param" title="compas_fab.backends.RosClient.get_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_param</span></code></a>(name[, callback, errback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_param.html#compas_fab.backends.RosClient.get_param" title="compas_fab.backends.RosClient.get_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_param</span></code></a>(name[, callback, errback])</p></td>
 <td><p>Get the value of a parameter from the ROS Parameter Server.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_params.html#compas_fab.backends.RosClient.get_params" title="compas_fab.backends.RosClient.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([callback, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_params.html#compas_fab.backends.RosClient.get_params" title="compas_fab.backends.RosClient.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([callback, errback])</p></td>
 <td><p>Retrieve list of param names from the ROS Parameter Server.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_planning_scene.html#compas_fab.backends.RosClient.get_planning_scene" title="compas_fab.backends.RosClient.get_planning_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_planning_scene.html#compas_fab.backends.RosClient.get_planning_scene" title="compas_fab.backends.RosClient.get_planning_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_planning_scene_async.html#compas_fab.backends.RosClient.get_planning_scene_async" title="compas_fab.backends.RosClient.get_planning_scene_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene_async</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_planning_scene_async.html#compas_fab.backends.RosClient.get_planning_scene_async" title="compas_fab.backends.RosClient.get_planning_scene_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene_async</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_request_details.html#compas_fab.backends.RosClient.get_service_request_details" title="compas_fab.backends.RosClient.get_service_request_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_request_details</span></code></a>(type[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_request_details.html#compas_fab.backends.RosClient.get_service_request_details" title="compas_fab.backends.RosClient.get_service_request_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_request_details</span></code></a>(type[, …])</p></td>
 <td><p>Retrieve details of a ROS Service Request.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_response_details.html#compas_fab.backends.RosClient.get_service_response_details" title="compas_fab.backends.RosClient.get_service_response_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_response_details</span></code></a>(type[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_response_details.html#compas_fab.backends.RosClient.get_service_response_details" title="compas_fab.backends.RosClient.get_service_response_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_response_details</span></code></a>(type[, …])</p></td>
 <td><p>Retrieve details of a ROS Service Response.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_type.html#compas_fab.backends.RosClient.get_service_type" title="compas_fab.backends.RosClient.get_service_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_type</span></code></a>(service_name[, callback, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_service_type.html#compas_fab.backends.RosClient.get_service_type" title="compas_fab.backends.RosClient.get_service_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_service_type</span></code></a>(service_name[, callback, …])</p></td>
 <td><p>Retrieve the type of a service in ROS.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_services.html#compas_fab.backends.RosClient.get_services" title="compas_fab.backends.RosClient.get_services"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_services</span></code></a>([callback, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_services.html#compas_fab.backends.RosClient.get_services" title="compas_fab.backends.RosClient.get_services"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_services</span></code></a>([callback, errback])</p></td>
 <td><p>Retrieve list of active service names in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_services_for_type.html#compas_fab.backends.RosClient.get_services_for_type" title="compas_fab.backends.RosClient.get_services_for_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_services_for_type</span></code></a>(service_type[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_services_for_type.html#compas_fab.backends.RosClient.get_services_for_type" title="compas_fab.backends.RosClient.get_services_for_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_services_for_type</span></code></a>(service_type[, …])</p></td>
 <td><p>Retrieve list of services in ROS matching the specified type.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topic_type.html#compas_fab.backends.RosClient.get_topic_type" title="compas_fab.backends.RosClient.get_topic_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topic_type</span></code></a>(topic[, callback, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topic_type.html#compas_fab.backends.RosClient.get_topic_type" title="compas_fab.backends.RosClient.get_topic_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topic_type</span></code></a>(topic[, callback, errback])</p></td>
 <td><p>Retrieve the type of a topic in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topics.html#compas_fab.backends.RosClient.get_topics" title="compas_fab.backends.RosClient.get_topics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topics</span></code></a>([callback, errback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topics.html#compas_fab.backends.RosClient.get_topics" title="compas_fab.backends.RosClient.get_topics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topics</span></code></a>([callback, errback])</p></td>
 <td><p>Retrieve list of topics in ROS.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topics_for_type.html#compas_fab.backends.RosClient.get_topics_for_type" title="compas_fab.backends.RosClient.get_topics_for_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topics_for_type</span></code></a>(topic_type[, callback, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topics_for_type.html#compas_fab.backends.RosClient.get_topics_for_type" title="compas_fab.backends.RosClient.get_topics_for_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topics_for_type</span></code></a>(topic_type[, callback, …])</p></td>
 <td><p>Retrieve list of topics in ROS matching the specified type.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics" title="compas_fab.backends.RosClient.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(frame, base_link, group, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics" title="compas_fab.backends.RosClient.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(frame, base_link, group, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics_async.html#compas_fab.backends.RosClient.inverse_kinematics_async" title="compas_fab.backends.RosClient.inverse_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics_async.html#compas_fab.backends.RosClient.inverse_kinematics_async" title="compas_fab.backends.RosClient.inverse_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.off.html#compas_fab.backends.RosClient.off" title="compas_fab.backends.RosClient.off"><code class="xref py py-obj docutils literal notranslate"><span class="pre">off</span></code></a>(event_name[, callback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.off.html#compas_fab.backends.RosClient.off" title="compas_fab.backends.RosClient.off"><code class="xref py py-obj docutils literal notranslate"><span class="pre">off</span></code></a>(event_name[, callback])</p></td>
 <td><p>Remove a callback from an arbitrary named event.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.on.html#compas_fab.backends.RosClient.on" title="compas_fab.backends.RosClient.on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on</span></code></a>(event_name, callback)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.on.html#compas_fab.backends.RosClient.on" title="compas_fab.backends.RosClient.on"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on</span></code></a>(event_name, callback)</p></td>
 <td><p>Add a callback to an arbitrary named event.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.on_ready.html#compas_fab.backends.RosClient.on_ready" title="compas_fab.backends.RosClient.on_ready"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_ready</span></code></a>(callback[, run_in_thread])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.on_ready.html#compas_fab.backends.RosClient.on_ready" title="compas_fab.backends.RosClient.on_ready"><code class="xref py py-obj docutils literal notranslate"><span class="pre">on_ready</span></code></a>(callback[, run_in_thread])</p></td>
 <td><p>Add a callback to be executed when the connection is established.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_cartesian_motion.html#compas_fab.backends.RosClient.plan_cartesian_motion" title="compas_fab.backends.RosClient.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(frames, base_link, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_cartesian_motion.html#compas_fab.backends.RosClient.plan_cartesian_motion" title="compas_fab.backends.RosClient.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(frames, base_link, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_cartesian_motion_async.html#compas_fab.backends.RosClient.plan_cartesian_motion_async" title="compas_fab.backends.RosClient.plan_cartesian_motion_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion_async</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_cartesian_motion_async.html#compas_fab.backends.RosClient.plan_cartesian_motion_async" title="compas_fab.backends.RosClient.plan_cartesian_motion_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion_async</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_motion.html#compas_fab.backends.RosClient.plan_motion" title="compas_fab.backends.RosClient.plan_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion</span></code></a>(goal_constraints, base_link, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_motion.html#compas_fab.backends.RosClient.plan_motion" title="compas_fab.backends.RosClient.plan_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion</span></code></a>(goal_constraints, base_link, …)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_motion_async.html#compas_fab.backends.RosClient.plan_motion_async" title="compas_fab.backends.RosClient.plan_motion_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion_async</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.plan_motion_async.html#compas_fab.backends.RosClient.plan_motion_async" title="compas_fab.backends.RosClient.plan_motion_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion_async</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.remove_attached_collision_mesh.html#compas_fab.backends.RosClient.remove_attached_collision_mesh" title="compas_fab.backends.RosClient.remove_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_attached_collision_mesh</span></code></a>(id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.remove_attached_collision_mesh.html#compas_fab.backends.RosClient.remove_attached_collision_mesh" title="compas_fab.backends.RosClient.remove_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_attached_collision_mesh</span></code></a>(id)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.remove_collision_mesh.html#compas_fab.backends.RosClient.remove_collision_mesh" title="compas_fab.backends.RosClient.remove_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_collision_mesh</span></code></a>(id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.remove_collision_mesh.html#compas_fab.backends.RosClient.remove_collision_mesh" title="compas_fab.backends.RosClient.remove_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_collision_mesh</span></code></a>(id)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run.html#compas_fab.backends.RosClient.run" title="compas_fab.backends.RosClient.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>([timeout])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run.html#compas_fab.backends.RosClient.run" title="compas_fab.backends.RosClient.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run</span></code></a>([timeout])</p></td>
 <td><p>Kick-starts a non-blocking event loop.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run_event_loop.html#compas_fab.backends.RosClient.run_event_loop" title="compas_fab.backends.RosClient.run_event_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_event_loop</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run_event_loop.html#compas_fab.backends.RosClient.run_event_loop" title="compas_fab.backends.RosClient.run_event_loop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_event_loop</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run_forever.html#compas_fab.backends.RosClient.run_forever" title="compas_fab.backends.RosClient.run_forever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_forever</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.run_forever.html#compas_fab.backends.RosClient.run_forever" title="compas_fab.backends.RosClient.run_forever"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_forever</span></code></a>()</p></td>
 <td><p>Kick-starts a blocking loop to wait for events.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.send_on_ready.html#compas_fab.backends.RosClient.send_on_ready" title="compas_fab.backends.RosClient.send_on_ready"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_on_ready</span></code></a>(message)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.send_on_ready.html#compas_fab.backends.RosClient.send_on_ready" title="compas_fab.backends.RosClient.send_on_ready"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_on_ready</span></code></a>(message)</p></td>
 <td><p>Send message to the ROS Master once the connection is established.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.send_service_request.html#compas_fab.backends.RosClient.send_service_request" title="compas_fab.backends.RosClient.send_service_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_service_request</span></code></a>(message, callback, errback)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.send_service_request.html#compas_fab.backends.RosClient.send_service_request" title="compas_fab.backends.RosClient.send_service_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_service_request</span></code></a>(message, callback, errback)</p></td>
 <td><p>Send a service request to the ROS Master once the connection is established.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.set_param.html#compas_fab.backends.RosClient.set_param" title="compas_fab.backends.RosClient.set_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_param</span></code></a>(name, value[, callback, errback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.set_param.html#compas_fab.backends.RosClient.set_param" title="compas_fab.backends.RosClient.set_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_param</span></code></a>(name, value[, callback, errback])</p></td>
 <td><p>Set the value of a parameter from the ROS Parameter Server.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.set_status_level.html#compas_fab.backends.RosClient.set_status_level" title="compas_fab.backends.RosClient.set_status_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_status_level</span></code></a>(level, identifier)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.set_status_level.html#compas_fab.backends.RosClient.set_status_level" title="compas_fab.backends.RosClient.set_status_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_status_level</span></code></a>(level, identifier)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.terminate.html#compas_fab.backends.RosClient.terminate" title="compas_fab.backends.RosClient.terminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">terminate</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.terminate.html#compas_fab.backends.RosClient.terminate" title="compas_fab.backends.RosClient.terminate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">terminate</span></code></a>()</p></td>
 <td><p>Signals the termination of the main event loop.</p></td>
 </tr>
 </tbody>
@@ -311,6 +313,7 @@ resource deallocation.</p>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -352,7 +355,7 @@ resource deallocation.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -365,7 +368,7 @@ resource deallocation.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

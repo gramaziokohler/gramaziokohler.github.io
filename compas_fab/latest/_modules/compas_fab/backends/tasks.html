@@ -57,22 +57,77 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
+<span class="kn">import</span> <span class="nn">threading</span>
+
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;CancellableTask&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;FutureResult&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CancellableFutureResult&#39;</span>
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="CancellableTask"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask">[docs]</a><span class="k">class</span> <span class="nc">CancellableTask</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Preemptable task represents a long-running operation that can be cancelled.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FutureResult"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.FutureResult.html#compas_fab.backends.FutureResult">[docs]</a><span class="k">class</span> <span class="nc">FutureResult</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a future result value.</span>
 
-<div class="viewcode-block" id="CancellableTask.cancel"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableTask.cancel.html#compas_fab.backends.CancellableTask.cancel">[docs]</a>    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Attempt to cancel the task.</span>
+<span class="sd">    Futures are the result of asynchronous operations</span>
+<span class="sd">    but allow to explicitely control when to block and wait</span>
+<span class="sd">    for its completion.&quot;&quot;&quot;</span>
 
-<span class="sd">        If the task is currently being executed and cannot be cancelled</span>
+<div class="viewcode-block" id="FutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.FutureResult.__init__.html#compas_fab.backends.FutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="FutureResult.result"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.FutureResult.result.html#compas_fab.backends.FutureResult.result">[docs]</a>    <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the feedback value returned by the instruction.</span>
+
+<span class="sd">        If the instruction has not yet returned feedback, it will wait</span>
+<span class="sd">        up to ``timeout`` seconds. If the ``timeout`` expires, the method</span>
+<span class="sd">        will raise an exception.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">done</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Timeout: future result not available&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_set_error_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Mark the future as failed.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        error : Exception</span>
+<span class="sd">            An exception instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="CancellableFutureResult"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.html#compas_fab.backends.CancellableFutureResult">[docs]</a><span class="k">class</span> <span class="nc">CancellableFutureResult</span><span class="p">(</span><span class="n">FutureResult</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents a future result of a long-running asynchronous operation that can be cancelled.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CancellableFutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.__init__.html#compas_fab.backends.CancellableFutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CancellableFutureResult</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="CancellableFutureResult.cancel"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.cancel.html#compas_fab.backends.CancellableFutureResult.cancel">[docs]</a>    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Attempt to cancel the operation.</span>
+
+<span class="sd">        If the operation is currently being executed and cannot be cancelled</span>
 <span class="sd">        then the method will return ``False``, otherwise the call will</span>
 <span class="sd">        be cancelled and the method will return ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Concrete tasks need to provide an implementation&#39;</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Needs concrete implementation&#39;</span><span class="p">)</span></div></div>
 </code></pre></div>
                     
                 
@@ -137,7 +192,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -150,7 +205,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

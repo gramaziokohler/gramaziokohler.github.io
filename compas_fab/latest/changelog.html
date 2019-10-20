@@ -62,6 +62,35 @@
 <p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
 and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <div class="section" id="id1">
+<h2>0.7.0</h2>
+<p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Fixed Python 2 vs Python 3 incompatibilities in <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors</span></code> module</p></li>
+<li><p>Changed example for loading PosConCM (includes parity argument, differs from PosCon3D)</p></li>
+<li><p>Changed format <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosConCM.set_flex_mount()</span></code></p></li>
+<li><p>Changed tasks.py to run <code class="docutils literal notranslate"><span class="pre">invoke</span> <span class="pre">test</span></code></p></li>
+<li><p>Renamed <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.CancellableTask</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.CancellableFutureResult</span></code></p></li>
+<li><p>ROS client: changed joint trajectory follower (<code class="docutils literal notranslate"><span class="pre">follow_joint_trajectory</span></code>) to support generic <code class="docutils literal notranslate"><span class="pre">JointTrajectory</span></code> arguments.</p></li>
+<li><p>ROS client: changed return type of trajectory execution methods to <code class="docutils literal notranslate"><span class="pre">CancellableFutureResult</span></code></p></li>
+</ul>
+<p><strong>Added</strong></p>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosCon3D.reset()</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosConCM.reset()</span></code></p></li>
+<li><p>ROS client: added support for MoveIt! execution action via <code class="docutils literal notranslate"><span class="pre">client.execute_joint_trajectory</span></code>.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.FutureResult</span></code> class to deal with long-running async tasks</p></li>
+</ul>
+<p><strong>Removed</strong></p>
+<ul class="simple">
+<li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosConCM.get_live_monitor_data()</span></code></p></li>
+<li><p>Removed non-implemented methods from <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code>: <code class="docutils literal notranslate"><span class="pre">send_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">send_configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">send_trajectory</span></code></p></li>
+</ul>
+<p><strong>Fixed</strong></p>
+<ul class="simple">
+<li><p>Fixed missing planner initialization when used without context manager.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
 <h2>0.6.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -84,7 +113,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id3">
 <h2>0.5.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -121,7 +150,7 @@ to the new trajectory classes.</p></li>
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id4">
 <h2>0.4.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -132,7 +161,7 @@ to the new trajectory classes.</p></li>
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <cite>compas</cite> core.</p></li>
 </ul>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id5">
 <h2>0.4.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -143,7 +172,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.4.10</p></li>
 </ul>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id6">
 <h2>0.3.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -157,14 +186,14 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.4.8</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id7">
 <h2>0.2.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id8">
 <h2>0.2.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -173,7 +202,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.3.2</p></li>
 </ul>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id9">
 <h2>0.1.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -237,14 +266,15 @@ to the new trajectory classes.</p></li>
 
                 <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Changelog</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.6.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.5.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.4.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.4.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.3.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.2.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.2.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.1.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.7.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.6.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.5.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.4.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.4.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.3.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.2.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.2.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +288,7 @@ to the new trajectory classes.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -271,7 +301,7 @@ to the new trajectory classes.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

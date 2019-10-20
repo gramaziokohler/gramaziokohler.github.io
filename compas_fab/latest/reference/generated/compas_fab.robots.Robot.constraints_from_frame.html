@@ -80,7 +80,8 @@ the robot’s main planning group.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerance_position</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">goal_constraints</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">tolerance_position</span><span class="p">,</span> <span class="n">tolerances_axes</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">tolerance_position</span><span class="p">,</span> <span class="n">tolerances_axes</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="go">[PositionConstraint(&#39;ee_link&#39;, BoundingVolume(2, Sphere(Point(0.400, 0.300, 0.400), 0.001)), 1.0), OrientationConstraint(&#39;ee_link&#39;, [0.5, 0.5, 0.5, 0.5], [0.017453292519943295, 0.017453292519943295, 0.017453292519943295], 1.0)]</span>
 </code></pre></div>
 </div>
 <p class="rubric">Notes</p>
@@ -128,6 +129,7 @@ and <a class="reference internal" href="compas_fab.robots.OrientationConstraint.
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -169,7 +171,7 @@ and <a class="reference internal" href="compas_fab.robots.OrientationConstraint.
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -182,7 +184,7 @@ and <a class="reference internal" href="compas_fab.robots.OrientationConstraint.
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

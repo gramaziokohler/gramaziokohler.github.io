@@ -90,16 +90,19 @@
 </tbody>
 </table>
 </div>
-<div class="section" id="tasks">
-<h2>Tasks</h2>
+<div class="section" id="long-running-tasks">
+<h2>Long-running tasks</h2>
 <table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask" title="compas_fab.backends.CancellableTask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancellableTask</span></code></a></p></td>
-<td><p>Preemptable task represents a long-running operation that can be cancelled.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.FutureResult.html#compas_fab.backends.FutureResult" title="compas_fab.backends.FutureResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FutureResult</span></code></a></p></td>
+<td><p>Represents a future result value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.CancellableFutureResult.html#compas_fab.backends.CancellableFutureResult" title="compas_fab.backends.CancellableFutureResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancellableFutureResult</span></code></a></p></td>
+<td><p>Represents a future result of a long-running asynchronous operation that can be cancelled.</p></td>
 </tr>
 </tbody>
 </table>
@@ -166,6 +169,7 @@
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -198,7 +202,7 @@
 <li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.backends</a><ul class="nav">
 <li class="nav-item"><a class="nav-link reference internal" href="#v-rep">V-REP</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#ros">ROS</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#tasks">Tasks</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#long-running-tasks">Long-running tasks</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#exceptions">Exceptions</a></li>
 </ul>
 </li>
@@ -213,7 +217,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -226,7 +230,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

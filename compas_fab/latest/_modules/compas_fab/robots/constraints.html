@@ -101,6 +101,8 @@
 <span class="sd">        &gt;&gt;&gt; from compas_fab.robots import BoundingVolume</span>
 <span class="sd">        &gt;&gt;&gt; box = Box(Frame.worldXY(), 1., 1., 1.)</span>
 <span class="sd">        &gt;&gt;&gt; bv = BoundingVolume.from_box(box)</span>
+<span class="sd">        &gt;&gt;&gt; bv.type</span>
+<span class="sd">        1</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">BOX</span><span class="p">,</span> <span class="n">box</span><span class="p">)</span></div>
 
@@ -118,6 +120,8 @@
 <span class="sd">        &gt;&gt;&gt; from compas_fab.robots import BoundingVolume</span>
 <span class="sd">        &gt;&gt;&gt; sphere = Sphere((1., 1., 1.), 5.)</span>
 <span class="sd">        &gt;&gt;&gt; bv = BoundingVolume.from_sphere(sphere)</span>
+<span class="sd">        &gt;&gt;&gt; bv.type</span>
+<span class="sd">        2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">SPHERE</span><span class="p">,</span> <span class="n">sphere</span><span class="p">)</span></div>
 
@@ -136,6 +140,8 @@
 <span class="sd">        &gt;&gt;&gt; from compas_fab.robots import BoundingVolume</span>
 <span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_obj(compas.get(&#39;faces.obj&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; bv = BoundingVolume.from_mesh(Mesh)</span>
+<span class="sd">        &gt;&gt;&gt; bv.type</span>
+<span class="sd">        3</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">MESH</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span></div>
 
@@ -367,13 +373,6 @@
 <div class="viewcode-block" id="PositionConstraint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PositionConstraint.copy.html#compas_fab.robots.PositionConstraint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounding_volume</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span></div></div>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-
-    <span class="kn">import</span> <span class="nn">doctest</span>
-    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
-    <span class="c1"># print([name for name in dir() if not name.startswith(&#39;_&#39;)])</span>
 </code></pre></div>
                     
                 
@@ -438,7 +437,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -451,7 +450,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

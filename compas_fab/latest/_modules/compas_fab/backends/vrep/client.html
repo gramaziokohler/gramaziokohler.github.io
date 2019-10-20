@@ -109,17 +109,16 @@
 
 <span class="sd">        &gt;&gt;&gt; from compas_fab.backends import VrepClient</span>
 <span class="sd">        &gt;&gt;&gt; with VrepClient() as client:</span>
-<span class="sd">        ...     print (&#39;Connected: %s&#39; % client.is_connected</span>
-<span class="sd">        ...</span>
+<span class="sd">        ...     print (&#39;Connected: %s&#39; % client.is_connected)</span>
 <span class="sd">        Connected: True</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        For more examples, check out the :ref:`V-REP examples page &lt;examples_vrep&gt;`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SUPPORTED_PLANNERS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;bitrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;bkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="s1">&#39;kpiece1&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;lazyprmstar&#39;</span><span class="p">,</span> <span class="s1">&#39;lbkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;lbtrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;pdst&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;prm&#39;</span><span class="p">,</span> <span class="s1">&#39;prrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtstar&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;sbl&#39;</span><span class="p">,</span> <span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="s1">&#39;trrt&#39;</span><span class="p">)</span>
+                           <span class="s1">&#39;lazyprmstar&#39;</span><span class="p">,</span> <span class="s1">&#39;lbkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;lbtrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;pdst&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;prm&#39;</span><span class="p">,</span> <span class="s1">&#39;prrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtstar&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;sbl&#39;</span><span class="p">,</span> <span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="s1">&#39;trrt&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="VrepClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.__init__.html#compas_fab.backends.VrepClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">19997</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">DEFAULT_SCALE</span><span class="p">,</span> <span class="n">lua_script</span><span class="o">=</span><span class="s1">&#39;RFL&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VrepClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -205,8 +204,8 @@
 <span class="sd">            &gt;&gt;&gt; from compas_fab.backends import VrepClient</span>
 <span class="sd">            &gt;&gt;&gt; with VrepClient() as client:</span>
 <span class="sd">            ...     matrices = client.get_object_matrices([0])</span>
-<span class="sd">            ...     print([int(i) for i in matrices[0]])</span>
-<span class="sd">            [0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 6]</span>
+<span class="sd">            ...     print([int(i) for i in matrices[0]])   # doctest: +SKIP</span>
+<span class="sd">            [0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 6]         # doctest: +SKIP</span>
 
 <span class="sd">        .. note::</span>
 <span class="sd">            The resulting dictionary is keyed by object handle.</span>
@@ -281,7 +280,7 @@
 <span class="sd">            &gt;&gt;&gt; with VrepClient() as client:</span>
 <span class="sd">            ...     config = Configuration.from_prismatic_and_revolute_values([7.600, -4.500, -5.500],</span>
 <span class="sd">            ...                                                               to_radians([90, 0, 0, 0, 0, -90]))</span>
-<span class="sd">            ...     client.set_robot_config(Robot.basic(&#39;A&#39;, index=0), config)</span>
+<span class="sd">            ...     client.set_robot_config(rfl.Robot(&#39;A&#39;), config)</span>
 <span class="sd">            ...</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
@@ -305,7 +304,7 @@
 
 <span class="sd">            &gt;&gt;&gt; from compas_fab.robots import *</span>
 <span class="sd">            &gt;&gt;&gt; with VrepClient() as client:</span>
-<span class="sd">            ...     config = client.get_robot_config(Robot.basic(&#39;A&#39;, index=0))</span>
+<span class="sd">            ...     config = client.get_robot_config(rfl.Robot(&#39;A&#39;))</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            An instance of :class:`.Configuration`.</span>
@@ -327,7 +326,7 @@
 
 <span class="sd">            &gt;&gt;&gt; from compas_fab.robots import *</span>
 <span class="sd">            &gt;&gt;&gt; with VrepClient() as client:</span>
-<span class="sd">            ...     frame = client.forward_kinematics(Robot.basic(&#39;A&#39;, index=0))</span>
+<span class="sd">            ...     frame = client.forward_kinematics(rfl.Robot(&#39;A&#39;))</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            An instance of :class:`Frame`.</span>
@@ -335,8 +334,8 @@
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
         <span class="n">_res</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_child_script</span><span class="p">(</span><span class="s1">&#39;getIkTipPose&#39;</span><span class="p">,</span>
-                                                      <span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]],</span>
-                                                      <span class="p">[],</span> <span class="p">[])</span>
+                                                     <span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]],</span>
+                                                     <span class="p">[],</span> <span class="p">[])</span>
         <span class="k">return</span> <span class="n">vrep_pose_to_frame</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VrepClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.inverse_kinematics.html#compas_fab.backends.VrepClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_frame</span><span class="p">,</span> <span class="n">metric_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gantry_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -812,7 +811,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -825,7 +824,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

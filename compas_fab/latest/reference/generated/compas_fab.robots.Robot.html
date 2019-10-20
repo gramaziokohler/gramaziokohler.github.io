@@ -61,7 +61,7 @@
 <dl class="class">
 <dt id="compas_fab.robots.Robot">
 <em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Robot</code><span class="sig-paren">(</span><em>model</em>, <em>artist=None</em>, <em>semantics=None</em>, <em>client=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a robot.</p>
 <p>This class binds together several building blocks, such as the robot’s
 descriptive model, its semantic information and an instance of a backend
@@ -231,31 +231,22 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale" title="compas_fab.robots.Robot.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
 <td><p>Scales the robot geometry by factor (absolute).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.send_configuration.html#compas_fab.robots.Robot.send_configuration" title="compas_fab.robots.Robot.send_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_configuration</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.send_frame.html#compas_fab.robots.Robot.send_frame" title="compas_fab.robots.Robot.send_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_frame</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.send_trajectory.html#compas_fab.robots.Robot.send_trajectory" title="compas_fab.robots.Robot.send_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_trajectory</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.set_RCF.html#compas_fab.robots.Robot.set_RCF" title="compas_fab.robots.Robot.set_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_RCF</span></code></a>(robot_coordinate_frame[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.set_RCF.html#compas_fab.robots.Robot.set_RCF" title="compas_fab.robots.Robot.set_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_RCF</span></code></a>(robot_coordinate_frame[, group])</p></td>
 <td><p>Moves the origin frame of the robot to the robot_coordinate_frame.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_RCF_WCF.html#compas_fab.robots.Robot.transformation_RCF_WCF" title="compas_fab.robots.Robot.transformation_RCF_WCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_RCF_WCF</span></code></a>([group])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_RCF_WCF.html#compas_fab.robots.Robot.transformation_RCF_WCF" title="compas_fab.robots.Robot.transformation_RCF_WCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_RCF_WCF</span></code></a>([group])</p></td>
 <td><p>Returns the transformation from the robot’s coordinate system (RCF) to the world coordinate system (WCF).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_WCF_RCF.html#compas_fab.robots.Robot.transformation_WCF_RCF" title="compas_fab.robots.Robot.transformation_WCF_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_WCF_RCF</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_WCF_RCF.html#compas_fab.robots.Robot.transformation_WCF_RCF" title="compas_fab.robots.Robot.transformation_WCF_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_WCF_RCF</span></code></a>([group])</p></td>
 <td><p>Returns the transformation from the world coordinate system (WCF) to the robot’s coordinate system (RCF).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes" title="compas_fab.robots.Robot.transformed_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_axes</span></code></a>(configuration[, group])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes" title="compas_fab.robots.Robot.transformed_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_axes</span></code></a>(configuration[, group])</p></td>
 <td><p>Returns the robot’s transformed axes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames" title="compas_fab.robots.Robot.transformed_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_frames</span></code></a>(configuration[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames" title="compas_fab.robots.Robot.transformed_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_frames</span></code></a>(configuration[, group])</p></td>
 <td><p>Returns the robot’s transformed frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update" title="compas_fab.robots.Robot.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, group, visual, collision])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update" title="compas_fab.robots.Robot.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, group, visual, collision])</p></td>
 <td><p>Updates the robot’s geometry.</p></td>
 </tr>
 </tbody>
@@ -334,6 +325,7 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -375,7 +367,7 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -388,7 +380,7 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

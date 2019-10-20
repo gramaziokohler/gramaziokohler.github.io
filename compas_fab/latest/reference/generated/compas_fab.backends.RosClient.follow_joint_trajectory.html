@@ -65,7 +65,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>joint_trajectory</strong> (<em>JointTrajectory</em>) – Joint trajectory message as computed by MoveIt planner</p></li>
+<li><p><strong>joint_trajectory</strong> (<a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a>) – Instance of joint trajectory. Note: for backwards compatibility, this supports a ROS Msg being passed as well.</p></li>
 <li><p><strong>action_name</strong> (<em>string</em>) – ROS action name, defaults to <code class="docutils literal notranslate"><span class="pre">/joint_trajectory_action</span></code> but some drivers need <code class="docutils literal notranslate"><span class="pre">/follow_joint_trajectory</span></code>.</p></li>
 <li><p><strong>callback</strong> (<em>callable</em>) – Function to be invoked when the goal is completed, requires
 one positional parameter <code class="docutils literal notranslate"><span class="pre">result</span></code>.</p></li>
@@ -76,7 +76,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference internal" href="compas_fab.backends.CancellableTask.html#compas_fab.backends.CancellableTask" title="compas_fab.backends.CancellableTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">CancellableTask</span></code></a> – An instance of a cancellable tasks.</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CancellableTask</span></code> – An instance of a cancellable tasks.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -120,6 +120,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -161,7 +162,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -174,7 +175,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

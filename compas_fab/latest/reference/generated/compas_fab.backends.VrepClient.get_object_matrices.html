@@ -64,19 +64,19 @@
 <dd><p>Gets a dictionary of matrices keyed by object handle.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>object_handles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – List of object handles (identifiers)
+<dd class="field-odd"><p><strong>object_handles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – List of object handles (identifiers)
 to retrieve matrices from.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><em>dict</em> – Dictionary of matrices represented by a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of 12 <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> values.</p>
+<dd class="field-even"><p><em>dict</em> – Dictionary of matrices represented by a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of 12 <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> values.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">VrepClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">matrices</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_object_matrices</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
-<span class="go">[0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 6]</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>   <span class="c1"># doctest: +SKIP</span>
+<span class="go">[0, 0, 0, 19, 0, 0, 0, 10, 0, 0, 0, 6]         # doctest: +SKIP</span>
 </code></pre></div>
 </div>
 <div class="admonition note">
@@ -124,6 +124,7 @@ to retrieve matrices from.</p>
 <li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
@@ -165,7 +166,7 @@ to retrieve matrices from.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 02, 2019.
+                Last updated on Oct 21, 2019.
             
 
             
@@ -178,7 +179,7 @@ to retrieve matrices from.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.6.0',
+            VERSION           : '0.7.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',
