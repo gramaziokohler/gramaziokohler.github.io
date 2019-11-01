@@ -281,7 +281,14 @@
 <div class="viewcode-block" id="OrientationConstraint.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.OrientationConstraint.transform.html#compas_fab.robots.OrientationConstraint.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_quaternion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span><span class="p">)</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">transformation</span> <span class="o">*</span> <span class="n">R</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">quaternion</span></div>
+
+        <span class="c1"># Due to a bug on COMPAS 0.10.0</span>
+        <span class="c1"># (Fixed on https://github.com/compas-dev/compas/pull/378 but not released atm)</span>
+        <span class="c1"># we work around the retrival of the rotation component of R and instead decompose and get it</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">decomposed</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">quaternion</span></div>
+        <span class="c1"># After that bug fix is released, the previous two lines should be changed to:</span>
+        <span class="c1"># self.quaternion = R.rotation.quaternion</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;OrientationConstraint(&#39;</span><span class="si">{0}</span><span class="s2">&#39;, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerances</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
@@ -437,7 +444,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 21, 2019.
+                Last updated on Nov 02, 2019.
             
 
             
@@ -450,7 +457,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.7.0',
+            VERSION           : '0.8.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

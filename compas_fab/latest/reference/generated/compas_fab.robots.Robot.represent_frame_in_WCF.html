@@ -19,11 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="Robot.scale" href="compas_fab.robots.Robot.scale.html" />
     
-    
-    
-        <link rel="prev" title="Robot.represent_frame_in_RCF" href="compas_fab.robots.Robot.represent_frame_in_RCF.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -58,25 +54,6 @@
 
                     <div class="detail section" id="robot-represent-frame-in-wcf">
 <h1>Robot.represent_frame_in_WCF</h1>
-<dl class="method">
-<dt id="compas_fab.robots.Robot.represent_frame_in_WCF">
-<code class="descclassname">Robot.</code><code class="descname">represent_frame_in_WCF</code><span class="sig-paren">(</span><em>frame_RCF</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.represent_frame_in_WCF"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Represents a frame from the robot’s coordinate system (RCF) in the world coordinate system (WCF).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>frame_RCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – A frame in the robot’s coordinate frame.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> – A frame in the world coordinate frame.</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="o">-</span><span class="mf">0.363</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.147</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.388</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.351</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.852</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.276</span><span class="p">,</span> <span class="mf">0.926</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.256</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">represent_frame_in_WCF</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</dd></dl>
-
 </div>
 
                     
@@ -105,25 +82,12 @@
                         <div class="navbar-expand-md">
                             <div id="compas-navigation" class="collapse navbar-collapse compas-navigation">
 
-                            <ul class="nav flex-column active">
+                            <ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="../../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../changelog.html">Changelog</a></li>
@@ -158,7 +122,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 21, 2019.
+                Last updated on Nov 02, 2019.
             
 
             
@@ -171,7 +135,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.7.0',
+            VERSION           : '0.8.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

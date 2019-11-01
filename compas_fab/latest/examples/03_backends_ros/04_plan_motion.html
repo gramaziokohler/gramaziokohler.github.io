@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="3.5. Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
+        <link rel="next" title="3.5. Full examples" href="05_full_examples.html" />
     
     
     
@@ -80,7 +80,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 
     <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
-    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
     <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">0.042</span><span class="p">,</span> <span class="mf">0.033</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">5.282</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.528</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">])</span>
 
     <span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span>
@@ -127,6 +127,19 @@ goal with constraints rather than defined frames.</p>
 
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Computed kinematic path with </span><span class="si">%d</span><span class="s2"> configurations.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
+    <span class="c1"># print(&#39;Executing&#39;)</span>
+
+    <span class="c1"># robot.client.follow_joint_trajectory(</span>
+    <span class="c1">#     trajectory, callback=done_handler, errback=errhandler, feedback_callback=handler)</span>
+
+    <span class="c1"># wait = robot.client.execute_joint_trajectory(trajectory)</span>
+
+    <span class="c1"># print(&#39;Waiting...&#39;)</span>
+    <span class="c1"># r = wait.result()</span>
+    <span class="c1"># print(&#39;Done waiting...&#39;)</span>
+
+    <span class="c1"># import time</span>
+    <span class="c1"># time.sleep(1)</span>
 </code></pre></div>
 </div>
 </div>
@@ -170,9 +183,10 @@ goal with constraints rather than defined frames.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="02_forward_and_inverse_kinematics.html">3.2. Forward and inverse kinematics</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="03_collision_objects.html">3.3. Planning scene and collision objects</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.4. Plan motion</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.5. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.6. Creating a MoveIt! package from the custom created URDF</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.7. Creating a URDF of the UR10 on two linear axes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="05_full_examples.html">3.5. Full examples</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.7. Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.8. Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
@@ -217,7 +231,7 @@ goal with constraints rather than defined frames.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 21, 2019.
+                Last updated on Nov 02, 2019.
             
 
             
@@ -230,7 +244,7 @@ goal with constraints rather than defined frames.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.7.0',
+            VERSION           : '0.8.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

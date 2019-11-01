@@ -59,7 +59,6 @@
 
 <span class="kn">import</span> <span class="nn">itertools</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Transformation</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Scale</span>
 
@@ -144,14 +143,34 @@
             <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span>
 
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geo</span><span class="p">:</span>
+            <span class="c1"># NOTE: Currently, shapes assign their meshes to an</span>
+            <span class="c1"># attribute called `geometry`, but this will change soon to `meshes`.</span>
+            <span class="c1"># This code handles the situation in a forward-compatible</span>
+            <span class="c1"># manner. Eventually, this can be simplified to use only `meshes` attr</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s1">&#39;meshes&#39;</span><span class="p">):</span>
+                <span class="n">meshes</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">meshes</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">meshes</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">geometry</span>
+
+            <span class="k">if</span> <span class="n">meshes</span><span class="p">:</span>
+                <span class="c1"># Coerce meshes into an iteratable (a tuple if not natively iterable)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">meshes</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                    <span class="n">meshes</span> <span class="o">=</span> <span class="p">(</span><span class="n">meshes</span><span class="p">,)</span>
+
                 <span class="n">color</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s1">&#39;get_color&#39;</span><span class="p">):</span>
                     <span class="n">color</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">get_color</span><span class="p">()</span>
-                <span class="c1"># create native geometry</span>
-                <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_geometry</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">geo</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
-                <span class="c1"># transform native geometry based on saved init transform</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">init_transformation</span><span class="p">)</span>
+
+                <span class="n">native_geometry</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">meshes</span><span class="p">:</span>
+                    <span class="c1"># create native geometry</span>
+                    <span class="n">native_mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_geometry</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+                    <span class="c1"># transform native geometry based on saved init transform</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">native_mesh</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">init_transformation</span><span class="p">)</span>
+                    <span class="c1"># append to list</span>
+                    <span class="n">native_geometry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">native_mesh</span><span class="p">)</span>
+
+                <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span> <span class="o">=</span> <span class="n">native_geometry</span>
                 <span class="n">item</span><span class="o">.</span><span class="n">current_transformation</span> <span class="o">=</span> <span class="n">Transformation</span><span class="p">()</span>
 
         <span class="k">for</span> <span class="n">child_joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
@@ -183,7 +202,8 @@
             <span class="c1"># Some links have only collision geometry, not visual. These meshes</span>
             <span class="c1"># have not been loaded.</span>
             <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">geometry</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">child_joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
             <span class="c1"># Recursive call</span>
@@ -207,7 +227,8 @@
 <span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">relative_transformation</span> <span class="o">=</span> <span class="n">transformation</span> <span class="o">*</span> <span class="n">item</span><span class="o">.</span><span class="n">current_transformation</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">relative_transformation</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">native_geometry</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">relative_transformation</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">current_transformation</span> <span class="o">=</span> <span class="n">transformation</span>
 
 <div class="viewcode-block" id="BaseRobotArtist.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -245,14 +266,17 @@
         <span class="sd">&quot;&quot;&quot;Draws all visual geometry of the robot.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_links</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span></div>
+                <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">native_geometry</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">native_geometry</span></div>
 
 <div class="viewcode-block" id="BaseRobotArtist.draw_collision"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.draw_collision.html#compas_fab.artists.BaseRobotArtist.draw_collision">[docs]</a>    <span class="k">def</span> <span class="nf">draw_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Draws all collision geometry of the robot.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_links</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
-                    <span class="k">yield</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span></div></div>
+                    <span class="k">for</span> <span class="n">native_geometry</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">native_geometry</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">native_geometry</span></div></div>
 </code></pre></div>
                     
                 
@@ -317,7 +341,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 21, 2019.
+                Last updated on Nov 02, 2019.
             
 
             
@@ -330,7 +354,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.7.0',
+            VERSION           : '0.8.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -195,19 +195,16 @@
 
         <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.plan_cartesian_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_cartesian_motion.html#compas_fab.backends.RosClient.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
-                              <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span>
-                              <span class="n">start_configuration</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="p">,</span>
+<div class="viewcode-block" id="RosClient.plan_cartesian_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_cartesian_motion.html#compas_fab.backends.RosClient.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                              <span class="n">robot</span><span class="p">,</span> <span class="n">frames</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
+                              <span class="n">group</span><span class="p">,</span> <span class="n">max_step</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="p">,</span>
                               <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">path_constraints</span><span class="p">,</span>
                               <span class="n">attached_collision_meshes</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;frames&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frames</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_link</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_types</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;max_step&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_step</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;jump_threshold&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">jump_threshold</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;avoid_collisions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">avoid_collisions</span>
@@ -218,23 +215,19 @@
 
         <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.plan_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_motion.html#compas_fab.backends.RosClient.plan_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
-                    <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                    <span class="n">trajectory_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                    <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
+<div class="viewcode-block" id="RosClient.plan_motion"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.plan_motion.html#compas_fab.backends.RosClient.plan_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
+                    <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">trajectory_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                    <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
                     <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                     <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
                     <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                     <span class="n">workspace_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;goal_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">goal_constraints</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_link</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_types&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_types</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;trajectory_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trajectory_constraints</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;planner_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">planner_id</span>
@@ -538,7 +531,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Oct 21, 2019.
+                Last updated on Nov 02, 2019.
             
 
             
@@ -551,7 +544,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.7.0',
+            VERSION           : '0.8.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',
