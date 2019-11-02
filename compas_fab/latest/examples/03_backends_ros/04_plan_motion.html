@@ -127,19 +127,6 @@ goal with constraints rather than defined frames.</p>
 
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Computed kinematic path with </span><span class="si">%d</span><span class="s2"> configurations.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
-    <span class="c1"># print(&#39;Executing&#39;)</span>
-
-    <span class="c1"># robot.client.follow_joint_trajectory(</span>
-    <span class="c1">#     trajectory, callback=done_handler, errback=errhandler, feedback_callback=handler)</span>
-
-    <span class="c1"># wait = robot.client.execute_joint_trajectory(trajectory)</span>
-
-    <span class="c1"># print(&#39;Waiting...&#39;)</span>
-    <span class="c1"># r = wait.result()</span>
-    <span class="c1"># print(&#39;Done waiting...&#39;)</span>
-
-    <span class="c1"># import time</span>
-    <span class="c1"># time.sleep(1)</span>
 </code></pre></div>
 </div>
 </div>
