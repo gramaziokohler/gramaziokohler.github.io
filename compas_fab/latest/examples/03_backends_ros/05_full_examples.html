@@ -71,24 +71,11 @@ the entire robot model over ROS, and a complete Grasshopper canvas as a playgrou
 for these features.</p>
 <div class="section" id="forward-kinematics">
 <h2>3.5.1. Forward Kinematics</h2>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
-
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
-    <span class="n">srdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_srdf</span><span class="p">()</span>
-
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_string</span><span class="p">(</span><span class="n">srdf</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="n">semantics</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
 
     <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">([</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 
@@ -105,23 +92,10 @@ for these features.</p>
 <div class="section" id="inverse-kinematics">
 <h2>3.5.2. Inverse Kinematics</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
-
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
-    <span class="n">srdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_srdf</span><span class="p">()</span>
-
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_string</span><span class="p">(</span><span class="n">srdf</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="n">semantics</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">()</span>
@@ -135,24 +109,11 @@ for these features.</p>
 <div class="section" id="plan-cartesian-motion">
 <h2>3.5.3. Plan cartesian motion</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
-
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
-    <span class="n">srdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_srdf</span><span class="p">()</span>
-
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_string</span><span class="p">(</span><span class="n">srdf</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="n">semantics</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 
     <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
@@ -177,24 +138,12 @@ for these features.</p>
 <h2>3.5.4. Plan motion</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
-    <span class="n">srdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_srdf</span><span class="p">()</span>
-
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_string</span><span class="p">(</span><span class="n">srdf</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="n">semantics</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
     <span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 
     <span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -322,7 +271,7 @@ a single document, as a reference of how these features could be integrated:</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 02, 2019.
+                Last updated on Nov 13, 2019.
             
 
             
@@ -335,7 +284,7 @@ a single document, as a reference of how these features could be integrated:</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.8.0',
+            VERSION           : '0.9.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

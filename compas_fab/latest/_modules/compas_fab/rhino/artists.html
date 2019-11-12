@@ -61,7 +61,6 @@
 
 <span class="kn">import</span> <span class="nn">compas</span>
 <span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="k">import</span> <span class="n">rgb_to_rgb</span>
-<span class="kn">import</span> <span class="nn">compas_rhino</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.artists</span> <span class="k">import</span> <span class="n">BaseRobotArtist</span>
 
@@ -84,7 +83,7 @@
     <span class="sd">&quot;&quot;&quot;Visualizer for robots inside a Rhino environment.&quot;&quot;&quot;</span>
 
     <span class="c1"># TODO: Add layer (e.g. __init__(self, robot, layer=None))</span>
-<div class="viewcode-block" id="RobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.__init__.html#compas_fab.rhino.RobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span> <span class="c1">#, layer=None):</span>
+<div class="viewcode-block" id="RobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.__init__.html#compas_fab.rhino.RobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.transform.html#compas_fab.rhino.RobotArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
@@ -144,16 +143,6 @@
         <span class="n">rs</span><span class="o">.</span><span class="n">EnableRedraw</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">rs</span><span class="o">.</span><span class="n">Redraw</span><span class="p">()</span></div></div>
 
-    <span class="c1"># def clear_layer(self):</span>
-    <span class="c1">#     &quot;&quot;&quot;Clear the main layer of the artist.&quot;&quot;&quot;</span>
-    <span class="c1">#     if self.layer:</span>
-    <span class="c1">#         compas_rhino.clear_layer(self.layer)</span>
-    <span class="c1">#     else:</span>
-    <span class="c1">#         compas_rhino.clear_current_layer()</span>
-
-    <span class="c1"># def clear(self):</span>
-    <span class="c1">#     &quot;&quot;&quot;Clear the robot.&quot;&quot;&quot;</span>
-    <span class="c1">#     self.clear_robot()</span>
 
 <span class="c1"># TODO: Move to compas_rhino.geometry</span>
 <span class="k">def</span> <span class="nf">xform_from_transformation</span><span class="p">(</span><span class="n">transformation</span><span class="p">):</span>
@@ -234,7 +223,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 02, 2019.
+                Last updated on Nov 13, 2019.
             
 
             
@@ -247,7 +236,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.8.0',
+            VERSION           : '0.9.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

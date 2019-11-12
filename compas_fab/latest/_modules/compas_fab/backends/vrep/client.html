@@ -56,18 +56,15 @@
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">from</span> <span class="nn">timeit</span> <span class="k">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
 
-<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">matrix_from_frame</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="k">import</span> <span class="n">BackendError</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.remote_api</span> <span class="k">import</span> <span class="n">vrep</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Configuration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Robot</span>
 
 <span class="n">DEFAULT_SCALE</span> <span class="o">=</span> <span class="mf">1.</span>
 <span class="n">DEFAULT_OP_MODE</span> <span class="o">=</span> <span class="n">vrep</span><span class="o">.</span><span class="n">simx_opmode_blocking</span>
@@ -116,9 +113,9 @@
 <span class="sd">        For more examples, check out the :ref:`V-REP examples page &lt;examples_vrep&gt;`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SUPPORTED_PLANNERS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;bitrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;bkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;est&#39;</span><span class="p">,</span> <span class="s1">&#39;kpiece1&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;lazyprmstar&#39;</span><span class="p">,</span> <span class="s1">&#39;lbkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;lbtrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;pdst&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;prm&#39;</span><span class="p">,</span> <span class="s1">&#39;prrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtstar&#39;</span><span class="p">,</span>
-                           <span class="s1">&#39;sbl&#39;</span><span class="p">,</span> <span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="s1">&#39;trrt&#39;</span><span class="p">)</span>
+                          <span class="s1">&#39;lazyprmstar&#39;</span><span class="p">,</span> <span class="s1">&#39;lbkpiece1&#39;</span><span class="p">,</span> <span class="s1">&#39;lbtrrt&#39;</span><span class="p">,</span> <span class="s1">&#39;pdst&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;prm&#39;</span><span class="p">,</span> <span class="s1">&#39;prrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtstar&#39;</span><span class="p">,</span>
+                          <span class="s1">&#39;sbl&#39;</span><span class="p">,</span> <span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="s1">&#39;trrt&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="VrepClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.__init__.html#compas_fab.backends.VrepClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">19997</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">DEFAULT_SCALE</span><span class="p">,</span> <span class="n">lua_script</span><span class="o">=</span><span class="s1">&#39;RFL&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VrepClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -231,7 +228,7 @@
 <span class="sd">        effectively removes one degree of freedom (DOF).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance.</span>
 <span class="sd">            metric_values (:obj:`list` of :obj:`float`): List containing one value</span>
 <span class="sd">                per configurable joint. Each value ranges from 0 to 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -247,7 +244,7 @@
         <span class="sd">&quot;&quot;&quot;Moves the robot to a given pose, specified as a frame.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to move.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to move.</span>
 <span class="sd">            frame (:class:`Frame`): Target or goal frame.</span>
 
 <span class="sd">        Returns:</span>
@@ -270,7 +267,7 @@
         <span class="sd">&quot;&quot;&quot;Moves the robot to the specified configuration.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to move.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to move.</span>
 <span class="sd">            config (:class:`Configuration` instance): Describes the position of the</span>
 <span class="sd">                robot as an instance of :class:`Configuration`.</span>
 
@@ -298,7 +295,7 @@
         <span class="sd">&quot;&quot;&quot;Gets the current configuration of the specified robot.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance.</span>
 
 <span class="sd">        Examples:</span>
 
@@ -320,7 +317,7 @@
         <span class="sd">&quot;&quot;&quot;Calculates forward kinematics to get the current end-effector pose.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance.</span>
 
 <span class="sd">        Examples:</span>
 
@@ -334,15 +331,15 @@
         <span class="n">assert_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 
         <span class="n">_res</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">pose</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_child_script</span><span class="p">(</span><span class="s1">&#39;getIkTipPose&#39;</span><span class="p">,</span>
-                                                     <span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]],</span>
-                                                     <span class="p">[],</span> <span class="p">[])</span>
+                                                    <span class="p">[</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]],</span>
+                                                    <span class="p">[],</span> <span class="p">[])</span>
         <span class="k">return</span> <span class="n">vrep_pose_to_frame</span><span class="p">(</span><span class="n">pose</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VrepClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.inverse_kinematics.html#compas_fab.backends.VrepClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_frame</span><span class="p">,</span> <span class="n">metric_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gantry_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">arm_joint_limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_trials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates inverse kinematics to find valid robot configurations for the specified goal frame.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance.</span>
 <span class="sd">            goal_frame (:class:`Frame`): Target or goal frame.</span>
 <span class="sd">            metric_values (:obj:`list` of :obj:`float`): List containing one value</span>
 <span class="sd">                per configurable joint. Each value ranges from 0 to 1,</span>
@@ -412,7 +409,7 @@
         <span class="sd">&quot;&quot;&quot;Picks up a building member and attaches it to the robot.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to use for pick up.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to use for pick up.</span>
 <span class="sd">            building_member_mesh (:class:`compas.datastructures.Mesh`): Mesh</span>
 <span class="sd">                of the building member that will be attached to the robot.</span>
 <span class="sd">            pickup_pose (:class:`Frame`): Pickup frame.</span>
@@ -510,7 +507,7 @@
 <span class="sd">        specific goal configuration.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to move.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to move.</span>
 <span class="sd">            goal_configs (:obj:`list` of :class:`Configuration`): List of target or goal configurations.</span>
 <span class="sd">            metric_values (:obj:`list` of :obj:`float`): List containing one value</span>
 <span class="sd">                per configurable joint. Each value ranges from 0 to 1,</span>
@@ -548,7 +545,7 @@
         <span class="sd">&quot;&quot;&quot;Find a path plan to move the selected robot from its current position to the `goal_frame`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to move.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to move.</span>
 <span class="sd">            goal_frame (:class:`Frame`): Target or goal frame.</span>
 <span class="sd">            metric_values (:obj:`list` of :obj:`float`): List containing one value</span>
 <span class="sd">                per configurable joint. Each value ranges from 0 to 1,</span>
@@ -584,7 +581,7 @@
         <span class="sd">&quot;&quot;&quot;Adds a building member to the 3D scene and attaches it to the robot.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot (:class:`Robot`): Robot instance to attach the building member to.</span>
+<span class="sd">            robot (:class:`compas_fab.robots.Robot`): Robot instance to attach the building member to.</span>
 <span class="sd">            building_member_mesh (:class:`compas.datastructures.Mesh`): Mesh</span>
 <span class="sd">                of the building member that will be attached to the robot.</span>
 
@@ -811,7 +808,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 02, 2019.
+                Last updated on Nov 13, 2019.
             
 
             
@@ -824,7 +821,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.8.0',
+            VERSION           : '0.9.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

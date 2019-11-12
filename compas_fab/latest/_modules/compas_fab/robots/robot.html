@@ -410,7 +410,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">get_joint_types_by_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.get_joint_types_by_names"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_joint_types_by_names.html#compas_fab.robots.Robot.get_joint_types_by_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_joint_types_by_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a list of joint types for a list of joint names.</span>
 
 <span class="sd">        Parameters</span>
@@ -422,7 +422,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        list of str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Robot.get_joint_by_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_joint_by_name.html#compas_fab.robots.Robot.get_joint_by_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_joint_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the joint in the robot model matching its name.</span>
@@ -684,7 +684,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_frame</span><span class="p">(</span><span class="n">group</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">to_local_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.to_local_coords"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.to_local_coords.html#compas_fab.robots.Robot.to_local_coords">[docs]</a>    <span class="k">def</span> <span class="nf">to_local_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Represents a frame from the world coordinate system (WCF) in the robot&#39;s coordinate system (RCF).</span>
 
 <span class="sd">        Parameters</span>
@@ -705,9 +705,9 @@
 <span class="sd">        Frame(Point(-0.363, 0.003, -0.147), Vector(0.388, -0.351, -0.852), Vector(0.276, 0.926, -0.256))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">frame_WCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_WCF_RCF</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">frame_RCF</span>
+        <span class="k">return</span> <span class="n">frame_RCF</span></div>
 
-    <span class="k">def</span> <span class="nf">to_world_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_RCF</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.to_world_coords"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.to_world_coords.html#compas_fab.robots.Robot.to_world_coords">[docs]</a>    <span class="k">def</span> <span class="nf">to_world_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_RCF</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Represents a frame from the robot&#39;s coordinate system (RCF) in the world coordinate system (WCF).</span>
 
 <span class="sd">        Parameters</span>
@@ -728,7 +728,7 @@
 <span class="sd">        Frame(Point(-0.363, 0.003, -0.147), Vector(0.388, -0.351, -0.852), Vector(0.276, 0.926, -0.256))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">frame_RCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">frame_WCF</span>
+        <span class="k">return</span> <span class="n">frame_WCF</span></div>
 
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># checks</span>
@@ -847,7 +847,8 @@
 <span class="sd">        &gt;&gt;&gt; tolerances_axes = [math.radians(1)]</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; robot.constraints_from_frame(frame, tolerance_position, tolerances_axes, group)</span>
-<span class="sd">        [PositionConstraint(&#39;ee_link&#39;, BoundingVolume(2, Sphere(Point(0.400, 0.300, 0.400), 0.001)), 1.0), OrientationConstraint(&#39;ee_link&#39;, [0.5, 0.5, 0.5, 0.5], [0.017453292519943295, 0.017453292519943295, 0.017453292519943295], 1.0)]</span>
+<span class="sd">        [PositionConstraint(&#39;ee_link&#39;, BoundingVolume(2, Sphere(Point(0.400, 0.300, 0.400), 0.001)), 1.0), \</span>
+<span class="sd">        OrientationConstraint(&#39;ee_link&#39;, [0.5, 0.5, 0.5, 0.5], [0.017453292519943295, 0.017453292519943295, 0.017453292519943295], 1.0)]</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -881,7 +882,12 @@
 <span class="sd">        &gt;&gt;&gt; tolerances = [math.radians(5)] * 6</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; robot.constraints_from_configuration(configuration, tolerances, group)</span>
-<span class="sd">        [JointConstraint(&#39;shoulder_pan_joint&#39;, -0.042, 0.08726646259971647, 1.0), JointConstraint(&#39;shoulder_lift_joint&#39;, 4.295, 0.08726646259971647, 1.0), JointConstraint(&#39;elbow_joint&#39;, -4.11, 0.08726646259971647, 1.0), JointConstraint(&#39;wrist_1_joint&#39;, -3.327, 0.08726646259971647, 1.0), JointConstraint(&#39;wrist_2_joint&#39;, 4.755, 0.08726646259971647, 1.0), JointConstraint(&#39;wrist_3_joint&#39;, 0.0, 0.08726646259971647, 1.0)]</span>
+<span class="sd">        [JointConstraint(&#39;shoulder_pan_joint&#39;, -0.042, 0.08726646259971647, 1.0), \</span>
+<span class="sd">        JointConstraint(&#39;shoulder_lift_joint&#39;, 4.295, 0.08726646259971647, 1.0), \</span>
+<span class="sd">        JointConstraint(&#39;elbow_joint&#39;, -4.11, 0.08726646259971647, 1.0), \</span>
+<span class="sd">        JointConstraint(&#39;wrist_1_joint&#39;, -3.327, 0.08726646259971647, 1.0), \</span>
+<span class="sd">        JointConstraint(&#39;wrist_2_joint&#39;, 4.755, 0.08726646259971647, 1.0), \</span>
+<span class="sd">        JointConstraint(&#39;wrist_3_joint&#39;, 0.0, 0.08726646259971647, 1.0)]</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1497,7 +1503,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 02, 2019.
+                Last updated on Nov 13, 2019.
             
 
             
@@ -1510,7 +1516,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.8.0',
+            VERSION           : '0.9.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

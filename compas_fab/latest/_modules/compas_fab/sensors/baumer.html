@@ -102,7 +102,8 @@
     <span class="n">FRAME_HEAD</span> <span class="o">=</span> <span class="s1">&#39;{</span><span class="si">%s</span><span class="s1">,</span><span class="si">%s</span><span class="s1">,</span><span class="si">%s</span><span class="s1">&#39;</span>
     <span class="n">FRAME_TAIL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="s1">}&#39;</span>
     <span class="n">BROADCAST_ADDRESS</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">MEASUREMENT_TYPES</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Edge L rise&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge L fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge R rise&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge R fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Center width&#39;</span><span class="p">,</span> <span class="s1">&#39;Gap&#39;</span><span class="p">,</span> <span class="s1">&#39;Center gap&#39;</span><span class="p">)</span>
+    <span class="n">MEASUREMENT_TYPES</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Edge L rise&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge L fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Edge R rise&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Edge R fall&#39;</span><span class="p">,</span> <span class="s1">&#39;Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Center width&#39;</span><span class="p">,</span> <span class="s1">&#39;Gap&#39;</span><span class="p">,</span> <span class="s1">&#39;Center gap&#39;</span><span class="p">)</span>
     <span class="n">QUALITY</span> <span class="o">=</span> <span class="p">{</span>
         <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Valid&#39;</span><span class="p">,</span>
         <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Low signal&#39;</span><span class="p">,</span>
@@ -423,12 +424,12 @@
     <span class="n">FRAME_TAIL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%s</span><span class="se">\r\n</span><span class="s1">&#39;</span>
     <span class="n">BROADCAST_ADDRESS</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">MEASUREMENT_TYPES</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Diameter&#39;</span> <span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
-        <span class="s1">&#39;X_center&#39;</span> <span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
-        <span class="s1">&#39;Z_center&#39;</span> <span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-        <span class="s1">&#39;X_left&#39;</span>   <span class="p">:</span> <span class="mi">31</span><span class="p">,</span>
-        <span class="s1">&#39;X_right&#39;</span>  <span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="s1">&#39;Z_top&#39;</span>    <span class="p">:</span> <span class="mi">33</span><span class="p">}</span>
+        <span class="s1">&#39;Diameter&#39;</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span>
+        <span class="s1">&#39;X_center&#39;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
+        <span class="s1">&#39;Z_center&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="s1">&#39;X_left&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span>
+        <span class="s1">&#39;X_right&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s1">&#39;Z_top&#39;</span><span class="p">:</span> <span class="mi">33</span><span class="p">}</span>
     <span class="n">QUALITY</span> <span class="o">=</span> <span class="p">{</span>
         <span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Valid&#39;</span><span class="p">,</span>
         <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Low signal&#39;</span><span class="p">,</span>
@@ -491,7 +492,8 @@
 
 <span class="sd">        Note</span>
 <span class="sd">        ----</span>
-<span class="sd">        See `RS-485 Protocol Structure &lt;https://www.baumer.com/ae/en/product-overview/2d-3d-sensors/profile-sensors-/measurement-of-round-objects/oxc7-x0250-ii1250-ti/p/medias/__secure__/en_BA_RS485_Protocol_Structure.pdf?mediaPK=8799860686878&gt;`_ for more info.</span>
+<span class="sd">        See `RS-485 Protocol Structure &lt;https://www.baumer.com/ae/en/product-overview/2d-3d-sensors/profile-sensors-/measurement-of-round-objects/\</span>
+<span class="sd">        oxc7-x0250-ii1250-ti/p/medias/__secure__/en_BA_RS485_Protocol_Structure.pdf?mediaPK=8799860686878&gt;`_ for more info.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;****&#39;</span></div>
 
@@ -505,7 +507,8 @@
 
         <span class="k">if</span> <span class="n">result_type</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
             <span class="n">error_index</span> <span class="o">=</span> <span class="n">frame_head</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s1">&#39;Application error, Result=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frame_head</span> <span class="o">+</span> <span class="s1">&#39;Error type: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">error_index</span><span class="p">[</span><span class="mi">1</span><span class="p">])]))</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s1">&#39;Application error, Result=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frame_head</span> <span class="o">+</span>
+                                <span class="s1">&#39;Error type: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ERROR_CODES</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">error_index</span><span class="p">[</span><span class="mi">1</span><span class="p">])]))</span>
 
         <span class="k">if</span> <span class="n">result_type</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s1">&#39;Sensor is busy, Result=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">frame_head</span><span class="p">)</span>
@@ -738,7 +741,7 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 02, 2019.
+                Last updated on Nov 13, 2019.
             
 
             
@@ -751,7 +754,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.8.0',
+            VERSION           : '0.9.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',
