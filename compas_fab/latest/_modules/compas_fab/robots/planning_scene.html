@@ -320,6 +320,10 @@
 <span class="sd">            The planning group to which we want to attach the mesh to. Defaults</span>
 <span class="sd">            to the robot&#39;s main planning group.</span>
 
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; scene = PlanningScene(robot)</span>
@@ -337,7 +341,7 @@
 
 <span class="sd">        &gt;&gt;&gt; # check if it&#39;s really gone</span>
 <span class="sd">        &gt;&gt;&gt; planning_scene = robot.client.get_planning_scene()</span>
-<span class="sd">        &gt;&gt;&gt; objects = [c.object.id for c in planning_scene.robot_state.attached_collision_objects]</span>
+<span class="sd">        &gt;&gt;&gt; objects = [c.object[&#39;id&#39;] for c in planning_scene.robot_state.attached_collision_objects]</span>
 <span class="sd">        &gt;&gt;&gt; &#39;tip&#39; in objects</span>
 <span class="sd">        False</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -350,7 +354,21 @@
         <span class="n">ee_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">touch_links</span> <span class="o">=</span> <span class="p">[</span><span class="n">ee_link_name</span><span class="p">]</span>
         <span class="n">acm</span> <span class="o">=</span> <span class="n">AttachedCollisionMesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="n">ee_link_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PlanningScene.add_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_attached_tool.html#compas_fab.robots.PlanningScene.add_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Adds the robot&#39;s attached tool to the planning scene if set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PlanningScene.remove_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.remove_attached_tool.html#compas_fab.robots.PlanningScene.remove_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">remove_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Removes the robot&#39;s attached tool from the planning scene.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
 </code></pre></div>
                     
                 
@@ -415,11 +433,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -428,7 +446,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

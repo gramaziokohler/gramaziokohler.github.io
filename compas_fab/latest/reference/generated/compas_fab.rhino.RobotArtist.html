@@ -60,51 +60,68 @@
 <h1>RobotArtist</h1>
 <dl class="class">
 <dt id="compas_fab.rhino.RobotArtist">
-<em class="property">class </em><code class="descclassname">compas_fab.rhino.</code><code class="descname">RobotArtist</code><span class="sig-paren">(</span><em>robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/rhino/artists.html#RobotArtist"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.rhino.</code><code class="sig-name descname">RobotArtist</code><span class="sig-paren">(</span><em class="sig-param">robot</em>, <em class="sig-param">layer=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/rhino/artists.html#RobotArtist"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.artists.base.BaseRobotArtist</span></code></p>
 <p>Visualizer for robots inside a Rhino environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<em>compas.robots.RobotModel</em>) – Robot model.</p></li>
+<li><p><strong>layer</strong> (<em>str, optional</em>) – The name of the layer that will contain the robot meshes.</p></li>
+</ul>
+</dd>
+</dl>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.__init__.html#compas_fab.rhino.RobotArtist.__init__" title="compas_fab.rhino.RobotArtist.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(robot)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.__init__.html#compas_fab.rhino.RobotArtist.__init__" title="compas_fab.rhino.RobotArtist.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(robot[, layer])</p></td>
 <td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.attach_tool.html#compas_fab.rhino.RobotArtist.attach_tool" title="compas_fab.rhino.RobotArtist.attach_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attach_tool</span></code></a>(tool)</p></td>
+<td><p>Attach a tool to the robot artist.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.clear_layer.html#compas_fab.rhino.RobotArtist.clear_layer" title="compas_fab.rhino.RobotArtist.clear_layer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_layer</span></code></a>()</p></td>
+<td><p>Clear the main layer of the artist.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.create.html#compas_fab.rhino.RobotArtist.create" title="compas_fab.rhino.RobotArtist.create"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create</span></code></a>([link])</p></td>
 <td><p>Recursive function that triggers the drawing of the robot geometry.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_collision.html#compas_fab.rhino.RobotArtist.draw_collision" title="compas_fab.rhino.RobotArtist.draw_collision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_collision</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.detach_tool.html#compas_fab.rhino.RobotArtist.detach_tool" title="compas_fab.rhino.RobotArtist.detach_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detach_tool</span></code></a>()</p></td>
+<td><p>Detach the tool.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_collision.html#compas_fab.rhino.RobotArtist.draw_collision" title="compas_fab.rhino.RobotArtist.draw_collision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_collision</span></code></a>()</p></td>
 <td><p>Draws all collision geometry of the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_geometry.html#compas_fab.rhino.RobotArtist.draw_geometry" title="compas_fab.rhino.RobotArtist.draw_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_geometry</span></code></a>(geometry[, color])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_geometry.html#compas_fab.rhino.RobotArtist.draw_geometry" title="compas_fab.rhino.RobotArtist.draw_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_geometry</span></code></a>(geometry[, name, color])</p></td>
 <td><p>Draw a <strong>COMPAS</strong> geometry in the respective CAD environment.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_visual.html#compas_fab.rhino.RobotArtist.draw_visual" title="compas_fab.rhino.RobotArtist.draw_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_visual</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.draw_visual.html#compas_fab.rhino.RobotArtist.draw_visual" title="compas_fab.rhino.RobotArtist.draw_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_visual</span></code></a>()</p></td>
 <td><p>Draws all visual geometry of the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.redraw.html#compas_fab.rhino.RobotArtist.redraw" title="compas_fab.rhino.RobotArtist.redraw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">redraw</span></code></a>([timeout])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.redraw.html#compas_fab.rhino.RobotArtist.redraw" title="compas_fab.rhino.RobotArtist.redraw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">redraw</span></code></a>([timeout])</p></td>
 <td><p>Redraw the Rhino view.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.scale.html#compas_fab.rhino.RobotArtist.scale" title="compas_fab.rhino.RobotArtist.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.scale.html#compas_fab.rhino.RobotArtist.scale" title="compas_fab.rhino.RobotArtist.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
 <td><p>Scales the robot geometry by factor (absolute).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.scale_link.html#compas_fab.rhino.RobotArtist.scale_link" title="compas_fab.rhino.RobotArtist.scale_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_link</span></code></a>(link, transformation)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.scale_link.html#compas_fab.rhino.RobotArtist.scale_link" title="compas_fab.rhino.RobotArtist.scale_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_link</span></code></a>(link, transformation)</p></td>
 <td><p>Recursive function to apply the scale transformation on each link.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.transform.html#compas_fab.rhino.RobotArtist.transform" title="compas_fab.rhino.RobotArtist.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(native_mesh, transformation)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.transform.html#compas_fab.rhino.RobotArtist.transform" title="compas_fab.rhino.RobotArtist.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(native_mesh, transformation)</p></td>
 <td><p>Transforms a CAD-specific geometry using a <strong>COMPAS</strong> transformation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.update.html#compas_fab.rhino.RobotArtist.update" title="compas_fab.rhino.RobotArtist.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration, names[, visual, collision])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.rhino.RobotArtist.update.html#compas_fab.rhino.RobotArtist.update" title="compas_fab.rhino.RobotArtist.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration, names[, visual, collision])</p></td>
 <td><p>Triggers the update of the robot geometry.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="compas_fab.rhino.RobotArtist.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/rhino/artists.html#RobotArtist.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">robot</em>, <em class="sig-param">layer=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/rhino/artists.html#RobotArtist.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -191,11 +208,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -204,7 +221,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -62,6 +62,27 @@
 <p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
 and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <div class="section" id="id1">
+<h2>0.10.0</h2>
+<p><strong>Added</strong></p>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">draw_attached_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">from_tool0_to_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">Artist</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">add_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
+<li><p>Added redraw/clear layer support to <cite>RobotArtist</cite> for Rhino</p></li>
+<li><p>Added material/color support for DAE files on ROS file loader</p></li>
+</ul>
+<p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Changed <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code> to use the attached_tool’s <code class="docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code> if set</p></li>
+</ul>
+<p><strong>Fixed</strong></p>
+<ul class="simple">
+<li><p>Fixed mutable init parameters of <code class="docutils literal notranslate"><span class="pre">Configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectory</span></code> and <code class="docutils literal notranslate"><span class="pre">Robot.basic</span></code>.</p></li>
+<li><p>Fixed interface of <cite>RobotArtist</cite> for Blender</p></li>
+<li><p>Fixed DAE parsing of meshes with multiple triangle sets</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
 <h2>0.9.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -74,7 +95,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Updated to COMPAS 0.11</p></li>
 </ul>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id3">
 <h2>0.8.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -88,7 +109,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed DAE support on ROS File loader</p></li>
 </ul>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id4">
 <h2>0.7.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -117,7 +138,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed missing planner initialization when used without context manager.</p></li>
 </ul>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id5">
 <h2>0.6.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -140,7 +161,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id6">
 <h2>0.5.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -177,7 +198,7 @@ to the new trajectory classes.</p></li>
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id7">
 <h2>0.4.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -188,7 +209,7 @@ to the new trajectory classes.</p></li>
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <cite>compas</cite> core.</p></li>
 </ul>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id8">
 <h2>0.4.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -199,7 +220,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.4.10</p></li>
 </ul>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id9">
 <h2>0.3.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -213,14 +234,14 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.4.8</p></li>
 </ul>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id10">
 <h2>0.2.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
 </div>
-<div class="section" id="id10">
+<div class="section" id="id11">
 <h2>0.2.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -229,7 +250,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to COMPAS 0.3.2</p></li>
 </ul>
 </div>
-<div class="section" id="id11">
+<div class="section" id="id12">
 <h2>0.1.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -293,17 +314,18 @@ to the new trajectory classes.</p></li>
 
                 <ul class="nav flex-column" id="compas-localnav">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Changelog</a><ul class="nav">
-<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.9.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.8.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.7.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.6.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.5.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.4.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.4.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.3.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.2.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.2.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.1.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.10.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.9.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.8.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.7.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.6.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.5.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.4.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.4.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.3.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.2.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.2.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id12">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -317,11 +339,11 @@ to the new trajectory classes.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -330,7 +352,7 @@ to the new trajectory classes.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

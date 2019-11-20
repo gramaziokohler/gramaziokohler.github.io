@@ -60,7 +60,7 @@
 <h1>PlanningScene.attach_collision_mesh_to_robot_end_effector</h1>
 <dl class="method">
 <dt id="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector">
-<code class="descclassname">PlanningScene.</code><code class="descname">attach_collision_mesh_to_robot_end_effector</code><span class="sig-paren">(</span><em>collision_mesh</em>, <em>scale=False</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.attach_collision_mesh_to_robot_end_effector"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">PlanningScene.</code><code class="sig-name descname">attach_collision_mesh_to_robot_end_effector</code><span class="sig-paren">(</span><em class="sig-param">collision_mesh</em>, <em class="sig-param">scale=False</em>, <em class="sig-param">group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.attach_collision_mesh_to_robot_end_effector"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Attaches a collision mesh to the robot’s end-effector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -71,6 +71,9 @@ factor.</p></li>
 <li><p><strong>group</strong> (<em>str</em>) – The planning group to which we want to attach the mesh to. Defaults
 to the robot’s main planning group.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>None</em></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -92,7 +95,7 @@ to the robot’s main planning group.</p></li>
 </div>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really gone</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;tip&#39;</span> <span class="ow">in</span> <span class="n">objects</span>
 <span class="go">False</span>
 </code></pre></div>
@@ -180,11 +183,11 @@ to the robot’s main planning group.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -193,7 +196,7 @@ to the robot’s main planning group.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

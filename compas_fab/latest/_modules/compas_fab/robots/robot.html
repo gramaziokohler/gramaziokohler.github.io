@@ -72,6 +72,8 @@
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="k">import</span> <span class="n">OrientationConstraint</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="k">import</span> <span class="n">PositionConstraint</span>
 
+<span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="k">import</span> <span class="n">AttachedCollisionMesh</span>
+
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;compas_fab.robots.robot&#39;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
@@ -104,6 +106,7 @@
 <div class="viewcode-block" id="Robot.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.__init__.html#compas_fab.robots.Robot.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">artist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_scale_factor</span> <span class="o">=</span> <span class="mf">1.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">artist</span> <span class="o">=</span> <span class="n">artist</span>  <span class="c1"># setter and getter (because of scale)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">semantics</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>  <span class="c1"># setter and getter ?</span></div>
@@ -117,9 +120,11 @@
     <span class="k">def</span> <span class="nf">artist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">artist</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_artist</span> <span class="o">=</span> <span class="n">artist</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_scale_factor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">attach_tool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Robot.basic"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.basic.html#compas_fab.robots.Robot.basic">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">basic</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="p">[],</span> <span class="n">links</span><span class="o">=</span><span class="p">[],</span> <span class="n">materials</span><span class="o">=</span><span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">basic</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">materials</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Convenience method to create the most basic instance of a robot, based only on a name.</span>
 
 <span class="sd">        Parameters</span>
@@ -132,8 +137,8 @@
 <span class="sd">        :class:`Robot`</span>
 <span class="sd">            Newly created instance of a robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="n">joints</span><span class="p">,</span> <span class="n">links</span><span class="o">=</span><span class="n">links</span><span class="p">,</span>
-                           <span class="n">materials</span><span class="o">=</span><span class="n">materials</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">joints</span><span class="o">=</span><span class="n">joints</span> <span class="ow">or</span> <span class="p">[],</span> <span class="n">links</span><span class="o">=</span><span class="n">links</span> <span class="ow">or</span> <span class="p">[],</span>
+                           <span class="n">materials</span><span class="o">=</span><span class="n">materials</span> <span class="ow">or</span> <span class="p">[],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
@@ -730,6 +735,110 @@
         <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">frame_RCF</span><span class="o">.</span><span class="n">transformed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_RCF_WCF</span><span class="p">(</span><span class="n">group</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">frame_WCF</span></div>
 
+<div class="viewcode-block" id="Robot.from_attached_tool_to_tool0"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.from_attached_tool_to_tool0.html#compas_fab.robots.Robot.from_attached_tool_to_tool0">[docs]</a>    <span class="k">def</span> <span class="nf">from_attached_tool_to_tool0</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_tcf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts a list of frames at the robot&#39;s tool tip (tcf frame) to frames at the robot&#39;s flange (tool0 frame) using the attached tool.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frames_tcf : list of :class:`Frame`</span>
+<span class="sd">            Frames (in WCF) at the robot&#39;s tool tip (tcf).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of :class:`Frame`</span>
+<span class="sd">            Frames (in WCF) at the robot&#39;s flange (tool0).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        Exception</span>
+<span class="sd">            If the attached tool is not set.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
+<span class="sd">        &gt;&gt;&gt; robot.attach_tool(Tool(mesh, frame))</span>
+<span class="sd">        &gt;&gt;&gt; frames_tcf = [Frame((-0.309, -0.046, -0.266), (0.276, 0.926, -0.256), (0.879, -0.136, 0.456))]</span>
+<span class="sd">        &gt;&gt;&gt; robot.from_attached_tool_to_tool0(frames_tcf)</span>
+<span class="sd">        [Frame(Point(-0.363, 0.003, -0.147), Vector(0.388, -0.351, -0.852), Vector(0.276, 0.926, -0.256))]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Please attach a tool first.&quot;</span><span class="p">)</span>
+        <span class="n">Te</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">Te</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frames_tcf</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Robot.from_tool0_to_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.from_tool0_to_attached_tool.html#compas_fab.robots.Robot.from_tool0_to_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">from_tool0_to_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_t0cf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts frames at the robot&#39;s flange (tool0 frame) to frames at the robot&#39;s tool tip (tcf frame) using the attached tool.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frames_t0cf : list of :class:`Frame`</span>
+<span class="sd">            Frames (in WCF) at the robot&#39;s flange (tool0).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of :class:`Frame`</span>
+<span class="sd">            Frames (in WCF) at the robot&#39;s tool tip (tcf).</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        Exception</span>
+<span class="sd">            If the end effector is not set.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
+<span class="sd">        &gt;&gt;&gt; robot.attach_tool(Tool(mesh, frame))</span>
+<span class="sd">        &gt;&gt;&gt; frames_t0cf = [Frame((-0.363, 0.003, -0.147), (0.388, -0.351, -0.852), (0.276, 0.926, -0.256))]</span>
+<span class="sd">        &gt;&gt;&gt; robot.from_tool0_to_attached_tool(frames_t0cf)</span>
+<span class="sd">        [Frame(Point(-0.309, -0.046, -0.266), Vector(0.276, 0.926, -0.256), Vector(0.879, -0.136, 0.456))]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Please attach a tool first.&quot;</span><span class="p">)</span>
+        <span class="n">Te</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">Te</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frames_t0cf</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Robot.attach_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.attach_tool.html#compas_fab.robots.Robot.attach_tool">[docs]</a>    <span class="k">def</span> <span class="nf">attach_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Attach a tool to the robot independently of the model definition.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tool : :class:`compas_fab.robots.Tool`</span>
+<span class="sd">            The tool that should be attached to the robot&#39;s flange.</span>
+<span class="sd">        group : str</span>
+<span class="sd">            The planning group to attach this tool to. Defaults to the main</span>
+<span class="sd">            planning group.</span>
+<span class="sd">        touch_links : list of str</span>
+<span class="sd">            A list of link names the end-effector is allowed to touch. Defaults</span>
+<span class="sd">            to the end-effector link.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
+<span class="sd">        &gt;&gt;&gt; tool = Tool(mesh, frame)</span>
+<span class="sd">        &gt;&gt;&gt; robot.attach_tool(tool)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">group</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
+        <span class="n">ee_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">touch_links</span> <span class="o">=</span> <span class="n">touch_links</span> <span class="ow">or</span> <span class="p">[</span><span class="n">ee_link_name</span><span class="p">]</span>
+        <span class="n">tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span> <span class="o">=</span> <span class="n">AttachedCollisionMesh</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="n">ee_link_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span> <span class="o">=</span> <span class="n">tool</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">(</span><span class="n">group</span><span class="p">),</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># TODO: this is not so ideal! should be called from within artist</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">attach_tool</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Robot.detach_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.detach_tool.html#compas_fab.robots.Robot.detach_tool">[docs]</a>    <span class="k">def</span> <span class="nf">detach_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Detaches the attached tool.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">detach_tool</span><span class="p">()</span></div>
+
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># checks</span>
     <span class="c1"># ==========================================================================</span>
@@ -981,6 +1090,12 @@
         <span class="n">frame_RCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_local_coords</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
         <span class="n">frame_RCF</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>  <span class="c1"># must be in meters</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
+
         <span class="c1"># The returned joint names might be more than the requested ones if there are passive joints present</span>
         <span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span>
                                                                       <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span>
@@ -1179,6 +1294,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">path_constraints_RCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
+
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span>
             <span class="n">robot</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">frames</span><span class="o">=</span><span class="n">frames_RCF</span><span class="p">,</span>
@@ -1252,6 +1373,7 @@
 <span class="sd">        &gt;&gt;&gt; start_configuration = Configuration.from_revolute_values([-0.042, 4.295, 0, -3.327, 4.755, 0.])</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; goal_constraints = robot.constraints_from_frame(frame, tolerance_position, tolerances_axes, group)</span>
+<span class="sd">        &gt;&gt;&gt; robot.attached_tool = None</span>
 <span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, planner_id=&#39;RRT&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; trajectory.fraction</span>
 <span class="sd">        1.0</span>
@@ -1313,6 +1435,12 @@
             <span class="n">path_constraints_RCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
 
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span>
             <span class="n">robot</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
@@ -1388,6 +1516,12 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="Robot.draw_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw_attached_tool.html#compas_fab.robots.Robot.draw_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">draw_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Draws the attached tool if set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">draw_attached_tool</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="Robot.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Scales the robot geometry by factor (absolute).</span>
 
@@ -1427,6 +1561,10 @@
             <span class="n">configurable_joints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The end-effector&#39;s name is &#39;</span><span class="si">%s</span><span class="s2">&#39;.&quot;</span> <span class="o">%</span>
               <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The robot has a tool at the </span><span class="si">%s</span><span class="s2"> link attached.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">link_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The robot has NO tool attached.&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The base link&#39;s name is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_link_name</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The base_frame is:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_frame</span><span class="p">())</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The robot&#39;s joints are:&quot;</span><span class="p">)</span>
@@ -1503,11 +1641,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -1516,7 +1654,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

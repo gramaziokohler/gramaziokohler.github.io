@@ -289,6 +289,8 @@
     <span class="n">dae</span> <span class="o">=</span> <span class="n">XML</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
     <span class="n">meshes</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">visual_scenes</span> <span class="o">=</span> <span class="n">dae</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;library_visual_scenes&#39;</span><span class="p">)</span>
+    <span class="n">materials</span> <span class="o">=</span> <span class="n">dae</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;library_materials&#39;</span><span class="p">)</span>
+    <span class="n">effects</span> <span class="o">=</span> <span class="n">dae</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;library_effects&#39;</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">geometry</span> <span class="ow">in</span> <span class="n">dae</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;.//geometry&#39;</span><span class="p">):</span>
         <span class="n">mesh_xml</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">)</span>
@@ -307,42 +309,65 @@
                 <span class="n">M</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">M</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">M</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="n">M</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span>
                 <span class="n">transform</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 
-        <span class="n">triangle_set</span> <span class="o">=</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;triangles&#39;</span><span class="p">)</span>
-        <span class="n">triangle_set_data</span> <span class="o">=</span> <span class="n">triangle_set</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">triangle_set</span> <span class="ow">in</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;triangles&#39;</span><span class="p">):</span>
+            <span class="n">triangle_set_data</span> <span class="o">=</span> <span class="n">triangle_set</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-        <span class="c1"># Parse vertices</span>
-        <span class="n">vertices_input</span> <span class="o">=</span> <span class="n">triangle_set</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;input[@semantic=&quot;VERTEX&quot;]&#39;</span><span class="p">)</span>
-        <span class="n">vertices_link</span> <span class="o">=</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;vertices[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/input&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vertices_input</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]))</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;source[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/float_array&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vertices_link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]))</span>
-        <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+            <span class="c1"># Try to retrieve mesh colors</span>
+            <span class="n">mesh_colors</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="n">vertices</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">),</span> <span class="mi">3</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="n">materials</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">effects</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">instance_effect</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">material_id</span> <span class="o">=</span> <span class="n">triangle_set</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;material&#39;</span><span class="p">)</span>
 
-        <span class="c1"># Parse faces</span>
-        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">triangle_set_data</span><span class="p">[::</span><span class="mi">2</span><span class="p">]]</span>  <span class="c1"># Ignore normals (every second item is normal index)</span>
-        <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">),</span> <span class="mi">3</span><span class="p">)]</span>
+                    <span class="k">if</span> <span class="n">material_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">instance_effect</span> <span class="o">=</span> <span class="n">materials</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;material[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/instance_effect&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">material_id</span><span class="p">))</span>
 
-        <span class="c1"># Rebuild vertices and faces using the same logic that other importers</span>
-        <span class="c1"># use remapping everything based on a selected precision</span>
-        <span class="n">index_key</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
-        <span class="n">vertex</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">instance_effect</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">instance_effect_id</span> <span class="o">=</span> <span class="n">instance_effect</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+                        <span class="n">colors</span> <span class="o">=</span> <span class="n">effects</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;effect[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/profile_COMMON/technique/phong/*/color&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instance_effect_id</span><span class="p">))</span>
+                        <span class="k">for</span> <span class="n">color_node</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+                            <span class="n">rgba</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">color_node</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+                            <span class="n">mesh_colors</span><span class="p">[</span><span class="s1">&#39;mesh_color.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">color_node</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;sid&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="n">rgba</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Exception while loading materials, all materials of mesh file </span><span class="si">%s</span><span class="s1"> will be ignored &#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="n">geometric_key</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
-            <span class="n">index_key</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
-            <span class="n">vertex</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">xyz</span>
+            <span class="c1"># Parse vertices</span>
+            <span class="n">vertices_input</span> <span class="o">=</span> <span class="n">triangle_set</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;input[@semantic=&quot;VERTEX&quot;]&#39;</span><span class="p">)</span>
+            <span class="n">vertices_link</span> <span class="o">=</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;vertices[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/input&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vertices_input</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]))</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="n">mesh_xml</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;source[@id=&quot;</span><span class="si">{}</span><span class="s1">&quot;]/float_array&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vertices_link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]))</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 
-        <span class="n">key_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">index</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertex</span><span class="p">)}</span>
-        <span class="n">index_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">key_index</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">index_key</span><span class="o">.</span><span class="n">items</span><span class="p">())}</span>
-        <span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="n">xyz</span> <span class="k">for</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
-        <span class="n">faces</span> <span class="o">=</span> <span class="p">[[</span><span class="n">index_index</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">face</span><span class="p">]</span> <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">]</span>
+            <span class="n">vertices</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">),</span> <span class="mi">3</span><span class="p">)]</span>
 
-        <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_vertices_and_faces</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+            <span class="c1"># Parse faces</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">triangle_set_data</span><span class="p">[::</span><span class="mi">2</span><span class="p">]]</span>  <span class="c1"># Ignore normals (every second item is normal index)</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="p">[</span><span class="n">faces</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">),</span> <span class="mi">3</span><span class="p">)]</span>
 
-        <span class="k">if</span> <span class="n">transform</span><span class="p">:</span>
-            <span class="n">mesh_transform</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+            <span class="c1"># Rebuild vertices and faces using the same logic that other importers</span>
+            <span class="c1"># use remapping everything based on a selected precision</span>
+            <span class="n">index_key</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+            <span class="n">vertex</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
 
-        <span class="n">meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertices</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">geometric_key</span><span class="p">(</span><span class="n">xyz</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
+                <span class="n">index_key</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="n">vertex</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">xyz</span>
+
+            <span class="n">key_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">index</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vertex</span><span class="p">)}</span>
+            <span class="n">index_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">index</span><span class="p">:</span> <span class="n">key_index</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">index_key</span><span class="o">.</span><span class="n">items</span><span class="p">())}</span>
+            <span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="n">xyz</span> <span class="k">for</span> <span class="n">xyz</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="n">vertex</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="p">[[</span><span class="n">index_index</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">face</span><span class="p">]</span> <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">]</span>
+
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_vertices_and_faces</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">mesh_colors</span><span class="p">:</span>
+                <span class="n">mesh</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">mesh_colors</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">transform</span><span class="p">:</span>
+                <span class="n">mesh_transform</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">transform</span><span class="p">)</span>
+
+            <span class="n">meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">meshes</span>
 
@@ -450,11 +475,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -463,7 +488,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

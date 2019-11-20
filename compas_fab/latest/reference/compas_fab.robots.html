@@ -62,7 +62,7 @@
 simulation, planning and execution backends to exchange information.</p>
 <div class="section" id="main-classes">
 <h2>Main classes</h2>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -77,13 +77,16 @@ simulation, planning and execution backends to exchange information.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Configuration</span></code></a></p></td>
 <td><p>Represents the configuration of a robot based on the state of its joints.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tool</span></code></a></p></td>
+<td><p>Represents a tool to be attached to the robot’s flange.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
 <td><p>Duration consists of two integers: seconds and nanoseconds.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Wrench.html#compas_fab.robots.Wrench" title="compas_fab.robots.Wrench"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wrench</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Wrench.html#compas_fab.robots.Wrench" title="compas_fab.robots.Wrench"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wrench</span></code></a></p></td>
 <td><p>A wrench represents force in free space, separated into its linear (force) and angular (torque) parts.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Inertia.html#compas_fab.robots.Inertia" title="compas_fab.robots.Inertia"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inertia</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Inertia.html#compas_fab.robots.Inertia" title="compas_fab.robots.Inertia"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inertia</span></code></a></p></td>
 <td><p>The moments of inertia represent the spatial distribution of mass in a rigid body.</p></td>
 </tr>
 </tbody>
@@ -91,7 +94,7 @@ simulation, planning and execution backends to exchange information.</p>
 </div>
 <div class="section" id="path-planning">
 <h2>Path planning</h2>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -111,7 +114,7 @@ simulation, planning and execution backends to exchange information.</p>
 </div>
 <div class="section" id="planning-scene">
 <h2>Planning scene</h2>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -131,7 +134,7 @@ simulation, planning and execution backends to exchange information.</p>
 </div>
 <div class="section" id="constraints">
 <h2>Constraints</h2>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -159,7 +162,7 @@ simulation, planning and execution backends to exchange information.</p>
 <h2>Unit conversion</h2>
 <p>The unit systems most commonly used in <strong>COMPAS FAB</strong> are <strong>meters</strong> and <strong>radians</strong>.
 The following functions help with converting units from one system to the other.</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -262,11 +265,11 @@ The following functions help with converting units from one system to the other.
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -275,7 +278,7 @@ The following functions help with converting units from one system to the other.
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

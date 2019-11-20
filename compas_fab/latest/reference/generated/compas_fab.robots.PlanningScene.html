@@ -60,12 +60,12 @@
 <h1>PlanningScene</h1>
 <dl class="class">
 <dt id="compas_fab.robots.PlanningScene">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">PlanningScene</code><span class="sig-paren">(</span><em>robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">PlanningScene</code><span class="sig-paren">(</span><em class="sig-param">robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents the planning scene.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.PlanningScene.robot">
-<code class="descname">robot</code></dt>
+<code class="sig-name descname">robot</code></dt>
 <dd><p>A reference to the robot in the planning scene.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -76,7 +76,7 @@
 
 <p class="rubric">Examples</p>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -88,20 +88,26 @@
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.add_attached_collision_mesh.html#compas_fab.robots.PlanningScene.add_attached_collision_mesh" title="compas_fab.robots.PlanningScene.add_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attached_collision_mesh</span></code></a>(…[, scale])</p></td>
 <td><p>Adds an attached collision object to the planning scene.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh" title="compas_fab.robots.PlanningScene.add_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_collision_mesh</span></code></a>(collision_mesh[, scale])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.add_attached_tool.html#compas_fab.robots.PlanningScene.add_attached_tool" title="compas_fab.robots.PlanningScene.add_attached_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attached_tool</span></code></a>()</p></td>
+<td><p>Adds the robot’s attached tool to the planning scene if set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh" title="compas_fab.robots.PlanningScene.add_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_collision_mesh</span></code></a>(collision_mesh[, scale])</p></td>
 <td><p>Adds a collision mesh to the planning scene.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.append_collision_mesh.html#compas_fab.robots.PlanningScene.append_collision_mesh" title="compas_fab.robots.PlanningScene.append_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_collision_mesh</span></code></a>(collision_mesh[, scale])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.append_collision_mesh.html#compas_fab.robots.PlanningScene.append_collision_mesh" title="compas_fab.robots.PlanningScene.append_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_collision_mesh</span></code></a>(collision_mesh[, scale])</p></td>
 <td><p>Appends a collision mesh that already exists in the planning scene.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector.html#compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector" title="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attach_collision_mesh_to_robot_end_effector</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector.html#compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector" title="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">attach_collision_mesh_to_robot_end_effector</span></code></a>(…)</p></td>
 <td><p>Attaches a collision mesh to the robot’s end-effector.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.ensure_client.html#compas_fab.robots.PlanningScene.ensure_client" title="compas_fab.robots.PlanningScene.ensure_client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_client</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.ensure_client.html#compas_fab.robots.PlanningScene.ensure_client" title="compas_fab.robots.PlanningScene.ensure_client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_client</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.remove_attached_collision_mesh.html#compas_fab.robots.PlanningScene.remove_attached_collision_mesh" title="compas_fab.robots.PlanningScene.remove_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_attached_collision_mesh</span></code></a>(id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.remove_attached_collision_mesh.html#compas_fab.robots.PlanningScene.remove_attached_collision_mesh" title="compas_fab.robots.PlanningScene.remove_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_attached_collision_mesh</span></code></a>(id)</p></td>
 <td><p>Removes an attached collision object from the planning scene.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.remove_attached_tool.html#compas_fab.robots.PlanningScene.remove_attached_tool" title="compas_fab.robots.PlanningScene.remove_attached_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_attached_tool</span></code></a>()</p></td>
+<td><p>Removes the robot’s attached tool from the planning scene.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PlanningScene.remove_collision_mesh.html#compas_fab.robots.PlanningScene.remove_collision_mesh" title="compas_fab.robots.PlanningScene.remove_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_collision_mesh</span></code></a>(id)</p></td>
 <td><p>Removes a collision object from the planning scene.</p></td>
@@ -109,7 +115,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -122,7 +128,7 @@
 </table>
 <dl class="method">
 <dt id="compas_fab.robots.PlanningScene.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -209,11 +215,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -222,7 +228,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

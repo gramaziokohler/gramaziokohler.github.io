@@ -60,7 +60,7 @@
 <h1>Robot.inverse_kinematics</h1>
 <dl class="method">
 <dt id="compas_fab.robots.Robot.inverse_kinematics">
-<code class="descclassname">Robot.</code><code class="descname">inverse_kinematics</code><span class="sig-paren">(</span><em>frame_WCF</em>, <em>start_configuration=None</em>, <em>group=None</em>, <em>avoid_collisions=True</em>, <em>constraints=None</em>, <em>attempts=8</em>, <em>attached_collision_meshes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.inverse_kinematics"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">inverse_kinematics</code><span class="sig-paren">(</span><em class="sig-param">frame_WCF</em>, <em class="sig-param">start_configuration=None</em>, <em class="sig-param">group=None</em>, <em class="sig-param">avoid_collisions=True</em>, <em class="sig-param">constraints=None</em>, <em class="sig-param">attempts=8</em>, <em class="sig-param">attached_collision_meshes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.inverse_kinematics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculate the robot’s inverse kinematic for a given frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -88,8 +88,8 @@ main planning group.</p></li>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>                 <span class="c1"># doctest: +SKIP</span>
-<span class="go">Configuration((4.045, 5.130, -2.174, -6.098, -5.616, 6.283), (0, 0, 0, 0, 0, 0))    # doctest: +SKIP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>                 
+<span class="go">Configuration((4.045, 5.130, -2.174, -6.098, -5.616, 6.283), (0, 0, 0, 0, 0, 0))    </span>
 </code></pre></div>
 </div>
 </dd></dl>
@@ -175,11 +175,11 @@ main planning group.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 13, 2019.
+                Last updated on Nov 20, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
             
         </div>
     </footer>
@@ -188,7 +188,7 @@ main planning group.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.9.0',
+            VERSION           : '0.10.0',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',
