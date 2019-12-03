@@ -131,57 +131,37 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <p>In most situations, we will load the robot model directly from a running ROS
 instance. The following code exemplifies how to do that.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">compas</span>
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
 
 <span class="c1"># Set high precision to import meshes defined in meters</span>
 <span class="n">compas</span><span class="o">.</span><span class="n">PRECISION</span> <span class="o">=</span> <span class="s1">&#39;12f&#39;</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">ros</span><span class="p">:</span>
-    <span class="c1"># Load URDF from ROS</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">ros</span><span class="p">)</span>
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">load_geometry</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="c1"># Create robot model from URDF and load geometry</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
-
-    <span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For more details about ROS, go to the <a class="reference internal" href="../03_backends_ros/01_ros_examples.html#ros-examples"><span class="std std-ref">ROS Examples</span></a>.</p>
 </div>
-<p>The ROS File Server loader (<a class="reference internal" href="../../reference/generated/compas_fab.backends.RosFileServerLoader.html#compas_fab.backends.RosFileServerLoader" title="compas_fab.backends.RosFileServerLoader"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosFileServerLoader</span></code></a>)
-allows to cache the results locally for faster reloads, or to be loaded using
-the local package loader.</p>
-<p>To enable this behavior, set the corresponding parameters on constructor and
-assign a <code class="docutils literal notranslate"><span class="pre">robot_name</span></code> to enable locating the URDF:</p>
+<p>Additionally, the ROS loader allows to cache the results locally for faster reloads,
+to enable this behavior, pass an argument with the folder where the cache should be stored:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">compas</span>
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
 
 <span class="c1"># Set high precision to import meshes defined in meters</span>
 <span class="n">compas</span><span class="o">.</span><span class="n">PRECISION</span> <span class="o">=</span> <span class="s1">&#39;12f&#39;</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">ros</span><span class="p">:</span>
-    <span class="c1"># Load URDF from ROS with local cache enabled</span>
-    <span class="n">local_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;robot_description&#39;</span><span class="p">)</span>
-    <span class="n">loader</span> <span class="o">=</span> <span class="n">RosFileServerLoader</span><span class="p">(</span><span class="n">ros</span><span class="p">,</span> <span class="n">local_cache</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">local_cache_directory</span><span class="o">=</span><span class="n">local_directory</span><span class="p">)</span>
-    <span class="n">loader</span><span class="o">.</span><span class="n">robot_name</span> <span class="o">=</span> <span class="s1">&#39;abb_irb1600_6_12&#39;</span>
+    <span class="c1"># Load complete model from ROS and set a local cache location</span>
+    <span class="n">local_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">),</span> <span class="s1">&#39;robot_description&#39;</span><span class="p">,</span> <span class="s1">&#39;robot_name&#39;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">load_geometry</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">local_cache_directory</span><span class="o">=</span><span class="n">local_directory</span><span class="p">)</span>
 
-    <span class="n">urdf</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">()</span>
-
-    <span class="c1"># Create robot model from URDF and load geometry</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_string</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="n">loader</span><span class="p">)</span>
-
-    <span class="k">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -196,32 +176,31 @@ native performance of the CAD environment.</p>
 networks, etc), and <strong>COMPAS FAB</strong> adds a <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> to them.
 Robot artists allow visualizing robot models easily and efficiently.</p>
 <p>The following example illustrates how to load an entire robot model from
-an open source repository and render it in Rhino:</p>
+ROS and render it in Rhino:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">compas</span>
-<span class="n">compas</span><span class="o">.</span><span class="n">PRECISION</span> <span class="o">=</span> <span class="s1">&#39;12f&#39;</span>
-
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 <span class="kn">from</span> <span class="nn">compas_fab.rhino</span> <span class="kn">import</span> <span class="n">RobotArtist</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="s1">&#39;ros-industrial/abb&#39;</span>
-<span class="n">p</span> <span class="o">=</span> <span class="s1">&#39;abb_irb6600_support&#39;</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;kinetic-devel&#39;</span>
+<span class="c1"># Set high precision to import meshes defined in meters</span>
+<span class="n">compas</span><span class="o">.</span><span class="n">PRECISION</span> <span class="o">=</span> <span class="s1">&#39;12f&#39;</span>
 
-<span class="n">github</span> <span class="o">=</span> <span class="n">GithubPackageMeshLoader</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-<span class="n">urdf</span> <span class="o">=</span> <span class="n">github</span><span class="o">.</span><span class="n">load_urdf</span><span class="p">(</span><span class="s1">&#39;irb6640.urdf&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">ros</span><span class="p">:</span>
+    <span class="c1"># Load complete model from ROS</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">ros</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">load_geometry</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="n">robot</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">urdf</span><span class="p">)</span>
-<span class="n">robot</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="n">github</span><span class="p">)</span>
-
-<span class="n">RobotArtist</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
+    <span class="c1"># Visualize robot</span>
+    <span class="n">robot</span><span class="o">.</span><span class="n">artist</span> <span class="o">=</span> <span class="n">RobotArtist</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;COMPAS FAB::Example&#39;</span><span class="p">)</span>
+    <span class="n">robot</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">clear_layer</span><span class="p">()</span>
+    <span class="n">robot</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
 </code></pre></div>
 </div>
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/44935d4686786274411161973b00bbe7/02_robot_artist_rhino.py"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">(Rhino)</span> <span class="pre">(.PY)</span></code></a></p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/b4df3002d4297a4594eef6edd26986f4/02_robot_artist_blender.py"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">(Blender)</span> <span class="pre">(.PY)</span></code></a></p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/69451e5db7cda574ce8f6f4e4fb598b8/02_robot_artist_grasshopper.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">(Grasshopper)</span> <span class="pre">(.GHX)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/e5dbf0bdf41caf364b0f68835a33ecb8/02_robot_artist_rhino_from_ros.py"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">from</span> <span class="pre">ROS</span> <span class="pre">(Rhino)</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/44935d4686786274411161973b00bbe7/02_robot_artist_rhino.py"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">from</span> <span class="pre">Github</span> <span class="pre">(Rhino)</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/b4df3002d4297a4594eef6edd26986f4/02_robot_artist_blender.py"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">from</span> <span class="pre">Github</span> <span class="pre">(Blender)</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/69451e5db7cda574ce8f6f4e4fb598b8/02_robot_artist_grasshopper.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">from</span> <span class="pre">Github</span> <span class="pre">(Grasshopper)</span> <span class="pre">(.GHX)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>

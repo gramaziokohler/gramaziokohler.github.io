@@ -118,9 +118,20 @@ debugging, auto-complete, formatting, etc.</em></p>
 the corresponding icon in the <strong>Activity Bar</strong> on the left side of VS Code
 and search the extension name in the search box. Once found, select it and
 click <code class="docutils literal notranslate"><span class="pre">Install</span></code>.</p>
-<p>By default, VS Code will use <code class="docutils literal notranslate"><span class="pre">Pylint</span></code> to verify your code. To select a
-different linter: open the <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Palette</span></code> (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) and
-select the <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Select</span> <span class="pre">Linter</span></code> command.</p>
+<p>We recommend tweaking some of the default VS Code settings:</p>
+<ul>
+<li><p>Python Linter:</p>
+<p>Select <code class="docutils literal notranslate"><span class="pre">flake8</span></code> as your default python linter: open the <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Palette</span></code>
+(<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>), type <code class="docutils literal notranslate"><span class="pre">Python:</span> <span class="pre">Select</span> <span class="pre">Linter</span></code>, select it and select
+<code class="docutils literal notranslate"><span class="pre">flake8</span></code> from the list.</p>
+</li>
+<li><p><em>[Windows Only]</em> Default Shell:</p>
+<p>Change the default shell from <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> to <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code>: open the
+<code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Palette</span></code> (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>), type <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Default</span> <span class="pre">Shell</span></code>,
+select it and from the options, select <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">Prompt</span></code>.
+Kill all opened terminals for it to take effect.</p>
+</li>
+</ul>
 <div class="section" id="run-scripts">
 <h3>Run scripts</h3>
 <p>To run Python scripts from within VS Code, simply open the file and press
