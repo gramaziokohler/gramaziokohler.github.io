@@ -60,7 +60,7 @@
 <h1>JointTrajectoryPoint</h1>
 <dl class="class">
 <dt id="compas_fab.robots.JointTrajectoryPoint">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">JointTrajectoryPoint</code><span class="sig-paren">(</span><em class="sig-param">values=None</em>, <em class="sig-param">types=None</em>, <em class="sig-param">velocities=None</em>, <em class="sig-param">accelerations=None</em>, <em class="sig-param">effort=None</em>, <em class="sig-param">time_from_start=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectoryPoint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">JointTrajectoryPoint</code><span class="sig-paren">(</span><em>values=None</em>, <em>types=None</em>, <em>velocities=None</em>, <em>accelerations=None</em>, <em>effort=None</em>, <em>time_from_start=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectoryPoint"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.configuration.Configuration</span></code></p>
 <p>Defines a point within a trajectory.</p>
 <p>A trajectory point is a sub-class of <a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a> extended
@@ -69,7 +69,7 @@ with acceleration, effort and time from start information.</p>
 accelerations</em>, or as <em>values + efforts</em>.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.values">
-<code class="sig-name descname">values</code></dt>
+<code class="descname">values</code></dt>
 <dd><p>Joint values expressed in radians or meters, depending on the respective type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -80,7 +80,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.types">
-<code class="sig-name descname">types</code></dt>
+<code class="descname">types</code></dt>
 <dd><p>Joint types, e.g. a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Joint.REVOLUTE</span></code> for revolute joints.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -91,7 +91,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.velocities">
-<code class="sig-name descname">velocities</code></dt>
+<code class="descname">velocities</code></dt>
 <dd><p>Velocity of each joint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -102,7 +102,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.accelerations">
-<code class="sig-name descname">accelerations</code></dt>
+<code class="descname">accelerations</code></dt>
 <dd><p>Acceleration of each joint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -113,7 +113,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.effort">
-<code class="sig-name descname">effort</code></dt>
+<code class="descname">effort</code></dt>
 <dd><p>Effort of each joint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -124,7 +124,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.JointTrajectoryPoint.time_from_start">
-<code class="sig-name descname">time_from_start</code></dt>
+<code class="descname">time_from_start</code></dt>
 <dd><p>Duration of trajectory point counting from the start.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -134,7 +134,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 </dd></dl>
 
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -164,7 +164,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -195,7 +195,7 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 </table>
 <dl class="method">
 <dt id="compas_fab.robots.JointTrajectoryPoint.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">values=None</em>, <em class="sig-param">types=None</em>, <em class="sig-param">velocities=None</em>, <em class="sig-param">accelerations=None</em>, <em class="sig-param">effort=None</em>, <em class="sig-param">time_from_start=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectoryPoint.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>values=None</em>, <em>types=None</em>, <em>velocities=None</em>, <em>accelerations=None</em>, <em>effort=None</em>, <em>time_from_start=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectoryPoint.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -282,11 +282,11 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 28, 2019.
+                Last updated on Dec 03, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </div>
     </footer>

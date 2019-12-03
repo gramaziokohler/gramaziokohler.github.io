@@ -60,7 +60,7 @@
 <h1>Inertia</h1>
 <dl class="class">
 <dt id="compas_fab.robots.Inertia">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Inertia</code><span class="sig-paren">(</span><em class="sig-param">inertia_tensor</em>, <em class="sig-param">mass</em>, <em class="sig-param">center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Inertia</code><span class="sig-paren">(</span><em>inertia_tensor</em>, <em>mass</em>, <em>center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The moments of inertia represent the spatial distribution of mass in a rigid body.</p>
 <p>It depends on the mass, size, and shape of a rigid body with units of
@@ -70,7 +70,7 @@ unique off-diagonal elements. Each inertia matrix is defined relative to a
 coordinate frame or set of axes.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.Inertia.inertia_tensor">
-<code class="sig-name descname">inertia_tensor</code></dt>
+<code class="descname">inertia_tensor</code></dt>
 <dd><p>A symmetric positive-definite 3x3 matrix:
 | ixx ixy ixz |
 | ixy iyy iyz |
@@ -86,7 +86,7 @@ with [ixx, iyy, izz] as the principal moments of inertia and
 
 <dl class="attribute">
 <dt id="compas_fab.robots.Inertia.mass">
-<code class="sig-name descname">mass</code></dt>
+<code class="descname">mass</code></dt>
 <dd><p>The mass of the object in kg.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -97,7 +97,7 @@ with [ixx, iyy, izz] as the principal moments of inertia and
 
 <dl class="attribute">
 <dt id="compas_fab.robots.Inertia.center_of_mass">
-<code class="sig-name descname">center_of_mass</code></dt>
+<code class="descname">center_of_mass</code></dt>
 <dd><p>The center of mass of the object in meters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -119,7 +119,7 @@ with [ixx, iyy, izz] as the principal moments of inertia and
 free software MeshLab, refering to this great tutorial:
 <a class="reference external" href="http://gazebosim.org/tutorials?tut=inertia">http://gazebosim.org/tutorials?tut=inertia</a></p>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -134,7 +134,7 @@ free software MeshLab, refering to this great tutorial:
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -147,7 +147,7 @@ free software MeshLab, refering to this great tutorial:
 </table>
 <dl class="method">
 <dt id="compas_fab.robots.Inertia.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">inertia_tensor</em>, <em class="sig-param">mass</em>, <em class="sig-param">center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>inertia_tensor</em>, <em>mass</em>, <em>center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -234,11 +234,11 @@ free software MeshLab, refering to this great tutorial:
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 28, 2019.
+                Last updated on Dec 03, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </div>
     </footer>

@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="RosClient.set_param" href="compas_fab.backends.RosClient.set_param.html" />
+        <link rel="next" title="RosClient.call_async_service" href="compas_fab.backends.RosClient.call_async_service.html" />
     
     
     
-        <link rel="prev" title="RosClient.send_on_ready" href="compas_fab.backends.RosClient.send_on_ready.html" />
+        <link rel="prev" title="RosClient.append_collision_mesh" href="compas_fab.backends.RosClient.append_collision_mesh.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,20 +56,23 @@
 
                     
 
-                    <div class="detail section" id="rosclient-send-service-request">
-<h1>RosClient.send_service_request</h1>
+                    <div class="detail section" id="rosclient-blocking-call-from-thread">
+<h1>RosClient.blocking_call_from_thread</h1>
 <dl class="method">
-<dt id="compas_fab.backends.RosClient.send_service_request">
-<code class="sig-prename descclassname">RosClient.</code><code class="sig-name descname">send_service_request</code><span class="sig-paren">(</span><em class="sig-param">message</em>, <em class="sig-param">callback</em>, <em class="sig-param">errback</em><span class="sig-paren">)</span></dt>
-<dd><p>Send a service request to the ROS Master once the connection is established.</p>
-<p>If a connection to ROS is already available, the request is sent immediately.</p>
+<dt id="compas_fab.backends.RosClient.blocking_call_from_thread">
+<code class="descclassname">RosClient.</code><code class="descname">blocking_call_from_thread</code><span class="sig-paren">(</span><em>callback</em>, <em>timeout</em><span class="sig-paren">)</span></dt>
+<dd><p>Call the given function from a thread, and wait for the result synchronously
+for as long as the timeout will allow.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>message</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Message</span></code>) – ROS Bridge Message containing the request.</p></li>
-<li><p><strong>callback</strong> – Callback invoked on successful execution.</p></li>
-<li><p><strong>errback</strong> – Callback invoked on error.</p></li>
+<li><p><strong>callback</strong> – Callable function to be invoked from the thread.</p></li>
+<li><p><strong>timeout (</strong> – obj: int): Number of seconds to wait for the response before
+raising an exception.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The results from the callback, or a timeout exception.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -143,7 +146,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">RosClient.send_service_request</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">RosClient.blocking_call_from_thread</a></li>
 </ul>
 
 
@@ -155,11 +158,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 28, 2019.
+                Last updated on Dec 03, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </div>
     </footer>

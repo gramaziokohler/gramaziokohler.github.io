@@ -104,30 +104,6 @@ running containers:</p>
 </ul>
 </div>
 </div>
-<div class="section" id="running-gui-apps">
-<h2>Running GUI apps</h2>
-<p>When using Docker or WSL to run backends, there is no visible graphical
-user interface (GUI). Although not entirely supported in either platform,
-it is possible to visualize the GUI anyway.</p>
-<p>First install an <code class="docutils literal notranslate"><span class="pre">X11</span></code> server:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://sourceforge.net/projects/xming/">XMing For Windows</a></p></li>
-<li><p><a class="reference external" href="https://www.xquartz.org/">XQuartz For Mac</a> (see here for <a class="reference external" href="https://medium.com/&#64;mreichelt/how-to-show-x11-windows-within-docker-on-mac-50759f4b65cb">more details</a>).</p></li>
-</ul>
-<p>Configure <code class="docutils literal notranslate"><span class="pre">X11</span></code> security:</p>
-<ul class="simple">
-<li><p>On Windows, add your IP address to the file
-<code class="docutils literal notranslate"><span class="pre">%ProgramFiles(x86)%\XMing\X0.hosts</span></code>. It needs to be opened
-as administrator.</p></li>
-<li><p>On Mac, run <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">+local:root</span></code>. Remember to disable later with
-<code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">-local:root</span></code>.</p></li>
-</ul>
-<p>Finally, set the <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> variable -either inside Docker or WSL- to point to
-your <code class="docutils literal notranslate"><span class="pre">X11</span></code> server, e.g.:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span><span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span><span class="m">192</span>.168.0.42:0.0
-</code></pre></div>
-</div>
-</div>
 <div class="section" id="next-steps">
 <h2>Next steps</h2>
 <p>Check documentation for your backend of choice:</p>
@@ -204,7 +180,6 @@ your <code class="docutils literal notranslate"><span class="pre">X11</span></co
 <li class="nav-item"><a class="nav-link reference internal" href="#working-with-containers">Working with containers</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#running-gui-apps">Running GUI apps</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#next-steps">Next steps</a></li>
 </ul>
 </li>
@@ -219,11 +194,11 @@ your <code class="docutils literal notranslate"><span class="pre">X11</span></co
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 28, 2019.
+                Last updated on Dec 03, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </div>
     </footer>

@@ -60,12 +60,12 @@
 <h1>OrientationConstraint</h1>
 <dl class="class">
 <dt id="compas_fab.robots.OrientationConstraint">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">OrientationConstraint</code><span class="sig-paren">(</span><em class="sig-param">link_name</em>, <em class="sig-param">quaternion</em>, <em class="sig-param">tolerances=None</em>, <em class="sig-param">weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">OrientationConstraint</code><span class="sig-paren">(</span><em>link_name</em>, <em>quaternion</em>, <em>tolerances=None</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></p>
 <p>Constrains a link to be within a certain orientation.</p>
 <dl class="attribute">
 <dt id="compas_fab.robots.OrientationConstraint.link_name">
-<code class="sig-name descname">link_name</code></dt>
+<code class="descname">link_name</code></dt>
 <dd><p>The name of the link this contraint refers to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -76,7 +76,7 @@
 
 <dl class="attribute">
 <dt id="compas_fab.robots.OrientationConstraint.quaternion">
-<code class="sig-name descname">quaternion</code></dt>
+<code class="descname">quaternion</code></dt>
 <dd><p>The desired orientation of the link specified by a quaternion in the
 order of [w, x, y, z].</p>
 <dl class="field-list simple">
@@ -88,7 +88,7 @@ order of [w, x, y, z].</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.OrientationConstraint.tolerances">
-<code class="sig-name descname">tolerances</code></dt>
+<code class="descname">tolerances</code></dt>
 <dd><p>Error tolerances ti for each of the frame’s axes. The respective
 bound to be achieved is [ai - ti, ai + ti]. Defaults to [0.01, 0.01, 0.01].</p>
 <dl class="field-list simple">
@@ -100,7 +100,7 @@ bound to be achieved is [ai - ti, ai + ti]. Defaults to [0.01, 0.01, 0.01].</p>
 
 <dl class="attribute">
 <dt id="compas_fab.robots.OrientationConstraint.weight">
-<code class="sig-name descname">weight</code></dt>
+<code class="descname">weight</code></dt>
 <dd><p>A weighting factor for this constraint. Denotes relative importance to
 other constraints. Closer to zero means less important. Defaults to 1.</p>
 <dl class="field-list simple">
@@ -122,7 +122,7 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -143,7 +143,7 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-default">
+<table class="longtable docutils align-center">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -165,7 +165,7 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 </table>
 <dl class="method">
 <dt id="compas_fab.robots.OrientationConstraint.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">link_name</em>, <em class="sig-param">quaternion</em>, <em class="sig-param">tolerances=None</em>, <em class="sig-param">weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint.__init__"><span class="viewcode-link">[source]</span></a></dt>
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>link_name</em>, <em>quaternion</em>, <em>tolerances=None</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint.__init__"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
@@ -252,11 +252,11 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Nov 28, 2019.
+                Last updated on Dec 03, 2019.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.2.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
             
         </div>
     </footer>
