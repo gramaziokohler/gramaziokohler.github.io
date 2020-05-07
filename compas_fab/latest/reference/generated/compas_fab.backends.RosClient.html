@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="rosclient">
 <h1>RosClient</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.backends.RosClient">
-<em class="property">class </em><code class="descclassname">compas_fab.backends.</code><code class="descname">RosClient</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=9090</em>, <em>is_secure=False</em>, <em>planner_backend='moveit'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.backends.</code><code class="sig-name descname">RosClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="o">=</span><span class="default_value">'localhost'</span></em>, <em class="sig-param"><span class="n">port</span><span class="o">=</span><span class="default_value">9090</span></em>, <em class="sig-param"><span class="n">is_secure</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">planner_backend</span><span class="o">=</span><span class="default_value">'moveit'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">roslibpy.ros.Ros</span></code></p>
 <p>Interface to use ROS as backend via the <strong>rosbridge</strong>.</p>
 <p>The connection is managed by <code class="docutils literal notranslate"><span class="pre">roslibpy</span></code>.</p>
@@ -79,7 +79,7 @@ resource deallocation.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">RosClient</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 <span class="go">Connected: True</span>
@@ -90,7 +90,7 @@ resource deallocation.</p>
 <p>For more examples, check out the <a class="reference internal" href="../../examples/03_backends_ros/01_ros_examples.html#ros-examples"><span class="std std-ref">ROS examples page</span></a>.</p>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -144,7 +144,7 @@ resource deallocation.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.follow_joint_trajectory.html#compas_fab.backends.RosClient.follow_joint_trajectory" title="compas_fab.backends.RosClient.follow_joint_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">follow_joint_trajectory</span></code></a>(joint_trajectory[, …])</p></td>
 <td><p>Follow the joint trajectory as computed by MoveIt planner.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics" title="compas_fab.backends.RosClient.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(joint_positions, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics" title="compas_fab.backends.RosClient.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(robot, configuration, …)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.forward_kinematics_async.html#compas_fab.backends.RosClient.forward_kinematics_async" title="compas_fab.backends.RosClient.forward_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
@@ -159,10 +159,10 @@ resource deallocation.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_message_details.html#compas_fab.backends.RosClient.get_message_details" title="compas_fab.backends.RosClient.get_message_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_message_details</span></code></a>(message_type[, …])</p></td>
 <td><p>Retrieve details of a message type in ROS.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_node_details.html#compas_fab.backends.RosClient.get_node_details" title="compas_fab.backends.RosClient.get_node_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_node_details</span></code></a>(node, callback[, errback])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_node_details.html#compas_fab.backends.RosClient.get_node_details" title="compas_fab.backends.RosClient.get_node_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_node_details</span></code></a>(node[, callback, errback])</p></td>
 <td><p>Retrieve list subscribed topics, publishing topics and services of a specific node name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_nodes.html#compas_fab.backends.RosClient.get_nodes" title="compas_fab.backends.RosClient.get_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodes</span></code></a>(callback[, errback])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_nodes.html#compas_fab.backends.RosClient.get_nodes" title="compas_fab.backends.RosClient.get_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_nodes</span></code></a>([callback, errback])</p></td>
 <td><p>Retrieve list of active node names in ROS.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_param.html#compas_fab.backends.RosClient.get_param" title="compas_fab.backends.RosClient.get_param"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_param</span></code></a>(name[, callback, errback])</p></td>
@@ -204,7 +204,7 @@ resource deallocation.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.get_topics_for_type.html#compas_fab.backends.RosClient.get_topics_for_type" title="compas_fab.backends.RosClient.get_topics_for_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_topics_for_type</span></code></a>(topic_type[, callback, …])</p></td>
 <td><p>Retrieve list of topics in ROS matching the specified type.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics" title="compas_fab.backends.RosClient.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(frame, base_link, group, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics" title="compas_fab.backends.RosClient.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(robot, frame, group, …)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.inverse_kinematics_async.html#compas_fab.backends.RosClient.inverse_kinematics_async" title="compas_fab.backends.RosClient.inverse_kinematics_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics_async</span></code></a>(*args, **kwargs)</p></td>
@@ -264,7 +264,7 @@ resource deallocation.</p>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -278,12 +278,6 @@ resource deallocation.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.backends.RosClient.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=9090</em>, <em>is_secure=False</em>, <em>planner_backend='moveit'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/client.html#RosClient.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -367,11 +361,11 @@ resource deallocation.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -380,7 +374,7 @@ resource deallocation.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

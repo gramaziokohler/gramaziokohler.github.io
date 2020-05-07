@@ -53,24 +53,24 @@
                     
 
                     <h1>Source code for compas_fab.backends.ros.fileserver_loader</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">binascii</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 
 <span class="kn">import</span> <span class="nn">roslibpy</span>
-<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">Mesh</span>
-<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">mesh_transform</span>
-<span class="kn">from</span> <span class="nn">compas.files</span> <span class="k">import</span> <span class="n">XML</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Transformation</span>
-<span class="kn">from</span> <span class="nn">compas.robots.resources.basic</span> <span class="k">import</span> <span class="n">_get_file_format</span>
-<span class="kn">from</span> <span class="nn">compas.robots.resources.basic</span> <span class="k">import</span> <span class="n">_mesh_import</span>
-<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="k">import</span> <span class="n">geometric_key</span>
+<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">mesh_transform</span>
+<span class="kn">from</span> <span class="nn">compas.files</span> <span class="kn">import</span> <span class="n">XML</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Transformation</span>
+<span class="kn">from</span> <span class="nn">compas.robots.resources.basic</span> <span class="kn">import</span> <span class="n">_get_file_format</span>
+<span class="kn">from</span> <span class="nn">compas.robots.resources.basic</span> <span class="kn">import</span> <span class="n">_mesh_import</span>
+<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="kn">import</span> <span class="n">geometric_key</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;compas_fab.backends.ros&#39;</span><span class="p">)</span>
 <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">10</span>
@@ -123,7 +123,7 @@
 <span class="sd">        Defines precision for importing/loading meshes. Defaults to ``compas.PRECISION``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RosFileServerLoader.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosFileServerLoader.__init__.html#compas_fab.backends.RosFileServerLoader.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">local_cache_directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RosFileServerLoader.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosFileServerLoader.__init__.html#compas_fab.backends.RosFileServerLoader.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ros</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">local_cache_directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">robot_name</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">schema_prefix</span> <span class="o">=</span> <span class="s1">&#39;package://&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ros</span> <span class="o">=</span> <span class="n">ros</span>
@@ -429,8 +429,8 @@
 <span class="sd">    roslaunch file_server.launch</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">logging</span>
-    <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="k">import</span> <span class="n">RobotModel</span>
-    <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="k">import</span> <span class="n">RosClient</span>
+    <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
+    <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 
     <span class="n">FORMAT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%(asctime)-15s</span><span class="s1"> [</span><span class="si">%(levelname)s</span><span class="s1">] </span><span class="si">%(message)s</span><span class="s1">&#39;</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">FORMAT</span><span class="p">)</span>
@@ -511,11 +511,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -524,7 +524,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -57,9 +57,9 @@
                     
 
                     <div class="section" id="creating-a-urdf-of-the-ur10-on-two-linear-axes">
-<span id="ros-examples-create-urdf-ur10-on-tower"></span><h1>3.8. Creating a URDF of the UR10 on two linear axes</h1>
+<span id="ros-examples-create-urdf-ur10-on-tower"></span><h1><span class="section-number">3.8. </span>Creating a URDF of the UR10 on two linear axes</h1>
 <div class="section" id="export-meshes">
-<h2>3.8.1. Export meshes</h2>
+<h2><span class="section-number">3.8.1. </span>Export meshes</h2>
 <ul class="simple">
 <li><p>Before exporting, please move the elements of the tower’s axes such that they are
 positioned in their zero-positions and make sure that the model is defined in
@@ -70,24 +70,24 @@ positioned in their zero-positions and make sure that the model is defined in
 The export format must be ROS-friendly, like .stl or .obj (see below). (Here
 we use the same visual and collision meshes.)</p></li>
 </ul>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_01.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_01.jpg" />
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_00-1.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_00-1.jpg" />
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_00-2.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_00-2.jpg" />
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_02.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_02.jpg" />
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_03.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_03.jpg" />
 </div>
 </div>
 <div class="section" id="prepare-your-catkin-workspace">
-<h2>3.8.2. Prepare your catkin workspace</h2>
+<h2><span class="section-number">3.8.2. </span>Prepare your catkin workspace</h2>
 <p>Open your command prompt and go to your robotic setups src folder:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 </code></pre></div>
@@ -120,9 +120,9 @@ the line <code class="docutils literal notranslate"><span class="pre">&lt;buildt
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
 </div>
 <div class="section" id="create-xacros-and-generate-urdf">
-<h2>3.8.3. Create xacros and generate urdf</h2>
+<h2><span class="section-number">3.8.3. </span>Create xacros and generate urdf</h2>
 <div class="section" id="tower-xacro">
-<h3>3.8.3.1. tower.xacro</h3>
+<h3><span class="section-number">3.8.3.1. </span>tower.xacro</h3>
 <p>Go to the <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder and create a xacro file for the tower:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">urdf</span>
 <span class="n">pico</span> <span class="n">tower</span><span class="o">.</span><span class="n">xacro</span>
@@ -207,7 +207,7 @@ the line <code class="docutils literal notranslate"><span class="pre">&lt;buildt
 </div>
 </div>
 <div class="section" id="explanation">
-<h3>3.8.3.2. Explanation:</h3>
+<h3><span class="section-number">3.8.3.2. </span>Explanation:</h3>
 <p>We define a parameterized macro with 1 parameter (<code class="docutils literal notranslate"><span class="pre">prefix</span></code>). That is practical
 if we want to use the tower twice in the same urdf, then we need to use both
 towers with different prefixes to distinguish links and joints.</p>
@@ -228,7 +228,7 @@ the minimal and maximal position (translation) of the joint.</p></li>
 </ul>
 </div>
 <div class="section" id="ur10-tower-xacro">
-<h3>3.8.3.3. ur10_tower.xacro</h3>
+<h3><span class="section-number">3.8.3.3. </span>ur10_tower.xacro</h3>
 <p>Now we create a new xacro file, which combines the ur10 with the tower:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
@@ -264,7 +264,7 @@ the minimal and maximal position (translation) of the joint.</p></li>
 </div>
 </div>
 <div class="section" id="id1">
-<h3>3.8.3.4. Explanation:</h3>
+<h3><span class="section-number">3.8.3.4. </span>Explanation:</h3>
 <ul>
 <li><p>To define the tower in regard to the world coordinate frame, we add first the
 <code class="docutils literal notranslate"><span class="pre">world</span></code> link (no geometry) with the <code class="docutils literal notranslate"><span class="pre">world_joint</span></code> in the worldXY frame and add the
@@ -285,12 +285,12 @@ side. The rotation is expressed in static “xyz” euler angles.</p>
 <span class="n">f1</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
 <span class="n">f2</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldYZ</span><span class="p">()</span>
 <span class="n">T</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
-<span class="n">euler_angles</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">euler_angles</span><span class="p">(</span><span class="n">static</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">)</span>
+<span class="n">euler_angles</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">euler_angles</span><span class="p">(</span><span class="n">static</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="create-urdf">
-<h3>3.8.3.5. Create URDF</h3>
+<h3><span class="section-number">3.8.3.5. </span>Create URDF</h3>
 <p>Now create the urdf.:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
@@ -322,7 +322,7 @@ side. The rotation is expressed in static “xyz” euler angles.</p>
 </div>
 </div>
 <div class="section" id="view-urdf">
-<h2>3.8.4. View urdf</h2>
+<h2><span class="section-number">3.8.4. </span>View urdf</h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
@@ -362,7 +362,7 @@ that they match the following:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roslaunch</span> <span class="n">ur10_tower</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </code></pre></div>
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_04.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_04.jpg" />
 </div>
 <p>This shows the model turned, but no worries. It is only because the default
@@ -370,21 +370,21 @@ value for the global fixed frame is <code class="docutils literal notranslate"><
 <p>Under Global Options &gt; Fixed Frame &gt; change <code class="docutils literal notranslate"><span class="pre">base_link</span></code> to <code class="docutils literal notranslate"><span class="pre">tower</span></code> or
 <code class="docutils literal notranslate"><span class="pre">world</span></code> and press save.</p>
 <p>Then you should see something like that:</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-default" id="id2">
 <img alt="../../_images/09_ur10_tower_urdf_06.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_06.jpg" />
 <p class="caption"><span class="caption-text">Screenshot of RViz showing the ur10 on the tower.</span></p>
 </div>
 <p>You can play with the sliders on the side to move the elements and check if all is fine.</p>
 <p>And later create a MoveIt! package from it.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_07.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_07.jpg" />
 </div>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/09_ur10_tower_urdf_08.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_08.jpg" />
 </div>
 </div>
 <div class="section" id="further-links">
-<h2>3.8.5. Further links</h2>
+<h2><span class="section-number">3.8.5. </span>Further links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
 <li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
@@ -491,11 +491,11 @@ value for the global fixed frame is <code class="docutils literal notranslate"><
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -504,7 +504,7 @@ value for the global fixed frame is <code class="docutils literal notranslate"><
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -53,16 +53,16 @@
                     
 
                     <h1>Source code for roslibpy.ros</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Message</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Param</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">Service</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">ServiceRequest</span>
-<span class="kn">from</span> <span class="nn">.comm</span> <span class="k">import</span> <span class="n">RosBridgeClientFactory</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Param</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ServiceRequest</span>
+<span class="kn">from</span> <span class="nn">.comm</span> <span class="kn">import</span> <span class="n">RosBridgeClientFactory</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ros&#39;</span><span class="p">]</span>
 
@@ -74,7 +74,7 @@
 <span class="k">class</span> <span class="nc">Ros</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Connection manager to ROS server.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">is_secure</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_id_counter</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">RosBridgeClientFactory</span><span class="o">.</span><span class="n">create_url</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">is_secure</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="n">RosBridgeClientFactory</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -554,19 +554,43 @@
 
         <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list of active node names in ROS.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list of active node names in ROS.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/nodes&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;rosapi/Nodes&#39;</span><span class="p">)</span>
 
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">(),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_node_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve list subscribed topics, publishing topics and services of a specific node name.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="s1">&#39;nodes&#39;</span> <span class="ow">in</span> <span class="n">result</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;nodes&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_node_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve list subscribed topics, publishing topics and services of a specific node name.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            To make this a blocking call, pass ``None`` to the ``callback`` parameter .</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">service</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;/rosapi/node_details&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;rosapi/NodeDetails&#39;</span><span class="p">)</span>
 
-        <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;node&#39;</span><span class="p">:</span> <span class="n">node</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">ServiceRequest</span><span class="p">({</span><span class="s1">&#39;node&#39;</span><span class="p">:</span> <span class="n">node</span><span class="p">}),</span> <span class="n">callback</span><span class="p">,</span> <span class="n">errback</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;services&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;services&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;subscribing&#39;</span><span class="p">:</span>  <span class="n">result</span><span class="p">[</span><span class="s1">&#39;subscribing&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;publishing&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;publishing&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">output</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -644,11 +668,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -657,7 +681,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

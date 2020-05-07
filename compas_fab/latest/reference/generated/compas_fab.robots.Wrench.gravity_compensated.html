@@ -58,14 +58,14 @@
 
                     <div class="detail section" id="wrench-gravity-compensated">
 <h1>Wrench.gravity_compensated</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Wrench.gravity_compensated">
-<code class="descclassname">Wrench.</code><code class="descname">gravity_compensated</code><span class="sig-paren">(</span><em>ft_sensor_frame</em>, <em>mass</em>, <em>center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/wrench.html#Wrench.gravity_compensated"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Wrench.</code><code class="sig-name descname">gravity_compensated</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ft_sensor_frame</span></em>, <em class="sig-param"><span class="n">mass</span></em>, <em class="sig-param"><span class="n">center_of_mass</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/wrench.html#Wrench.gravity_compensated"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Removes the force and torque in effect of gravity from the wrench.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ft_sensor_frame</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The coordinate frame of the force torque sensor.</p></li>
+<li><p><strong>ft_sensor_frame</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The coordinate frame of the force torque sensor.</p></li>
 <li><p><strong>mass</strong> (<em>float</em>) – The mass of the object in kg.</p></li>
 <li><p><strong>center_of_mass</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The center of mass of the object in meters.</p></li>
 </ul>
@@ -75,14 +75,14 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mass</span><span class="p">,</span> <span class="n">com</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mass</span><span class="p">,</span> <span class="n">com</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Wrench</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">98</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">gravity_compensated</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">com</span><span class="p">)</span>
 <span class="go">Wrench(Vector(0.000, 0.000, 0.066), Vector(0.000, 0.000, 0.000))</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mass</span><span class="p">,</span> <span class="n">com</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mass</span><span class="p">,</span> <span class="n">com</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Wrench</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">98</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">98</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">gravity_compensated</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">com</span><span class="p">)</span>
@@ -182,11 +182,11 @@ Available at: <a class="reference external" href="http://citeseerx.ist.psu.edu/v
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -195,7 +195,7 @@ Available at: <a class="reference external" href="http://citeseerx.ist.psu.edu/v
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

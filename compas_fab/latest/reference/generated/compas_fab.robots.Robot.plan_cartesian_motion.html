@@ -58,16 +58,17 @@
 
                     <div class="detail section" id="robot-plan-cartesian-motion">
 <h1>Robot.plan_cartesian_motion</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.plan_cartesian_motion">
-<code class="descclassname">Robot.</code><code class="descname">plan_cartesian_motion</code><span class="sig-paren">(</span><em>frames_WCF</em>, <em>start_configuration=None</em>, <em>max_step=0.01</em>, <em>jump_threshold=1.57</em>, <em>avoid_collisions=True</em>, <em>group=None</em>, <em>path_constraints=None</em>, <em>attached_collision_meshes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.plan_cartesian_motion"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">plan_cartesian_motion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frames_WCF</span></em>, <em class="sig-param"><span class="n">start_configuration</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">max_step</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">jump_threshold</span><span class="o">=</span><span class="default_value">1.57</span></em>, <em class="sig-param"><span class="n">avoid_collisions</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path_constraints</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">attached_collision_meshes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.plan_cartesian_motion"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculates a cartesian motion path (linear in tool space).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frames_WCF</strong> (list of <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
-<li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>, optional) – The robot’s configuration at the starting position. Defaults to the
-zero configuration.</p></li>
+<li><p><strong>frames_WCF</strong> (list of <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
+<li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>, optional) – The robot’s full configuration, i.e. values for all configurable
+joints of the entire robot, at the starting position. Defaults to
+the all-zero configuration.</p></li>
 <li><p><strong>max_step</strong> (<em>float</em>) – The approximate distance between the calculated points. (Defined in
 the robot’s units)</p></li>
 <li><p><strong>jump_threshold</strong> (<em>float</em>) – The maximum allowed distance of joint positions between consecutive
@@ -84,9 +85,12 @@ violates these constraints. Defaults to None.</p></li>
 <li><p><strong>attached_collision_meshes</strong> (list of <a class="reference internal" href="compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a>) – Defaults to None.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a> – The calculated trajectory.</p>
+</dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>                      <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span>                      <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">0.042</span><span class="p">,</span> <span class="mf">4.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.110</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.327</span><span class="p">,</span> <span class="mf">4.755</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span>                                                     <span class="n">start_configuration</span><span class="p">,</span>                                                     <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>                                                     <span class="n">jump_threshold</span><span class="o">=</span><span class="mf">1.57</span><span class="p">,</span>                                                     <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                                                     <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
@@ -177,11 +181,11 @@ violates these constraints. Defaults to None.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -190,7 +194,7 @@ violates these constraints. Defaults to None.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -57,14 +57,14 @@
                     
 
                     <div class="section" id="simulation-examples-with-v-rep">
-<h1>4.1. Simulation examples with V-REP</h1>
+<h1><span class="section-number">4.1. </span>Simulation examples with V-REP</h1>
 <p>The following examples demonstrate the <a class="reference external" href="http://www.coppeliarobotics.com/">V-REP</a>
 simulation backend. They are based on a sample scene of the Robotic Fabrication
 Lab (RFL).</p>
 <p>Before running them, make sure you have configured the
 <a class="reference internal" href="../../backends/vrep.html#vrep-backend"><span class="std std-ref">V-REP backend</span></a> correctly.</p>
 <div class="section" id="first-step">
-<h2>4.1.1. First step</h2>
+<h2><span class="section-number">4.1.1. </span>First step</h2>
 <p>The first step is just connect to the simulator and verify the connection
 is working.</p>
 <p>Copy and paste the following example into any Python environment
@@ -73,17 +73,17 @@ see the output <code class="docutils literal notranslate"><span class="pre">Conn
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">VrepClient</span>
 
 <span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="forward-kinematics">
-<h2>4.1.2. Forward Kinematics</h2>
+<h2><span class="section-number">4.1.2. </span>Forward Kinematics</h2>
 <div class="section" id="moving-robots">
-<h3>4.1.2.1. Moving robots</h3>
+<h3><span class="section-number">4.1.2.1. </span>Moving robots</h3>
 <p>The RFL scene used on these examples has 4 robots that can be
 referenced by the identifiers: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">D</span></code>.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/01_rfl.png" class="figure-img img-fluid" src="../../_images/01_rfl.png" />
 </div>
 <p>When planning on a multi-robotic setup, it’s important to make sure all robots
@@ -111,13 +111,13 @@ forward kinematics:</p>
 
     <span class="n">frame_a</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot_a</span><span class="p">)</span>
     <span class="n">frame_b</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot_b</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;End effector poses: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_b</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End effector poses: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_b</span><span class="p">))</span>
 </code></pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="inverse-kinematics">
-<h2>4.1.3. Inverse Kinematics</h2>
+<h2><span class="section-number">4.1.3. </span>Inverse Kinematics</h2>
 <p>When the configuration required to reach a certain frame with a robot is not
 know, we use inverse kinematics to resolve it and find a suitable pose.
 The following example shows how to calculate this. In this case, it will
@@ -132,11 +132,13 @@ that there is at least one valid configuration to reach the goal pose.</p>
 <span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
     <span class="n">configs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_pose</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Found valid configuration: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">configs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">configs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;No IK solution found&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found valid configuration: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">configs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </code></pre></div>
 </div>
 <div class="section" id="basic-path-planning-example">
-<h3>4.1.3.1. Basic path planning example</h3>
+<h3><span class="section-number">4.1.3.1. </span>Basic path planning example</h3>
 <p>Calculating a path plan requires several parameters to be configured in order
 to start the process. In its minimal expression, a path planning request must
 define a start configuration and a goal pose and rely on defaults for the rest.</p>
@@ -154,7 +156,7 @@ define a start configuration and a goal pose and rely on defaults for the rest.<
     <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">set_robot_config</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">start_config</span><span class="p">)</span>
     <span class="n">path</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_pose</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Found path of </span><span class="si">%d</span><span class="s1"> steps&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found path of </span><span class="si">%d</span><span class="s1"> steps&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
 </code></pre></div>
 </div>
 <p>Or Copy &amp; Paste the following code into a Python file:</p>
@@ -180,9 +182,9 @@ define a start configuration and a goal pose and rely on defaults for the rest.<
 <span class="n">building_member</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/timber_beam.obj&#39;</span><span class="p">))</span>
 <span class="n">structure</span>       <span class="o">=</span> <span class="p">[</span><span class="n">Mesh</span><span class="o">.</span><span class="n">from_obj</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/timber_structure.obj&#39;</span><span class="p">))]</span>
 <span class="n">metric</span>          <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span>
-<span class="n">fast_search</span>     <span class="o">=</span> <span class="bp">True</span>
+<span class="n">fast_search</span>     <span class="o">=</span> <span class="kc">True</span>
 
-<span class="k">with</span> <span class="n">VrepClient</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">VrepClient</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">rfl</span><span class="o">.</span><span class="n">Robot</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="n">client</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">pick_building_member</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">building_member</span><span class="p">,</span> <span class="n">start_pose</span><span class="p">)</span>
 
@@ -195,20 +197,22 @@ define a start configuration and a goal pose and rely on defaults for the rest.<
                               <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span>
                               <span class="n">shallow_state_search</span><span class="o">=</span><span class="n">fast_search</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Found path of </span><span class="si">%d</span><span class="s1"> steps&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found path of </span><span class="si">%d</span><span class="s1"> steps&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Path should not be empty&#39;</span>
 </code></pre></div>
 </div>
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/117a3631d3fbf75fe922b5b5c95f3133/01_complete_path_planning_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Path</span> <span class="pre">planning</span> <span class="pre">example</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/089510f88910de1cd01185a1bacf7068/01_complete_path_planning_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Path</span> <span class="pre">planning</span> <span class="pre">example</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>
 </div>
 <div class="section" id="grasshopper-integration">
-<h2>4.1.4. Grasshopper integration</h2>
-<div class="figure align-center">
+<h2><span class="section-number">4.1.4. </span>Grasshopper integration</h2>
+<div class="figure align-default">
 <img alt="../../_images/01_grasshopper.png" class="figure-img img-fluid" src="../../_images/01_grasshopper.png" />
 </div>
 <p>Besides the examples above that can be run standalone or inside CAD software,
@@ -217,8 +221,8 @@ configuration of most available parameters.</p>
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/85e5a0b4c69760d92f6ed13baeb3907f/01_grasshopper_basic_example.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Basic</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a></p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/d482e8f51e64093da62fd37175cb759a/01_grasshopper_path_planner.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Complete</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a>.</p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/6417e682de64fd820d4fdb7432f67cc9/01_grasshopper_basic_example.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Basic</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/a658a2807863f57c74b41dbc0988dccd/01_grasshopper_path_planner.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Complete</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a>.</p></li>
 </ul>
 </div>
 </div></div>
@@ -311,11 +315,11 @@ configuration of most available parameters.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -324,7 +328,7 @@ configuration of most available parameters.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

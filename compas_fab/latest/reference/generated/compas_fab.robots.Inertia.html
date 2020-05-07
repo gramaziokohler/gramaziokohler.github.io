@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="inertia">
 <h1>Inertia</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.Inertia">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Inertia</code><span class="sig-paren">(</span><em>inertia_tensor</em>, <em>mass</em>, <em>center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Inertia</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inertia_tensor</span></em>, <em class="sig-param"><span class="n">mass</span></em>, <em class="sig-param"><span class="n">center_of_mass</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The moments of inertia represent the spatial distribution of mass in a rigid body.</p>
 <p>It depends on the mass, size, and shape of a rigid body with units of
@@ -68,46 +68,22 @@
 a symmetric positive-definite 3x3 matrix, with 3 diagonal elements, and 3
 unique off-diagonal elements. Each inertia matrix is defined relative to a
 coordinate frame or set of axes.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.Inertia.inertia_tensor">
-<code class="descname">inertia_tensor</code></dt>
-<dd><p>A symmetric positive-definite 3x3 matrix:
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inertia_tensor</strong> (<em>list of float</em>) – A symmetric positive-definite 3x3 matrix:
 | ixx ixy ixz |
 | ixy iyy iyz |
 | ixz iyz izz |
 with [ixx, iyy, izz] as the principal moments of inertia and
-[ixy, ixz, iyz] as the products of inertia.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of float</p>
+[ixy, ixz, iyz] as the products of inertia.</p></li>
+<li><p><strong>mass</strong> (<em>float</em>) – The mass of the object in kg.</p></li>
+<li><p><strong>center_of_mass</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The center of mass of the object in meters.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.Inertia.mass">
-<code class="descname">mass</code></dt>
-<dd><p>The mass of the object in kg.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.Inertia.center_of_mass">
-<code class="descname">center_of_mass</code></dt>
-<dd><p>The center of mass of the object in meters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inertia</span> <span class="o">=</span> <span class="n">Inertia</span><span class="p">([[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inertia</span> <span class="o">=</span> <span class="n">Inertia</span><span class="p">([[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">Point</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inertia</span>
 <span class="go">Inertia([[0, 0, 0], [0, 0, 0], [0, 0, 0]], 1.0, Point(0.100, 3.100, 4.400))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">inertia</span><span class="o">.</span><span class="n">principal_moments</span>
@@ -119,7 +95,7 @@ with [ixx, iyy, izz] as the principal moments of inertia and
 free software MeshLab, refering to this great tutorial:
 <a class="reference external" href="http://gazebosim.org/tutorials?tut=inertia">http://gazebosim.org/tutorials?tut=inertia</a></p>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -134,7 +110,7 @@ free software MeshLab, refering to this great tutorial:
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -145,12 +121,6 @@ free software MeshLab, refering to this great tutorial:
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.Inertia.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>inertia_tensor</em>, <em>mass</em>, <em>center_of_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -234,11 +204,11 @@ free software MeshLab, refering to this great tutorial:
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -247,7 +217,7 @@ free software MeshLab, refering to this great tutorial:
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

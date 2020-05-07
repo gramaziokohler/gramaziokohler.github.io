@@ -58,13 +58,17 @@
 
                     <div class="detail section" id="robot-get-base-frame">
 <h1>Robot.get_base_frame</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.get_base_frame">
-<code class="descclassname">Robot.</code><code class="descname">get_base_frame</code><span class="sig-paren">(</span><em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.get_base_frame"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">get_base_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_configuration</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.get_base_frame"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns the frame of the base link, which is the robot’s origin frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>group</strong> (<em>str</em>) – The name of the group. Defaults to <cite>None</cite>.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group</strong> (<em>str</em>) – The name of the group. Defaults to <cite>None</cite>.</p></li>
+<li><p><strong>full_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>, optional) – The robot’s full configuration, i.e. values for all configurable
+joints of the entire robot. Defaults to the all-zero configuration.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>class: <cite>compas.geometry.Frame</cite></p>
@@ -153,11 +157,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -166,7 +170,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

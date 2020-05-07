@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="serialsensor">
 <h1>SerialSensor</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.sensors.SerialSensor">
-<em class="property">class </em><code class="descclassname">compas_fab.sensors.</code><code class="descname">SerialSensor</code><span class="sig-paren">(</span><em>serial</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/base.html#SerialSensor"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.sensors.</code><code class="sig-name descname">SerialSensor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serial</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/base.html#SerialSensor"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for all sensors with a serial
 interface.</p>
@@ -71,13 +71,13 @@ port used to communicate with the sensor.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">serial</span> <span class="k">import</span> <span class="n">Serial</span>                           <span class="c1"># doctest: +SKIP</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Serial</span><span class="p">(</span><span class="s1">&#39;COM5&#39;</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">serial</span><span class="p">:</span>    <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>    <span class="n">sensor</span> <span class="o">=</span> <span class="n">SerialSensor</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>                   <span class="c1"># doctest: +SKIP</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">serial</span> <span class="kn">import</span> <span class="n">Serial</span>                           
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Serial</span><span class="p">(</span><span class="s1">&#39;COM5&#39;</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">serial</span><span class="p">:</span>    
+<span class="gp">... </span>    <span class="n">sensor</span> <span class="o">=</span> <span class="n">SerialSensor</span><span class="p">(</span><span class="n">serial</span><span class="p">)</span>                   
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -88,12 +88,6 @@ port used to communicate with the sensor.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.sensors.SerialSensor.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>serial</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/base.html#SerialSensor.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -177,11 +171,11 @@ port used to communicate with the sensor.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -190,7 +184,7 @@ port used to communicate with the sensor.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

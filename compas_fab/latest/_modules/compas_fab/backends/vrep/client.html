@@ -53,18 +53,18 @@
                     
 
                     <h1>Source code for compas_fab.backends.vrep.client</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">from</span> <span class="nn">timeit</span> <span class="k">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
+<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">matrix_from_frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">matrix_from_frame</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="k">import</span> <span class="n">BackendError</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.remote_api</span> <span class="k">import</span> <span class="n">vrep</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="kn">import</span> <span class="n">BackendError</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.remote_api</span> <span class="kn">import</span> <span class="n">vrep</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
 <span class="n">DEFAULT_SCALE</span> <span class="o">=</span> <span class="mf">1.</span>
 <span class="n">DEFAULT_OP_MODE</span> <span class="o">=</span> <span class="n">vrep</span><span class="o">.</span><span class="n">simx_opmode_blocking</span>
@@ -80,11 +80,11 @@
 <div class="viewcode-block" id="VrepError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError">[docs]</a><span class="k">class</span> <span class="nc">VrepError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wraps an exception that occurred inside the simulation engine.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="VrepError.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">error_code</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">error_code</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VrepError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;Error code: &#39;</span> <span class="o">+</span>
                                         <span class="nb">str</span><span class="p">(</span><span class="n">error_code</span><span class="p">)</span> <span class="o">+</span>
                                         <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="n">message</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">error_code</span> <span class="o">=</span> <span class="n">error_code</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_code</span> <span class="o">=</span> <span class="n">error_code</span></div>
 
 
 <div class="viewcode-block" id="VrepClient"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.html#compas_fab.backends.VrepClient">[docs]</a><span class="k">class</span> <span class="nc">VrepClient</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -117,7 +117,7 @@
                           <span class="s1">&#39;prm&#39;</span><span class="p">,</span> <span class="s1">&#39;prrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrt&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtconnect&#39;</span><span class="p">,</span> <span class="s1">&#39;rrtstar&#39;</span><span class="p">,</span>
                           <span class="s1">&#39;sbl&#39;</span><span class="p">,</span> <span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="s1">&#39;trrt&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="VrepClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.__init__.html#compas_fab.backends.VrepClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">19997</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">DEFAULT_SCALE</span><span class="p">,</span> <span class="n">lua_script</span><span class="o">=</span><span class="s1">&#39;RFL&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="VrepClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.VrepClient.__init__.html#compas_fab.backends.VrepClient.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">19997</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">DEFAULT_SCALE</span><span class="p">,</span> <span class="n">lua_script</span><span class="o">=</span><span class="s1">&#39;RFL&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VrepClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">resolve_host</span><span class="p">(</span><span class="n">host</span><span class="p">)</span>
@@ -129,7 +129,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lua_script</span> <span class="o">=</span> <span class="n">lua_script</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_added_handles</span> <span class="o">=</span> <span class="p">[]</span></div>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Stop existing simulation, if any</span>
         <span class="n">vrep</span><span class="o">.</span><span class="n">simxFinish</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
@@ -149,7 +149,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="c1"># Stop simulation</span>
         <span class="n">vrep</span><span class="o">.</span><span class="n">simxStopSimulation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span> <span class="n">DEFAULT_OP_MODE</span><span class="p">)</span>
 
@@ -808,11 +808,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -821,7 +821,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

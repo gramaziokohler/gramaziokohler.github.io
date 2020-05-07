@@ -53,9 +53,10 @@
                     
 
                     <h1>Source code for compas_fab.robots.units</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="sd">&quot;&quot;&quot;Unit conversions on lists, useful for defining joint values.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
 
@@ -66,32 +67,32 @@
 
 
 <div class="viewcode-block" id="to_radians"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.to_radians.html#compas_fab.robots.to_radians">[docs]</a><span class="k">def</span> <span class="nf">to_radians</span><span class="p">(</span><span class="n">degrees</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Converts a list of floats representing degrees to a list of radians.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a list of floats representing degrees to a list of radians.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    degrees : list of :obj:`float`</span>
-<span class="sd">        List of degrees.</span>
+<span class="sd">    degrees : :obj:`list` of :obj:`float`</span>
+<span class="sd">        List of angle values in degrees.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list of :obj:`float`</span>
-<span class="sd">        List of radians.</span>
+<span class="sd">    :obj:`list` of :obj:`float`</span>
+<span class="sd">        List of angle values in radians.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">degrees</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="to_degrees"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.to_degrees.html#compas_fab.robots.to_degrees">[docs]</a><span class="k">def</span> <span class="nf">to_degrees</span><span class="p">(</span><span class="n">radians</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Converts a list of floats representing radians to a list of degrees.</span>
+    <span class="sd">&quot;&quot;&quot;Convert a list of floats representing radians to a list of degrees.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    radians : list of :obj:`float`</span>
-<span class="sd">        List of radians.</span>
+<span class="sd">    radians : :obj:`list` of :obj:`float`</span>
+<span class="sd">        List of angle values in radians.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list of :obj:`float`</span>
+<span class="sd">    :obj:`list` of :obj:`float`</span>
 <span class="sd">        List of degress.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">radians</span><span class="p">]</span></div>
@@ -159,11 +160,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -172,7 +173,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

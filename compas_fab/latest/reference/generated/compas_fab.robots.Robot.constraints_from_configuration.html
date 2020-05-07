@@ -58,28 +58,34 @@
 
                     <div class="detail section" id="robot-constraints-from-configuration">
 <h1>Robot.constraints_from_configuration</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.constraints_from_configuration">
-<code class="descclassname">Robot.</code><code class="descname">constraints_from_configuration</code><span class="sig-paren">(</span><em>configuration</em>, <em>tolerances</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.constraints_from_configuration"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">constraints_from_configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">tolerances_above</span></em>, <em class="sig-param"><span class="n">tolerances_below</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.constraints_from_configuration"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns joint constraints on all joints of the configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The target configuration.</p></li>
-<li><p><strong>tolerances</strong> (<em>list of float</em>) – The tolerances (as +/-) on each of the joints defining the bound in radian
-to be achieved. If only one value is passed it will be used to create
-bounds for all joint constraints.</p></li>
+<li><p><strong>tolerances_above</strong> (<em>list of float</em>) – The tolerances above the targeted configuration’s joint value on each
+of the joints, defining the upper bound in radian to be achieved.
+If only one value is passed, it will be used to create upper bounds
+for all joint constraints.</p></li>
+<li><p><strong>tolerances_below</strong> (<em>list of float</em>) – The tolerances below the targeted configuration’s joint value on each
+of the joints, defining the upper bound in radian to be achieved.
+If only one value is passed, it will be used to create lower bounds
+for all joint constraints.</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – The planning group for which we specify the constraint. Defaults to
 the robot’s main planning group.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">0.042</span><span class="p">,</span> <span class="mf">4.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.110</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.327</span><span class="p">,</span> <span class="mf">4.755</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">0.042</span><span class="p">,</span> <span class="mf">4.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.110</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.327</span><span class="p">,</span> <span class="mf">4.755</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_above</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_below</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-<span class="go">[JointConstraint(&#39;shoulder_pan_joint&#39;, -0.042, 0.08726646259971647, 1.0),         JointConstraint(&#39;shoulder_lift_joint&#39;, 4.295, 0.08726646259971647, 1.0),         JointConstraint(&#39;elbow_joint&#39;, -4.11, 0.08726646259971647, 1.0),         JointConstraint(&#39;wrist_1_joint&#39;, -3.327, 0.08726646259971647, 1.0),         JointConstraint(&#39;wrist_2_joint&#39;, 4.755, 0.08726646259971647, 1.0),         JointConstraint(&#39;wrist_3_joint&#39;, 0.0, 0.08726646259971647, 1.0)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">tolerances_above</span><span class="p">,</span> <span class="n">tolerances_below</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="go">[JointConstraint(&#39;shoulder_pan_joint&#39;, -0.042, 0.017453292519943295, 0.017453292519943295, 1.0),         JointConstraint(&#39;shoulder_lift_joint&#39;, 4.295, 0.017453292519943295, 0.017453292519943295, 1.0),         JointConstraint(&#39;elbow_joint&#39;, -4.11, 0.017453292519943295, 0.017453292519943295, 1.0),         JointConstraint(&#39;wrist_1_joint&#39;, -3.327, 0.017453292519943295, 0.017453292519943295, 1.0),         JointConstraint(&#39;wrist_2_joint&#39;, 4.755, 0.017453292519943295, 0.017453292519943295, 1.0),         JointConstraint(&#39;wrist_3_joint&#39;, 0.0, 0.017453292519943295, 0.017453292519943295, 1.0)]</span>
 </code></pre></div>
 </div>
 <dl class="field-list simple">
@@ -176,11 +182,11 @@ joints.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -189,7 +195,7 @@ joints.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

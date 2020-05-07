@@ -58,58 +58,24 @@
 
                     <div class="detail section" id="jointtrajectory">
 <h1>JointTrajectory</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.JointTrajectory">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">JointTrajectory</code><span class="sig-paren">(</span><em>trajectory_points=None</em>, <em>joint_names=None</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">JointTrajectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trajectory_points</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">joint_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start_configuration</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fraction</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.trajectory.Trajectory</span></code></p>
 <p>Describes a joint trajectory as a list of trajectory points.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.JointTrajectory.points">
-<code class="descname">points</code></dt>
-<dd><p>List of points composing the trajectory.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a></p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a>) – List of points composing the trajectory.</p></li>
+<li><p><strong>joint_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – List of joint names of the trajectory.</p></li>
+<li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>) – Start configuration for the trajectory.</p></li>
+<li><p><strong>fraction</strong> (<em>float</em>) – Indicates the percentage of requested trajectory that was calcuted,
+e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code> means the full trajectory was found.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointTrajectory.joint_names">
-<code class="descname">joint_names</code></dt>
-<dd><p>List of joint names of the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointTrajectory.start_configuration">
-<code class="descname">start_configuration</code></dt>
-<dd><p>Start configuration for the trajectory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointTrajectory.fraction">
-<code class="descname">fraction</code></dt>
-<dd><p>Indicates the percentage of requested trajectory that was calcuted,
-e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code> means the full trajectory was found.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -127,7 +93,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -141,12 +107,6 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.JointTrajectory.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>trajectory_points=None</em>, <em>joint_names=None</em>, <em>start_configuration=None</em>, <em>fraction=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectory.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -230,11 +190,11 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -243,7 +203,7 @@ e.g. <code class="docutils literal notranslate"><span class="pre">1</span></code
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

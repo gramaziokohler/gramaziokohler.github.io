@@ -58,71 +58,37 @@
 
                     <div class="detail section" id="orientationconstraint">
 <h1>OrientationConstraint</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.OrientationConstraint">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">OrientationConstraint</code><span class="sig-paren">(</span><em>link_name</em>, <em>quaternion</em>, <em>tolerances=None</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">OrientationConstraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_name</span></em>, <em class="sig-param"><span class="n">quaternion</span></em>, <em class="sig-param"><span class="n">tolerances</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></p>
 <p>Constrains a link to be within a certain orientation.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.OrientationConstraint.link_name">
-<code class="descname">link_name</code></dt>
-<dd><p>The name of the link this contraint refers to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>string</p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_name</strong> (<em>string</em>) – The name of the link this contraint refers to.</p></li>
+<li><p><strong>quaternion</strong> (<em>list of float</em>) – The desired orientation of the link specified by a quaternion in the
+order of [w, x, y, z].</p></li>
+<li><p><strong>tolerances</strong> (<em>list of float, optional</em>) – Error tolerances ti for each of the frame’s axes. The respective
+bound to be achieved is [ai - ti, ai + ti]. Defaults to [0.01, 0.01, 0.01].</p></li>
+<li><p><strong>weight</strong> (<em>float, optional</em>) – A weighting factor for this constraint. Denotes relative importance to
+other constraints. Closer to zero means less important. Defaults to 1.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.OrientationConstraint.quaternion">
-<code class="descname">quaternion</code></dt>
-<dd><p>The desired orientation of the link specified by a quaternion in the
-order of [w, x, y, z].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.OrientationConstraint.tolerances">
-<code class="descname">tolerances</code></dt>
-<dd><p>Error tolerances ti for each of the frame’s axes. The respective
-bound to be achieved is [ai - ti, ai + ti]. Defaults to [0.01, 0.01, 0.01].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of float, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.OrientationConstraint.weight">
-<code class="descname">weight</code></dt>
-<dd><p>A weighting factor for this constraint. Denotes relative importance to
-other constraints. Closer to zero means less important. Defaults to 1.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Notes</p>
 <p>If you specify the tolerance vector with [0.01, 0.01, 6.3], it means that
 the frame’s x-axis and y-axis are allowed to rotate about the z-axis by an
 angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">OrientationConstraint</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">OrientationConstraint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.68</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.67</span><span class="p">,</span> <span class="mf">0.73</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">oc</span> <span class="o">=</span> <span class="n">OrientationConstraint</span><span class="p">(</span><span class="s2">&quot;link_0&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">quaternion</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -137,13 +103,16 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.OrientationConstraint.scale.html#compas_fab.robots.OrientationConstraint.scale" title="compas_fab.robots.OrientationConstraint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.OrientationConstraint.transform.html#compas_fab.robots.OrientationConstraint.transform" title="compas_fab.robots.OrientationConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.OrientationConstraint.scaled.html#compas_fab.robots.OrientationConstraint.scaled" title="compas_fab.robots.OrientationConstraint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.OrientationConstraint.transform.html#compas_fab.robots.OrientationConstraint.transform" title="compas_fab.robots.OrientationConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -163,12 +132,6 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.OrientationConstraint.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>link_name</em>, <em>quaternion</em>, <em>tolerances=None</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -252,11 +215,11 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -265,7 +228,7 @@ angle of 6.3 radians, whereas the z-axis can only change 0.01.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

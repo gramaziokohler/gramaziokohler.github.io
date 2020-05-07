@@ -57,7 +57,7 @@
                     
 
                     <div class="section" id="using-ros">
-<span id="ros-examples"></span><h1>3.1. Using ROS</h1>
+<span id="ros-examples"></span><h1><span class="section-number">3.1. </span>Using ROS</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following examples use the <a class="reference external" href="http://www.ros.org/">ROS</a> backend.
@@ -66,14 +66,14 @@ Before running them, please make sure you have the
 the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">Base</span></a> system started.</p>
 </div>
 <div class="section" id="first-step">
-<h2>3.1.1. First step</h2>
+<h2><span class="section-number">3.1.1. </span>First step</h2>
 <p>The first step is to connect to ROS to verify that the system is working.</p>
 <p>Copy and paste the following example into any Python environment
 (a standalong script, a CAD environment, etc) and run it, you should
 see the output <code class="docutils literal notranslate"><span class="pre">Connected:</span> <span class="pre">True</span></code> if everything is working properly:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Connected:&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Connected:&#39;</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p><em>Yay! Our first connection to ROS!</em></p>
@@ -88,12 +88,12 @@ that the framework will invoke when the event is fired.</p>
 </div>
 </div>
 <div class="section" id="hello-world">
-<h2>3.1.2. Hello World</h2>
+<h2><span class="section-number">3.1.2. </span>Hello World</h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code> of ROS is to start two nodes: a talker and a listener.
 The nodes are extremely simple but they exemplify a distributed system with
 communication between two processes over the ROS infrastructure.</p>
 <div class="section" id="writing-the-talker-node">
-<h3>3.1.2.1. Writing the talker node</h3>
+<h3><span class="section-number">3.1.2.1. </span>Writing the talker node</h3>
 <p>The following example starts a ROS node and begins to publish
 messages in loop (to terminate, press <code class="docutils literal notranslate"><span class="pre">ctrl+c</span></code>):</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -108,7 +108,7 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 
     <span class="k">while</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">:</span>
         <span class="n">talker</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">Message</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello World!&#39;</span><span class="p">}))</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Sending message...&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sending message...&#39;</span><span class="p">)</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">talker</span><span class="o">.</span><span class="n">unadvertise</span><span class="p">()</span>
@@ -117,12 +117,12 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/e48f2b102ad5de40ff3244a072aa2b82/01_ros_hello_world_talker.py"><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/21f881cb95efa590832231d479907c4b/01_ros_hello_world_talker.py"><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>
 <div class="section" id="writing-the-listener-node">
-<h3>3.1.2.2. Writing the listener node</h3>
+<h3><span class="section-number">3.1.2.2. </span>Writing the listener node</h3>
 <p>Now let’s move on to the listener side:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
@@ -131,7 +131,7 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 
 
 <span class="k">def</span> <span class="nf">receive_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Heard talking: &#39;</span> <span class="o">+</span> <span class="n">message</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Heard talking: &#39;</span> <span class="o">+</span> <span class="n">message</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
 
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
@@ -146,12 +146,12 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/6a1a5b77161110b2b5ab70c8422788a3/01_ros_hello_world_listener.py"><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/ad80de72d43868419d432158b997a428/01_ros_hello_world_listener.py"><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>
 <div class="section" id="running-the-example">
-<h3>3.1.2.3. Running the example</h3>
+<h3><span class="section-number">3.1.2.3. </span>Running the example</h3>
 <p>Open a command prompt and start the talker:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_ros_hello_world_listener</span><span class="o">.</span><span class="n">py</span>
 </code></pre></div>
@@ -261,11 +261,11 @@ folders or even in different computers as long as the ROS master is the same.</p
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -274,7 +274,7 @@ folders or even in different computers as long as the ROS master is the same.</p
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

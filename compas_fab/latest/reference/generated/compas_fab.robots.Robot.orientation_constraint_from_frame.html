@@ -58,14 +58,14 @@
 
                     <div class="detail section" id="robot-orientation-constraint-from-frame">
 <h1>Robot.orientation_constraint_from_frame</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.orientation_constraint_from_frame">
-<code class="descclassname">Robot.</code><code class="descname">orientation_constraint_from_frame</code><span class="sig-paren">(</span><em>frame_WCF</em>, <em>tolerances_axes</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.orientation_constraint_from_frame"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">orientation_constraint_from_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame_WCF</span></em>, <em class="sig-param"><span class="n">tolerances_axes</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.orientation_constraint_from_frame"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns an orientation constraint on the group’s end-effector link.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create the orientation constraint.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create the orientation constraint.</p></li>
 <li><p><strong>tolerances_axes</strong> (<em>list of float</em>) – Error tolerances ti for each of the frame’s axes in radians. If only
 one value is passed it will be uses for all 3 axes.</p></li>
 <li><p><strong>group</strong> (<em>str</em>) – The planning group for which we specify the constraint. Defaults to
@@ -74,7 +74,7 @@ the robot’s main planning group.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">orientation_constraint_from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">tolerances_axes</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
@@ -169,11 +169,11 @@ by 0.01.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -182,7 +182,7 @@ by 0.01.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

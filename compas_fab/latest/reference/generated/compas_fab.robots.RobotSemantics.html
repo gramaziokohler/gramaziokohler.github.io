@@ -23,7 +23,7 @@
     
     
     
-        <link rel="prev" title="Robot.update" href="compas_fab.robots.Robot.update.html" />
+        <link rel="prev" title="Robot.zero_configuration" href="compas_fab.robots.Robot.zero_configuration.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -58,16 +58,16 @@
 
                     <div class="detail section" id="robotsemantics">
 <h1>RobotSemantics</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.RobotSemantics">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">RobotSemantics</code><span class="sig-paren">(</span><em>root</em>, <em>urdf_robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/semantics.html#RobotSemantics"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">RobotSemantics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em>, <em class="sig-param"><span class="n">urdf_robot</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/semantics.html#RobotSemantics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents semantic information of a robot.</p>
 <p>The semantic model is based on the
 <cite>Semantic Robot Description Format</cite> (<a class="reference external" href="https://wiki.ros.org/srdf">SRDF</a>).</p>
 <p class="rubric">References</p>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -82,26 +82,23 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string" title="compas_fab.robots.RobotSemantics.from_srdf_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_string</span></code></a>(text, urdf_robot)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints" title="compas_fab.robots.RobotSemantics.get_all_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_configurable_joints</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a>([group])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a>([group])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a>([group])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.RobotSemantics.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>root</em>, <em>urdf_robot</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/semantics.html#RobotSemantics.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -185,11 +182,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -198,7 +195,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

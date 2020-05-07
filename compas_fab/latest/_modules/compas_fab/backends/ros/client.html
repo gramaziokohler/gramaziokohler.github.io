@@ -53,35 +53,35 @@
                     
 
                     <h1>Source code for compas_fab.backends.ros.client</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="k">import</span> <span class="n">RobotModel</span>
-<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="k">import</span> <span class="n">await_callback</span>
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Message</span>
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="k">import</span> <span class="n">Ros</span>
-<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">ActionClient</span>
-<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="k">import</span> <span class="n">Goal</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
+<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="kn">import</span> <span class="n">await_callback</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Message</span>
+<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Ros</span>
+<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="kn">import</span> <span class="n">ActionClient</span>
+<span class="kn">from</span> <span class="nn">roslibpy.actionlib</span> <span class="kn">import</span> <span class="n">Goal</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.exceptions</span> <span class="k">import</span> <span class="n">RosError</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.fileserver_loader</span> <span class="k">import</span> <span class="n">RosFileServerLoader</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">ExecuteTrajectoryFeedback</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">ExecuteTrajectoryGoal</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">ExecuteTrajectoryResult</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryFeedback</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryGoal</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">FollowJointTrajectoryResult</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">Header</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">JointTrajectory</span> <span class="k">as</span> <span class="n">RosMsgJointTrajectory</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">JointTrajectoryPoint</span> <span class="k">as</span> <span class="n">RosMsgJointTrajectoryPoint</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">MoveItErrorCodes</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">RobotTrajectory</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="k">import</span> <span class="n">Time</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.planner_backend_moveit</span> <span class="k">import</span> <span class="n">MoveItPlanner</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.tasks</span> <span class="k">import</span> <span class="n">CancellableFutureResult</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Robot</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">RobotSemantics</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.exceptions</span> <span class="kn">import</span> <span class="n">RosError</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.fileserver_loader</span> <span class="kn">import</span> <span class="n">RosFileServerLoader</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">ExecuteTrajectoryFeedback</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">ExecuteTrajectoryGoal</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">ExecuteTrajectoryResult</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">FollowJointTrajectoryFeedback</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">FollowJointTrajectoryGoal</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">FollowJointTrajectoryResult</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">Header</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">JointTrajectory</span> <span class="k">as</span> <span class="n">RosMsgJointTrajectory</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">JointTrajectoryPoint</span> <span class="k">as</span> <span class="n">RosMsgJointTrajectoryPoint</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">MoveItErrorCodes</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">RobotTrajectory</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.planner_backend_moveit</span> <span class="kn">import</span> <span class="n">MoveItPlanner</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.tasks</span> <span class="kn">import</span> <span class="n">CancellableFutureResult</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;RosClient&#39;</span><span class="p">,</span>
@@ -93,7 +93,7 @@
 
 
 <span class="k">class</span> <span class="nc">CancellableRosActionResult</span><span class="p">(</span><span class="n">CancellableFutureResult</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CancellableRosActionResult</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">goal</span> <span class="o">=</span> <span class="n">goal</span>
 
@@ -150,14 +150,14 @@
 <span class="sd">    For more examples, check out the :ref:`ROS examples page &lt;ros_examples&gt;`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RosClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.__init__.html#compas_fab.backends.RosClient.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9090</span><span class="p">,</span> <span class="n">is_secure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">planner_backend</span><span class="o">=</span><span class="s1">&#39;moveit&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="RosClient.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.__init__.html#compas_fab.backends.RosClient.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">9090</span><span class="p">,</span> <span class="n">is_secure</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">planner_backend</span><span class="o">=</span><span class="s1">&#39;moveit&#39;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RosClient</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">is_secure</span><span class="p">)</span>
 
         <span class="c1"># Dynamically mixin the planner plugin into this class</span>
         <span class="n">planner_backend_type</span> <span class="o">=</span> <span class="n">PLANNER_BACKENDS</span><span class="p">[</span><span class="n">planner_backend</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;RosClient_&#39;</span> <span class="o">+</span> <span class="n">planner_backend_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">planner_backend_type</span><span class="p">,</span> <span class="n">RosClient</span><span class="p">),</span> <span class="p">{})</span></div>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
 
@@ -166,7 +166,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dispose_planner</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -224,16 +224,15 @@
 
         <span class="k">return</span> <span class="n">Robot</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="n">semantics</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
-                           <span class="n">joint_names</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="viewcode-block" id="RosClient.inverse_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.inverse_kinematics.html#compas_fab.backends.RosClient.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
+                           <span class="n">start_configuration</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                            <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
                            <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">frame</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_positions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_positions</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start_configuration</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;avoid_collisions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">avoid_collisions</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constraints</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;attempts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attempts</span>
@@ -242,12 +241,11 @@
 
         <span class="k">return</span> <span class="n">await_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics_async</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RosClient.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">):</span>
+<div class="viewcode-block" id="RosClient.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosClient.forward_kinematics.html#compas_fab.backends.RosClient.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">):</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_positions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_positions</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_link</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">configuration</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">group</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;ee_link&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_link</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;errback_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;errback&#39;</span>
@@ -590,11 +588,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -603,7 +601,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

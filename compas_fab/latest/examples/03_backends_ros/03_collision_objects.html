@@ -57,7 +57,7 @@
                     
 
                     <div class="section" id="planning-scene-and-collision-objects">
-<h1>3.3. Planning scene and collision objects</h1>
+<h1><span class="section-number">3.3. </span>Planning scene and collision objects</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following examples use the <a class="reference external" href="http://www.ros.org/">ROS</a> backend
@@ -68,7 +68,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <p>To plan motion paths that avoid collisions with other objects than the robot
 itself, the backend’s planning scene has to be updated.</p>
 <p>This is the representation of the planning scene in RViz with the UR5.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/03_collision_objects_attached_without.jpg" class="figure-img img-fluid" src="../../_images/03_collision_objects_attached_without.jpg" />
 </div>
 <div class="admonition note">
@@ -77,7 +77,7 @@ itself, the backend’s planning scene has to be updated.</p>
 <a class="reference external" href="http://localhost:8080/vnc.html?resize=scale&amp;autoconnect=true">RViz on your browser</a>.</p>
 </div>
 <div class="section" id="collision-meshes">
-<h2>3.3.1. Collision meshes</h2>
+<h2><span class="section-number">3.3.1. </span>Collision meshes</h2>
 <p>The following script adds a floor to the planning scene.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
@@ -102,7 +102,7 @@ itself, the backend’s planning scene has to be updated.</p>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene after executing the above script.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/03_collision_objects.jpg" class="figure-img img-fluid" src="../../_images/03_collision_objects.jpg" />
 </div>
 <p>To remove the floor, use the identifier assigned when adding it:</p>
@@ -156,12 +156,12 @@ all identifiers if we later want to remove them.</p>
 </div>
 <p>The backend’s updated planning scene after executing the above script. Note the
 red robot link indicating the collision.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/03_collision_objects_append.jpg" class="figure-img img-fluid" src="../../_images/03_collision_objects_append.jpg" />
 </div>
 </div>
 <div class="section" id="attach-a-collision-mesh-to-a-robot-s-end-effector">
-<h2>3.3.2. Attach a collision mesh to a robot’s end-effector</h2>
+<h2><span class="section-number">3.3.2. </span>Attach a collision mesh to a robot’s end-effector</h2>
 <p>The following script attaches a collision mesh to the robot’s end-effector.
 Collision objects can be attached to any of the robot’s links.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -192,12 +192,12 @@ Collision objects can be attached to any of the robot’s links.</p>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene after executing the above script.</p>
-<div class="figure align-center">
+<div class="figure align-default">
 <img alt="../../_images/03_collision_objects_attached.jpg" class="figure-img img-fluid" src="../../_images/03_collision_objects_attached.jpg" />
 </div>
 </div>
 <div class="section" id="plan-motion-with-an-attached-collision-mesh">
-<h2>3.3.3. Plan motion with an attached collision mesh</h2>
+<h2><span class="section-number">3.3.3. </span>Plan motion with an attached collision mesh</h2>
 <p>Coming soon…</p>
 </div>
 </div>
@@ -289,11 +289,11 @@ Collision objects can be attached to any of the robot’s links.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -302,7 +302,7 @@ Collision objects can be attached to any of the robot’s links.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

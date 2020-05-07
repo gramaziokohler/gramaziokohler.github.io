@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="vrepclient-plan-motion-to-config">
 <h1>VrepClient.plan_motion_to_config</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.backends.VrepClient.plan_motion_to_config">
-<code class="descclassname">VrepClient.</code><code class="descname">plan_motion_to_config</code><span class="sig-paren">(</span><em>robot</em>, <em>goal_configs</em>, <em>metric_values=None</em>, <em>collision_meshes=None</em>, <em>planner_id='rrtconnect'</em>, <em>trials=1</em>, <em>resolution=0.02</em>, <em>gantry_joint_limits=None</em>, <em>arm_joint_limits=None</em>, <em>shallow_state_search=True</em>, <em>optimize_path_length=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/client.html#VrepClient.plan_motion_to_config"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">VrepClient.</code><code class="sig-name descname">plan_motion_to_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">robot</span></em>, <em class="sig-param"><span class="n">goal_configs</span></em>, <em class="sig-param"><span class="n">metric_values</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collision_meshes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">planner_id</span><span class="o">=</span><span class="default_value">'rrtconnect'</span></em>, <em class="sig-param"><span class="n">trials</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">resolution</span><span class="o">=</span><span class="default_value">0.02</span></em>, <em class="sig-param"><span class="n">gantry_joint_limits</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">arm_joint_limits</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">shallow_state_search</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">optimize_path_length</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/client.html#VrepClient.plan_motion_to_config"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Find a path plan to move the selected robot from its current position to one of the <cite>goal_configs</cite>.</p>
 <p>This function is useful when it is required to get a path plan that ends in one
 specific goal configuration.</p>
@@ -73,7 +73,7 @@ specific goal configuration.</p>
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
 move during inverse kinematic solving.</p></li>
-<li><p><strong>collision_meshes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – Collision meshes
+<li><p><strong>collision_meshes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – Collision meshes
 to be taken into account when calculating the motion plan.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>planner_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of the planner to use. Defaults to <code class="docutils literal notranslate"><span class="pre">rrtconnect</span></code>.</p></li>
@@ -179,11 +179,11 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -192,7 +192,7 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

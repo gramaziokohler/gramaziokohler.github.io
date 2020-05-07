@@ -19,11 +19,11 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="Robot.inverse_kinematics" href="compas_fab.robots.Robot.inverse_kinematics.html" />
+        <link rel="next" title="JointConstraint.transform" href="compas_fab.robots.JointConstraint.transform.html" />
     
     
     
-        <link rel="prev" title="Robot.info" href="compas_fab.robots.Robot.info.html" />
+        <link rel="prev" title="JointConstraint.scale" href="compas_fab.robots.JointConstraint.scale.html" />
     
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -56,18 +56,12 @@
 
                     
 
-                    <div class="detail section" id="robot-init-configuration">
-<h1>Robot.init_configuration</h1>
-<dl class="method">
-<dt id="compas_fab.robots.Robot.init_configuration">
-<code class="descclassname">Robot.</code><code class="descname">init_configuration</code><span class="sig-paren">(</span><em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.init_configuration"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Returns the init joint configuration.</p>
-<p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">(</span><span class="s1">&#39;manipulator&#39;</span><span class="p">)</span>
-<span class="go">Configuration((0.000, 0.000, 0.000, 0.000, 0.000, 0.000), (0, 0, 0, 0, 0, 0))</span>
-</code></pre></div>
-</div>
-</dd></dl>
+                    <div class="detail section" id="jointconstraint-scaled">
+<h1>JointConstraint.scaled</h1>
+<dl class="py method">
+<dt id="compas_fab.robots.JointConstraint.scaled">
+<code class="sig-prename descclassname">JointConstraint.</code><code class="sig-name descname">scaled</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale_factor</span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
 
 </div>
 
@@ -138,7 +132,7 @@
                 
 
                 <ul class="nav flex-column" id="compas-localnav">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Robot.init_configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">JointConstraint.scaled</a></li>
 </ul>
 
 
@@ -150,11 +144,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -163,7 +157,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -53,15 +53,17 @@
                     
 
                     <h1>Source code for compas_fab.artists.base</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">itertools</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Transformation</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Scale</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Scale</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Shape</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Transformation</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;BaseRobotArtist&#39;</span>
@@ -87,7 +89,7 @@
 <span class="sd">        Instance of a robot model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BaseRobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.__init__.html#compas_fab.artists.BaseRobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.__init__.html#compas_fab.artists.BaseRobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">BaseRobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">robot</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
@@ -115,8 +117,8 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        geometry : :class:`compas.datastructures.Mesh` or :class:`compas.geometry.Shape`</span>
-<span class="sd">            Instance of a **COMPAS** mesh or **COMPAS** shape</span>
+<span class="sd">        geometry : :class:`Mesh`</span>
+<span class="sd">            Instance of a **COMPAS** mesh</span>
 <span class="sd">        name : str, optional</span>
 <span class="sd">            The name of the mesh to draw.</span>
 
@@ -136,7 +138,7 @@
 <span class="sd">            The tool that should be attached to the robot&#39;s flange.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.visual.attached_tool&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">native_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_geometry</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># TODO: only visual, collsion would be great</span>
+        <span class="n">native_geometry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">draw_geometry</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># TODO: only visual, collision would be great</span>
 
         <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">link_name</span><span class="p">)</span>
         <span class="n">ee_frame</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">parent_joint</span><span class="o">.</span><span class="n">origin</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -181,6 +183,9 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">meshes</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">geometry</span>
 
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">meshes</span><span class="p">,</span> <span class="n">Shape</span><span class="p">):</span>
+                <span class="n">meshes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Mesh</span><span class="o">.</span><span class="n">from_shape</span><span class="p">(</span><span class="n">meshes</span><span class="p">)]</span>
+
             <span class="k">if</span> <span class="n">meshes</span><span class="p">:</span>
                 <span class="c1"># Coerce meshes into an iteratable (a tuple if not natively iterable)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">meshes</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
@@ -221,7 +226,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>  <span class="c1"># scale the model</span>
 
         <span class="n">relative_factor</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>  <span class="c1"># relative scaling factor</span>
-        <span class="n">transformation</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">relative_factor</span><span class="p">,</span> <span class="n">relative_factor</span><span class="p">,</span> <span class="n">relative_factor</span><span class="p">])</span>
+        <span class="n">transformation</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">relative_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">factor</span></div>
 
@@ -261,15 +266,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">native_geometry</span><span class="p">,</span> <span class="n">relative_transformation</span><span class="p">)</span>
         <span class="n">item</span><span class="o">.</span><span class="n">current_transformation</span> <span class="o">=</span> <span class="n">transformation</span>
 
-<div class="viewcode-block" id="BaseRobotArtist.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseRobotArtist.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.artists.BaseRobotArtist.update.html#compas_fab.artists.BaseRobotArtist.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Triggers the update of the robot geometry.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        configuration : :class:`compas_fab.robots.Configuration`</span>
 <span class="sd">            Instance of the configuration (joint state) to move to.</span>
-<span class="sd">        names : list of string</span>
-<span class="sd">            The names of the configurable joints to update.</span>
 <span class="sd">        visual : bool, optional</span>
 <span class="sd">            ``True`` if the visual geometry should be also updated, otherwise ``False``.</span>
 <span class="sd">            Defaults to ``True``.</span>
@@ -278,8 +281,9 @@
 <span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;len(names): </span><span class="si">%d</span><span class="s2"> is not len(positions) </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)))</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Please pass a configuration with </span><span class="si">%d</span><span class="s2"> joint_names.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">))</span>
         <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">positions</span><span class="p">))</span>
         <span class="n">transformations</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">compute_transformations</span><span class="p">(</span><span class="n">joint_state</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_joints</span><span class="p">():</span>
@@ -380,11 +384,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -393,7 +397,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

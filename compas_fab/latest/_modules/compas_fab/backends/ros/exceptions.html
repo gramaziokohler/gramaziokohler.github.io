@@ -53,11 +53,11 @@
                     
 
                     <h1>Source code for compas_fab.backends.ros.exceptions</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="k">import</span> <span class="n">BackendError</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="kn">import</span> <span class="n">BackendError</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;RosError&#39;</span><span class="p">,</span>
@@ -68,20 +68,20 @@
 <div class="viewcode-block" id="RosError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError">[docs]</a><span class="k">class</span> <span class="nc">RosError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wraps an exception that occurred on the communication with ROS.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RosError.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">error_code</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">error_code</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RosError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;Error code: &#39;</span> <span class="o">+</span>
                                        <span class="nb">str</span><span class="p">(</span><span class="n">error_code</span><span class="p">)</span> <span class="o">+</span>
                                        <span class="s1">&#39;; &#39;</span> <span class="o">+</span> <span class="n">message</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">error_code</span> <span class="o">=</span> <span class="n">error_code</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error_code</span> <span class="o">=</span> <span class="n">error_code</span></div>
 
 
 <div class="viewcode-block" id="RosValidationError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosValidationError.html#compas_fab.backends.RosValidationError">[docs]</a><span class="k">class</span> <span class="nc">RosValidationError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Wraps an exception that occurred on validation of a ROS response.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RosValidationError.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.RosValidationError.html#compas_fab.backends.RosValidationError.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_exception</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">original_exception</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">RosValidationError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">original_exception</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">response</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">original_exception</span> <span class="o">=</span> <span class="n">original_exception</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">original_exception</span> <span class="o">=</span> <span class="n">original_exception</span></div>
 </code></pre></div>
                     
                 
@@ -146,11 +146,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -159,7 +159,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

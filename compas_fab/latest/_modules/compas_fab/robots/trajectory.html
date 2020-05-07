@@ -53,12 +53,12 @@
                     
 
                     <h1>Source code for compas_fab.robots.trajectory</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.robots.time_</span> <span class="k">import</span> <span class="n">Duration</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="k">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots.time_</span> <span class="kn">import</span> <span class="n">Duration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;JointTrajectoryPoint&#39;</span><span class="p">,</span>
@@ -92,14 +92,14 @@
 <span class="sd">        Duration of trajectory point counting from the start.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointTrajectoryPoint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accelerations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">effort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JointTrajectoryPoint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accelerations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">effort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">JointTrajectoryPoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="n">velocities</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="n">accelerations</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="n">effort</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">time_from_start</span> <span class="ow">or</span> <span class="n">Duration</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">vs</span> <span class="o">=</span> <span class="s1">&#39;%.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_precision</span>
         <span class="k">return</span> <span class="s1">&#39;JointTrajectoryPoint((</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">, (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
@@ -186,7 +186,7 @@
 <span class="sd">        Amount of time it took to complete the motion plan</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">planning_time</span> <span class="o">=</span> <span class="kc">None</span>
 
 
@@ -206,7 +206,7 @@
 <span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">trajectory_points</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[]</span>
@@ -327,11 +327,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -340,7 +340,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

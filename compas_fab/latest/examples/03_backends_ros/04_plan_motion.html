@@ -57,7 +57,7 @@
                     
 
                     <div class="section" id="plan-motion">
-<h1>3.4. Plan motion</h1>
+<h1><span class="section-number">3.4. </span>Plan motion</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following examples use the <a class="reference external" href="http://www.ros.org/">ROS</a> backend
@@ -68,7 +68,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <p>There are 2 function that allow to plan a robotic movement without collisions:
 <cite>plan_cartesian_motion</cite> and <cite>plan_motion</cite>.</p>
 <div class="section" id="plan-cartesian-motion">
-<h2>3.4.1. Plan cartesian motion</h2>
+<h2><span class="section-number">3.4.1. </span>Plan cartesian motion</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
@@ -86,16 +86,16 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
     <span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span>
                                              <span class="n">start_configuration</span><span class="p">,</span>
                                              <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
-                                             <span class="n">avoid_collisions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                                             <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Computed cartesian path with </span><span class="si">%d</span><span class="s2"> configurations, &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;following </span><span class="si">%d%%</span><span class="s2"> of requested trajectory.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computed cartesian path with </span><span class="si">%d</span><span class="s2"> configurations, &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;following </span><span class="si">%d%%</span><span class="s2"> of requested trajectory.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="id1">
-<h2>3.4.2. Plan motion</h2>
+<h2><span class="section-number">3.4.2. </span>Plan motion</h2>
 <p>In contrast to the cartesian path, the <cite>plan_motion</cite> allows to describe the
 goal with constraints rather than defined frames.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">math</span>
@@ -125,8 +125,8 @@ goal with constraints rather than defined frames.</p>
                                    <span class="n">group</span><span class="p">,</span>
                                    <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;RRT&#39;</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Computed kinematic path with </span><span class="si">%d</span><span class="s2"> configurations.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computed kinematic path with </span><span class="si">%d</span><span class="s2"> configurations.&quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -218,11 +218,11 @@ goal with constraints rather than defined frames.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -231,7 +231,7 @@ goal with constraints rather than defined frames.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -53,13 +53,12 @@
                     
 
                     <h1>Source code for compas_fab.robots.planning_scene</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="k">import</span> <span class="n">mesh_transform</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Scale</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Scale</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;CollisionMesh&#39;</span><span class="p">,</span>
@@ -92,20 +91,22 @@
 <span class="sd">    Frame(Point(0.000, 0.000, 0.000), Vector(1.000, 0.000, 0.000), Vector(0.000, 1.000, 0.000))</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CollisionMesh.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.__init__.html#compas_fab.robots.CollisionMesh.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="CollisionMesh.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.__init__.html#compas_fab.robots.CollisionMesh.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">root_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span> <span class="ow">or</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="n">root_name</span> <span class="ow">or</span> <span class="s1">&#39;world&#39;</span></div>
 
-<div class="viewcode-block" id="CollisionMesh.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Scales the collision mesh.</span>
+<div class="viewcode-block" id="CollisionMesh.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Scales the collision mesh uniformly.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        transformation : compas.geometry.Scale</span>
+<span class="sd">        scale_factor : :obj:`float`</span>
+<span class="sd">            Scale factor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">mesh_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span></div></div>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">S</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="AttachedCollisionMesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">AttachedCollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -132,7 +133,7 @@
 <span class="sd">    &gt;&gt;&gt; acm = AttachedCollisionMesh(cm, ee_link_name, touch_links)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AttachedCollisionMesh.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.__init__.html#compas_fab.robots.AttachedCollisionMesh.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="viewcode-block" id="AttachedCollisionMesh.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.__init__.html#compas_fab.robots.AttachedCollisionMesh.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collision_mesh</span> <span class="o">=</span> <span class="n">collision_mesh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="n">link_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">link_name</span>
@@ -152,7 +153,7 @@
 <span class="sd">    --------</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PlanningScene.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.__init__.html#compas_fab.robots.PlanningScene.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+<div class="viewcode-block" id="PlanningScene.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.__init__.html#compas_fab.robots.PlanningScene.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">robot</span></div>
 
     <span class="nd">@property</span>
@@ -195,8 +196,8 @@
         <span class="n">collision_mesh</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root_name</span>
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
-            <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
@@ -249,8 +250,8 @@
         <span class="n">collision_mesh</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root_name</span>
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
-            <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
@@ -281,8 +282,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
-            <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">attached_collision_mesh</span><span class="p">)</span></div>
 
@@ -348,8 +349,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
-            <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="n">ee_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">touch_links</span> <span class="o">=</span> <span class="p">[</span><span class="n">ee_link_name</span><span class="p">]</span>
@@ -433,11 +434,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -446,7 +447,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -58,61 +58,48 @@
 
                     <div class="detail section" id="configuration">
 <h1>Configuration</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.Configuration">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Configuration</code><span class="sig-paren">(</span><em>values=None</em>, <em>types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/configuration.html#Configuration"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">joint_names</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/configuration.html#Configuration"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents the configuration of a robot based on the state of its joints.
 This concept is also refered to as <cite>Joint State</cite>.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.Configuration.values">
-<code class="descname">values</code></dt>
-<dd><p>Joint values expressed in radians or meters, depending on the respective type.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Joint values expressed in radians or meters, depending on the respective type.</p></li>
+<li><p><strong>types</strong> (list of <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code>) – Joint types, e.g. a list of <cite>compas.robots.Joint.REVOLUTE</cite> for revolute joints.</p></li>
+<li><p><strong>joint_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Joint names list</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.Configuration.types">
-<code class="descname">types</code></dt>
-<dd><p>Joint types, e.g. a list of <cite>compas.robots.Joint.REVOLUTE</cite> for revolute joints.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>list of <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span><span class="o">.</span><span class="n">values</span>
 <span class="go">[1.5707963267948966, 0.0, 0.0]</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Configuration</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">([</span><span class="mf">8.312</span><span class="p">],</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="go">&#39;Configuration((8.312, 1.571, 0.000, 0.000, 0.000, 6.283, 0.800), (2, 0, 0, 0, 0, 0, 0))&#39;</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">Configuration</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="k">import</span> <span class="n">Joint</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Joint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="p">([</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">3.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">PRISMATIC</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">PLANAR</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 <span class="go">&#39;Configuration((1.571, 3.000, 0.100), (0, 2, 5))&#39;</span>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.__init__.html#compas_fab.robots.Configuration.__init__" title="compas_fab.robots.Configuration.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([values, types])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.__init__.html#compas_fab.robots.Configuration.__init__" title="compas_fab.robots.Configuration.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([values, types, joint_names])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.copy.html#compas_fab.robots.Configuration.copy" title="compas_fab.robots.Configuration.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
@@ -130,13 +117,16 @@ This concept is also refered to as <cite>Joint State</cite>.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scale.html#compas_fab.robots.Configuration.scale" title="compas_fab.robots.Configuration.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p>Scales the joint positions of the current configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scaled.html#compas_fab.robots.Configuration.scaled" title="compas_fab.robots.Configuration.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<td><p>Returns a scaled copy of this configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
 <td><p>Return the data dictionary that represents the configuration, and from which it can be reconstructed.</p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -153,12 +143,6 @@ This concept is also refered to as <cite>Joint State</cite>.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.Configuration.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>values=None</em>, <em>types=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/configuration.html#Configuration.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -242,11 +226,11 @@ This concept is also refered to as <cite>Joint State</cite>.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -255,7 +239,7 @@ This concept is also refered to as <cite>Joint State</cite>.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -58,20 +58,20 @@
 
                     <div class="detail section" id="robot-to-local-coords">
 <h1>Robot.to_local_coords</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.to_local_coords">
-<code class="descclassname">Robot.</code><code class="descname">to_local_coords</code><span class="sig-paren">(</span><em>frame_WCF</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.to_local_coords"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">to_local_coords</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame_WCF</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.to_local_coords"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Represents a frame from the world coordinate system (WCF) in the robot’s coordinate system (RCF).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – A frame in the world coordinate frame.</p>
+<dd class="field-odd"><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – A frame in the world coordinate frame.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> – A frame in the robot’s coordinate frame.</p>
+<dd class="field-even"><p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> – A frame in the robot’s coordinate frame.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="o">-</span><span class="mf">0.363</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.147</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.388</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.351</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.852</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.276</span><span class="p">,</span> <span class="mf">0.926</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.256</span><span class="p">])</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="o">-</span><span class="mf">0.363</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.147</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.388</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.351</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.852</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.276</span><span class="p">,</span> <span class="mf">0.926</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.256</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_local_coords</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF</span>
 <span class="go">Frame(Point(-0.363, 0.003, -0.147), Vector(0.388, -0.351, -0.852), Vector(0.276, 0.926, -0.256))</span>
@@ -160,11 +160,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -173,7 +173,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

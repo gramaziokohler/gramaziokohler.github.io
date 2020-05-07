@@ -53,7 +53,7 @@
                     
 
                     <h1>Source code for compas_fab.robots.inertia</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Point</span>
+<span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 
 
 <div class="viewcode-block" id="Inertia"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Inertia.html#compas_fab.robots.Inertia">[docs]</a><span class="k">class</span> <span class="nc">Inertia</span><span class="p">():</span>
@@ -94,7 +94,7 @@
 <span class="sd">    http://gazebosim.org/tutorials?tut=inertia</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Inertia.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Inertia.__init__.html#compas_fab.robots.Inertia.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inertia_tensor</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">center_of_mass</span><span class="p">):</span>
+<div class="viewcode-block" id="Inertia.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Inertia.__init__.html#compas_fab.robots.Inertia.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inertia_tensor</span><span class="p">,</span> <span class="n">mass</span><span class="p">,</span> <span class="n">center_of_mass</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inertia_tensor</span> <span class="o">=</span> <span class="n">inertia_tensor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="n">mass</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">center_of_mass</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="o">*</span><span class="n">center_of_mass</span><span class="p">)</span></div>
@@ -106,7 +106,7 @@
         <span class="n">inertia_tensor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inertia_tensor</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">inertia_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">inertia_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">inertia_tensor</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Inertia(</span><span class="si">{0}</span><span class="s2">, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inertia_tensor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">center_of_mass</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Inertia.calculate_inertia_tensor"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Inertia.calculate_inertia_tensor.html#compas_fab.robots.Inertia.calculate_inertia_tensor">[docs]</a>    <span class="nd">@staticmethod</span>
@@ -178,11 +178,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -191,7 +191,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

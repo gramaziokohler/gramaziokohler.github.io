@@ -53,9 +53,9 @@
                     
 
                     <h1>Source code for compas_fab.backends.tasks</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">threading</span>
 
@@ -72,7 +72,7 @@
 <span class="sd">    but allow to explicitely control when to block and wait</span>
 <span class="sd">    for its completion.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="FutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.FutureResult.__init__.html#compas_fab.backends.FutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="FutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.FutureResult.__init__.html#compas_fab.backends.FutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="kc">None</span>
@@ -117,7 +117,7 @@
 <div class="viewcode-block" id="CancellableFutureResult"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.html#compas_fab.backends.CancellableFutureResult">[docs]</a><span class="k">class</span> <span class="nc">CancellableFutureResult</span><span class="p">(</span><span class="n">FutureResult</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents a future result of a long-running asynchronous operation that can be cancelled.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="CancellableFutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.__init__.html#compas_fab.backends.CancellableFutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="CancellableFutureResult.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.__init__.html#compas_fab.backends.CancellableFutureResult.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">CancellableFutureResult</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="CancellableFutureResult.cancel"><a class="viewcode-back" href="../../../reference/generated/compas_fab.backends.CancellableFutureResult.cancel.html#compas_fab.backends.CancellableFutureResult.cancel">[docs]</a>    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -192,11 +192,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -205,7 +205,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

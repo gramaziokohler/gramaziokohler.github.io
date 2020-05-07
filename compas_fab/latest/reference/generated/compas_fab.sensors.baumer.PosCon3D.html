@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="poscon3d">
 <h1>PosCon3D</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.sensors.baumer.PosCon3D">
-<em class="property">class </em><code class="descclassname">compas_fab.sensors.baumer.</code><code class="descname">PosCon3D</code><span class="sig-paren">(</span><em>serial</em>, <em>address</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/baumer.html#PosCon3D"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.sensors.baumer.</code><code class="sig-name descname">PosCon3D</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serial</span></em>, <em class="sig-param"><span class="n">address</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/baumer.html#PosCon3D"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.sensors.base.SerialSensor</span></code></p>
 <p>Provides an interface for the <a class="reference external" href="http://www.baumer.com/us-en/products/distance-measurement/light-section-sensors/poscon-3d-edge-measurement/">Baumer PosCon3D edge measurement sensor</a>.</p>
 <p>The sensor has different interfaces to retrieve its data. This
@@ -72,46 +72,32 @@ access to it must be locked programmatically before starting operations
 and unlocked on completion. This is handled automatically if you use
 this class on a <code class="docutils literal notranslate"><span class="pre">with</span></code> statement, otherwise, the methods <code class="docutils literal notranslate"><span class="pre">begin()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">end()</span></code> must be invoked by hand.</p>
-<dl class="attribute">
-<dt id="compas_fab.sensors.baumer.PosCon3D.serial">
-<code class="descname">serial</code></dt>
-<dd><p>Instance of the serial port used to communicate with the sensor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">serial.Serial</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.sensors.baumer.PosCon3D.address">
-<code class="descname">address</code></dt>
-<dd><p>PosCon3D sensors have an address assigned, which defaults to 1.
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serial</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">serial.Serial</span></code>) – Instance of the serial port used to communicate with the sensor.</p></li>
+<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosCon3D sensors have an address assigned, which defaults to 1.
 There’s also a broadcast address (<code class="docutils literal notranslate"><span class="pre">PosCon3D.BROADCAST_ADDRESS</span></code>)
 that can be used to query the address of the sensor connected to
 the RS-485 bus. Only one sensor can be in the bus when using the
-broadcast address to query for sensor’s address.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p>
+broadcast address to query for sensor’s address.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">serial</span> <span class="k">import</span> <span class="n">Serial</span>                                                   <span class="c1"># doctest: +SKIP</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Serial</span><span class="p">(</span><span class="s1">&#39;COM5&#39;</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">serial</span><span class="p">:</span>                            <span class="c1"># doctest: +SKIP</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="k">with</span> <span class="n">PosCon3D</span><span class="p">(</span><span class="n">serial</span><span class="p">,</span> <span class="n">PosCon3D</span><span class="o">.</span><span class="n">BROADCAST_ADDRESS</span><span class="p">)</span> <span class="k">as</span> <span class="n">broadcast_query</span><span class="p">:</span>   <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>        <span class="n">addr</span> <span class="o">=</span> <span class="n">broadcast_query</span><span class="o">.</span><span class="n">get_address</span><span class="p">()</span>                                <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>                                                                            <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>    <span class="k">with</span> <span class="n">PosCon3D</span><span class="p">(</span><span class="n">serial</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span> <span class="k">as</span> <span class="n">sensor</span><span class="p">:</span>                                  <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>        <span class="n">sensor</span><span class="o">.</span><span class="n">set_measurement_type</span><span class="p">(</span><span class="s1">&#39;Edge L rise&#39;</span><span class="p">)</span>                          <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>        <span class="n">sensor</span><span class="o">.</span><span class="n">set_precision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                                             <span class="c1"># doctest: +SKIP</span>
-<span class="gp">... </span>        <span class="n">data</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">get_measurement</span><span class="p">()</span>                                     <span class="c1"># doctest: +SKIP</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">serial</span> <span class="kn">import</span> <span class="n">Serial</span>                                                   
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Serial</span><span class="p">(</span><span class="s1">&#39;COM5&#39;</span><span class="p">,</span> <span class="mi">57600</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">serial</span><span class="p">:</span>                            
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">with</span> <span class="n">PosCon3D</span><span class="p">(</span><span class="n">serial</span><span class="p">,</span> <span class="n">PosCon3D</span><span class="o">.</span><span class="n">BROADCAST_ADDRESS</span><span class="p">)</span> <span class="k">as</span> <span class="n">broadcast_query</span><span class="p">:</span>   
+<span class="gp">... </span>        <span class="n">addr</span> <span class="o">=</span> <span class="n">broadcast_query</span><span class="o">.</span><span class="n">get_address</span><span class="p">()</span>                                
+<span class="gp">... </span>                                                                            
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">PosCon3D</span><span class="p">(</span><span class="n">serial</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span> <span class="k">as</span> <span class="n">sensor</span><span class="p">:</span>                                  
+<span class="gp">... </span>        <span class="n">sensor</span><span class="o">.</span><span class="n">set_measurement_type</span><span class="p">(</span><span class="s1">&#39;Edge L rise&#39;</span><span class="p">)</span>                          
+<span class="gp">... </span>        <span class="n">sensor</span><span class="o">.</span><span class="n">set_precision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                                             
+<span class="gp">... </span>        <span class="n">data</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">get_measurement</span><span class="p">()</span>                                     
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -174,7 +160,7 @@ broadcast address to query for sensor’s address.</p>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -200,12 +186,6 @@ broadcast address to query for sensor’s address.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.sensors.baumer.PosCon3D.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>serial</em>, <em>address</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/sensors/baumer.html#PosCon3D.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -289,11 +269,11 @@ broadcast address to query for sensor’s address.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -302,7 +282,7 @@ broadcast address to query for sensor’s address.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

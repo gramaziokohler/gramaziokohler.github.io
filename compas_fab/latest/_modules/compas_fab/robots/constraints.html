@@ -53,12 +53,12 @@
                     
 
                     <h1>Source code for compas_fab.robots.constraints</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Scale</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Rotation</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Scale</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Rotation</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BoundingVolume&#39;</span><span class="p">,</span> <span class="s1">&#39;Constraint&#39;</span><span class="p">,</span> <span class="s1">&#39;JointConstraint&#39;</span><span class="p">,</span>
            <span class="s1">&#39;OrientationConstraint&#39;</span><span class="p">,</span> <span class="s1">&#39;PositionConstraint&#39;</span><span class="p">]</span>
@@ -79,7 +79,7 @@
     <span class="n">SPHERE</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">MESH</span> <span class="o">=</span> <span class="mi">3</span>
 
-<div class="viewcode-block" id="BoundingVolume.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.BoundingVolume.__init__.html#compas_fab.robots.BoundingVolume.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">volume</span><span class="p">):</span>
+<div class="viewcode-block" id="BoundingVolume.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.BoundingVolume.__init__.html#compas_fab.robots.BoundingVolume.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">volume</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BOX</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SPHERE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MESH</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Type must be </span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2"> or </span><span class="si">%d</span><span class="s2">&quot;</span>
                              <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BOX</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SPHERE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MESH</span><span class="p">))</span>
@@ -146,13 +146,13 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">MESH</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BoundingVolume.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.BoundingVolume.scale.html#compas_fab.robots.BoundingVolume.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
-        <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">S</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BoundingVolume.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.BoundingVolume.transform.html#compas_fab.robots.BoundingVolume.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;BoundingVolume(</span><span class="si">{0}</span><span class="s2">, </span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BoundingVolume.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.BoundingVolume.copy.html#compas_fab.robots.BoundingVolume.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -183,7 +183,7 @@
     <span class="n">ORIENTATION</span> <span class="o">=</span> <span class="mi">3</span>
     <span class="n">possible_types</span> <span class="o">=</span> <span class="p">(</span><span class="n">JOINT</span><span class="p">,</span> <span class="n">POSITION</span><span class="p">,</span> <span class="n">ORIENTATION</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Constraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Constraint.__init__.html#compas_fab.robots.Constraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="viewcode-block" id="Constraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Constraint.__init__.html#compas_fab.robots.Constraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">possible_types</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Type must be </span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2"> or </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">possible_types</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">type</span>
@@ -194,6 +194,11 @@
 
 <div class="viewcode-block" id="Constraint.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Constraint.scale.html#compas_fab.robots.Constraint.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
         <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Constraint.scaled"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Constraint.scaled.html#compas_fab.robots.Constraint.scaled">[docs]</a>    <span class="k">def</span> <span class="nf">scaled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span></div>
 
 <div class="viewcode-block" id="Constraint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Constraint.copy.html#compas_fab.robots.Constraint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -209,8 +214,11 @@
 <span class="sd">        The name of the joint this contraint refers to.</span>
 <span class="sd">    value: float</span>
 <span class="sd">        The targeted value for that joint.</span>
-<span class="sd">    tolerance: float</span>
-<span class="sd">        The bound to be achieved is [value - tolerance, value + tolerance]</span>
+<span class="sd">    tolerance_above: float</span>
+<span class="sd">        Tolerance above the targeted joint value, in radians. Defaults to 0.</span>
+<span class="sd">    tolerance_below: float</span>
+<span class="sd">        Tolerance below the targeted joint value, in radians. Defaults to 0.</span>
+<span class="sd">        The bound to be achieved is [value - tolerance_below, value + tolerance_above].</span>
 <span class="sd">    weight: float, optional</span>
 <span class="sd">        A weighting factor for this constraint. Denotes relative importance to</span>
 <span class="sd">        other constraints. Closer to zero means less important. Defaults to 1.</span>
@@ -218,26 +226,28 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; from compas_fab.robots import JointConstraint</span>
-<span class="sd">    &gt;&gt;&gt; jc = JointConstraint(&quot;joint_0&quot;, 1.4, 0.1)</span>
+<span class="sd">    &gt;&gt;&gt; jc = JointConstraint(&quot;joint_0&quot;, 1.4, 0.1, 0.1, 1.0)</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointConstraint.__init__.html#compas_fab.robots.JointConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="viewcode-block" id="JointConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointConstraint.__init__.html#compas_fab.robots.JointConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tolerance_above</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">tolerance_below</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">JointConstraint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">JOINT</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_name</span> <span class="o">=</span> <span class="n">joint_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">=</span> <span class="n">tolerance</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_above</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">tolerance_above</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_below</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">tolerance_below</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="JointConstraint.scale"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointConstraint.scale.html#compas_fab.robots.JointConstraint.scale">[docs]</a>    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">/=</span> <span class="n">scale_factor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span> <span class="o">/=</span> <span class="n">scale_factor</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">*=</span> <span class="n">scale_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_above</span> <span class="o">*=</span> <span class="n">scale_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_below</span> <span class="o">*=</span> <span class="n">scale_factor</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;JointConstraint(&#39;</span><span class="si">{0}</span><span class="s2">&#39;, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;JointConstraint(&#39;</span><span class="si">{0}</span><span class="s2">&#39;, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3}</span><span class="s2">, </span><span class="si">{4}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_above</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_below</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
 
 <div class="viewcode-block" id="JointConstraint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointConstraint.copy.html#compas_fab.robots.JointConstraint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_above</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerance_below</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="OrientationConstraint"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.OrientationConstraint.html#compas_fab.robots.OrientationConstraint">[docs]</a><span class="k">class</span> <span class="nc">OrientationConstraint</span><span class="p">(</span><span class="n">Constraint</span><span class="p">):</span>
@@ -272,7 +282,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="OrientationConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.OrientationConstraint.__init__.html#compas_fab.robots.OrientationConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">quaternion</span><span class="p">,</span> <span class="n">tolerances</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="viewcode-block" id="OrientationConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.OrientationConstraint.__init__.html#compas_fab.robots.OrientationConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">quaternion</span><span class="p">,</span> <span class="n">tolerances</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">OrientationConstraint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ORIENTATION</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">link_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">quaternion</span><span class="p">)]</span>
@@ -282,15 +292,9 @@
         <span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_quaternion</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span><span class="p">)</span>
         <span class="n">R</span> <span class="o">=</span> <span class="n">transformation</span> <span class="o">*</span> <span class="n">R</span>
 
-        <span class="c1"># Due to a bug on COMPAS 0.10.0</span>
-        <span class="c1"># (Fixed on https://github.com/compas-dev/compas/pull/378 but not released atm)</span>
-        <span class="c1"># we work around the retrival of the rotation component of R and instead decompose and get it</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">decomposed</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">quaternion</span></div>
-        <span class="c1"># After that bug fix is released, the previous two lines should be changed to:</span>
-        <span class="c1"># self.quaternion = R.rotation.quaternion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">rotation</span><span class="o">.</span><span class="n">quaternion</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;OrientationConstraint(&#39;</span><span class="si">{0}</span><span class="s2">&#39;, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">, </span><span class="si">{3}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">quaternion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tolerances</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
 
 <div class="viewcode-block" id="OrientationConstraint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.OrientationConstraint.copy.html#compas_fab.robots.OrientationConstraint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -320,7 +324,7 @@
 <span class="sd">    &gt;&gt;&gt; pc = PositionConstraint(&#39;link_0&#39;, bv, weight=1.)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PositionConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PositionConstraint.__init__.html#compas_fab.robots.PositionConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">bounding_volume</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
+<div class="viewcode-block" id="PositionConstraint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PositionConstraint.__init__.html#compas_fab.robots.PositionConstraint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">bounding_volume</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PositionConstraint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">POSITION</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">link_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bounding_volume</span> <span class="o">=</span> <span class="n">bounding_volume</span>
@@ -374,7 +378,7 @@
 <div class="viewcode-block" id="PositionConstraint.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PositionConstraint.transform.html#compas_fab.robots.PositionConstraint.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bounding_volume</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;PositionConstraint(&#39;</span><span class="si">{0}</span><span class="s2">&#39;, </span><span class="si">{1}</span><span class="s2">, </span><span class="si">{2}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounding_volume</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PositionConstraint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PositionConstraint.copy.html#compas_fab.robots.PositionConstraint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -444,11 +448,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -457,7 +461,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

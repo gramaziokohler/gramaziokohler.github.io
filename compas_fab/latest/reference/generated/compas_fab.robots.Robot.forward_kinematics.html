@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
     
-        <link rel="next" title="Robot.forward_kinematics_robot_model" href="compas_fab.robots.Robot.forward_kinematics_robot_model.html" />
+        <link rel="next" title="Robot.from_attached_tool_to_tool0" href="compas_fab.robots.Robot.from_attached_tool_to_tool0.html" />
     
     
     
@@ -58,14 +58,16 @@
 
                     <div class="detail section" id="robot-forward-kinematics">
 <h1>Robot.forward_kinematics</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.forward_kinematics">
-<code class="descclassname">Robot.</code><code class="descname">forward_kinematics</code><span class="sig-paren">(</span><em>configuration</em>, <em>group=None</em>, <em>backend=None</em>, <em>link_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.forward_kinematics"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">forward_kinematics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">backend</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">link_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.forward_kinematics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculate the robot’s forward kinematic.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The configuration to calculate the forward kinematic for.</p></li>
+<li><p><strong>full_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The full configuration to calculate the forward kinematic for. If no
+full configuration is passed, the zero-joint state for the other
+configurable joints is assumed.</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for the calculation. Defaults to the robot’s
 main planning group.</p></li>
 <li><p><strong>backend</strong> (<em>None or str</em>) – If <cite>None</cite> calculates fk with the client if it exists or with the robot model.
@@ -76,19 +78,16 @@ Defaults to the group’s end effector link.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code> – The frame in the robot’s coordinate system (RCF).</p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code> – The frame in the world’s coordinate system (WCF).</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">])</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF_c</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF_m</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_RCF_c</span> <span class="o">==</span> <span class="n">frame_RCF_m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_c</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_m</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_c</span> <span class="o">==</span> <span class="n">frame_WCF_m</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_world_coords</span><span class="p">(</span><span class="n">frame_RCF_m</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF</span>
-<span class="go">Frame(Point(0.300, 0.100, 0.500), Vector(1.000, -0.000, -0.000), Vector(0.000, 1.000, -0.000))</span>
 </code></pre></div>
 </div>
 </dd></dl>
@@ -174,11 +173,11 @@ Defaults to the group’s end effector link.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -187,7 +186,7 @@ Defaults to the group’s end effector link.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

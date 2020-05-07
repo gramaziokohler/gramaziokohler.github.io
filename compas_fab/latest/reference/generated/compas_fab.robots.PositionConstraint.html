@@ -58,55 +58,31 @@
 
                     <div class="detail section" id="positionconstraint">
 <h1>PositionConstraint</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.PositionConstraint">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">PositionConstraint</code><span class="sig-paren">(</span><em>link_name</em>, <em>bounding_volume</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#PositionConstraint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">PositionConstraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_name</span></em>, <em class="sig-param"><span class="n">bounding_volume</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#PositionConstraint"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></p>
 <p>Constrains a link to be within a certain bounding volume.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.PositionConstraint.link_name">
-<code class="descname">link_name</code></dt>
-<dd><p>The name of the link this contraint refers to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>string</p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_name</strong> (<em>string</em>) – The name of the link this contraint refers to.</p></li>
+<li><p><strong>bounding_volume</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.BoundingVolume</span></code>) – The volume this constraint refers to.</p></li>
+<li><p><strong>weight</strong> (<em>float, optional</em>) – A weighting factor for this constraint. Denotes relative importance to
+other constraints. Closer to zero means less important. Defaults to 1.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.PositionConstraint.bounding_volume">
-<code class="descname">bounding_volume</code></dt>
-<dd><p>The volume this constraint refers to.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.BoundingVolume</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.PositionConstraint.weight">
-<code class="descname">weight</code></dt>
-<dd><p>A weighting factor for this constraint. Denotes relative importance to
-other constraints. Closer to zero means less important. Defaults to 1.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Sphere</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">PositionConstraint</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">BoundingVolume</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Sphere</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">PositionConstraint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">BoundingVolume</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bv</span> <span class="o">=</span> <span class="n">BoundingVolume</span><span class="o">.</span><span class="n">from_sphere</span><span class="p">(</span><span class="n">Sphere</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="mf">0.5</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="n">PositionConstraint</span><span class="p">(</span><span class="s1">&#39;link_0&#39;</span><span class="p">,</span> <span class="n">bv</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -119,24 +95,27 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.from_box.html#compas_fab.robots.PositionConstraint.from_box" title="compas_fab.robots.PositionConstraint.from_box"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_box</span></code></a>(link_name, box[, weight])</p></td>
-<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Box.html#compas.geometry.Box" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Box</span></code></a>.</p></td>
+<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Box.html#compas.geometry.Box" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Box</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.from_mesh.html#compas_fab.robots.PositionConstraint.from_mesh" title="compas_fab.robots.PositionConstraint.from_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_mesh</span></code></a>(link_name, mesh[, weight])</p></td>
-<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>.</p></td>
+<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.from_sphere.html#compas_fab.robots.PositionConstraint.from_sphere" title="compas_fab.robots.PositionConstraint.from_sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_sphere</span></code></a>(link_name, sphere[, weight])</p></td>
-<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Sphere.html#compas.geometry.Sphere" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Sphere</span></code></a>.</p></td>
+<td><p>Creates a <code class="docutils literal notranslate"><span class="pre">PositionConstraint</span></code> from a <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Sphere.html#compas.geometry.Sphere" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Sphere</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.scale.html#compas_fab.robots.PositionConstraint.scale" title="compas_fab.robots.PositionConstraint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.transform.html#compas_fab.robots.PositionConstraint.transform" title="compas_fab.robots.PositionConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.scaled.html#compas_fab.robots.PositionConstraint.scaled" title="compas_fab.robots.PositionConstraint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.transform.html#compas_fab.robots.PositionConstraint.transform" title="compas_fab.robots.PositionConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -156,12 +135,6 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.PositionConstraint.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>link_name</em>, <em>bounding_volume</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#PositionConstraint.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -245,11 +218,11 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -258,7 +231,7 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

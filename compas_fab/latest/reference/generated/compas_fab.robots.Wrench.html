@@ -58,41 +58,27 @@
 
                     <div class="detail section" id="wrench">
 <h1>Wrench</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.Wrench">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">Wrench</code><span class="sig-paren">(</span><em>force</em>, <em>torque</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/wrench.html#Wrench"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Wrench</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">force</span></em>, <em class="sig-param"><span class="n">torque</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/wrench.html#Wrench"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A wrench represents force in free space, separated into its linear (force) and angular (torque) parts.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.Wrench.force">
-<code class="descname">force</code></dt>
-<dd><p>[Fx, Fy, Fz] force vector in Newtons</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>force</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – [Fx, Fy, Fz] force vector in Newtons</p></li>
+<li><p><strong>torque</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – [Tx, Ty, Tz] moments vector in Newton-meters</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.Wrench.torque">
-<code class="descname">torque</code></dt>
-<dd><p>[Tx, Ty, Tz] moments vector in Newton-meters</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="k">import</span> <span class="n">Vector</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Wrench</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">Wrench</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -128,7 +114,7 @@
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -137,20 +123,14 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
 <td><p>Returns the data dictionary that represents the wrench.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#compas_fab.robots.Wrench.force" title="compas_fab.robots.Wrench.force"><code class="xref py py-obj docutils literal notranslate"><span class="pre">force</span></code></a></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">force</span></code></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#compas_fab.robots.Wrench.torque" title="compas_fab.robots.Wrench.torque"><code class="xref py py-obj docutils literal notranslate"><span class="pre">torque</span></code></a></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">torque</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.Wrench.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>force</em>, <em>torque</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/wrench.html#Wrench.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -234,11 +214,11 @@
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -247,7 +227,7 @@
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

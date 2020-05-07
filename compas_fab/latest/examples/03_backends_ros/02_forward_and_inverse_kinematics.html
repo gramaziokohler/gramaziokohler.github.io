@@ -57,8 +57,8 @@
                     
 
                     <div class="section" id="forward-and-inverse-kinematics">
-<h1>3.2. Forward and inverse kinematics</h1>
-<div class="figure align-center">
+<h1><span class="section-number">3.2. </span>Forward and inverse kinematics</h1>
+<div class="figure align-default">
 <img alt="../../_images/02_forward_and_inverse_kinematics.jpg" class="figure-img img-fluid" src="../../_images/02_forward_and_inverse_kinematics.jpg" />
 </div>
 <div class="admonition note">
@@ -69,7 +69,7 @@ make sure you have the <a class="reference internal" href="../../backends/ros.ht
 configured and the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">UR5 Planner</span></a> started.</p>
 </div>
 <div class="section" id="forward-kinematics">
-<h2>3.2.1. Forward kinematics</h2>
+<h2><span class="section-number">3.2.1. </span>Forward kinematics</h2>
 <p>The forward kinematics function calculates the pose of the robot’s end-effector
 from joint states (<strong>cartesian space</strong> to <strong>joint space</strong>). This means the
 state of each joint in the articulated body of a robot needs to be defined.</p>
@@ -83,13 +83,12 @@ by the robot model and does not require ROS to be running:</p>
 <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">()</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 
-<span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_world_coords</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
+<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame in the robot&#39;s coordinate system&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame in the world coordinate system&quot;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frame in the world coordinate system&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_WCF</span><span class="o">.</span><span class="n">point</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Point(0.300, 0.100, 0.500)&#39;</span>
 </code></pre></div>
 </div>
 <p>Additionally, if the <a class="reference internal" href="../../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a> is assigned a <code class="docutils literal notranslate"><span class="pre">client</span></code>, it
@@ -103,18 +102,15 @@ solutions but calculated by ROS:</p>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
     <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 
-    <span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-    <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_world_coords</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
+    <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame in the robot&#39;s coordinate system&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frame in the world coordinate system&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frame in the world coordinate system&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="inverse-kinematics">
-<h2>3.2.2. Inverse kinematics</h2>
+<h2><span class="section-number">3.2.2. </span>Inverse kinematics</h2>
 <p>Inverse kinematics is the inverse function of forward kinematics. The
 inverse kinematics function calculates the joint states required for the
 end-effector to reach a certain target pose (<strong>joint space</strong> to
@@ -128,11 +124,11 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
     <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-    <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">init_configuration</span><span class="p">()</span>
+    <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
 
     <span class="n">configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Found configuration&quot;</span><span class="p">,</span> <span class="n">configuration</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Found configuration&quot;</span><span class="p">,</span> <span class="n">configuration</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -224,11 +220,11 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -237,7 +233,7 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

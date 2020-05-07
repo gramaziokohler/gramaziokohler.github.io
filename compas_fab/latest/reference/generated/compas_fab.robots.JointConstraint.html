@@ -58,69 +58,37 @@
 
                     <div class="detail section" id="jointconstraint">
 <h1>JointConstraint</h1>
-<dl class="class">
+<dl class="py class">
 <dt id="compas_fab.robots.JointConstraint">
-<em class="property">class </em><code class="descclassname">compas_fab.robots.</code><code class="descname">JointConstraint</code><span class="sig-paren">(</span><em>joint_name</em>, <em>value</em>, <em>tolerance=0.0</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#JointConstraint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">JointConstraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_name</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">tolerance_above</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">tolerance_below</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#JointConstraint"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></p>
 <p>Constrains the value of a joint to be within a certain bound.</p>
-<dl class="attribute">
-<dt id="compas_fab.robots.JointConstraint.joint_name">
-<code class="descname">joint_name</code></dt>
-<dd><p>The name of the joint this contraint refers to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>string</p>
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_name</strong> (<em>string</em>) – The name of the joint this contraint refers to.</p></li>
+<li><p><strong>value</strong> (<em>float</em>) – The targeted value for that joint.</p></li>
+<li><p><strong>tolerance_above</strong> (<em>float</em>) – Tolerance above the targeted joint value, in radians. Defaults to 0.</p></li>
+<li><p><strong>tolerance_below</strong> (<em>float</em>) – Tolerance below the targeted joint value, in radians. Defaults to 0.
+The bound to be achieved is [value - tolerance_below, value + tolerance_above].</p></li>
+<li><p><strong>weight</strong> (<em>float, optional</em>) – A weighting factor for this constraint. Denotes relative importance to
+other constraints. Closer to zero means less important. Defaults to 1.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointConstraint.value">
-<code class="descname">value</code></dt>
-<dd><p>The targeted value for that joint.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointConstraint.tolerance">
-<code class="descname">tolerance</code></dt>
-<dd><p>The bound to be achieved is [value - tolerance, value + tolerance]</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="compas_fab.robots.JointConstraint.weight">
-<code class="descname">weight</code></dt>
-<dd><p>A weighting factor for this constraint. Denotes relative importance to
-other constraints. Closer to zero means less important. Defaults to 1.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a>, optional</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="k">import</span> <span class="n">JointConstraint</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">jc</span> <span class="o">=</span> <span class="n">JointConstraint</span><span class="p">(</span><span class="s2">&quot;joint_0&quot;</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">JointConstraint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jc</span> <span class="o">=</span> <span class="n">JointConstraint</span><span class="p">(</span><span class="s2">&quot;joint_0&quot;</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p class="rubric">Methods</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.__init__.html#compas_fab.robots.JointConstraint.__init__" title="compas_fab.robots.JointConstraint.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(joint_name, value[, tolerance, weight])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.__init__.html#compas_fab.robots.JointConstraint.__init__" title="compas_fab.robots.JointConstraint.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(joint_name, value[, …])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.copy.html#compas_fab.robots.JointConstraint.copy" title="compas_fab.robots.JointConstraint.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
@@ -129,13 +97,16 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.scale.html#compas_fab.robots.JointConstraint.scale" title="compas_fab.robots.JointConstraint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.transform.html#compas_fab.robots.JointConstraint.transform" title="compas_fab.robots.JointConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.scaled.html#compas_fab.robots.JointConstraint.scaled" title="compas_fab.robots.JointConstraint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointConstraint.transform.html#compas_fab.robots.JointConstraint.transform" title="compas_fab.robots.JointConstraint.transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transform</span></code></a>(transformation)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Attributes</p>
-<table class="longtable docutils align-center">
+<table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -155,12 +126,6 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
 </tr>
 </tbody>
 </table>
-<dl class="method">
-<dt id="compas_fab.robots.JointConstraint.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>joint_name</em>, <em>value</em>, <em>tolerance=0.0</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#JointConstraint.__init__"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -244,11 +209,11 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -257,7 +222,7 @@ other constraints. Closer to zero means less important. Defaults to 1.</p>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -58,14 +58,14 @@
 
                     <div class="detail section" id="robot-position-constraint-from-frame">
 <h1>Robot.position_constraint_from_frame</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.position_constraint_from_frame">
-<code class="descclassname">Robot.</code><code class="descname">position_constraint_from_frame</code><span class="sig-paren">(</span><em>frame_WCF</em>, <em>tolerance_position</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.position_constraint_from_frame"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">position_constraint_from_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frame_WCF</span></em>, <em class="sig-param"><span class="n">tolerance_position</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.position_constraint_from_frame"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Returns a position and orientation constraint on the group’s end-effector link.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create position and orientation constraints.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create position and orientation constraints.</p></li>
 <li><p><strong>tolerance_position</strong> (<em>float</em>) – The allowed tolerance to the frame’s position. (Defined in the
 robot’s units)</p></li>
 <li><p><strong>group</strong> (<em>str</em>) – The planning group for which we specify the constraint. Defaults to
@@ -74,7 +74,7 @@ the robot’s main planning group.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerance_position</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">position_constraint_from_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">tolerance_position</span><span class="p">)</span>
 <span class="go">PositionConstraint(&#39;ee_link&#39;, BoundingVolume(2, Sphere(Point(0.400, 0.300, 0.400), 0.001)), 1.0)</span>
@@ -167,11 +167,11 @@ and <a class="reference internal" href="compas_fab.robots.OrientationConstraint.
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -180,7 +180,7 @@ and <a class="reference internal" href="compas_fab.robots.OrientationConstraint.
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="robot-plan-motion">
 <h1>Robot.plan_motion</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.Robot.plan_motion">
-<code class="descclassname">Robot.</code><code class="descname">plan_motion</code><span class="sig-paren">(</span><em>goal_constraints</em>, <em>start_configuration=None</em>, <em>group=None</em>, <em>path_constraints=None</em>, <em>planner_id='RRT'</em>, <em>num_planning_attempts=1</em>, <em>allowed_planning_time=2.0</em>, <em>max_velocity_scaling_factor=1.0</em>, <em>max_acceleration_scaling_factor=1.0</em>, <em>attached_collision_meshes=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.plan_motion"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">plan_motion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">goal_constraints</span></em>, <em class="sig-param"><span class="n">start_configuration</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">path_constraints</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">planner_id</span><span class="o">=</span><span class="default_value">'RRT'</span></em>, <em class="sig-param"><span class="n">num_planning_attempts</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">allowed_planning_time</span><span class="o">=</span><span class="default_value">2.0</span></em>, <em class="sig-param"><span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">attached_collision_meshes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.plan_motion"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculates a motion path.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -70,8 +70,9 @@ Constraints can be very specific, for example defining value domains
 for each joint, such that the goal configuration is included,
 or defining a volume in space, to which a specific robot link (e.g.
 the end-effector) is required to move to.</p></li>
-<li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>, optional) – The robot’s configuration at the starting position. Defaults to the
-all-zero configuration.</p></li>
+<li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>, optional) – The robot’s full configuration, i.e. values for all configurable
+joints of the entire robot, at the starting position. Defaults to
+the all-zero configuration.</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – The name of the group to plan for. Defaults to the robot’s main
 planning group.</p></li>
 <li><p><strong>path_constraints</strong> (list of <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional) – Optional constraints that can be imposed along the solution path.
@@ -90,9 +91,12 @@ shortest solution as the final result. Defaults to 1.</p></li>
 <li><p><strong>attached_collision_meshes</strong> (list of <a class="reference internal" href="compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a>) – Defaults to None.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a> – The calculated trajectory.</p>
+</dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example with position and orientation constraints</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example with position and orientation constraints</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerance_position</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span>
@@ -105,9 +109,10 @@ shortest solution as the final result. Defaults to 1.</p></li>
 <span class="go">1.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example with joint constraints (to the UP configuration)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5707</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5707</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_above</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_below</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">goal_constraints</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">goal_constraints</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">constraints_from_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">tolerances_above</span><span class="p">,</span> <span class="n">tolerances_below</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;RRT&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span>
 <span class="go">1.0</span>
@@ -198,11 +203,11 @@ shortest solution as the final result. Defaults to 1.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -211,7 +216,7 @@ shortest solution as the final result. Defaults to 1.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',

@@ -58,9 +58,9 @@
 
                     <div class="detail section" id="planningscene-attach-collision-mesh-to-robot-end-effector">
 <h1>PlanningScene.attach_collision_mesh_to_robot_end_effector</h1>
-<dl class="method">
+<dl class="py method">
 <dt id="compas_fab.robots.PlanningScene.attach_collision_mesh_to_robot_end_effector">
-<code class="descclassname">PlanningScene.</code><code class="descname">attach_collision_mesh_to_robot_end_effector</code><span class="sig-paren">(</span><em>collision_mesh</em>, <em>scale=False</em>, <em>group=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.attach_collision_mesh_to_robot_end_effector"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname">PlanningScene.</code><code class="sig-name descname">attach_collision_mesh_to_robot_end_effector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collision_mesh</span></em>, <em class="sig-param"><span class="n">scale</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#PlanningScene.attach_collision_mesh_to_robot_end_effector"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Attaches a collision mesh to the robot’s end-effector.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -77,23 +77,23 @@ to the robot’s main planning group.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span> <span class="o">=</span> <span class="n">PlanningScene</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span> <span class="o">=</span> <span class="n">PlanningScene</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/cone.stl&#39;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">attach_collision_mesh_to_robot_end_effector</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># wait for it to be attached</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># wait for it to be attached</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># wait for it to be removed</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># wait for it to be removed</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really gone</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really gone</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;tip&#39;</span> <span class="ow">in</span> <span class="n">objects</span>
@@ -183,11 +183,11 @@ to the robot’s main planning group.</p></li>
     <footer class="bg-dark pb-5">
         <div class="container text-center pt-5 pb-5 text-muted">
             
-                Last updated on Dec 04, 2019.
+                Last updated on May 07, 2020.
             
 
             
-                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.0.1.
+                Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.2.
             
         </div>
     </footer>
@@ -196,7 +196,7 @@ to the robot’s main planning group.</p></li>
         <script type="text/javascript">
             var DOCUMENTATION_OPTIONS = {
             URL_ROOT          : '',
-            VERSION           : '0.10.1',
+            VERSION           : '0.10.2',
             COLLAPSE_INDEX    : false,
             FILE_SUFFIX       : '.html',
             HAS_SOURCE        : 'false',
