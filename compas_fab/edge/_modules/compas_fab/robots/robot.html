@@ -77,7 +77,6 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
@@ -91,10 +90,7 @@
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">JointConstraint</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">OrientationConstraint</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">PositionConstraint</span>
-
 <span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
-
-<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;compas_fab.robots.robot&#39;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Robot&#39;</span><span class="p">,</span>
@@ -114,37 +110,17 @@
 <span class="sd">    ----------</span>
 <span class="sd">    model : :class:`RobotModel`</span>
 <span class="sd">        The robot model, usually created from an URDF structure.</span>
-<span class="sd">    artist : :class:`BaseRobotArtist`, optional</span>
-<span class="sd">        Instance of the artist used to visualize the robot. Defaults to ``None``.</span>
-<span class="sd">    semantics : :class:`RobotSemantics`, optional</span>
-<span class="sd">        The semantic model of the robot. Defaults to ``None``.</span>
-<span class="sd">    client : optional</span>
-<span class="sd">        The backend client to use for communication,</span>
-<span class="sd">        e.g. :class:`compas_fab.backends.RosClient`. Defaults to ``None``.</span>
-
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    model : :class:`compas.robots.RobotModel`</span>
-<span class="sd">        The robot model, usually created from an URDF structure.</span>
 <span class="sd">    artist : :class:`compas_fab.artists.BaseRobotArtist`</span>
-<span class="sd">        Instance of the artist used to visualize the robot.</span>
-<span class="sd">    semantics : :class:`RobotSemantics`</span>
-<span class="sd">        The semantic model of the robot.</span>
-<span class="sd">    client</span>
+<span class="sd">        Instance of the artist used to visualize the robot. Defaults to ``None``.</span>
+<span class="sd">    semantics : :class:`compas_fab.robots.RobotSemantics`</span>
+<span class="sd">        The semantic model of the robot. Defaults to ``None``.</span>
+<span class="sd">    client : :class:`compas_fab.backends.interfaces.ClientInterface`</span>
 <span class="sd">        The backend client to use for communication,</span>
-<span class="sd">        e.g. :class:`compas_fab.backends.RosClient`.</span>
-<span class="sd">    artist : class:`compas_fab.artists.BaseRobotArtist`</span>
-<span class="sd">        Artist used to visualize robot.</span>
-<span class="sd">    name : :obj:`str`</span>
-<span class="sd">        Name of the robot, as defined by its model.</span>
-<span class="sd">    group_names : :obj:`list` of :obj:`str`</span>
-<span class="sd">        All planning groups of the robot.</span>
-<span class="sd">    main_group_name : :obj:`str`</span>
-<span class="sd">        Robot&#39;s main planning group.</span>
-<span class="sd">    root_name : :obj:`str`</span>
-<span class="sd">        Robot&#39;s root name.</span>
-<span class="sd">    scale_factor : :obj:`float`:</span>
-<span class="sd">        Robot&#39;s scale factor.</span>
+<span class="sd">        e.g. :class:`compas_fab.backends.RosClient`</span>
+<span class="sd">    attributes : :obj:`dict`</span>
+<span class="sd">        Named attributes related to the robot instance.</span>
+<span class="sd">    attached_tool : :class:`compas_fab.robots.Tool`</span>
+<span class="sd">        Instance of the tool attached to the robot, if any.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Robot.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.__init__.html#compas_fab.robots.Robot.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">artist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">semantics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -154,7 +130,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">artist</span> <span class="o">=</span> <span class="n">artist</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">semantics</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pybullet_uid</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{}</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">artist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1184,7 +1160,7 @@
     <span class="c1"># services</span>
     <span class="c1"># ==========================================================================</span>
 
-<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.inverse_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_full_configuration</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic for a given frame.</span>
 
 <span class="sd">        Parameters</span>
@@ -1194,24 +1170,17 @@
 <span class="sd">        start_configuration : :class:`Configuration`, optional</span>
 <span class="sd">            If passed, the inverse will be calculated such that the calculated</span>
 <span class="sd">            joint positions differ the least from the start_configuration.</span>
-<span class="sd">            Defaults to the init configuration.</span>
-<span class="sd">        group : :obj:`str`, optional</span>
+<span class="sd">            Defaults to the zero configuration.</span>
+<span class="sd">        group: :obj:`str`, optional</span>
 <span class="sd">            The planning group used for calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
-<span class="sd">        options : :obj:`dict`, optional</span>
-<span class="sd">            Dictionary containing the following key-value pairs:</span>
-
-<span class="sd">            - avoid_collisions :: :obj:`bool`, optional</span>
-<span class="sd">                Whether or not to avoid collisions. Defaults to ``True``.</span>
-<span class="sd">            - constraints :: :obj:`list` of :class:`Constraint`, optional</span>
-<span class="sd">                A set of constraints that the request must obey. Defaults to ``None``.</span>
-<span class="sd">            - attempts :: :obj:`int`, optional</span>
-<span class="sd">                The maximum number of inverse kinematic attempts. Defaults to ``8``.</span>
-<span class="sd">            - attached_collision_meshes :: list of :class:`AttachedCollisionMesh`</span>
-<span class="sd">                Defaults to ``None``.</span>
-<span class="sd">            - return_full_configuration :: :obj:`bool`</span>
-<span class="sd">                If ``True``, returns a full configuration with all joint values</span>
-<span class="sd">                specified, including passive ones if available.</span>
+<span class="sd">        return_full_configuration : :obj:`bool`, optional</span>
+<span class="sd">            If ``True``, returns a full configuration with all joint values</span>
+<span class="sd">            specified, including passive ones if available. Defaults to ``False``.</span>
+<span class="sd">        options: :obj:`dict`, optional</span>
+<span class="sd">            Dictionary containing the key-value pairs of additional options.</span>
+<span class="sd">            The valid options are specific to the backend in use.</span>
+<span class="sd">            Check the API reference of the IK backend implementation for more details.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -1232,25 +1201,10 @@
 <span class="sd">        Configuration((4.045, 5.130, -2.174, -6.098, -5.616, 6.283), (0, 0, 0, 0, 0, 0))    # doctest: +SKIP</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="n">avoid_collisions</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;avoid_collisions&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">constraints</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;constraints&#39;</span><span class="p">)</span>
-        <span class="n">attempts</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attempts&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-        <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">)</span>
-        <span class="n">return_full_configuration</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;return_full_configuration&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics_deprecated</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
-                                                  <span class="n">group</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="p">,</span>
-                                                  <span class="n">constraints</span><span class="p">,</span> <span class="n">attempts</span><span class="p">,</span>
-                                                  <span class="n">attached_collision_meshes</span><span class="p">,</span>
-                                                  <span class="n">return_full_configuration</span><span class="p">)</span></div>
+        <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">,</span> <span class="p">[])</span>
 
-<div class="viewcode-block" id="Robot.inverse_kinematics_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics_deprecated.html#compas_fab.robots.Robot.inverse_kinematics_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                      <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                      <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-                                      <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                      <span class="n">return_full_configuration</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>  <span class="c1"># ensure semantics</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">group</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="k">else</span> <span class="kc">None</span>
 
         <span class="n">start_configuration</span><span class="p">,</span> <span class="n">start_configuration_scaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_full_configuration_and_scale</span><span class="p">(</span><span class="n">start_configuration</span><span class="p">)</span>
 
@@ -1258,20 +1212,14 @@
         <span class="n">frame_WCF_scaled</span><span class="o">.</span><span class="n">point</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>  <span class="c1"># must be in meters</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
+            <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
+
+        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
 
         <span class="c1"># The returned joint names might be more than the requested ones if there are passive joints present</span>
-        <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;avoid_collisions&#39;</span><span class="p">:</span> <span class="n">avoid_collisions</span><span class="p">,</span>
-            <span class="s1">&#39;constraints&#39;</span><span class="p">:</span> <span class="n">constraints</span><span class="p">,</span>
-            <span class="s1">&#39;attempts&#39;</span><span class="p">:</span> <span class="n">attempts</span><span class="p">,</span>
-            <span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">:</span> <span class="n">attached_collision_meshes</span><span class="p">,</span>
-            <span class="s1">&#39;base_link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-        <span class="p">}</span>
-        <span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF_scaled</span><span class="p">,</span> <span class="n">start_configuration_scaled</span><span class="p">,</span>
+        <span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                                                      <span class="n">frame_WCF_scaled</span><span class="p">,</span>
+                                                                      <span class="n">start_configuration_scaled</span><span class="p">,</span>
                                                                       <span class="n">group</span><span class="p">,</span>
                                                                       <span class="n">options</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">return_full_configuration</span><span class="p">:</span>
@@ -1287,28 +1235,51 @@
 
         <span class="k">return</span> <span class="n">configuration</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Robot.inverse_kinematics_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.inverse_kinematics_deprecated.html#compas_fab.robots.Robot.inverse_kinematics_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                                      <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                      <span class="n">return_full_configuration</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span>
+                                       <span class="n">start_configuration</span><span class="p">,</span>
+                                       <span class="n">group</span><span class="p">,</span>
+                                       <span class="n">return_full_configuration</span><span class="p">,</span>
+                                       <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                                           <span class="n">avoid_collisions</span><span class="o">=</span><span class="n">avoid_collisions</span><span class="p">,</span>
+                                           <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                                           <span class="n">attempts</span><span class="o">=</span><span class="n">attempts</span><span class="p">,</span>
+                                           <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="n">attached_collision_meshes</span><span class="p">,</span>
+                                       <span class="p">))</span></div>
+
 <div class="viewcode-block" id="Robot.forward_kinematics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        configuration : :class:`Configuration`</span>
+<span class="sd">        configuration: :class:`compas_fab.robots.Configuration`</span>
 <span class="sd">            The full configuration to calculate the forward kinematic for. If no</span>
 <span class="sd">            full configuration is passed, the zero-joint state for the other</span>
 <span class="sd">            configurable joints is assumed.</span>
-<span class="sd">        group : :obj:`str`, optional</span>
+<span class="sd">        group: obj:`str`, optional</span>
 <span class="sd">            The planning group used for the calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
-<span class="sd">        options : :obj:`dict`, optional</span>
+<span class="sd">        options: obj:`dict`, optional</span>
 <span class="sd">            Dictionary containing the following key-value pairs:</span>
 
-<span class="sd">            - backend :: ``None`` or :obj:`str`, optional</span>
-<span class="sd">                If ``None``, calculates fk with the client if it exists or with the robot model.</span>
-<span class="sd">                If ``&#39;model&#39;``, uses the robot model to calculate fk. Anything else is open</span>
-<span class="sd">                for implementation, possibly ``&#39;kdl&#39;``, ``&#39;ikfast&#39;``</span>
-<span class="sd">            - ee_link :: :obj:`str`, optional</span>
-<span class="sd">                The name of the link to calculate the forward kinematics for.</span>
-<span class="sd">                Defaults to the group&#39;s end effector link.</span>
+<span class="sd">            - ``&quot;solver&quot;``: (:obj:`str`, optional) If ``None`` calculates FK</span>
+<span class="sd">              with the client if it exists or with the robot model.</span>
+<span class="sd">              If ``&#39;model&#39;`` use the robot model to calculate FK.</span>
+<span class="sd">              Other values depend on specific backend implementation, some backends might</span>
+<span class="sd">              allow selecting different FK solvers dynamically.</span>
+<span class="sd">            - ``&quot;link&quot;``: (:obj:`str`, optional) The name of the link to</span>
+<span class="sd">              calculate the forward kinematics for. Defaults to the group&#39;s end</span>
+<span class="sd">              effector link.</span>
+<span class="sd">              Backwards compatibility note: if there&#39;s no ``link`` option, the</span>
+<span class="sd">              planner will try also ``ee_link`` as fallback before defaulting</span>
+<span class="sd">              to the end effector&#39;s link.</span>
+
+<span class="sd">            There are additional options that are specific to the backend in use.</span>
+<span class="sd">            Check the API reference of the FK backend implementation for more details.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1327,51 +1298,48 @@
 <span class="sd">        &gt;&gt;&gt; configuration = Configuration.from_revolute_values([-2.238, -1.153, -2.174, 0.185, 0.667, 0.000])</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; frame_WCF_c = robot.forward_kinematics(configuration, group)</span>
-<span class="sd">        &gt;&gt;&gt; options = {&#39;backend&#39;: &#39;model&#39;}</span>
+<span class="sd">        &gt;&gt;&gt; options = {&#39;solver&#39;: &#39;model&#39;}</span>
 <span class="sd">        &gt;&gt;&gt; frame_WCF_m = robot.forward_kinematics(configuration, group, options)</span>
 <span class="sd">        &gt;&gt;&gt; frame_WCF_c == frame_WCF_m</span>
 <span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="n">backend</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;backend&#39;</span><span class="p">)</span>
-        <span class="n">ee_link</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ee_link&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics_deprecated</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">backend</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span></div>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;solver&#39;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Robot.forward_kinematics_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics_deprecated.html#compas_fab.robots.Robot.forward_kinematics_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ee_link</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
-
-        <span class="k">if</span> <span class="n">ee_link</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ee_link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># check</span>
-            <span class="k">if</span> <span class="n">ee_link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Link name </span><span class="si">%s</span><span class="s2"> does not exist in planning group&quot;</span> <span class="o">%</span> <span class="n">ee_link</span><span class="p">)</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">group</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="k">else</span> <span class="kc">None</span>
 
         <span class="n">full_configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_group_with_full_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">(),</span> <span class="n">group</span><span class="p">)</span>
         <span class="n">full_configuration</span><span class="p">,</span> <span class="n">full_configuration_scaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_full_configuration_and_scale</span><span class="p">(</span><span class="n">full_configuration</span><span class="p">)</span>
 
         <span class="n">full_joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">full_configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">full_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">backend</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
-                <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="s1">&#39;ee_link&#39;</span><span class="p">:</span> <span class="n">ee_link</span><span class="p">,</span>
-                    <span class="s1">&#39;base_link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                <span class="p">}</span>
-                <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">full_configuration_scaled</span><span class="p">,</span>
-                                                           <span class="n">group</span><span class="p">,</span>
-                                                           <span class="n">options</span><span class="p">)</span>
-                <span class="n">frame_WCF</span><span class="o">.</span><span class="n">point</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">full_joint_state</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span>
-            <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">full_joint_state</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="c1"># pass to backend, kdl, ikfast,...</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="c1"># If there&#39;s no client, we default to `model` solver if there is no other assigned.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">solver</span> <span class="ow">or</span> <span class="s1">&#39;model&#39;</span>
 
+        <span class="c1"># Solve with the model</span>
+        <span class="k">if</span> <span class="n">solver</span> <span class="o">==</span> <span class="s1">&#39;model&#39;</span><span class="p">:</span>
+            <span class="n">link</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ee_link&#39;</span><span class="p">))</span>
+            <span class="n">link</span> <span class="o">=</span> <span class="n">link</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">link</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Link name </span><span class="si">{}</span><span class="s1"> does not exist in planning group&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">link</span><span class="p">))</span>
+
+            <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">full_joint_state</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
+
+        <span class="c1"># Otherwise, pass everything down to the client</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+            <span class="n">frame_WCF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                                                       <span class="n">full_configuration_scaled</span><span class="p">,</span>
+                                                       <span class="n">group</span><span class="p">,</span>
+                                                       <span class="n">options</span><span class="p">)</span>
+
+        <span class="c1"># Scale and return</span>
+        <span class="n">frame_WCF</span><span class="o">.</span><span class="n">point</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
         <span class="k">return</span> <span class="n">frame_WCF</span></div>
+
+<div class="viewcode-block" id="Robot.forward_kinematics_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.forward_kinematics_deprecated.html#compas_fab.robots.Robot.forward_kinematics_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ee_link</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">link</span><span class="o">=</span><span class="n">ee_link</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Robot.plan_cartesian_motion"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_cartesian_motion.html#compas_fab.robots.Robot.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate a cartesian motion path (linear in tool space).</span>
@@ -1391,22 +1359,18 @@
 <span class="sd">            Dictionary containing the following key-value pairs:</span>
 
 <span class="sd">            - max_step :: :obj:`float`, optional</span>
-<span class="sd">                The approximate distance between the calculated points. (Defined in</span>
-<span class="sd">                the robot&#39;s units.) Defaults to ``0.01``.</span>
-<span class="sd">            - jump_threshold :: :obj:`float`, optional</span>
-<span class="sd">                The maximum allowed distance of joint positions between consecutive</span>
-<span class="sd">                points. If the distance is found to be above this threshold, the</span>
-<span class="sd">                path computation fails. It must be specified in relation to max_step.</span>
-<span class="sd">                If this threshold is ``0``, &#39;jumps&#39; might occur, resulting in an invalid</span>
-<span class="sd">                cartesian path. Defaults to :math:`\\pi / 2`.</span>
-<span class="sd">            - avoid_collisions :: :obj:`bool`, optional</span>
-<span class="sd">                Whether or not to avoid collisions. Defaults to ``True``.</span>
-<span class="sd">            - path_constraints :: :obj:`list` of :class:`Constraint`, optional</span>
+<span class="sd">                The approximate distance between the</span>
+<span class="sd">                calculated points. (Defined in the robot&#39;s units.) Defaults to ``0.01``.</span>
+<span class="sd">            - path_constraints :: :obj:`list` of :class:`compas_fab.robots.Constraint`, optional</span>
 <span class="sd">                Optional constraints that can be imposed along the solution path.</span>
 <span class="sd">                Note that path calculation won&#39;t work if the start_configuration</span>
-<span class="sd">                violates these constraints. Defaults to `None`.</span>
-<span class="sd">            - attached_collision_meshes :: :obj:`list` of :class:`AttachedCollisionMesh`, optional</span>
+<span class="sd">                violates these constraints. Defaults to ``None``.</span>
+<span class="sd">            - attached_collision_meshes :: :obj:`list` of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
 <span class="sd">                Defaults to ``None``.</span>
+
+<span class="sd">            There are additional options that are specific to the backend in use.</span>
+<span class="sd">            Check the API reference of the cartesian motion planner backend implementation</span>
+<span class="sd">            for more details.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1430,22 +1394,10 @@
 <span class="sd">        &lt;class &#39;compas_fab.robots.trajectory.JointTrajectory&#39;&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="n">max_step</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_step&#39;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
-        <span class="n">jump_threshold</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jump_threshold&#39;</span><span class="p">,</span> <span class="mf">1.57</span><span class="p">)</span>
-        <span class="n">avoid_collisions</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;avoid_collisions&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">max_step</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_step&#39;</span><span class="p">)</span>
         <span class="n">path_constraints</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">)</span>
-        <span class="n">attached_collisions_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion_deprecated</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
-                                                     <span class="n">max_step</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="p">,</span>
-                                                     <span class="n">avoid_collisions</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span>
-                                                     <span class="n">path_constraints</span><span class="p">,</span>
-                                                     <span class="n">attached_collisions_meshes</span><span class="p">)</span></div>
+        <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">,</span> <span class="p">[])</span>
 
-<div class="viewcode-block" id="Robot.plan_cartesian_motion_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_cartesian_motion_deprecated.html#compas_fab.robots.Robot.plan_cartesian_motion_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                         <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="o">=</span><span class="mf">1.57</span><span class="p">,</span>
-                                         <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                         <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                                         <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
             <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>  <span class="c1"># ensure semantics</span>
@@ -1453,8 +1405,6 @@
         <span class="c1"># NOTE: start_configuration has to be a full robot configuration, such</span>
         <span class="c1"># that all configurable joints of the whole robot are defined for planning.</span>
         <span class="n">start_configuration</span><span class="p">,</span> <span class="n">start_configuration_scaled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_full_configuration_and_scale</span><span class="p">(</span><span class="n">start_configuration</span><span class="p">)</span>
-
-        <span class="n">max_step_scaled</span> <span class="o">=</span> <span class="n">max_step</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
 
         <span class="n">frames_WCF_scaled</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">frames_WCF</span><span class="p">:</span>
@@ -1475,24 +1425,15 @@
             <span class="n">path_constraints_WCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
+            <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
 
-        <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;base_link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="s1">&#39;ee_link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">),</span>
-            <span class="s1">&#39;joint_names&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(),</span>
-            <span class="s1">&#39;joint_types&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">(),</span>
-            <span class="s1">&#39;max_step&#39;</span><span class="p">:</span> <span class="n">max_step_scaled</span><span class="p">,</span>
-            <span class="s1">&#39;jump_threshold&#39;</span><span class="p">:</span> <span class="n">jump_threshold</span><span class="p">,</span>
-            <span class="s1">&#39;avoid_collisions&#39;</span><span class="p">:</span> <span class="n">avoid_collisions</span><span class="p">,</span>
-            <span class="s1">&#39;path_constraints&#39;</span><span class="p">:</span> <span class="n">path_constraints</span><span class="p">,</span>
-            <span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">:</span> <span class="n">attached_collision_meshes</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
+        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints</span>
+        <span class="k">if</span> <span class="n">max_step</span><span class="p">:</span>
+            <span class="n">options</span><span class="p">[</span><span class="s1">&#39;max_step&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_step</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>
 
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span>
+            <span class="n">robot</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">frames_WCF</span><span class="o">=</span><span class="n">frames_WCF_scaled</span><span class="p">,</span>
             <span class="n">start_configuration</span><span class="o">=</span><span class="n">start_configuration_scaled</span><span class="p">,</span>
             <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
@@ -1505,6 +1446,22 @@
         <span class="n">trajectory</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">trajectory</span></div>
+
+<div class="viewcode-block" id="Robot.plan_cartesian_motion_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_cartesian_motion_deprecated.html#compas_fab.robots.Robot.plan_cartesian_motion_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">max_step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">jump_threshold</span><span class="o">=</span><span class="mf">1.57</span><span class="p">,</span>
+                                         <span class="n">avoid_collisions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">,</span>
+                                          <span class="n">start_configuration</span><span class="o">=</span><span class="n">start_configuration</span><span class="p">,</span>
+                                          <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                                          <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                                              <span class="n">max_step</span><span class="o">=</span><span class="n">max_step</span><span class="p">,</span>
+                                              <span class="n">jump_threshold</span><span class="o">=</span><span class="n">jump_threshold</span><span class="p">,</span>
+                                              <span class="n">avoid_collisions</span><span class="o">=</span><span class="n">avoid_collisions</span><span class="p">,</span>
+                                              <span class="n">path_constraints</span><span class="o">=</span><span class="n">path_constraints</span><span class="p">,</span>
+                                              <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="n">attached_collision_meshes</span><span class="p">,</span>
+                                          <span class="p">))</span></div>
 
 <div class="viewcode-block" id="Robot.plan_motion"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_motion.html#compas_fab.robots.Robot.plan_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate a motion path.</span>
@@ -1529,25 +1486,14 @@
 
 <span class="sd">            - path_constraints :: :obj:`list` of :class:`Constraint`, optional</span>
 <span class="sd">                Optional constraints that can be imposed along the solution path.</span>
-<span class="sd">                Note that path calculation won&#39;t work if the `start_configuration`</span>
+<span class="sd">                Note that path calculation won&#39;t work if the start_configuration</span>
 <span class="sd">                violates these constraints. Defaults to ``None``.</span>
-<span class="sd">            - planner_id :: :obj:`str`, optional</span>
-<span class="sd">                The name of the algorithm used for path planning. Defaults to ``&#39;RRT&#39;``.</span>
-<span class="sd">            - num_planning_attempts :: :obj:`int`, optional</span>
-<span class="sd">                Normally, if one motion plan is needed, one motion plan is computed.</span>
-<span class="sd">                However, for algorithms that use randomization in their execution</span>
-<span class="sd">                (like ``&#39;RRT&#39;``), it is likely that different planner executions will</span>
-<span class="sd">                produce different solutions. Setting this parameter to a value above</span>
-<span class="sd">                1 will run many additional motion plans, and will report the</span>
-<span class="sd">                shortest solution as the final result. Defaults to ``1``.</span>
-<span class="sd">            - allowed_planning_time :: :obj:`float`, optional</span>
-<span class="sd">                The number of seconds allowed to perform the planning. Defaults to ``2``.</span>
-<span class="sd">            - max_velocity_scaling_factor :: :obj:`float`, optional</span>
-<span class="sd">                Defaults to ``1``.</span>
-<span class="sd">            - max_acceleration_scaling_factor :: :obj:`float`, optional</span>
-<span class="sd">                Defaults to ``1``.</span>
-<span class="sd">            - attached_collision_meshes :: :obj:`list` of :class:`AttachedCollisionMesh`, optional</span>
+<span class="sd">            - attached_collision_meshes :: :obj:`list` of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
 <span class="sd">                Defaults to ``None``.</span>
+
+<span class="sd">            There are additional options that are specific to the backend in use.</span>
+<span class="sd">            Check the API reference of the motion planner backend implementation</span>
+<span class="sd">            for more details.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1564,7 +1510,7 @@
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; goal_constraints = robot.constraints_from_frame(frame, tolerance_position, tolerances_axes, group)</span>
 <span class="sd">        &gt;&gt;&gt; robot.attached_tool = None</span>
-<span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRT&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRTConnectkConfigDefault&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; trajectory.fraction</span>
 <span class="sd">        1.0</span>
 <span class="sd">        &gt;&gt;&gt; # Example with joint constraints (to the UP configuration)</span>
@@ -1573,7 +1519,7 @@
 <span class="sd">        &gt;&gt;&gt; tolerances_below = [math.radians(5)] * len(configuration.values)</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; goal_constraints = robot.constraints_from_configuration(configuration, tolerances_above, tolerances_below, group)</span>
-<span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRT&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRTConnectkConfigDefault&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; trajectory.fraction</span>
 <span class="sd">        1.0</span>
 <span class="sd">        &gt;&gt;&gt; type(trajectory)</span>
@@ -1581,25 +1527,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="n">path_constraints</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">)</span>
-        <span class="n">planner_id</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planner_id&#39;</span><span class="p">,</span> <span class="s1">&#39;RRT&#39;</span><span class="p">)</span>
-        <span class="n">num_planning_attempts</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num_planning_attempts&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">allowed_planning_time</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;allowed_planning_time&#39;</span><span class="p">,</span> <span class="mf">2.</span><span class="p">)</span>
-        <span class="n">max_velocity_scaling_factor</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_velocity_scaling_factor&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
-        <span class="n">max_acceleration_scaling_factor</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_acceleration_scaling_factor&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
-        <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_motion_deprecated</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span>
-                                           <span class="n">group</span><span class="p">,</span> <span class="n">path_constraints</span><span class="p">,</span> <span class="n">planner_id</span><span class="p">,</span>
-                                           <span class="n">num_planning_attempts</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="p">,</span>
-                                           <span class="n">max_velocity_scaling_factor</span><span class="p">,</span>
-                                           <span class="n">max_acceleration_scaling_factor</span><span class="p">,</span>
-                                           <span class="n">attached_collision_meshes</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Robot.plan_motion_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_motion_deprecated.html#compas_fab.robots.Robot.plan_motion_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                               <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;RRT&#39;</span><span class="p">,</span>
-                               <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
-                               <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                               <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
-                               <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">,</span> <span class="p">[])</span>
 
         <span class="c1"># TODO: for the motion plan request a list of possible goal constraints</span>
         <span class="c1"># can be passed, from which the planner will try to find a path that</span>
@@ -1610,7 +1538,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
-            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>  <span class="c1"># ensure semantics</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
 
         <span class="c1"># NOTE: start_configuration has to be a full robot configuration, such</span>
         <span class="c1"># that all configurable joints of the whole robot are defined for planning.</span>
@@ -1643,25 +1571,13 @@
             <span class="n">path_constraints_WCF_scaled</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">attached_collision_meshes</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">]</span>
+            <span class="n">attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
 
-        <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;base_link&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>  <span class="c1"># use world coordinates</span>
-            <span class="s1">&#39;joint_names&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(),</span>
-            <span class="s1">&#39;joint_types&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">(),</span>
-            <span class="s1">&#39;path_constraints&#39;</span><span class="p">:</span> <span class="n">path_constraints_WCF_scaled</span><span class="p">,</span>
-            <span class="s1">&#39;planner_id&#39;</span><span class="p">:</span> <span class="n">planner_id</span><span class="p">,</span>
-            <span class="s1">&#39;num_planning_attempts&#39;</span><span class="p">:</span> <span class="n">num_planning_attempts</span><span class="p">,</span>
-            <span class="s1">&#39;allowed_planning_time&#39;</span><span class="p">:</span> <span class="n">allowed_planning_time</span><span class="p">,</span>
-            <span class="s1">&#39;max_velocity_scaling_factor&#39;</span><span class="p">:</span> <span class="n">max_velocity_scaling_factor</span><span class="p">,</span>
-            <span class="s1">&#39;max_acceleration_scaling_factor&#39;</span><span class="p">:</span> <span class="n">max_acceleration_scaling_factor</span><span class="p">,</span>
-            <span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">:</span> <span class="n">attached_collision_meshes</span><span class="p">,</span>
-        <span class="p">}</span>
+        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span>
+        <span class="n">options</span><span class="p">[</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path_constraints_WCF_scaled</span>
 
         <span class="n">trajectory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span>
+            <span class="n">robot</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
             <span class="n">goal_constraints</span><span class="o">=</span><span class="n">goal_constraints_WCF_scaled</span><span class="p">,</span>
             <span class="n">start_configuration</span><span class="o">=</span><span class="n">start_configuration_scaled</span><span class="p">,</span>
             <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
@@ -1675,6 +1591,25 @@
         <span class="n">trajectory</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">trajectory</span></div>
+
+<div class="viewcode-block" id="Robot.plan_motion_deprecated"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.plan_motion_deprecated.html#compas_fab.robots.Robot.plan_motion_deprecated">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion_deprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                               <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path_constraints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">planner_id</span><span class="o">=</span><span class="s1">&#39;RRTConnectkConfigDefault&#39;</span><span class="p">,</span>
+                               <span class="n">num_planning_attempts</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">allowed_planning_time</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span>
+                               <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                               <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                               <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span>
+                                <span class="n">start_configuration</span><span class="p">,</span>
+                                <span class="n">group</span><span class="p">,</span>
+                                <span class="n">options</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span>
+                                    <span class="n">path_constraints</span><span class="o">=</span><span class="n">path_constraints</span><span class="p">,</span>
+                                    <span class="n">planner_id</span><span class="o">=</span><span class="n">planner_id</span><span class="p">,</span>
+                                    <span class="n">num_planning_attempts</span><span class="o">=</span><span class="n">num_planning_attempts</span><span class="p">,</span>
+                                    <span class="n">allowed_planning_time</span><span class="o">=</span><span class="n">allowed_planning_time</span><span class="p">,</span>
+                                    <span class="n">max_velocity_scaling_factor</span><span class="o">=</span><span class="n">max_velocity_scaling_factor</span><span class="p">,</span>
+                                    <span class="n">max_acceleration_scaling_factor</span><span class="o">=</span><span class="n">max_acceleration_scaling_factor</span><span class="p">,</span>
+                                    <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="n">attached_collision_meshes</span><span class="p">,</span>
+                                <span class="p">))</span></div>
 
 <div class="viewcode-block" id="Robot.transformed_frames"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames">[docs]</a>    <span class="k">def</span> <span class="nf">transformed_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the robot&#39;s transformed frames.</span>

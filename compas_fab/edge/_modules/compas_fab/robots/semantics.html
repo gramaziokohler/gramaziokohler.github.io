@@ -97,132 +97,66 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RobotSemantics.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.__init__.html#compas_fab.robots.RobotSemantics.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">urdf_robot</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_group_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main_group</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span> <span class="o">=</span> <span class="n">urdf_robot</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__source_attributes</span><span class="p">()</span></div>
+<div class="viewcode-block" id="RobotSemantics.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.__init__.html#compas_fab.robots.RobotSemantics.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">,</span>
+                 <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">main_group_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">passive_joints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">end_effectors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disabled_collisions</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robot_model</span> <span class="o">=</span> <span class="n">robot_model</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="o">=</span> <span class="n">groups</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="o">=</span> <span class="n">main_group_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passive_joints</span> <span class="o">=</span> <span class="n">passive_joints</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_effectors</span> <span class="o">=</span> <span class="n">end_effectors</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">disabled_collisions</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">group_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">passive_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">pjoint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">pjoint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;passive_joint&#39;</span><span class="p">)]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">end_effectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">ee</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;parent_link&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;end_effector&#39;</span><span class="p">)]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">disabled_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="nb">frozenset</span><span class="p">([</span><span class="n">dc</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;link1&#39;</span><span class="p">],</span> <span class="n">dc</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;link2&#39;</span><span class="p">]])</span>
-            <span class="k">for</span> <span class="n">dc</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;disable_collisions&#39;</span><span class="p">)</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
 <div class="viewcode-block" id="RobotSemantics.from_srdf_file"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_srdf_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">urdf_robot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_srdf_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an instance of semantics based on an SRDF file path or file-like object.&quot;&quot;&quot;</span>
         <span class="n">xml</span> <span class="o">=</span> <span class="n">XML</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">urdf_robot</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotSemantics.from_srdf_string"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_srdf_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">urdf_robot</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_srdf_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an instance of semantics based on an SRDF string.&quot;&quot;&quot;</span>
         <span class="n">xml</span> <span class="o">=</span> <span class="n">XML</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">urdf_robot</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_xml</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__get_group_link_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
-        <span class="n">link_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">):</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
-                <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">chain</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;chain&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">iter_link_chain</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">],</span> <span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;tip_link&#39;</span><span class="p">]):</span>
-                <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
-                    <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;joint&#39;</span><span class="p">):</span>
-            <span class="n">joint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-            <span class="k">if</span> <span class="n">joint</span><span class="p">:</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">link</span>
-                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
-                    <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">subgroup</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
-                <span class="c1"># find group element at top level</span>
-                <span class="k">for</span> <span class="n">top_group_elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">top_group_elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
-                        <span class="n">subgroup_link_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_group_link_names</span><span class="p">(</span><span class="n">top_group_elem</span><span class="p">)</span>
-                        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">subgroup_link_names</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
-                                <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">link_names</span>
+<div class="viewcode-block" id="RobotSemantics.from_xml"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.from_xml.html#compas_fab.robots.RobotSemantics.from_xml">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_xml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">xml</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an instance of semantics based on an XML object.&quot;&quot;&quot;</span>
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">_get_groups</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span>
+        <span class="n">passive_joints</span> <span class="o">=</span> <span class="n">_get_passive_joints</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">end_effectors</span> <span class="o">=</span> <span class="n">_get_end_effectors</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">_get_disabled_collisions</span><span class="p">(</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__get_group_elem_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_name</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">group_elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">group_elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">group_name</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">group_elem</span>
+        <span class="n">groups_by_links_len</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">group</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">group</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;links&#39;</span><span class="p">]))</span>
+        <span class="n">main_group_name</span> <span class="o">=</span> <span class="n">groups_by_links_len</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__get_group_joint_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
-        <span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">):</span>
-            <span class="n">link</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
-                    <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">chain</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;chain&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">iter_joint_chain</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">],</span> <span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;tip_link&#39;</span><span class="p">]):</span>
-                <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
-                    <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;joint&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
-                <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">subgroup</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
-                <span class="c1"># find group element at top level</span>
-                <span class="n">top_group_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_group_elem_by_name</span><span class="p">(</span><span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
-                <span class="n">subgroup_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_group_joint_names</span><span class="p">(</span><span class="n">top_group_elem</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">subgroup_joint_names</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
-                        <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">joint_names</span>
-
-    <span class="k">def</span> <span class="nf">__source_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-        <span class="n">gnames</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">glenth</span> <span class="o">=</span> <span class="p">[]</span>
-
-        <span class="n">group_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
-            <span class="n">name</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
-            <span class="n">group_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">link_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_group_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-            <span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_group_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
-            <span class="n">group_dict</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;links&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">link_names</span>
-            <span class="n">group_dict</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;joints&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">joint_names</span>
-            <span class="n">gnames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">glenth</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">link_names</span><span class="p">))</span>
-
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">glenth</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">glenth</span><span class="p">))</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_group_dict</span> <span class="o">=</span> <span class="n">group_dict</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="o">=</span> <span class="n">gnames</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">robot_model</span><span class="p">,</span>
+            <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">,</span>
+            <span class="n">main_group_name</span><span class="o">=</span><span class="n">main_group_name</span><span class="p">,</span>
+            <span class="n">passive_joints</span><span class="o">=</span><span class="n">passive_joints</span><span class="p">,</span>
+            <span class="n">end_effectors</span><span class="o">=</span><span class="n">end_effectors</span><span class="p">,</span>
+            <span class="n">disabled_collisions</span><span class="o">=</span><span class="n">disabled_collisions</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotSemantics.get_end_effector_link_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_end_effector_link_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
             <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_dict</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;links&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;links&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="RobotSemantics.get_base_link_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_base_link_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
             <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_dict</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;links&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;links&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="RobotSemantics.get_all_configurable_joints"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_configurable_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">joints</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_model</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">passive_joints</span><span class="p">:</span>
                 <span class="n">joints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">joints</span></div>
@@ -231,8 +165,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">:</span>
             <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span>
         <span class="n">joints</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_group_dict</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;joints&quot;</span><span class="p">]:</span>
-            <span class="n">joint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">urdf_robot</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="s2">&quot;joints&quot;</span><span class="p">]:</span>
+            <span class="n">joint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot_model</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">joint</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">is_configurable</span><span class="p">()</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">passive_joints</span><span class="p">:</span>
                     <span class="n">joints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="p">)</span>
@@ -240,6 +174,100 @@
 
 <div class="viewcode-block" id="RobotSemantics.get_configurable_joint_names"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_configurable_joint_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">(</span><span class="n">group</span><span class="p">)]</span></div></div>
+
+
+<span class="c1"># XML parsing methods</span>
+<span class="k">def</span> <span class="nf">_get_groups</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="n">groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">links</span><span class="o">=</span><span class="n">_get_group_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">),</span>
+            <span class="n">joints</span><span class="o">=</span><span class="n">_get_group_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">groups</span>
+
+
+<span class="k">def</span> <span class="nf">_get_group_link_names</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+    <span class="n">link_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
+            <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">chain</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;chain&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">iter_link_chain</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">],</span> <span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;tip_link&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
+                <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;joint&#39;</span><span class="p">):</span>
+        <span class="n">joint</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">joint</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">joint</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">link</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
+                <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">subgroup</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
+            <span class="c1"># find group element at top level</span>
+            <span class="k">for</span> <span class="n">top_group_elem</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">top_group_elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
+                    <span class="n">subgroup_link_names</span> <span class="o">=</span> <span class="n">_get_group_link_names</span><span class="p">(</span><span class="n">top_group_elem</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">subgroup_link_names</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
+                            <span class="n">link_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">link_names</span>
+
+
+<span class="k">def</span> <span class="nf">_get_group_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
+    <span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;link&#39;</span><span class="p">):</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">joints</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
+                <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">chain</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;chain&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">robot_model</span><span class="o">.</span><span class="n">iter_joint_chain</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;base_link&#39;</span><span class="p">],</span> <span class="n">chain</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;tip_link&#39;</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
+                <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;joint&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
+            <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">subgroup</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">group</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]:</span>
+            <span class="c1"># find group element at top level</span>
+            <span class="n">top_group_elem</span> <span class="o">=</span> <span class="n">_get_group_elem_by_name</span><span class="p">(</span><span class="n">subgroup</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">root</span><span class="p">)</span>
+            <span class="n">subgroup_joint_names</span> <span class="o">=</span> <span class="n">_get_group_joint_names</span><span class="p">(</span><span class="n">top_group_elem</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">subgroup_joint_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">:</span>
+                    <span class="n">joint_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">joint_names</span>
+
+
+<span class="k">def</span> <span class="nf">_get_group_elem_by_name</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">group_elem</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">group_elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">group_name</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">group_elem</span>
+
+
+<span class="k">def</span> <span class="nf">_get_passive_joints</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">joint</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;passive_joint&#39;</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">_get_end_effectors</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">ee</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;parent_link&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ee</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;end_effector&#39;</span><span class="p">)]</span>
+
+
+<span class="k">def</span> <span class="nf">_get_disabled_collisions</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nb">tuple</span><span class="p">([</span><span class="n">dc</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;link1&#39;</span><span class="p">],</span> <span class="n">dc</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;link2&#39;</span><span class="p">]])</span>
+        <span class="k">for</span> <span class="n">dc</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;disable_collisions&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
 </code></pre></div>
         
       </main>

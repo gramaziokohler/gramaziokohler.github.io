@@ -80,7 +80,7 @@
 <h1 class="display-4 p-0 mb-5">RobotSemantics</h1>
 <dl class="py class">
 <dt id="compas_fab.robots.RobotSemantics">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">RobotSemantics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root</span></em>, <em class="sig-param"><span class="n">urdf_robot</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/semantics.html#RobotSemantics"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">RobotSemantics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">robot_model</span></em>, <em class="sig-param"><span class="n">groups</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">main_group_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">passive_joints</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">end_effectors</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">disabled_collisions</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/semantics.html#RobotSemantics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents semantic information of a robot.</p>
 <p>The semantic model is based on the
@@ -93,28 +93,31 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.__init__.html#compas_fab.robots.RobotSemantics.__init__" title="compas_fab.robots.RobotSemantics.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(root, urdf_robot)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.__init__.html#compas_fab.robots.RobotSemantics.__init__" title="compas_fab.robots.RobotSemantics.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(robot_model[, groups, …])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file" title="compas_fab.robots.RobotSemantics.from_srdf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_file</span></code></a>(file, urdf_robot)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file" title="compas_fab.robots.RobotSemantics.from_srdf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_file</span></code></a>(file, robot_model)</p></td>
+<td><p>Create an instance of semantics based on an SRDF file path or file-like object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string" title="compas_fab.robots.RobotSemantics.from_srdf_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_string</span></code></a>(text, robot_model)</p></td>
+<td><p>Create an instance of semantics based on an SRDF string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_xml.html#compas_fab.robots.RobotSemantics.from_xml" title="compas_fab.robots.RobotSemantics.from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_xml</span></code></a>(xml, robot_model)</p></td>
+<td><p>Create an instance of semantics based on an XML object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints" title="compas_fab.robots.RobotSemantics.get_all_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_configurable_joints</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string" title="compas_fab.robots.RobotSemantics.from_srdf_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_string</span></code></a>(text, urdf_robot)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints" title="compas_fab.robots.RobotSemantics.get_all_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_configurable_joints</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a>([group])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a>([group])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a>([group])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a>([group])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -126,16 +129,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">disabled_collisions</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_effectors</span></code></p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_names</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">passive_joints</span></code></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -166,17 +160,36 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Robot.html">Robot</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">RobotSemantics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Tool.html">Tool</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Duration.html">Duration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Wrench.html">Wrench</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Inertia.html">Inertia</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>

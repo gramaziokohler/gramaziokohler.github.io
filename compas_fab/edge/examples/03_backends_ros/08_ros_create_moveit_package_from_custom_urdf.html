@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="3.8. Creating a URDF of the UR10 on two linear axes" href="09_ros_create_urdf_ur10_on_tower.html" />
+    <link rel="next" title="3.9. Creating a URDF of the UR10 on two linear axes" href="09_ros_create_urdf_ur10_on_tower.html" />
   
   
   
-    <link rel="prev" title="3.6. Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
+    <link rel="prev" title="3.7. Creating a URDF with an UR5 robot and a custom end-effector" href="07_ros_create_urdf_ur5_with_measurement_tool.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -77,12 +77,12 @@
         
         
         <div class="section" id="creating-a-moveit-package-from-the-custom-created-urdf">
-<span id="ros-examples-create-moveit-package-from-custom-urdf"></span><h1 class="display-4 p-0 mb-5"><span class="section-number">3.7. </span>Creating a MoveIt! package from the custom created URDF</h1>
+<span id="ros-examples-create-moveit-package-from-custom-urdf"></span><h1 class="display-4 p-0 mb-5"><span class="section-number">3.8. </span>Creating a MoveIt! package from the custom created URDF</h1>
 <p>This example is mainly copied from <a class="reference external" href="http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html">MoveIt! Setup Assistant Tutorial</a></p>
 <p>It is based on the previous example:
 <a class="reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html#ros-examples-create-urdf-ur5-with-measurement-tool"><span class="std std-ref">Creating a URDF with an UR5 robot and a custom end-effector</span></a></p>
 <div class="section" id="start-the-moveit-setup-assistant">
-<h2><span class="section-number">3.7.1. </span>Start the MoveIt! Setup Assistant</h2>
+<h2><span class="section-number">3.8.1. </span>Start the MoveIt! Setup Assistant</h2>
 <p>The MoveIt! Setup Assistant is a graphical user interface for configuring any
 robot for use with MoveIt!. Its primary functions are to generate a Semantic Robot
 Description Format (SRDF) file, to create the collision matrix of your robot
@@ -104,7 +104,7 @@ seconds) and present you with this screen:</p></li>
 </div>
 </div>
 <div class="section" id="generate-self-collision-matrix">
-<h2><span class="section-number">3.7.2. </span>Generate Self-Collision Matrix</h2>
+<h2><span class="section-number">3.8.2. </span>Generate Self-Collision Matrix</h2>
 <ul class="simple">
 <li><p>Click on the <em>Self-Collisions</em> pane selector on the left-hand side.</p></li>
 <li><p>Click on the <em>Generate Collision Matrix</em> button. The Setup Assistant will work for a few
@@ -120,7 +120,7 @@ collision. The default value of 10’000 collision checks should be fine.</p>
 </div>
 </div>
 <div class="section" id="add-virtual-joints">
-<h2><span class="section-number">3.7.3. </span>Add Virtual Joints</h2>
+<h2><span class="section-number">3.8.3. </span>Add Virtual Joints</h2>
 <p>Virtual joints are used primarily to attach the robot to the world coordinate
 frame. We will define only one virtual joint, attaching the
 <code class="docutils literal notranslate"><span class="pre">ur5_with_measurement_tool</span></code> to the world coordinate frame.</p>
@@ -136,7 +136,7 @@ frame. We will define only one virtual joint, attaching the
 </div>
 </div>
 <div class="section" id="add-planning-groups">
-<h2><span class="section-number">3.7.4. </span>Add Planning Groups</h2>
+<h2><span class="section-number">3.8.4. </span>Add Planning Groups</h2>
 <p>Planning groups are used for semantically describing different parts of your
 robot, such as defining what an arm is, or an end-effector. The planning group
 is later used for path- and motion planning.</p>
@@ -148,7 +148,7 @@ is later used for path- and motion planning.</p>
 <img alt="../../_images/08_ros_create_moveit_package_03.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_03.jpg" />
 </div>
 <div class="section" id="add-the-arm">
-<h3><span class="section-number">3.7.4.1. </span>Add the arm</h3>
+<h3><span class="section-number">3.8.4.1. </span>Add the arm</h3>
 <ul class="simple">
 <li><p>Enter <em>Group Name</em> as “manipulator”</p></li>
 <li><p>Choose ur_kinematics/UR5KinematicsPlugin as the kinematics solver.</p></li>
@@ -170,7 +170,7 @@ is later used for path- and motion planning.</p>
 </ul>
 </div>
 <div class="section" id="add-the-gripper">
-<h3><span class="section-number">3.7.4.2. </span>Add the gripper</h3>
+<h3><span class="section-number">3.8.4.2. </span>Add the gripper</h3>
 <p>We will also add a group for the end-effector.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -191,7 +191,7 @@ is later used for path- and motion planning.</p>
 </div>
 </div>
 <div class="section" id="add-robot-poses">
-<h2><span class="section-number">3.7.5. </span>Add Robot Poses</h2>
+<h2><span class="section-number">3.8.5. </span>Add Robot Poses</h2>
 <p>The <em>Setup Assistant</em> allows you to add certain fixed poses into the
 configuration. This helps if, for example, you want to define a certain position
 of the robot as a <em>Home</em> position.</p>
@@ -212,7 +212,7 @@ with the joint limits in your URDF, you should be able to see it immediately her
 </div>
 </div>
 <div class="section" id="label-end-effectors">
-<h2><span class="section-number">3.7.6. </span>Label End-Effectors</h2>
+<h2><span class="section-number">3.8.6. </span>Label End-Effectors</h2>
 <p>We have already added the measurement_tool of the ur5. Now, we will designate
 this group as a special group: end effectors.</p>
 <ul class="simple">
@@ -229,18 +229,18 @@ this group as a special group: end effectors.</p>
 </div>
 </div>
 <div class="section" id="add-passive-joints">
-<h2><span class="section-number">3.7.7. </span>Add Passive Joints</h2>
+<h2><span class="section-number">3.8.7. </span>Add Passive Joints</h2>
 <p>Skip this step.</p>
 </div>
 <div class="section" id="add-author-information">
-<h2><span class="section-number">3.7.8. </span>Add Author Information</h2>
+<h2><span class="section-number">3.8.8. </span>Add Author Information</h2>
 <ul class="simple">
 <li><p>Click on the <em>Author Information</em> pane.</p></li>
 <li><p>Enter your name and email address.</p></li>
 </ul>
 </div>
 <div class="section" id="generate-configuration-files">
-<h2><span class="section-number">3.7.9. </span>Generate Configuration Files</h2>
+<h2><span class="section-number">3.8.9. </span>Generate Configuration Files</h2>
 <p>You are almost there. One last step!</p>
 <ul class="simple">
 <li><p>Click on the Configuration Files pane.</p></li>
@@ -257,7 +257,7 @@ can click on each of them for a description of what they contain.</p></li>
 </div>
 </div>
 <div class="section" id="start-the-newly-generated-moveit-configuration">
-<h2><span class="section-number">3.7.10. </span>Start the newly generated MoveIt! Configuration</h2>
+<h2><span class="section-number">3.8.10. </span>Start the newly generated MoveIt! Configuration</h2>
 <p>Now, optionally, you can already start the MoveIt! Demo and play:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
 <span class="n">catkin_make</span>
@@ -270,7 +270,7 @@ can click on each of them for a description of what they contain.</p></li>
 </div>
 </div>
 <div class="section" id="further-links">
-<h2><span class="section-number">3.7.11. </span>Further links</h2>
+<h2><span class="section-number">3.8.11. </span>Further links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html">http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html</a></p></li>
 <li><p><a class="reference external" href="http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/urdf_srdf/urdf_srdf_tutorial.html">http://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/urdf_srdf/urdf_srdf_tutorial.html</a></p></li>
@@ -303,13 +303,14 @@ can click on each of them for a description of what they contain.</p></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../02_description_models.html">2. Description Models</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../03_backends_ros.html">3. Backends: ROS</a><ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="01_ros_examples.html">3.1. Using ROS</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="02_forward_and_inverse_kinematics.html">3.2. Forward and inverse kinematics</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="03_collision_objects.html">3.3. Planning scene and collision objects</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_plan_motion.html">3.4. Plan motion</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="05_full_examples.html">3.5. Full examples</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
-<li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.7. Creating a MoveIt! package from the custom created URDF</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.8. Creating a URDF of the UR10 on two linear axes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="02_robot_models.html">3.2. Robots in ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="03_forward_and_inverse_kinematics.html">3.3. Forward and inverse kinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="04_collision_objects.html">3.4. Planning scene and collision objects</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="05_plan_motion.html">3.5. Plan motion</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="06_ros_in_grasshopper.html">3.6. ROS in Grasshopper</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.7. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.8. Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.9. Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
@@ -331,22 +332,22 @@ can click on each of them for a description of what they contain.</p></li>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">3.7. Creating a MoveIt! package from the custom created URDF</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#start-the-moveit-setup-assistant">3.7.1. Start the MoveIt! Setup Assistant</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#generate-self-collision-matrix">3.7.2. Generate Self-Collision Matrix</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-virtual-joints">3.7.3. Add Virtual Joints</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-planning-groups">3.7.4. Add Planning Groups</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#add-the-arm">3.7.4.1. Add the arm</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-the-gripper">3.7.4.2. Add the gripper</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">3.8. Creating a MoveIt! package from the custom created URDF</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#start-the-moveit-setup-assistant">3.8.1. Start the MoveIt! Setup Assistant</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#generate-self-collision-matrix">3.8.2. Generate Self-Collision Matrix</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-virtual-joints">3.8.3. Add Virtual Joints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-planning-groups">3.8.4. Add Planning Groups</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#add-the-arm">3.8.4.1. Add the arm</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-the-gripper">3.8.4.2. Add the gripper</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-robot-poses">3.7.5. Add Robot Poses</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#label-end-effectors">3.7.6. Label End-Effectors</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-passive-joints">3.7.7. Add Passive Joints</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-author-information">3.7.8. Add Author Information</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#generate-configuration-files">3.7.9. Generate Configuration Files</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#start-the-newly-generated-moveit-configuration">3.7.10. Start the newly generated MoveIt! Configuration</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.7.11. Further links</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-robot-poses">3.8.5. Add Robot Poses</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#label-end-effectors">3.8.6. Label End-Effectors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-passive-joints">3.8.7. Add Passive Joints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-author-information">3.8.8. Add Author Information</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#generate-configuration-files">3.8.9. Generate Configuration Files</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#start-the-newly-generated-moveit-configuration">3.8.10. Start the newly generated MoveIt! Configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.8.11. Further links</a></li>
 </ul>
 </li>
 </ul>

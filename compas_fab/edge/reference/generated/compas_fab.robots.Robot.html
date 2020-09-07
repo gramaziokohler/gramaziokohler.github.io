@@ -92,25 +92,12 @@ the <strong>COMPAS</strong> framework.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RobotModel</span></code>) – The robot model, usually created from an URDF structure.</p></li>
-<li><p><strong>artist</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseRobotArtist</span></code>, optional) – Instance of the artist used to visualize the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>semantics</strong> (<a class="reference internal" href="compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotSemantics</span></code></a>, optional) – The semantic model of the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><strong>client</strong> (<em>optional</em>) – The backend client to use for communication,
-e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient</span></code></a>. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Attributes</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>model</strong> (<a class="reference external" href="https://compas.dev/compas/api/generated/compas.robots.RobotModel.html#compas.robots.RobotModel" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code></a>) – The robot model, usually created from an URDF structure.</p></li>
-<li><p><strong>artist</strong> (<a class="reference internal" href="compas_fab.artists.BaseRobotArtist.html#compas_fab.artists.BaseRobotArtist" title="compas_fab.artists.BaseRobotArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.artists.BaseRobotArtist</span></code></a>) – Instance of the artist used to visualize the robot.</p></li>
-<li><p><strong>semantics</strong> (<a class="reference internal" href="compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotSemantics</span></code></a>) – The semantic model of the robot.</p></li>
-<li><p><strong>client</strong> – The backend client to use for communication,
-e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient</span></code></a>.</p></li>
-<li><p><strong>artist</strong> (class:<cite>compas_fab.artists.BaseRobotArtist</cite>) – Artist used to visualize robot.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of the robot, as defined by its model.</p></li>
-<li><p><strong>group_names</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – All planning groups of the robot.</p></li>
-<li><p><strong>main_group_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Robot’s main planning group.</p></li>
-<li><p><strong>root_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Robot’s root name.</p></li>
-<li><p><strong>scale_factor</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>:) – Robot’s scale factor.</p></li>
+<li><p><strong>artist</strong> (<a class="reference internal" href="compas_fab.artists.BaseRobotArtist.html#compas_fab.artists.BaseRobotArtist" title="compas_fab.artists.BaseRobotArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.artists.BaseRobotArtist</span></code></a>) – Instance of the artist used to visualize the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>semantics</strong> (<a class="reference internal" href="compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.RobotSemantics</span></code></a>) – The semantic model of the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>client</strong> (<a class="reference internal" href="../../generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.ClientInterface</span></code></a>) – The backend client to use for communication,
+e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient</span></code></a></p></li>
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>) – Named attributes related to the robot instance.</p></li>
+<li><p><strong>attached_tool</strong> (<a class="reference internal" href="compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Tool</span></code></a>) – Instance of the tool attached to the robot, if any.</p></li>
 </ul>
 </dd>
 </dl>
@@ -338,17 +325,36 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">Robot</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Tool.html">Tool</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Duration.html">Duration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Wrench.html">Wrench</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Inertia.html">Inertia</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>

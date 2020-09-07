@@ -81,7 +81,7 @@
 planning and execution of robotic fabrication processes. It provides interfaces
 to existing software libraries and tools available in the field of robotics
 (e.g. OMPL, ROS) and makes them accessible from within the parametric design
-environment. The package builds upon <a class="reference external" href="https://compas-dev.github.io/">COMPAS</a>,
+environment. The package builds upon <a class="reference external" href="https://compas.dev/">COMPAS</a>,
 an open-source Python-based framework for collaboration and research in
 architecture, engineering and digital fabrication.</p>
 <div class="section" id="contents">
@@ -94,6 +94,7 @@ architecture, engineering and digital fabrication.</p>
 <li class="toctree-l2"><a class="reference internal" href="backends/pybullet.html">PyBullet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backends/ros.html">ROS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backends/vrep.html">V-REP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backends/web_x11_gui.html">Access backend GUI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -109,13 +110,14 @@ architecture, engineering and digital fabrication.</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples/03_backends_ros.html">3. Backends: ROS</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/01_ros_examples.html">3.1. Using ROS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/02_forward_and_inverse_kinematics.html">3.2. Forward and inverse kinematics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/03_collision_objects.html">3.3. Planning scene and collision objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/04_plan_motion.html">3.4. Plan motion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/05_full_examples.html">3.5. Full examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/07_ros_create_urdf_ur5_with_measurement_tool.html">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/08_ros_create_moveit_package_from_custom_urdf.html">3.7. Creating a MoveIt! package from the custom created URDF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/09_ros_create_urdf_ur10_on_tower.html">3.8. Creating a URDF of the UR10 on two linear axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/02_robot_models.html">3.2. Robots in ROS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/03_forward_and_inverse_kinematics.html">3.3. Forward and inverse kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/04_collision_objects.html">3.4. Planning scene and collision objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/05_plan_motion.html">3.5. Plan motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/06_ros_in_grasshopper.html">3.6. ROS in Grasshopper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/07_ros_create_urdf_ur5_with_measurement_tool.html">3.7. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/08_ros_create_moveit_package_from_custom_urdf.html">3.8. Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/03_backends_ros/09_ros_create_urdf_ur10_on_tower.html">3.9. Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples/04_backends_vrep.html">4. Backends: V-REP</a><ul>
@@ -124,25 +126,97 @@ architecture, engineering and digital fabrication.</p>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="examples/05_backends_pybullet.html">5. Backends: PyBullet</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="examples/05_backends_pybullet/01_pybullet_examples.html">5.1. Using PyBullet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/05_backends_pybullet/02_forward_and_inverse_kinematics.html">5.2. Forward and inverse kinematics</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.html">compas_fab</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.sensors.html">compas_fab.sensors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.blender.html">compas_fab.blender</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
-<li class="toctree-l3"><a class="reference internal" href="reference/compas_fab.rhino.html">compas_fab.rhino</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.robots.html">compas_fab.robots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Robot.html">Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Tool.html">Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Duration.html">Duration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Wrench.html">Wrench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Inertia.html">Inertia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.backends.html">compas_fab.backends</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.VrepClient.html">VrepClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.VrepPlanner.html">VrepPlanner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.FutureResult.html">FutureResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.CollisionError.html">CollisionError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.InverseKinematicsError.html">InverseKinematicsError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.RosError.html">RosError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.artists.html">compas_fab.artists</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.artists.BaseRobotArtist.html">BaseRobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.blender.html">compas_fab.blender</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.blender.RobotArtist.html">RobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.ghpython.html">compas_fab.ghpython</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.ghpython.RobotArtist.html">RobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.rhino.html">compas_fab.rhino</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.rhino.RobotArtist.html">RobotArtist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.sensors.html">compas_fab.sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.sensors.SerialSensor.html">SerialSensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.sensors.baumer.PosCon3D.html">PosCon3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.sensors.baumer.PosConCM.html">PosConCM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.utilities.html">compas_fab.utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.read_csv_to_dictionary.html">read_csv_to_dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.write_data_to_json.html">write_data_to_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.read_data_from_json.html">read_data_from_json</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.list_files_in_directory.html">list_files_in_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.map_range.html">map_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.arange.html">arange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.allclose.html">allclose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.sign.html">sign</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.argsort.html">argsort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/generated/compas_fab.utilities.LazyLoader.html">LazyLoader</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributor’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributor’s Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html">Backend Client Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="interfaces.html">compas_fab.backends.interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Citing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>

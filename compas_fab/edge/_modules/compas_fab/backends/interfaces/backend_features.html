@@ -91,15 +91,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ForwardKinematics.forward_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics.html#compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot instance for which forward kinematics is being calculated.</span>
 <span class="sd">        configuration : :class:`compas_fab.robots.Configuration`</span>
 <span class="sd">            The full configuration to calculate the forward kinematic for. If no</span>
 <span class="sd">            full configuration is passed, the zero-joint state for the other</span>
@@ -128,15 +130,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
 <div class="viewcode-block" id="InverseKinematics.inverse_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics.html#compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic for a given frame.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot instance for which inverse kinematics is being calculated.</span>
 <span class="sd">        frame_WCF: :class:`compas.geometry.Frame`</span>
 <span class="sd">            The frame to calculate the inverse for.</span>
 <span class="sd">        start_configuration: :class:`compas_fab.robots.Configuration`, optional</span>
@@ -148,8 +152,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        :class:`compas_fab.robots.Configuration`</span>
-<span class="sd">            The planning group&#39;s configuration.</span>
+<span class="sd">        :obj:`tuple` of :obj:`list`</span>
+<span class="sd">            A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 
@@ -164,15 +168,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PlanMotion.plan_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanMotion.plan_motion.html#compas_fab.backends.interfaces.PlanMotion.plan_motion">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a motion path.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot instance for which the motion path is being calculated.</span>
 <span class="sd">        goal_constraints: list of :class:`compas_fab.robots.Constraint`</span>
 <span class="sd">            The goal to be achieved, defined in a set of constraints.</span>
 <span class="sd">            Constraints can be very specific, for example defining value domains</span>
@@ -206,15 +212,17 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PlanCartesianMotion.plan_cartesian_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion.html#compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a cartesian motion path (linear in tool space).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot instance for which the cartesian motion path is being calculated.</span>
 <span class="sd">        frames_WCF: list of :class:`compas.geometry.Frame`</span>
 <span class="sd">            The frames through which the path is defined.</span>
 <span class="sd">        start_configuration: :class:`Configuration`, optional</span>

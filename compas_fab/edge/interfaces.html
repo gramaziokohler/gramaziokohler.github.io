@@ -17,7 +17,11 @@
   <link rel="stylesheet" type="text/css" href="_static/css/compas-reference.css" />
 
   
+    <link rel="next" title="ClientInterface" href="generated/compas_fab.backends.interfaces.ClientInterface.html" />
   
+  
+  
+    <link rel="prev" title="Backend Client Architecture" href="architecture.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -74,7 +78,10 @@
         
         <span class="target" id="module-compas_fab.backends.interfaces"></span><div class="section" id="compas-fab-backends-interfaces">
 <h1 class="display-4 p-0 mb-5">compas_fab.backends.interfaces</h1>
-<p>This package contains classes backends for simulation, planning and execution.</p>
+<p>This package defines the interfaces required to integrate backends into
+the simulation, planning and execution pipeline of COMPAS FAB.</p>
+<div class="section" id="client-interfaces">
+<h2>Client interfaces</h2>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -87,6 +94,17 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlannerInterface.html#compas_fab.backends.interfaces.PlannerInterface" title="compas_fab.backends.interfaces.PlannerInterface"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlannerInterface</span></code></a></p></td>
 <td><p>Interface for all planners associated with a backend client.</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="feature-interfaces">
+<h2>Feature interfaces</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.interfaces.ForwardKinematics.html#compas_fab.backends.interfaces.ForwardKinematics" title="compas_fab.backends.interfaces.ForwardKinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ForwardKinematics</span></code></a></p></td>
 <td><p>Interface for a Planner’s forward kinematics feature.</p></td>
 </tr>
@@ -99,6 +117,17 @@
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlanCartesianMotion.html#compas_fab.backends.interfaces.PlanCartesianMotion" title="compas_fab.backends.interfaces.PlanCartesianMotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanCartesianMotion</span></code></a></p></td>
 <td><p>Interface for a Planner’s plan cartesian motion feature.</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="planning-scene-interfaces">
+<h2>Planning scene interfaces</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.interfaces.GetPlanningScene.html#compas_fab.backends.interfaces.GetPlanningScene" title="compas_fab.backends.interfaces.GetPlanningScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlanningScene</span></code></a></p></td>
 <td><p>Interface for a Planner’s get planning scene feature.</p></td>
 </tr>
@@ -120,6 +149,7 @@
 </tbody>
 </table>
 </div>
+</div>
 
         
       </main>
@@ -137,13 +167,19 @@
         
         
           <div id="compas-navigation" class="collapse compas-navigation">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples.html">Examples</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="reference.html">API Reference</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="contributing.html">Contributor’s Guide</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="contributing.html">Contributor’s Guide</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link reference internal" href="architecture.html">Backend Client Architecture</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.backends.interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="license.html">License</a></li>
@@ -157,7 +193,12 @@
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.backends.interfaces</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.backends.interfaces</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#client-interfaces">Client interfaces</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#feature-interfaces">Feature interfaces</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#planning-scene-interfaces">Planning scene interfaces</a></li>
+</ul>
+</li>
 </ul>
 
       </div>

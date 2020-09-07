@@ -508,13 +508,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">FRAME_TAIL</span> <span class="o">%</span> <span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_checksum</span><span class="p">(</span><span class="n">frame</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PosConCM.calculate_checksum"><a class="viewcode-back" href="../../../reference/generated/compas_fab.sensors.baumer.PosConCM.calculate_checksum.html#compas_fab.sensors.baumer.PosConCM.calculate_checksum">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_checksum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Checks that message is complete.</span>
-
-<span class="sd">        Note</span>
-<span class="sd">        ----</span>
-<span class="sd">        See `RS-485 Protocol Structure &lt;https://www.baumer.com/ae/en/product-overview/2d-3d-sensors/profile-sensors-/measurement-of-round-objects/\</span>
-<span class="sd">        oxc7-x0250-ii1250-ti/p/medias/__secure__/en_BA_RS485_Protocol_Structure.pdf?mediaPK=8799860686878&gt;`_ for more info.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Checks that message is complete.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;****&#39;</span></div>
 
 <div class="viewcode-block" id="PosConCM.get_payload"><a class="viewcode-back" href="../../../reference/generated/compas_fab.sensors.baumer.PosConCM.get_payload.html#compas_fab.sensors.baumer.PosConCM.get_payload">[docs]</a>    <span class="k">def</span> <span class="nf">get_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>

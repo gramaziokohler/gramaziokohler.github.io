@@ -85,6 +85,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which the motion plan is being calculated.</p></li>
 <li><p><strong>goal_constraints</strong> (list of <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>) – The goal to be achieved, defined in a set of constraints.
 Constraints can be very specific, for example defining value domains
 for each joint, such that the goal configuration is included,
@@ -98,14 +99,13 @@ planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;base_link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the base link.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;joint_names&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) List containing joint names.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;joint_types&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) List containing joint types.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;path_constraints&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional)
 Optional constraints that can be imposed along the solution path.
 Note that path calculation won’t work if the start_configuration
 violates these constraints. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;planner_id&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)
-The name of the algorithm used for path planning. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;RRT&quot;</span></code>.</p></li>
+The name of the algorithm used for path planning.
+Defaults to <code class="docutils literal notranslate"><span class="pre">'RRTConnectkConfigDefault'</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;num_planning_attempts&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional)
 Normally, if one motion plan is needed, one motion plan is computed.
 However, for algorithms that use randomization in their execution
@@ -155,17 +155,31 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepClient.html">VrepClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepPlanner.html">VrepPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CollisionError.html">CollisionError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.InverseKinematicsError.html">InverseKinematicsError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosError.html">RosError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>

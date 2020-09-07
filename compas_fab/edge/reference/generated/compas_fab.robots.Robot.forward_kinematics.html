@@ -82,30 +82,30 @@
 <dt id="compas_fab.robots.Robot.forward_kinematics">
 <code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">forward_kinematics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.forward_kinematics"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Calculate the robot’s forward kinematic.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>) – The full configuration to calculate the forward kinematic for. If no
+<dd class="field-odd"><ul>
+<li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The full configuration to calculate the forward kinematic for. If no
 full configuration is passed, the zero-joint state for the other
 configurable joints is assumed.</p></li>
-<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The planning group used for the calculation. Defaults to the robot’s
+<li><p><strong>group</strong> (obj:<cite>str</cite>, optional) – The planning group used for the calculation. Defaults to the robot’s
 main planning group.</p></li>
-<li><p><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Dictionary containing the following key-value pairs:</p>
-<ul>
-<li><dl class="simple">
-<dt>backend :: <code class="docutils literal notranslate"><span class="pre">None</span></code> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">None</span></code>, calculates fk with the client if it exists or with the robot model.
-If <code class="docutils literal notranslate"><span class="pre">'model'</span></code>, uses the robot model to calculate fk. Anything else is open
-for implementation, possibly <code class="docutils literal notranslate"><span class="pre">'kdl'</span></code>, <code class="docutils literal notranslate"><span class="pre">'ikfast'</span></code></p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>ee_link :: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional</dt><dd><p>The name of the link to calculate the forward kinematics for.
-Defaults to the group’s end effector link.</p>
-</dd>
-</dl>
-</li>
+<li><p><strong>options</strong> (obj:<cite>dict</cite>, optional) – Dictionary containing the following key-value pairs:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;solver&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) If <code class="docutils literal notranslate"><span class="pre">None</span></code> calculates FK
+with the client if it exists or with the robot model.
+If <code class="docutils literal notranslate"><span class="pre">'model'</span></code> use the robot model to calculate FK.
+Other values depend on specific backend implementation, some backends might
+allow selecting different FK solvers dynamically.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
+calculate the forward kinematics for. Defaults to the group’s end
+effector link.
+Backwards compatibility note: if there’s no <code class="docutils literal notranslate"><span class="pre">link</span></code> option, the
+planner will try also <code class="docutils literal notranslate"><span class="pre">ee_link</span></code> as fallback before defaulting
+to the end effector’s link.</p></li>
 </ul>
+<p>There are additional options that are specific to the backend in use.
+Check the API reference of the FK backend implementation for more details.</p>
 </li>
 </ul>
 </dd>
@@ -123,7 +123,7 @@ Defaults to the group’s end effector link.</p>
 <div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_c</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;backend&#39;</span><span class="p">:</span> <span class="s1">&#39;model&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="s1">&#39;model&#39;</span><span class="p">}</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_m</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame_WCF_c</span> <span class="o">==</span> <span class="n">frame_WCF_m</span>
 <span class="go">True</span>
@@ -155,17 +155,36 @@ Defaults to the group’s end effector link.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.robots.Robot.html">Robot</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Configuration.html">Configuration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Tool.html">Tool</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Duration.html">Duration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Wrench.html">Wrench</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Inertia.html">Inertia</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>

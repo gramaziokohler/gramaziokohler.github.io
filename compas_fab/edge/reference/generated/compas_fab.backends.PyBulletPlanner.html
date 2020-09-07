@@ -82,6 +82,7 @@
 <dt id="compas_fab.backends.PyBulletPlanner">
 <em class="property">class </em><code class="sig-prename descclassname">compas_fab.backends.</code><code class="sig-name descname">PyBulletPlanner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">client</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/pybullet/planner.html#PyBulletPlanner"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.client.PlannerInterface</span></code></p>
+<p>Implement the planner backend interface for PyBullet.</p>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -102,13 +103,13 @@
 <td><p>Append a collision mesh to the planning scene.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.PyBulletPlanner.forward_kinematics.html#compas_fab.backends.PyBulletPlanner.forward_kinematics" title="compas_fab.backends.PyBulletPlanner.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Default method for planner.</p></td>
+<td><p>Calculate the robot’s forward kinematic.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.PyBulletPlanner.get_planning_scene.html#compas_fab.backends.PyBulletPlanner.get_planning_scene" title="compas_fab.backends.PyBulletPlanner.get_planning_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.PyBulletPlanner.inverse_kinematics.html#compas_fab.backends.PyBulletPlanner.inverse_kinematics" title="compas_fab.backends.PyBulletPlanner.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Default method for planner.</p></td>
+<td><p>Calculate the robot’s inverse kinematic for a given frame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.backends.PyBulletPlanner.plan_cartesian_motion.html#compas_fab.backends.PyBulletPlanner.plan_cartesian_motion" title="compas_fab.backends.PyBulletPlanner.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
@@ -150,17 +151,31 @@
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepClient.html">VrepClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepPlanner.html">VrepPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">PyBulletPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CollisionError.html">CollisionError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.InverseKinematicsError.html">InverseKinematicsError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosError.html">RosError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>

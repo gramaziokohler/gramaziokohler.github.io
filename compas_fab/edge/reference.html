@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="compas_fab" href="reference/compas_fab.html" />
+    <link rel="next" title="compas_fab.robots" href="reference/compas_fab.robots.html" />
   
   
   
-    <link rel="prev" title="5.1. Using PyBullet" href="examples/05_backends_pybullet/01_pybullet_examples.html" />
+    <link rel="prev" title="5.2. Forward and inverse kinematics" href="examples/05_backends_pybullet/02_forward_and_inverse_kinematics.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -78,20 +78,36 @@
         
         <div class="section" id="api-reference">
 <span id="reference"></span><h1 class="display-4 p-0 mb-5">API Reference</h1>
+<p>This reference manual details functions, modules, and objects included in COMPAS FAB,
+describing what they are and what they do.</p>
+<p>To learn how to use COMPAS FAB, see the <a class="reference internal" href="examples.html#examples"><span class="std std-ref">examples</span></a> and
+how to <a class="reference internal" href="backends.html#backends"><span class="std std-ref">work with backends</span></a>.</p>
+<div class="section" id="modules">
+<h2>Modules</h2>
+<p>The core features are located in the <code class="docutils literal notranslate"><span class="pre">robots</span></code> module with the specific backend
+implementations in the <code class="docutils literal notranslate"><span class="pre">backends</span></code> modules:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.html">compas_fab</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.sensors.html">compas_fab.sensors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.blender.html">compas_fab.blender</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/compas_fab.rhino.html">compas_fab.rhino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.robots.html">compas_fab.robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.backends.html">compas_fab.backends</a></li>
 </ul>
-</li>
+</div>
+<p>Visualization and CAD integration modules:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.artists.html">compas_fab.artists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.rhino.html">compas_fab.rhino</a></li>
 </ul>
+</div>
+<p>Utilities and other integrations are available in the following modules:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/compas_fab.utilities.html">compas_fab.utilities</a></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -117,7 +133,14 @@
 <li class="nav-item"><a class="nav-link reference internal" href="backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">API Reference</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.html">compas_fab</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.robots.html">compas_fab.robots</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.backends.html">compas_fab.backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.artists.html">compas_fab.artists</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.rhino.html">compas_fab.rhino</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="reference/compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="contributing.html">Contributor’s Guide</a></li>
@@ -134,7 +157,12 @@
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">API Reference</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">API Reference</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#modules">Modules</a><ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       </div>

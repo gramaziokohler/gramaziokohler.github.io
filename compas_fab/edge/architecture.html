@@ -17,7 +17,11 @@
   <link rel="stylesheet" type="text/css" href="_static/css/compas-reference.css" />
 
   
+    <link rel="next" title="compas_fab.backends.interfaces" href="interfaces.html" />
   
+  
+  
+    <link rel="prev" title="Contributor’s Guide" href="contributing.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -72,8 +76,8 @@
       <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
-        <div class="section" id="a-note-on-backend-client-architecture">
-<span id="architecture"></span><h1 class="display-4 p-0 mb-5">A Note on Backend Client Architecture</h1>
+        <div class="section" id="backend-client-architecture">
+<span id="architecture"></span><h1 class="display-4 p-0 mb-5">Backend Client Architecture</h1>
 <p>To maintain consistency from one backend client to another and to promote
 modularity, we make use of several interfaces.  Any new backend client
 should inherit from <code class="docutils literal notranslate"><span class="pre">ClientInterface</span></code> and
@@ -96,7 +100,8 @@ method.  For example:</p>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces</span> <span class="kn">import</span> <span class="n">InverseKinematics</span>
 
 <span class="k">class</span> <span class="nc">ExampleInverseKinematics</span><span class="p">(</span><span class="n">InverseKinematics</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span>
+                           <span class="n">frame_WCF</span><span class="p">,</span>
                            <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                            <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -107,9 +112,9 @@ method.  For example:</p>
 <p>can be instantiated and called in the following manner:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">calculate_example_ik</span> <span class="o">=</span> <span class="n">ExampleInverseKinematics</span><span class="p">()</span>
 <span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-<span class="n">ik_result</span> <span class="o">=</span> <span class="n">calculate_example_ik</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="n">ik_result</span> <span class="o">=</span> <span class="n">calculate_example_ik</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
 <span class="c1"># or equivalently:</span>
-<span class="n">ik_result</span> <span class="o">=</span> <span class="n">calculate_example_ik</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+<span class="n">ik_result</span> <span class="o">=</span> <span class="n">calculate_example_ik</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>These backend feature interfaces exist in part to enforce a common
@@ -139,18 +144,27 @@ of <code class="docutils literal notranslate"><span class="pre">ClientA</span></
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="interfaces.html">compas_fab.backends.interfaces</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.ClientInterface.html">ClientInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlannerInterface.html">PlannerInterface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.ForwardKinematics.html">ForwardKinematics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.InverseKinematics.html">InverseKinematics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlanMotion.html">PlanMotion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlanCartesianMotion.html">PlanCartesianMotion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.GetPlanningScene.html">GetPlanningScene</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AddCollisionMesh.html">AddCollisionMesh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AppendCollisionMesh.html">AppendCollisionMesh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.RemoveCollisionMesh.html">RemoveCollisionMesh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AddAttachedCollisionMesh.html">AddAttachedCollisionMesh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.html">RemoveAttachedCollisionMesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces.html#client-interfaces">Client interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.ClientInterface.html">ClientInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlannerInterface.html">PlannerInterface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces.html#feature-interfaces">Feature interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.ForwardKinematics.html">ForwardKinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.InverseKinematics.html">InverseKinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlanMotion.html">PlanMotion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.PlanCartesianMotion.html">PlanCartesianMotion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="interfaces.html#planning-scene-interfaces">Planning scene interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.GetPlanningScene.html">GetPlanningScene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AddCollisionMesh.html">AddCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AppendCollisionMesh.html">AppendCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.RemoveCollisionMesh.html">RemoveCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.AddAttachedCollisionMesh.html">AddAttachedCollisionMesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.html">RemoveAttachedCollisionMesh</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -174,13 +188,19 @@ of <code class="docutils literal notranslate"><span class="pre">ClientA</span></
         
         
           <div id="compas-navigation" class="collapse compas-navigation">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples.html">Examples</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="reference.html">API Reference</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="contributing.html">Contributor’s Guide</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="contributing.html">Contributor’s Guide</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">Backend Client Architecture</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="interfaces.html">compas_fab.backends.interfaces</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="changelog.html">Changelog</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="license.html">License</a></li>
@@ -194,7 +214,7 @@ of <code class="docutils literal notranslate"><span class="pre">ClientA</span></
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">A Note on Backend Client Architecture</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#">Backend Client Architecture</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#interfaces">Interfaces</a></li>
 </ul>
 </li>

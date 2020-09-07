@@ -85,12 +85,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which the motion plan is being calculated.</p></li>
 <li><p><strong>goal_constraints</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code>) – Target or goal frame.</p></li>
 <li><p><strong>start_configuration</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – Unused parameter.</p></li>
 <li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Integer referencing the desired robot group.</p></li>
 <li><p><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>) – Dictionary containing the following key-values pairs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;num_joints&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) Number of configurable joints.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;metric_values&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) List containing one value
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
@@ -147,17 +147,31 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
 <li class="nav-item"><a class="nav-link reference internal" href="../../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../examples.html">Examples</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../../reference.html">API Reference</a><ul class="nav flex-column active">
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.html">compas_fab</a><ul class="nav flex-column active">
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
-<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.robots.html">compas_fab.robots</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepClient.html">VrepClient</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.backends.VrepPlanner.html">VrepPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CollisionError.html">CollisionError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.InverseKinematicsError.html">InverseKinematicsError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosError.html">RosError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.utilities.html">compas_fab.utilities</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../contributing.html">Contributor’s Guide</a></li>
