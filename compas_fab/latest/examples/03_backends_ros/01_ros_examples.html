@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="3.2. Forward and inverse kinematics" href="02_forward_and_inverse_kinematics.html" />
+    <link rel="next" title="3.2. Robots in ROS" href="02_robot_models.html" />
   
   
   
@@ -43,7 +43,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -73,7 +73,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <div class="section" id="using-ros">
@@ -89,7 +89,7 @@ the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list
 <h2><span class="section-number">3.1.1. </span>First step</h2>
 <p>The first step is to connect to ROS to verify that the system is working.</p>
 <p>Copy and paste the following example into any Python environment
-(a standalong script, a CAD environment, etc) and run it, you should
+(a standalone script, a CAD environment, etc) and run it, you should
 see the output <code class="docutils literal notranslate"><span class="pre">Connected:</span> <span class="pre">True</span></code> if everything is working properly:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
@@ -137,7 +137,7 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/21f881cb95efa590832231d479907c4b/01_ros_hello_world_talker.py"><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/e559eb1bb4cbd173cc90a7345a0abb9c/01_ros_hello_world_talker.py"><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>
@@ -166,21 +166,21 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <div class="card bg-light">
 <div class="card-body">
 <div class="card-title">Downloads</div><ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/ad80de72d43868419d432158b997a428/01_ros_hello_world_listener.py"><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../_downloads/9dcd55d6df43e6650222dab2675cbf71/01_ros_hello_world_listener.py"><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
 </div></div>
 <div class="section" id="running-the-example">
 <h3><span class="section-number">3.1.2.3. </span>Running the example</h3>
 <p>Open a command prompt and start the talker:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_ros_hello_world_listener</span><span class="o">.</span><span class="n">py</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_ros_hello_world_talker</span><span class="o">.</span><span class="n">py</span>
 </code></pre></div>
 </div>
 <p>Now open a second command prompt and start the listener:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_ros_hello_world_listener</span><span class="o">.</span><span class="n">py</span>
 </code></pre></div>
 </div>
-<p>You should see the listener printing everytime it hears the other node talking.</p>
+<p>You should see the listener printing every time it hears the other node talking.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is not relevant where the files are located. They can be in different
@@ -215,16 +215,18 @@ folders or even in different computers as long as the ROS master is the same.</p
 <li class="nav-item"><a class="nav-link reference internal" href="../02_description_models.html">2. Description Models</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../03_backends_ros.html">3. Backends: ROS</a><ul class="nav flex-column active">
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.1. Using ROS</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="02_forward_and_inverse_kinematics.html">3.2. Forward and inverse kinematics</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="03_collision_objects.html">3.3. Planning scene and collision objects</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_plan_motion.html">3.4. Plan motion</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="05_full_examples.html">3.5. Full examples</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.7. Creating a MoveIt! package from the custom created URDF</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.8. Creating a URDF of the UR10 on two linear axes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="02_robot_models.html">3.2. Robots in ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="03_forward_and_inverse_kinematics.html">3.3. Forward and inverse kinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="04_collision_objects.html">3.4. Planning scene and collision objects</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="05_plan_motion.html">3.5. Plan motion</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="06_ros_in_grasshopper.html">3.6. ROS in Grasshopper</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">3.7. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.8. Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.9. Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../05_backends_pybullet.html">5. Backends: PyBullet</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>

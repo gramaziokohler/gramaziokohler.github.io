@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="3.7. Creating a MoveIt! package from the custom created URDF" href="08_ros_create_moveit_package_from_custom_urdf.html" />
+    <link rel="next" title="3.8. Creating a MoveIt! package from the custom created URDF" href="08_ros_create_moveit_package_from_custom_urdf.html" />
   
   
   
-    <link rel="prev" title="3.5. Full examples" href="05_full_examples.html" />
+    <link rel="prev" title="3.6. ROS in Grasshopper" href="06_ros_in_grasshopper.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -43,7 +43,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -73,13 +73,13 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <div class="section" id="creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector">
-<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1 class="display-4 p-0 mb-5"><span class="section-number">3.6. </span>Creating a URDF with an UR5 robot and a custom end-effector</h1>
+<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1 class="display-4 p-0 mb-5"><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector</h1>
 <div class="section" id="export-your-meshes">
-<h2><span class="section-number">3.6.1. </span>Export your meshes</h2>
+<h2><span class="section-number">3.7.1. </span>Export your meshes</h2>
 <p>In ROS, robot link (and end-effector) geometry is defined with 2 different
 meshes: <em>visual</em> and <em>collision</em>. The visual mesh represents how the robot looks
 like and the collision mesh is used for collision detection. You could have the
@@ -97,7 +97,7 @@ your end-effector in a ROS-friendly format, like .stl or .obj (see below).</p>
 </div>
 </div>
 <div class="section" id="prepare-your-catkin-workspace">
-<h2><span class="section-number">3.6.2. </span>Prepare your catkin workspace</h2>
+<h2><span class="section-number">3.7.2. </span>Prepare your catkin workspace</h2>
 <p>Open your command prompt and go to your home directory:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
 </code></pre></div>
@@ -137,7 +137,7 @@ following lines after the line <code class="docutils literal notranslate"><span 
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
 </div>
 <div class="section" id="create-xacros-and-generate-urdf">
-<h2><span class="section-number">3.6.3. </span>Create xacros and generate urdf</h2>
+<h2><span class="section-number">3.7.3. </span>Create xacros and generate urdf</h2>
 <p>Rather than writing urdf files directly, it is more convinient to write xacro
 files from which urdfs are generated. As its name implies, xacro is a macro
 language. The language allows to use constants, to perform simple math
@@ -193,8 +193,8 @@ operations and to parameterize macros simply by using <code class="docutils lite
 </code></pre></div>
 </div>
 <div class="section" id="explanation">
-<h3><span class="section-number">3.6.3.1. </span>Explanation</h3>
-<p>The end-effector consists of one fixed joint (that will be attacted to the tool0
+<h3><span class="section-number">3.7.3.1. </span>Explanation</h3>
+<p>The end-effector consists of one fixed joint (that will be attached to the tool0
 of the robot), one link with geometry (the tool geometry), one fixed joint (the
 tcp joint, defining the TCP frame) and the tcp link without geometry.</p>
 <p>We define a parameterized macro with 2 parameters (<code class="docutils literal notranslate"><span class="pre">${prefix}</span></code>, <code class="docutils literal notranslate"><span class="pre">${connected_to}</span></code>) because
@@ -281,7 +281,7 @@ is never child to a joint (first link).</p>
 </div>
 </div>
 <div class="section" id="view-urdf">
-<h2><span class="section-number">3.6.4. </span>View urdf</h2>
+<h2><span class="section-number">3.7.4. </span>View urdf</h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
@@ -328,14 +328,14 @@ that they match the following:</p>
 <p>In RViz you can customize the display settings and save the <code class="docutils literal notranslate"><span class="pre">urdf.rviz</span></code></p>
 </div>
 <div class="section" id="add-path-to-search-paths">
-<h2><span class="section-number">3.6.5. </span>Add path to search paths</h2>
+<h2><span class="section-number">3.7.5. </span>Add path to search paths</h2>
 <p>For convenience, add the path to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> in order to make it available on every start of ROS:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="further-links">
-<h2><span class="section-number">3.6.6. </span>Further links</h2>
+<h2><span class="section-number">3.7.6. </span>Further links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
 <li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
@@ -371,16 +371,18 @@ that they match the following:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../02_description_models.html">2. Description Models</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="../03_backends_ros.html">3. Backends: ROS</a><ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="01_ros_examples.html">3.1. Using ROS</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="02_forward_and_inverse_kinematics.html">3.2. Forward and inverse kinematics</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="03_collision_objects.html">3.3. Planning scene and collision objects</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="04_plan_motion.html">3.4. Plan motion</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="05_full_examples.html">3.5. Full examples</a></li>
-<li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.7. Creating a MoveIt! package from the custom created URDF</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.8. Creating a URDF of the UR10 on two linear axes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="02_robot_models.html">3.2. Robots in ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="03_forward_and_inverse_kinematics.html">3.3. Forward and inverse kinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="04_collision_objects.html">3.4. Planning scene and collision objects</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="05_plan_motion.html">3.5. Plan motion</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="06_ros_in_grasshopper.html">3.6. ROS in Grasshopper</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">3.7. Creating a URDF with an UR5 robot and a custom end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">3.8. Creating a MoveIt! package from the custom created URDF</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="09_ros_create_urdf_ur10_on_tower.html">3.9. Creating a URDF of the UR10 on two linear axes</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../05_backends_pybullet.html">5. Backends: PyBullet</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
@@ -398,16 +400,16 @@ that they match the following:</p>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">3.6. Creating a URDF with an UR5 robot and a custom end-effector</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#export-your-meshes">3.6.1. Export your meshes</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#prepare-your-catkin-workspace">3.6.2. Prepare your catkin workspace</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#create-xacros-and-generate-urdf">3.6.3. Create xacros and generate urdf</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#explanation">3.6.3.1. Explanation</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">3.7. Creating a URDF with an UR5 robot and a custom end-effector</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#export-your-meshes">3.7.1. Export your meshes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#prepare-your-catkin-workspace">3.7.2. Prepare your catkin workspace</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#create-xacros-and-generate-urdf">3.7.3. Create xacros and generate urdf</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#explanation">3.7.3.1. Explanation</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#view-urdf">3.6.4. View urdf</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#add-path-to-search-paths">3.6.5. Add path to search paths</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.6.6. Further links</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#view-urdf">3.7.4. View urdf</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-path-to-search-paths">3.7.5. Add path to search paths</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#further-links">3.7.6. Further links</a></li>
 </ul>
 </li>
 </ul>

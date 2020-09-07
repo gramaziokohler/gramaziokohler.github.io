@@ -39,7 +39,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -69,11 +69,12 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <h1 class="display-4 p-0 mb-5">Source code for compas_fab.robots.trajectory</h1><div class="highlight"><pre><code>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span></span><span class="sd">&quot;&quot;&quot;Classes used to define robot trajectories.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
@@ -96,12 +97,31 @@
 <span class="sd">    Trajectory points are defined either as *values + velocities and</span>
 <span class="sd">    accelerations*, or as *values + efforts*.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    values : :obj:`list` of :obj:`float`, optional</span>
+<span class="sd">        Joint values expressed in radians or meters, depending on the respective</span>
+<span class="sd">        type.</span>
+<span class="sd">    types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`, optional</span>
+<span class="sd">        Joint types, e.g. a :obj:`list` of</span>
+<span class="sd">        :attr:`compas.robots.Joint.REVOLUTE` for revolute joints.</span>
+<span class="sd">    velocities : :obj:`list` of :obj:`float`, optional</span>
+<span class="sd">        Velocity of each joint.</span>
+<span class="sd">    accelerations : :obj:`list` of :obj:`float`, optional</span>
+<span class="sd">        Acceleration of each joint.</span>
+<span class="sd">    effort : :obj:`list` of :obj:`float`, optional</span>
+<span class="sd">        Effort of each joint.</span>
+<span class="sd">    time_from_start : :class:`Duration`, optional</span>
+<span class="sd">        Duration of trajectory point counting from the start.</span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    values : :obj:`list` of :obj:`float`</span>
-<span class="sd">        Joint values expressed in radians or meters, depending on the respective type.</span>
-<span class="sd">    types : :obj:`list` of :class:`compas.robots.Joint.TYPE`</span>
-<span class="sd">        Joint types, e.g. a list of :class:`compas.robots.Joint.REVOLUTE` for revolute joints.</span>
+<span class="sd">        Joint values expressed in radians or meters, depending on the respective</span>
+<span class="sd">        type.</span>
+<span class="sd">    types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`</span>
+<span class="sd">        Joint types, e.g. a :obj:`list` of</span>
+<span class="sd">        :attr:`compas.robots.Joint.REVOLUTE` for revolute joints.</span>
 <span class="sd">    velocities : :obj:`list` of :obj:`float`</span>
 <span class="sd">        Velocity of each joint.</span>
 <span class="sd">    accelerations : :obj:`list` of :obj:`float`</span>
@@ -110,6 +130,10 @@
 <span class="sd">        Effort of each joint.</span>
 <span class="sd">    time_from_start : :class:`Duration`</span>
 <span class="sd">        Duration of trajectory point counting from the start.</span>
+<span class="sd">    positions : :obj:`list` of :obj:`float`</span>
+<span class="sd">        Alias of `values`.</span>
+<span class="sd">    data : obj:`dict`</span>
+<span class="sd">        The data representing the trajectory point.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="JointTrajectoryPoint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accelerations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">effort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -120,6 +144,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">time_from_start</span> <span class="ow">or</span> <span class="n">Duration</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return a human-readable string representation of the instance.&quot;&quot;&quot;</span>
         <span class="n">vs</span> <span class="o">=</span> <span class="s1">&#39;%.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_precision</span>
         <span class="k">return</span> <span class="s1">&#39;JointTrajectoryPoint((</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">, (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
@@ -132,11 +157,12 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">positions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Alias of ``values``.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Alias of `values`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Velocity of each joint.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_velocities</span>
 
     <span class="nd">@velocities</span><span class="o">.</span><span class="n">setter</span>
@@ -149,6 +175,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">accelerations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Acceleration of each joint.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_accelerations</span>
 
     <span class="nd">@accelerations</span><span class="o">.</span><span class="n">setter</span>
@@ -161,6 +188,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">effort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Effort of each joint.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_effort</span>
 
     <span class="nd">@effort</span><span class="o">.</span><span class="n">setter</span>
@@ -176,7 +204,7 @@
         <span class="sd">&quot;&quot;&quot;:obj:`dict` : The data representing the trajectory point.</span>
 
 <span class="sd">        By assigning a data dictionary to this property, the current data of the</span>
-<span class="sd">        configuration will be replaced by the data in the dict. The data getter</span>
+<span class="sd">        configuration will be replaced by the data in the :obj:`dict`. The data getter</span>
 <span class="sd">        and setter should always be used in combination with each other.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_obj</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">JointTrajectoryPoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
@@ -200,9 +228,9 @@
 <span class="k">class</span> <span class="nc">Trajectory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base trajectory class.</span>
 
-<span class="sd">    Attributes</span>
-<span class="sd">    ----------</span>
-<span class="sd">    planning_time: :obj:`float`</span>
+<span class="sd">    Attribute</span>
+<span class="sd">    ---------</span>
+<span class="sd">    planning_time : :obj:`float`</span>
 <span class="sd">        Amount of time it took to complete the motion plan</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -213,17 +241,31 @@
 <div class="viewcode-block" id="JointTrajectory"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory">[docs]</a><span class="k">class</span> <span class="nc">JointTrajectory</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Describes a joint trajectory as a list of trajectory points.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    trajectory_points : :obj:`list` of :class:`JointTrajectoryPoint`, optional</span>
+<span class="sd">        List of points composing the trajectory.</span>
+<span class="sd">    joint_names : :obj:`list` of :obj:`str`, optional</span>
+<span class="sd">        List of joint names of the trajectory.</span>
+<span class="sd">    start_configuration : :class:`Configuration`, optional</span>
+<span class="sd">        Start configuration for the trajectory.</span>
+<span class="sd">    fraction : :obj:`float`, optional</span>
+<span class="sd">        Indicates the percentage of requested trajectory that was calculated,</span>
+<span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    points: :obj:`list` of :class:`JointTrajectoryPoint`</span>
+<span class="sd">    points : :obj:`list` of :class:`JointTrajectoryPoint`</span>
 <span class="sd">        List of points composing the trajectory.</span>
-<span class="sd">    joint_names: :obj:`list` of :obj:`str`</span>
+<span class="sd">    joint_names : :obj:`list` of :obj:`str`</span>
 <span class="sd">        List of joint names of the trajectory.</span>
-<span class="sd">    start_configuration: :class:`Configuration`</span>
+<span class="sd">    start_configuration : :class:`Configuration`</span>
 <span class="sd">        Start configuration for the trajectory.</span>
-<span class="sd">    fraction: float</span>
-<span class="sd">        Indicates the percentage of requested trajectory that was calcuted,</span>
+<span class="sd">    fraction : :obj:`float`</span>
+<span class="sd">        Indicates the percentage of requested trajectory that was calculated,</span>
 <span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
+<span class="sd">    data : :obj:`dict`</span>
+<span class="sd">        The data representing the trajectory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -252,8 +294,14 @@
         <span class="k">return</span> <span class="n">trajectory</span></div>
 
 <div class="viewcode-block" id="JointTrajectory.to_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.to_data.html#compas_fab.robots.JointTrajectory.to_data">[docs]</a>    <span class="k">def</span> <span class="nf">to_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the data dictionary that represents the trajectory, and from</span>
-<span class="sd">        which it can be reconstructed.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Get the data dictionary that represents the trajectory.</span>
+
+<span class="sd">        This can be used to reconstruct the :class:`Trajectory` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`dict`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
 
     <span class="nd">@property</span>
@@ -277,8 +325,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">time_from_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Effectively, time from start for the last point in the trajectory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`float` : Effectively, time from start for the last point in the trajectory.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">:</span>
             <span class="k">return</span> <span class="mf">0.</span>
 

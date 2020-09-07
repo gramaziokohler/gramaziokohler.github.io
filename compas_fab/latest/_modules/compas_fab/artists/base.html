@@ -39,7 +39,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -69,7 +69,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <h1 class="display-4 p-0 mb-5">Source code for compas_fab.artists.base</h1><div class="highlight"><pre><code>
@@ -246,7 +246,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">factor</span><span class="p">)</span>  <span class="c1"># scale the model</span>
 
         <span class="n">relative_factor</span> <span class="o">=</span> <span class="n">factor</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span>  <span class="c1"># relative scaling factor</span>
-        <span class="n">transformation</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">relative_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">transformation</span> <span class="o">=</span> <span class="n">Scale</span><span class="o">.</span><span class="n">from_factors</span><span class="p">([</span><span class="n">relative_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_link</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">factor</span></div>
 

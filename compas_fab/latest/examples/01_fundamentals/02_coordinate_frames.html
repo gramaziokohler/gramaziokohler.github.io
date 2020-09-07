@@ -43,7 +43,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -73,7 +73,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <div class="section" id="coordinate-frames">
@@ -94,7 +94,7 @@ coordinate frames, for example:</p>
 <img alt="../../_images/02_coordinate_frames.jpg" class="figure-img img-fluid" src="../../_images/02_coordinate_frames.jpg" />
 <p class="caption"><span class="caption-text">Coordinate frame convention of a robotic setup.</span></p>
 </div>
-<p>To describe these coordinate frames, the <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> class
+<p>To describe these coordinate frames, the <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> class
 of the <strong>COMPAS</strong> framework is used.</p>
 <div class="section" id="world-coordinate-frame-wcf">
 <h2><span class="section-number">1.2.1. </span>World coordinate frame (WCF)</h2>
@@ -173,10 +173,10 @@ before sending it as a target pose to the robot.</p>
 <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;frame in WCF&quot;</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">)</span>
 
-<span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_local_coords</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
+<span class="n">frame_RCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_local_coordinates</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;frame in RCF&quot;</span><span class="p">,</span> <span class="n">frame_RCF</span><span class="p">)</span>
 
-<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_world_coords</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
+<span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">to_world_coordinates</span><span class="p">(</span><span class="n">frame_RCF</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;frame in WCF&quot;</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">)</span>
 </code></pre></div>
 </div>
@@ -185,7 +185,6 @@ before sending it as a target pose to the robot.</p>
 <h2><span class="section-number">1.2.7. </span>Links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.ros.org/reps/rep-0105.html#id15">ROS REP-105: Coordinate Frames for Mobile Platforms</a></p></li>
-<li><p><a class="reference external" href="http://developercenter.robotstudio.com/blobproxy/devcenter/RobotStudio/html/4eac08e9-c42c-446f-bbd4-228e523dd2d5.htm">ABB: What is a coordinate system?</a></p></li>
 </ul>
 </div>
 </div>
@@ -219,6 +218,7 @@ before sending it as a target pose to the robot.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../02_description_models.html">2. Description Models</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../03_backends_ros.html">3. Backends: ROS</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../05_backends_pybullet.html">5. Backends: PyBullet</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>

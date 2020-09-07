@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="ROS" href="backends/ros.html" />
+    <link rel="next" title="PyBullet" href="backends/pybullet.html" />
   
   
   
@@ -43,7 +43,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -73,7 +73,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <div class="section" id="working-with-backends">
@@ -127,13 +127,21 @@ running containers:</p>
 </ul>
 </div>
 </div>
+<div class="section" id="developing-new-backends">
+<h2>Developing new backends</h2>
+<p>If you are interested in developing/integrating backends to the framework, check
+the <a class="reference internal" href="architecture.html#architecture"><span class="std std-ref">backend architecture document</span></a> and the
+<a class="reference internal" href="contributing.html#contributors-guide"><span class="std std-ref">Contributor’s Guide</span></a>.</p>
+</div>
 <div class="section" id="next-steps">
 <h2>Next steps</h2>
 <p>Check documentation for your backend of choice:</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="backends/pybullet.html">PyBullet</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends/ros.html">ROS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="backends/vrep.html">V-REP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backends/web_x11_gui.html">Access backend GUI</a></li>
 </ul>
 </div>
 </div>
@@ -159,8 +167,10 @@ running containers:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="getting_started.html">Getting started</a></li>
 <li class="nav-item active"><a class="nav-link active current reference internal" href="#">Working with backends</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="backends/pybullet.html">PyBullet</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="backends/ros.html">ROS</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="backends/vrep.html">V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="backends/web_x11_gui.html">Access backend GUI</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples.html">Examples</a></li>
@@ -185,6 +195,7 @@ running containers:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="#working-with-containers">Working with containers</a></li>
 </ul>
 </li>
+<li class="nav-item"><a class="nav-link reference internal" href="#developing-new-backends">Developing new backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#next-steps">Next steps</a></li>
 </ul>
 </li>

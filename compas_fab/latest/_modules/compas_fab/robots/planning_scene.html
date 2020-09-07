@@ -39,7 +39,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -69,7 +69,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <h1 class="display-4 p-0 mb-5">Source code for compas_fab.robots.planning_scene</h1><div class="highlight"><pre><code>
@@ -90,18 +90,35 @@
 <div class="viewcode-block" id="CollisionMesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">CollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents a collision mesh.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mesh : :class:`compas.datastructures.Mesh`</span>
+<span class="sd">        The collision mesh. Ideally it is as coarse as possible.</span>
+<span class="sd">    id : :obj:`str`</span>
+<span class="sd">        The id of the mesh, used to identify it for later operations</span>
+<span class="sd">        (:meth:`~PlanningScene.add_collision_mesh`,</span>
+<span class="sd">        :meth:`~PlanningScene.remove_collision_mesh`,</span>
+<span class="sd">        :meth:`~PlanningScene.append_collision_mesh` etc.)</span>
+<span class="sd">    frame : :class:`compas.geometry.Frame`, optional</span>
+<span class="sd">        The frame of the mesh. Defaults to :meth:`~compas.geometry.Frame.worldXY().</span>
+<span class="sd">    root_name : :obj:`str`</span>
+<span class="sd">        The name of the root link the collision mesh will be placed in. Defaults</span>
+<span class="sd">        to `&#39;world&#39;`.</span>
+
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    mesh : :class:`compas.datastructures.Mesh`</span>
 <span class="sd">        The collision mesh. Ideally it is as coarse as possible.</span>
-<span class="sd">    id : str</span>
-<span class="sd">        The id of the mesh, used to identify it for later operations (remove,</span>
-<span class="sd">        append, etc.)</span>
+<span class="sd">    id : :obj:`str`</span>
+<span class="sd">        The id of the mesh, used to identify it for later operations</span>
+<span class="sd">        (:meth:`~PlanningScene.add_collision_mesh`,</span>
+<span class="sd">        :meth:`~PlanningScene.remove_collision_mesh`,</span>
+<span class="sd">        :meth:`~PlanningScene.append_collision_mesh` etc.)</span>
 <span class="sd">    frame : :class:`compas.geometry.Frame`, optional</span>
-<span class="sd">        The frame of the mesh. Defaults to the world XY frame.</span>
-<span class="sd">    root_name : str</span>
-<span class="sd">        The name of the root link the collision mesh with be placed in. Defaults</span>
-<span class="sd">        to &#39;world&#39;.</span>
+<span class="sd">        The frame of the mesh. Defaults to :meth:`~compas.geometry.Frame.worldXY().</span>
+<span class="sd">    root_name : :obj:`str`</span>
+<span class="sd">        The name of the root link the collision mesh will be placed in. Defaults</span>
+<span class="sd">        to `&#39;world&#39;`.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -125,24 +142,38 @@
 <span class="sd">        scale_factor : :obj:`float`</span>
 <span class="sd">            Scale factor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">([</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="o">.</span><span class="n">from_factors</span><span class="p">([</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">S</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="AttachedCollisionMesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">AttachedCollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents a collision mesh that is attached to a robot&#39;s link.</span>
+    <span class="sd">&quot;&quot;&quot;Represents a collision mesh that is attached to a :class:`Robot`&#39;s :class:`~compas.robots.Link`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    collision_mesh : :class:`compas_fab.robots.CollisionMesh`</span>
+<span class="sd">        The collision mesh to be attached to the robot model.</span>
+<span class="sd">    link_name : :obj:`str`</span>
+<span class="sd">        The name of the :class:`~compas.robots.Link` the collision mesh will be</span>
+<span class="sd">        attached to.</span>
+<span class="sd">    touch_links : :obj:`list` of :obj:`str`, optional</span>
+<span class="sd">        The list of link names the collision mesh is allowed to touch. Defaults</span>
+<span class="sd">        to the link it is attached to.</span>
+<span class="sd">    weight : :obj:`float`, optional</span>
+<span class="sd">        The weight of the attached object in kg. Defaults to ``1.0``.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
 <span class="sd">    collision_mesh : :class:`compas_fab.robots.CollisionMesh`</span>
 <span class="sd">        The collision mesh we want to attach.</span>
-<span class="sd">    link_name : str</span>
-<span class="sd">        The name of the link the collision mesh will be attached to.</span>
-<span class="sd">    touch_links : list of str</span>
+<span class="sd">    link_name : :obj:`str`</span>
+<span class="sd">        The name of the :class:`~compas.robots.Link` the collision mesh will be</span>
+<span class="sd">        attached to.</span>
+<span class="sd">    touch_links : :obj:`list` of :obj:`str`</span>
 <span class="sd">        The list of link names the collision mesh is allowed to touch. Defaults</span>
-<span class="sd">        to the link_name it is attached to.</span>
-<span class="sd">    weight : float</span>
-<span class="sd">        The weight of the attached object. Defaults to 1.</span>
+<span class="sd">        to the link it is attached to.</span>
+<span class="sd">    weight : :obj:`float`</span>
+<span class="sd">        The weight of the attached object in kg.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -164,13 +195,17 @@
 <div class="viewcode-block" id="PlanningScene"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.html#compas_fab.robots.PlanningScene">[docs]</a><span class="k">class</span> <span class="nc">PlanningScene</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Represents the planning scene.</span>
 
-<span class="sd">    Attributes</span>
+<span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">    robot : :class:`Robot`</span>
 <span class="sd">        A reference to the robot in the planning scene.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    robot : :class:`Robot`</span>
+<span class="sd">        A reference to the robot in the planning scene.</span>
+<span class="sd">    client</span>
+<span class="sd">        A reference to the robot&#39;s backend client.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="PlanningScene.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.__init__.html#compas_fab.robots.PlanningScene.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
@@ -178,31 +213,38 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The backend client.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;:class:`compas_fab.backend.RosClient` or :class:`compas_fab.backend.VrepClient` : The backend client.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">client</span>
 
 <div class="viewcode-block" id="PlanningScene.ensure_client"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.ensure_client.html#compas_fab.robots.PlanningScene.ensure_client">[docs]</a>    <span class="k">def</span> <span class="nf">ensure_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Ensure that the planning scene&#39;s robot has a defined client.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If no client is set for planning scene&#39;s robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s1">&#39;This method is only callable once a client is assigned&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.add_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds a collision mesh to the planning scene.</span>
+        <span class="sd">&quot;&quot;&quot;Add a collision mesh to the planning scene.</span>
 
-<span class="sd">        If the object with the same name previously existed, it is replaced.</span>
+<span class="sd">        If there is already a :class:`CollisionMesh` in the</span>
+<span class="sd">        :class:`PlanningScene` with the same `id` it will be replaced.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        collision_mesh : :class:`compas_fab.robots.CollisionMesh`</span>
+<span class="sd">        collision_mesh : :class:`CollisionMesh`</span>
 <span class="sd">            The collision mesh we want to add.</span>
-<span class="sd">        scale : bool, optional</span>
-<span class="sd">            If `True`, the mesh will be scaled according to the robot&#39;s scale</span>
+<span class="sd">        scale : :obj:`bool`, optional</span>
+<span class="sd">            If ``True``, the mesh will be scaled according to the robot&#39;s scale</span>
 <span class="sd">            factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
-
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -222,16 +264,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.remove_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.remove_collision_mesh.html#compas_fab.robots.PlanningScene.remove_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">remove_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Removes a collision object from the planning scene.</span>
+        <span class="sd">&quot;&quot;&quot;Remove a collision object from the planning scene.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        id : str</span>
-<span class="sd">            The identifier of the collision object.</span>
+<span class="sd">        id : :obj:`str`</span>
+<span class="sd">            The `id` of the :class:`CollisionMesh` instance to remove.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -242,21 +284,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.append_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.append_collision_mesh.html#compas_fab.robots.PlanningScene.append_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">append_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Appends a collision mesh that already exists in the planning scene.</span>
+        <span class="sd">&quot;&quot;&quot;Append a collision mesh to the planning scene.</span>
 
-<span class="sd">        If the does not exist, it is added.</span>
+<span class="sd">        Appends a :class:`CollisionMesh` to the :class:`PlanningScene` using</span>
+<span class="sd">        `id` as an identifier of a group or cluster of collision meshes. If the group</span>
+<span class="sd">        does not exist, it will be created implicitly; if it does exist, the meshes will be</span>
+<span class="sd">        appended to it instead.</span>
+
+<span class="sd">        Grouping meshes under a common identifier allows to remove them all</span>
+<span class="sd">        in one operation, using the :meth:`~PlanningScene.remove_collision_mesh` with</span>
+<span class="sd">        the group identifier.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        collision_mesh : :class:`compas_fab.robots.CollisionMesh`</span>
-<span class="sd">            The collision mesh we want to append.</span>
-<span class="sd">        scale : bool, optional</span>
-<span class="sd">            If `True`, the mesh will be scaled according to the robot&#39;s scale</span>
+<span class="sd">        collision_mesh : :class:`CollisionMesh`</span>
+<span class="sd">            The collision mesh we want to append to the :class:`PlanningScene`.</span>
+<span class="sd">        scale : :obj:`bool`, optional</span>
+<span class="sd">            If ``True``, the mesh will be scaled according to the robot&#39;s scale</span>
 <span class="sd">            factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -276,18 +325,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.add_attached_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_attached_collision_mesh.html#compas_fab.robots.PlanningScene.add_attached_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attached_collision_mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds an attached collision object to the planning scene.</span>
+        <span class="sd">&quot;&quot;&quot;Add an attached collision object to the planning scene.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        attached_collision_mesh : :class:`compas_fab.robots.AttachedCollisionMesh`</span>
-<span class="sd">        scale : bool, optional</span>
-<span class="sd">            If `True`, the mesh will be scaled according to the robot&#39;s scale</span>
-<span class="sd">            factor.</span>
+<span class="sd">        attached_collision_mesh : :class:`AttachedCollisionMesh`</span>
+<span class="sd">            The :class:`AttachedCollisionMesh` (a :class:`CollisionMesh`</span>
+<span class="sd">            attached to a :class:`Robot`&#39;s :class:`~compas.robots.Link`) that</span>
+<span class="sd">            we want to add to the :class:`PlanningScene`.</span>
+<span class="sd">        scale : :obj:`bool`, optional</span>
+<span class="sd">            If ``True``, the mesh will be scaled using the robot&#39;s scale factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -308,16 +359,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">attached_collision_mesh</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.remove_attached_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.remove_attached_collision_mesh.html#compas_fab.robots.PlanningScene.remove_attached_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Removes an attached collision object from the planning scene.</span>
+        <span class="sd">&quot;&quot;&quot;Remove an attached collision object from the planning scene.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        id : str</span>
-<span class="sd">            The identifier of the object.</span>
+<span class="sd">        id : :obj:`str`</span>
+<span class="sd">            The `id` of the :class:`CollisionMesh` in the</span>
+<span class="sd">            :class:`AttachedCollisionMesh` to remove from the</span>
+<span class="sd">            :class:`PlanningScene`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -332,18 +385,18 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        collision_mesh: :class:`compas_fab.robots.CollisionMesh`</span>
-<span class="sd">            The collision mesh.</span>
-<span class="sd">        scale : bool, optional</span>
-<span class="sd">            If `True`, the mesh will be scaled according to the robot&#39;s scale</span>
+<span class="sd">        collision_mesh: :class:`CollisionMesh`</span>
+<span class="sd">            The collision mesh to attach to robot&#39;s end effector.</span>
+<span class="sd">        scale : :obj:`bool`, optional</span>
+<span class="sd">            If ``True``, the mesh will be scaled using the robot&#39;s scale</span>
 <span class="sd">            factor.</span>
-<span class="sd">        group : str</span>
-<span class="sd">            The planning group to which we want to attach the mesh to. Defaults</span>
-<span class="sd">            to the robot&#39;s main planning group.</span>
+<span class="sd">        group : :obj:`str`</span>
+<span class="sd">            The planning group with the end effector we want to attach the mesh</span>
+<span class="sd">            to. Defaults to the robot&#39;s main planning group.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        None</span>
+<span class="sd">        ``None``</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
@@ -378,15 +431,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.add_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_attached_tool.html#compas_fab.robots.PlanningScene.add_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Adds the robot&#39;s attached tool to the planning scene if set.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Add the robot&#39;s attached tool to the planning scene if tool is set.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_mesh</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PlanningScene.remove_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.remove_attached_tool.html#compas_fab.robots.PlanningScene.remove_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">remove_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Removes the robot&#39;s attached tool from the planning scene.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Remove the robot&#39;s attached tool from the planning scene.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>

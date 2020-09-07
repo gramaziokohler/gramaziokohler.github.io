@@ -43,7 +43,7 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="">
         <img src="../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
@@ -73,17 +73,17 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <div class="section" id="frame-and-transformation">
 <h1 class="display-4 p-0 mb-5"><span class="section-number">1.1. </span>Frame and Transformation</h1>
-<p><a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> and <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> are two basic classes in the
+<p><a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> and <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> are two basic classes in the
 <strong>COMPAS</strong> framework and can be used to describe position/orientation and
-coordinate systems. The <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> consists of a point and and two
-orthonormal base vectors (xaxis, yaxis). <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> is the base
-class for transformations like <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Rotation.html#compas.geometry.Rotation" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rotation</span></code></a>, <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Translation.html#compas.geometry.Translation" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translation</span></code></a>,
-<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scale</span></code></a>, <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Reflection.html#compas.geometry.Reflection" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reflection</span></code></a>, <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Projection.html#compas.geometry.Projection" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> and <a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Shear.html#compas.geometry.Shear" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shear</span></code></a>.</p>
+coordinate systems. The <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></a> consists of a point and and two
+orthonormal base vectors (xaxis, yaxis). <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transformation</span></code></a> is the base
+class for transformations like <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Rotation.html#compas.geometry.Rotation" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rotation</span></code></a>, <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Translation.html#compas.geometry.Translation" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Translation</span></code></a>,
+<a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scale</span></code></a>, <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Reflection.html#compas.geometry.Reflection" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reflection</span></code></a>, <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Projection.html#compas.geometry.Projection" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> and <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Shear.html#compas.geometry.Shear" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shear</span></code></a>.</p>
 <p>Here is a simple example of how to use a frame as a coordinate system: Starting
 from a point <code class="docutils literal notranslate"><span class="pre">P</span></code> in the local (user-defined, relative) coordinate system of
 frame <code class="docutils literal notranslate"><span class="pre">F</span></code>, i.e. its position is relative to the origin and orientation of
@@ -103,7 +103,7 @@ coordinate system.</p>
 <span class="c1"># point in F (local coordinates)</span>
 <span class="n">P</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">35.</span><span class="p">,</span> <span class="mf">35.</span><span class="p">,</span> <span class="mf">35.</span><span class="p">)</span>
 <span class="c1"># point in global (world) coordinates</span>
-<span class="n">P_</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">to_world_coords</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">P_</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">to_world_coordinates</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>Industrial robots do not have a common way of describing the pose orientation.
@@ -124,7 +124,7 @@ The frame provides methods to specify the orientation in various conventions.</p
 <span class="nb">print</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">axis_angle_vector</span><span class="p">)</span> <span class="c1"># UR</span>
 </code></pre></div>
 </div>
-<p>From the orientation (<a class="reference external" href="https://compas-dev.github.io/main/api/generated/compas.geometry.Rotation.html#compas.geometry.Rotation" title="(in COMPAS v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rotation</span></code></a>)
+<p>From the orientation (<a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Rotation.html#compas.geometry.Rotation" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rotation</span></code></a>)
 of the frame, several other representations of rotation can be derived, such as
 Euler angles, axis-angle representation, and quaternion.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
@@ -195,6 +195,7 @@ Euler angles, axis-angle representation, and quaternion.</p>
 <li class="nav-item"><a class="nav-link reference internal" href="../02_description_models.html">2. Description Models</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../03_backends_ros.html">3. Backends: ROS</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../04_backends_vrep.html">4. Backends: V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="../05_backends_pybullet.html">5. Backends: PyBullet</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../../reference.html">API Reference</a></li>
