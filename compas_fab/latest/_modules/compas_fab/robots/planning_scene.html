@@ -39,17 +39,42 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="">
+      <a class="navbar-brand" href="https://gramaziokohler.github.io/compas_fab/">
         <img src="../../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
       <!-- primary -->
       <ul class="navbar-nav">
-        <li class="nav-item active"><a class="nav-link" href="">COMPAS FAB</a></li>
+        <li class="nav-item active"><a class="nav-link" href="https://gramaziokohler.github.io/compas_fab/">COMPAS FAB</a></li>
       </ul>
       <!-- primary -->
-      <!-- social -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
+        
+        <!-- version -->
+        <li class="nav-item nav-versions dropdown">
+          <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Version
+          </a>
+          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
+            
+          </div>
+        </li>
+        
+        <!-- version -->
+        <!-- social -->
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/compas-dev/compas_fab" target="_blank">
             <span class="fab fa-github fa-1x"></span>
@@ -60,8 +85,8 @@
             <span class="fab fa-discourse fa-1x"></span>
           </a>
         </li>
+        <!-- social -->
       </ul>
-      <!-- social -->
     </nav>
   </header>
   <!-- header -->
@@ -143,7 +168,18 @@
 <span class="sd">            Scale factor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">S</span> <span class="o">=</span> <span class="n">Scale</span><span class="o">.</span><span class="n">from_factors</span><span class="p">([</span><span class="n">scale_factor</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">S</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">S</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CollisionMesh.scaled"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.scaled.html#compas_fab.robots.CollisionMesh.scaled">[docs]</a>    <span class="k">def</span> <span class="nf">scaled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Copies the collision mesh, and scales the copy uniformly.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        scale_factor : :obj:`float`</span>
+<span class="sd">            Scale factor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="AttachedCollisionMesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">AttachedCollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -239,8 +275,8 @@
 <span class="sd">        collision_mesh : :class:`CollisionMesh`</span>
 <span class="sd">            The collision mesh we want to add.</span>
 <span class="sd">        scale : :obj:`bool`, optional</span>
-<span class="sd">            If ``True``, the mesh will be scaled according to the robot&#39;s scale</span>
-<span class="sd">            factor.</span>
+<span class="sd">            If ``True``, the mesh will be copied and scaled according to</span>
+<span class="sd">            the robot&#39;s scale factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -259,7 +295,7 @@
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
@@ -300,8 +336,8 @@
 <span class="sd">        collision_mesh : :class:`CollisionMesh`</span>
 <span class="sd">            The collision mesh we want to append to the :class:`PlanningScene`.</span>
 <span class="sd">        scale : :obj:`bool`, optional</span>
-<span class="sd">            If ``True``, the mesh will be scaled according to the robot&#39;s scale</span>
-<span class="sd">            factor.</span>
+<span class="sd">            If ``True``, the mesh will be copied and scaled according to</span>
+<span class="sd">            the robot&#39;s scale factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -320,7 +356,7 @@
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">)</span></div>
 
@@ -334,7 +370,8 @@
 <span class="sd">            attached to a :class:`Robot`&#39;s :class:`~compas.robots.Link`) that</span>
 <span class="sd">            we want to add to the :class:`PlanningScene`.</span>
 <span class="sd">        scale : :obj:`bool`, optional</span>
-<span class="sd">            If ``True``, the mesh will be scaled using the robot&#39;s scale factor.</span>
+<span class="sd">            If ``True``, the mesh will be copied and scaled according to</span>
+<span class="sd">            the robot&#39;s scale factor.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -354,7 +391,7 @@
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
-            <span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">attached_collision_mesh</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">attached_collision_mesh</span><span class="p">)</span></div>
 
@@ -388,8 +425,8 @@
 <span class="sd">        collision_mesh: :class:`CollisionMesh`</span>
 <span class="sd">            The collision mesh to attach to robot&#39;s end effector.</span>
 <span class="sd">        scale : :obj:`bool`, optional</span>
-<span class="sd">            If ``True``, the mesh will be scaled using the robot&#39;s scale</span>
-<span class="sd">            factor.</span>
+<span class="sd">            If ``True``, the mesh will be copied and scaled according to</span>
+<span class="sd">            the robot&#39;s scale factor.</span>
 <span class="sd">        group : :obj:`str`</span>
 <span class="sd">            The planning group with the end effector we want to attach the mesh</span>
 <span class="sd">            to. Defaults to the robot&#39;s main planning group.</span>
@@ -423,7 +460,7 @@
 
         <span class="k">if</span> <span class="n">scale</span><span class="p">:</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">scale_factor</span>
-            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
+            <span class="n">collision_mesh</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
         <span class="n">ee_link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">touch_links</span> <span class="o">=</span> <span class="p">[</span><span class="n">ee_link_name</span><span class="p">]</span>
@@ -548,6 +585,11 @@
 
     hljs.initHighlighting();
     anchors.add();
+
+    $('.nav-versions .dropdown-item').filter(function(i, ver) {
+      return window.location.href.startsWith(ver.href);
+    }).addClass("active");
+
   });
   </script>
   
