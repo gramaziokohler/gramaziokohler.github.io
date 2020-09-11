@@ -348,7 +348,7 @@
         <span class="n">config</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">config</span></div>
 
-<div class="viewcode-block" id="Configuration.differences_generator"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.differences_generator.html#compas_fab.robots.Configuration.differences_generator">[docs]</a>    <span class="k">def</span> <span class="nf">differences_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<div class="viewcode-block" id="Configuration.iter_differences"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.iter_differences.html#compas_fab.robots.Configuration.iter_differences">[docs]</a>    <span class="k">def</span> <span class="nf">iter_differences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generator over the differences to another `Configuration`&#39;s values.</span>
 
 <span class="sd">        If the joint type is revolute or continuous, the smaller difference</span>
@@ -373,13 +373,16 @@
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
 <span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, 2 * pi, 4])</span>
-<span class="sd">        &gt;&gt;&gt; list(c1.differences_generator(c2))</span>
-<span class="sd">        [0, 0.0, -1]</span>
+<span class="sd">        &gt;&gt;&gt; allclose(c1.iter_differences(c2), [0.0, 0.0, -1.0])</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, -2 * pi - 0.2, 4])</span>
+<span class="sd">        &gt;&gt;&gt; allclose(c1.iter_differences(c2), [0.0, 0.2, -1.0])</span>
+<span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Configurations have different joint names.&quot;</span><span class="p">)</span>
-                
             <span class="n">other_value_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
             <span class="n">sorted_other_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">other_value_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
             <span class="n">value_pairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">sorted_other_values</span><span class="p">)</span>
@@ -387,12 +390,14 @@
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t compare configurations with different lengths of values.&quot;</span><span class="p">)</span>
             <span class="n">value_pairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-            
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">value_pairs</span><span class="p">):</span>
             <span class="n">diff</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">CONTINUOUS</span><span class="p">]:</span>
-                <span class="n">mod</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
-                <span class="n">diff</span> <span class="o">=</span> <span class="n">mod</span> <span class="k">if</span> <span class="n">diff</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">mod</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
+                <span class="n">d1</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+                <span class="n">d1</span> <span class="o">=</span> <span class="n">d1</span> <span class="k">if</span> <span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">d1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
+                <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="k">if</span> <span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">d1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
+                <span class="n">diff</span> <span class="o">=</span> <span class="n">d1</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="k">else</span> <span class="n">d2</span>
             <span class="k">yield</span> <span class="n">diff</span></div>
 
 <div class="viewcode-block" id="Configuration.max_difference"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.max_difference.html#compas_fab.robots.Configuration.max_difference">[docs]</a>    <span class="k">def</span> <span class="nf">max_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
@@ -413,9 +418,9 @@
 <span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
 <span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, 2 * pi, 4])</span>
 <span class="sd">        &gt;&gt;&gt; c1.max_difference(c2)</span>
-<span class="sd">        1</span>
+<span class="sd">        1.0</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">differences_generator</span><span class="p">(</span><span class="n">other</span><span class="p">)])</span></div>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_differences</span><span class="p">(</span><span class="n">other</span><span class="p">)])</span></div>
 
 <div class="viewcode-block" id="Configuration.close_to"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.close_to.html#compas_fab.robots.Configuration.close_to">[docs]</a>    <span class="k">def</span> <span class="nf">close_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns ``True`` if the other `Configuration`&#39;s values are within a certain range.</span>
@@ -440,7 +445,7 @@
 <span class="sd">        &gt;&gt;&gt; c1.close_to(c2)</span>
 <span class="sd">        True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">differences_generator</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_differences</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div></div>
@@ -448,6 +453,7 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">math</span>  <span class="c1"># noqa F401</span>
+    <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">allclose</span>   <span class="c1"># noqa F401</span>
     <span class="kn">import</span> <span class="nn">doctest</span>
     <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">(</span><span class="n">globs</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
 </code></pre></div>
