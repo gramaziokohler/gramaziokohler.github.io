@@ -114,6 +114,12 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">ClientInterface</span></code>, <code class="docutils literal notranslate"><span class="pre">PlannerInterface</span></code> and various backend feature interfaces</p></li>
 <li><p>Added implementations of these interfaces for ROS and V-REP</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary to <code class="docutils literal notranslate"><span class="pre">Robot</span></code> class</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Tool.from_t0cf_to_tcf</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Tool.from_tcf_to_t0cf</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">`joint_names</span></code> as optional parameter for all <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code> constructors</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.iter_differences</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.max_difference</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.close_to</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -126,6 +132,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>All examples have been updated to reflect these changes</p></li>
 <li><p>Renamed all <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> implementations to <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code> to reflect
 the fact they depend on <code class="docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code>.</p></li>
+<li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tool0_to_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_t0cf_to_tcf</span></code></p></li>
+<li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tcf_to_t0cf</span></code></p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
