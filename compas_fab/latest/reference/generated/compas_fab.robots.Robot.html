@@ -117,7 +117,7 @@ the <strong>COMPAS</strong> framework.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RobotModel</span></code>) – The robot model, usually created from an URDF structure.</p></li>
-<li><p><strong>artist</strong> (<a class="reference internal" href="compas_fab.artists.BaseRobotArtist.html#compas_fab.artists.BaseRobotArtist" title="compas_fab.artists.BaseRobotArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.artists.BaseRobotArtist</span></code></a>) – Instance of the artist used to visualize the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>artist</strong> (<a class="reference internal" href="compas_fab.artists.BaseRobotModelArtist.html#compas_fab.artists.BaseRobotModelArtist" title="compas_fab.artists.BaseRobotModelArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.artists.BaseRobotModelArtist</span></code></a>) – Instance of the artist used to visualize the robot model. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>semantics</strong> (<a class="reference internal" href="compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.RobotSemantics</span></code></a>) – The semantic model of the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>client</strong> (<a class="reference internal" href="../../generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.ClientInterface</span></code></a>) – The backend client to use for communication,
 e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient</span></code></a></p></li>
@@ -305,7 +305,7 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">artist</span></code></p></td>
-<td><p>Artist used to visualize robot.</p></td>
+<td><p>Artist used to visualize robot model.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">group_names</span></code></p></td>
 <td><p>All planning groups of the robot.</p></td>

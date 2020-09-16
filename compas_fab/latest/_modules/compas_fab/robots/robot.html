@@ -135,8 +135,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    model : :class:`RobotModel`</span>
 <span class="sd">        The robot model, usually created from an URDF structure.</span>
-<span class="sd">    artist : :class:`compas_fab.artists.BaseRobotArtist`</span>
-<span class="sd">        Instance of the artist used to visualize the robot. Defaults to ``None``.</span>
+<span class="sd">    artist : :class:`compas_fab.artists.BaseRobotModelArtist`</span>
+<span class="sd">        Instance of the artist used to visualize the robot model. Defaults to ``None``.</span>
 <span class="sd">    semantics : :class:`compas_fab.robots.RobotSemantics`</span>
 <span class="sd">        The semantic model of the robot. Defaults to ``None``.</span>
 <span class="sd">    client : :class:`compas_fab.backends.interfaces.ClientInterface`</span>
@@ -159,7 +159,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">artist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;:class:`compas_fab.artists.BaseRobotArtist`: Artist used to visualize robot.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;:class:`compas_fab.artists.BaseRobotModelArtist`: Artist used to visualize robot model.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_artist</span>
 
     <span class="nd">@artist</span><span class="o">.</span><span class="n">setter</span>
