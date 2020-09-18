@@ -105,8 +105,6 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">roslibpy</span> <span class="kn">import</span> <span class="n">Topic</span>
-
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces.client</span> <span class="kn">import</span> <span class="n">forward_docstring</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces.client</span> <span class="kn">import</span> <span class="n">PlannerInterface</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.backend_features.move_it_add_attached_collision_mesh</span> <span class="kn">import</span> <span class="n">MoveItAddAttachedCollisionMesh</span>
@@ -119,7 +117,6 @@
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.backend_features.move_it_planning_scene</span> <span class="kn">import</span> <span class="n">MoveItPlanningScene</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.backend_features.move_it_remove_attached_collision_mesh</span> <span class="kn">import</span> <span class="n">MoveItRemoveAttachedCollisionMesh</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.ros.backend_features.move_it_remove_collision_mesh</span> <span class="kn">import</span> <span class="n">MoveItRemoveCollisionMesh</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.ros.messages</span> <span class="kn">import</span> <span class="n">CollisionObject</span>
 
 
 <div class="viewcode-block" id="MoveItPlanner"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.html#compas_fab.backends.MoveItPlanner">[docs]</a><span class="k">class</span> <span class="nc">MoveItPlanner</span><span class="p">(</span><span class="n">PlannerInterface</span><span class="p">):</span>
@@ -127,12 +124,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MoveItPlanner.__init__"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.__init__.html#compas_fab.backends.MoveItPlanner.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MoveItPlanner</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">on_ready</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init_planner</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;closing&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispose_planner</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MoveItPlanner</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">client</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MoveItPlanner.forward_kinematics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.forward_kinematics.html#compas_fab.backends.MoveItPlanner.forward_kinematics">[docs]</a>    <span class="nd">@forward_docstring</span><span class="p">(</span><span class="n">MoveItForwardKinematics</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -172,49 +164,7 @@
 
 <div class="viewcode-block" id="MoveItPlanner.remove_attached_collision_mesh"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.remove_attached_collision_mesh.html#compas_fab.backends.MoveItPlanner.remove_attached_collision_mesh">[docs]</a>    <span class="nd">@forward_docstring</span><span class="p">(</span><span class="n">MoveItRemoveAttachedCollisionMesh</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">MoveItRemoveAttachedCollisionMesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="MoveItPlanner.init_planner"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.init_planner.html#compas_fab.backends.MoveItPlanner.init_planner">[docs]</a>    <span class="k">def</span> <span class="nf">init_planner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">advertise_collision_object</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">advertise_attached_collision_object</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="MoveItPlanner.advertise_collision_object"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.advertise_collision_object.html#compas_fab.backends.MoveItPlanner.advertise_collision_object">[docs]</a>    <span class="k">def</span> <span class="nf">advertise_collision_object</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span> <span class="o">=</span> <span class="n">Topic</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span>
-                <span class="s1">&#39;/collision_object&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;moveit_msgs/CollisionObject&#39;</span><span class="p">,</span>
-                <span class="n">queue_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span><span class="o">.</span><span class="n">advertise</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="MoveItPlanner.advertise_attached_collision_object"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.advertise_attached_collision_object.html#compas_fab.backends.MoveItPlanner.advertise_attached_collision_object">[docs]</a>    <span class="k">def</span> <span class="nf">advertise_attached_collision_object</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span> <span class="o">=</span> <span class="n">Topic</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span>
-                <span class="s1">&#39;/attached_collision_object&#39;</span><span class="p">,</span>
-                <span class="s1">&#39;moveit_msgs/AttachedCollisionObject&#39;</span><span class="p">,</span>
-                <span class="n">queue_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span><span class="o">.</span><span class="n">advertise</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="MoveItPlanner.dispose_planner"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.dispose_planner.html#compas_fab.backends.MoveItPlanner.dispose_planner">[docs]</a>    <span class="k">def</span> <span class="nf">dispose_planner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span><span class="o">.</span><span class="n">unadvertise</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span><span class="o">.</span><span class="n">unadvertise</span><span class="p">()</span></div>
-
-    <span class="c1"># ==========================================================================</span>
-    <span class="c1"># collision objects</span>
-    <span class="c1"># ==========================================================================</span>
-
-<div class="viewcode-block" id="MoveItPlanner.publish_collision_object"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.publish_collision_object.html#compas_fab.backends.MoveItPlanner.publish_collision_object">[docs]</a>    <span class="k">def</span> <span class="nf">publish_collision_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_object</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">CollisionObject</span><span class="o">.</span><span class="n">ADD</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">advertise_collision_object</span><span class="p">()</span>
-        <span class="n">collision_object</span><span class="o">.</span><span class="n">operation</span> <span class="o">=</span> <span class="n">operation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collision_object_topic</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">collision_object</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="MoveItPlanner.publish_attached_collision_object"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.MoveItPlanner.publish_attached_collision_object.html#compas_fab.backends.MoveItPlanner.publish_attached_collision_object">[docs]</a>    <span class="k">def</span> <span class="nf">publish_attached_collision_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attached_collision_object</span><span class="p">,</span> <span class="n">operation</span><span class="o">=</span><span class="n">CollisionObject</span><span class="o">.</span><span class="n">ADD</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">advertise_attached_collision_object</span><span class="p">()</span>
-        <span class="n">attached_collision_object</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">operation</span> <span class="o">=</span> <span class="n">operation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_object_topic</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">attached_collision_object</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">MoveItRemoveAttachedCollisionMesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 </code></pre></div>
         
       </main>
