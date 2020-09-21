@@ -443,12 +443,7 @@
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; scene.attach_collision_mesh_to_robot_end_effector(cm, group=group)</span>
 
-<span class="sd">        &gt;&gt;&gt; # wait for it to be attached</span>
-<span class="sd">        &gt;&gt;&gt; time.sleep(1)</span>
-
-<span class="sd">        &gt;&gt;&gt; # wait for it to be removed</span>
 <span class="sd">        &gt;&gt;&gt; scene.remove_attached_collision_mesh(&#39;tip&#39;)</span>
-<span class="sd">        &gt;&gt;&gt; time.sleep(1)</span>
 
 <span class="sd">        &gt;&gt;&gt; # check if it&#39;s really gone</span>
 <span class="sd">        &gt;&gt;&gt; planning_scene = robot.client.get_planning_scene()</span>
