@@ -115,27 +115,27 @@ accelerations</em>, or as <em>values + efforts</em>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Joint values expressed in radians or meters, depending on the respective
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Joint values expressed in radians or meters, depending on the respective
 type.</p></li>
-<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code>, optional) – Joint types, e.g. a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of
+<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code>, optional) – Joint types, e.g. a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.REVOLUTE</span></code> for revolute joints.</p></li>
-<li><p><strong>velocities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Velocity of each joint.</p></li>
-<li><p><strong>accelerations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Acceleration of each joint.</p></li>
-<li><p><strong>effort</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Effort of each joint.</p></li>
+<li><p><strong>velocities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Velocity of each joint.</p></li>
+<li><p><strong>accelerations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Acceleration of each joint.</p></li>
+<li><p><strong>effort</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Effort of each joint.</p></li>
 <li><p><strong>time_from_start</strong> (<a class="reference internal" href="compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Duration</span></code></a>, optional) – Duration of trajectory point counting from the start.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Attributes</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Joint values expressed in radians or meters, depending on the respective
+<li><p><strong>values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Joint values expressed in radians or meters, depending on the respective
 type.</p></li>
-<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code>) – Joint types, e.g. a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of
+<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.TYPE</span></code>) – Joint types, e.g. a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">compas.robots.Joint.REVOLUTE</span></code> for revolute joints.</p></li>
-<li><p><strong>velocities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Velocity of each joint.</p></li>
-<li><p><strong>accelerations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Acceleration of each joint.</p></li>
-<li><p><strong>effort</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Effort of each joint.</p></li>
+<li><p><strong>velocities</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Velocity of each joint.</p></li>
+<li><p><strong>accelerations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Acceleration of each joint.</p></li>
+<li><p><strong>effort</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Effort of each joint.</p></li>
 <li><p><strong>time_from_start</strong> (<a class="reference internal" href="compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Duration</span></code></a>) – Duration of trajectory point counting from the start.</p></li>
-<li><p><strong>positions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Alias of <cite>values</cite>.</p></li>
+<li><p><strong>positions</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Alias of <cite>values</cite>.</p></li>
 <li><p><strong>data</strong> (obj:<cite>dict</cite>) – The data representing the trajectory point.</p></li>
 </ul>
 </dd>
@@ -150,34 +150,43 @@ type.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__" title="compas_fab.robots.JointTrajectoryPoint.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>([values, types, velocities, …])</p></td>
 <td><p>Initialize self.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.close_to.html#compas_fab.robots.JointTrajectoryPoint.close_to" title="compas_fab.robots.JointTrajectoryPoint.close_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close_to</span></code></a>(other[, tol])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.check_joint_names.html#compas_fab.robots.JointTrajectoryPoint.check_joint_names" title="compas_fab.robots.JointTrajectoryPoint.check_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_joint_names</span></code></a>()</p></td>
+<td><p>Raises an error if there is not a joint name for every value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.close_to.html#compas_fab.robots.JointTrajectoryPoint.close_to" title="compas_fab.robots.JointTrajectoryPoint.close_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close_to</span></code></a>(other[, tol])</p></td>
 <td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the other <cite>Configuration</cite>’s values are within a certain range.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.copy.html#compas_fab.robots.JointTrajectoryPoint.copy" title="compas_fab.robots.JointTrajectoryPoint.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
-<td><p>Create a copy of this <a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.copy.html#compas_fab.robots.JointTrajectoryPoint.copy" title="compas_fab.robots.JointTrajectoryPoint.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a>()</p></td>
+<td><p>Create a copy of this <a class="reference internal" href="#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_data.html#compas_fab.robots.JointTrajectoryPoint.from_data" title="compas_fab.robots.JointTrajectoryPoint.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a>(data)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_data.html#compas_fab.robots.JointTrajectoryPoint.from_data" title="compas_fab.robots.JointTrajectoryPoint.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a>(data)</p></td>
 <td><p>Construct a configuration from its data representation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_prismatic_and_revolute_values</span></code></a>(…[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_prismatic_and_revolute_values</span></code></a>(…[, …])</p></td>
 <td><p>Construct a configuration from prismatic and revolute joint values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a>(values[, joint_names])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a>(values[, joint_names])</p></td>
 <td><p>Construct a configuration from revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.iter_differences.html#compas_fab.robots.JointTrajectoryPoint.iter_differences" title="compas_fab.robots.JointTrajectoryPoint.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a>(other)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.iter_differences.html#compas_fab.robots.JointTrajectoryPoint.iter_differences" title="compas_fab.robots.JointTrajectoryPoint.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a>(other)</p></td>
 <td><p>Generator over the differences to another <cite>Configuration</cite>’s values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.max_difference.html#compas_fab.robots.JointTrajectoryPoint.max_difference" title="compas_fab.robots.JointTrajectoryPoint.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a>(other)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.max_difference.html#compas_fab.robots.JointTrajectoryPoint.max_difference" title="compas_fab.robots.JointTrajectoryPoint.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a>(other)</p></td>
 <td><p>Returns the maximum difference to another <cite>Configuration</cite>’s values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scale.html#compas_fab.robots.JointTrajectoryPoint.scale" title="compas_fab.robots.JointTrajectoryPoint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.merge.html#compas_fab.robots.JointTrajectoryPoint.merge" title="compas_fab.robots.JointTrajectoryPoint.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(other)</p></td>
+<td><p>Merge the <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> with another <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> in place along joint names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.merged.html#compas_fab.robots.JointTrajectoryPoint.merged" title="compas_fab.robots.JointTrajectoryPoint.merged"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merged</span></code></a>(other)</p></td>
+<td><p>Get a new <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> with this <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> merged with another <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scale.html#compas_fab.robots.JointTrajectoryPoint.scale" title="compas_fab.robots.JointTrajectoryPoint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p>Scales the joint positions of the current configuration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scaled.html#compas_fab.robots.JointTrajectoryPoint.scaled" title="compas_fab.robots.JointTrajectoryPoint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scaled.html#compas_fab.robots.JointTrajectoryPoint.scaled" title="compas_fab.robots.JointTrajectoryPoint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
 <td><p>Return a scaled copy of this configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.to_data.html#compas_fab.robots.JointTrajectoryPoint.to_data" title="compas_fab.robots.JointTrajectoryPoint.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.to_data.html#compas_fab.robots.JointTrajectoryPoint.to_data" title="compas_fab.robots.JointTrajectoryPoint.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
 <td><p>Get the data dictionary that represents the configuration.</p></td>
 </tr>
 </tbody>
@@ -189,14 +198,26 @@ type.</p></li>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">accelerations</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">acceleration_dict</span></code></p></td>
+<td><p>A dictionary of joint accelerations by joint name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">accelerations</span></code></p></td>
 <td><p>Acceleration of each joint.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
 <td><p>The data representing the trajectory point.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">effort</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">effort</span></code></p></td>
 <td><p>Effort of each joint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">effort_dict</span></code></p></td>
+<td><p>A dictionary of joint efforts by joint name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_joint_names</span></code></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> when there is a joint name for every value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">joint_dict</span></code></p></td>
+<td><p>A dictionary of joint values by joint name.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">positions</span></code></p></td>
 <td><p>Alias of <cite>values</cite>.</p></td>
@@ -207,8 +228,14 @@ type.</p></li>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">revolute_values</span></code></p></td>
 <td><p>Revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">velocities</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_dict</span></code></p></td>
+<td><p>A dictionary of joint types by joint name.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">velocities</span></code></p></td>
 <td><p>Velocity of each joint.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">velocity_dict</span></code></p></td>
+<td><p>A dictionary of joint velocities by joint name.</p></td>
 </tr>
 </tbody>
 </table>
