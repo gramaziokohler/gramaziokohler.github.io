@@ -261,19 +261,19 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">velocity_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">velocity_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A dictionary of joint velocities by joint name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span><span class="p">))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">acceleration_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">acceleration_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A dictionary of joint accelerations by joint name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span><span class="p">))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">effort_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">effort_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A dictionary of joint efforts by joint name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort</span><span class="p">))</span>
@@ -298,27 +298,27 @@
 <span class="sd">            If the ``JointTrajectoryPoint`` or the other ``JointTrajectoryPoint`` does not specify</span>
 <span class="sd">            joint names for all joint values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_joint_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_states</span>
-        <span class="n">_joint_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_states</span><span class="p">)</span>
+        <span class="n">_joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_dict</span>
+        <span class="n">_joint_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_dict</span><span class="p">)</span>
 
-        <span class="n">_type_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_states</span>
-        <span class="n">_type_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_states</span><span class="p">)</span>
+        <span class="n">_type_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_dict</span>
+        <span class="n">_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_dict</span><span class="p">)</span>
 
-        <span class="n">_velocity_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_states</span>
-        <span class="n">_velocity_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_states</span><span class="p">)</span>
+        <span class="n">_velocity_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_dict</span>
+        <span class="n">_velocity_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_dict</span><span class="p">)</span>
 
-        <span class="n">_acceleration_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_states</span>
-        <span class="n">_acceleration_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_states</span><span class="p">)</span>
+        <span class="n">_acceleration_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_dict</span>
+        <span class="n">_acceleration_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_dict</span><span class="p">)</span>
 
-        <span class="n">_effort_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_states</span>
-        <span class="n">_effort_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_states</span><span class="p">)</span>
+        <span class="n">_effort_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_dict</span>
+        <span class="n">_effort_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_dict</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_states</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">_velocity_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_acceleration_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">_effort_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">_velocity_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_acceleration_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">_effort_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="JointTrajectoryPoint.merged"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.merged.html#compas_fab.robots.JointTrajectoryPoint.merged">[docs]</a>    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a new ``JointTrajectoryPoint`` with this ``JointTrajectoryPoint`` merged</span>

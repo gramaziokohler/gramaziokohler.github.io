@@ -461,13 +461,13 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Joint names are required for this operation.&#39;</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">joint_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">joint_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A dictionary of joint values by joint name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">type_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">type_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A dictionary of joint types by joint name.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">))</span>
@@ -492,15 +492,15 @@
 <span class="sd">            If the configuration or the ``other`` configuration does not specify</span>
 <span class="sd">            joint names for all joint values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_joint_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_states</span>
-        <span class="n">_joint_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_states</span><span class="p">)</span>
+        <span class="n">_joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_dict</span>
+        <span class="n">_joint_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_dict</span><span class="p">)</span>
 
-        <span class="n">_type_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_states</span>
-        <span class="n">_type_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_states</span><span class="p">)</span>
+        <span class="n">_type_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_dict</span>
+        <span class="n">_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_dict</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_states</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Configuration.merged"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.merged.html#compas_fab.robots.Configuration.merged">[docs]</a>    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a new ``Configuration`` with this configuration merged with another configuration.</span>
