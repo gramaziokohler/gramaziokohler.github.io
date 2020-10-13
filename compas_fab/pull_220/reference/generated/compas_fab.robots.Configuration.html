@@ -179,28 +179,25 @@ revolute joints.</p></li>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.from_revolute_values.html#compas_fab.robots.Configuration.from_revolute_values" title="compas_fab.robots.Configuration.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a>(values[, joint_names])</p></td>
 <td><p>Construct a configuration from revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.has_joint_names.html#compas_fab.robots.Configuration.has_joint_names" title="compas_fab.robots.Configuration.has_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_joint_names</span></code></a>()</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> when there is a joint name for every value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.iter_differences.html#compas_fab.robots.Configuration.iter_differences" title="compas_fab.robots.Configuration.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a>(other)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.iter_differences.html#compas_fab.robots.Configuration.iter_differences" title="compas_fab.robots.Configuration.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a>(other)</p></td>
 <td><p>Generator over the differences to another <cite>Configuration</cite>’s values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.max_difference.html#compas_fab.robots.Configuration.max_difference" title="compas_fab.robots.Configuration.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a>(other)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.max_difference.html#compas_fab.robots.Configuration.max_difference" title="compas_fab.robots.Configuration.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a>(other)</p></td>
 <td><p>Returns the maximum difference to another <cite>Configuration</cite>’s values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.merge.html#compas_fab.robots.Configuration.merge" title="compas_fab.robots.Configuration.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(other)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.merge.html#compas_fab.robots.Configuration.merge" title="compas_fab.robots.Configuration.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a>(other)</p></td>
 <td><p>Merge the configuration with another configuration in place along joint names.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.merged.html#compas_fab.robots.Configuration.merged" title="compas_fab.robots.Configuration.merged"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merged</span></code></a>(other)</p></td>
-<td><p>Get a new <cite>Configuration</cite> with this configuration merged with another configuration.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.merged.html#compas_fab.robots.Configuration.merged" title="compas_fab.robots.Configuration.merged"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merged</span></code></a>(other)</p></td>
+<td><p>Get a new <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> with this configuration merged with another configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scale.html#compas_fab.robots.Configuration.scale" title="compas_fab.robots.Configuration.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scale.html#compas_fab.robots.Configuration.scale" title="compas_fab.robots.Configuration.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(scale_factor)</p></td>
 <td><p>Scales the joint positions of the current configuration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scaled.html#compas_fab.robots.Configuration.scaled" title="compas_fab.robots.Configuration.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.scaled.html#compas_fab.robots.Configuration.scaled" title="compas_fab.robots.Configuration.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a>(scale_factor)</p></td>
 <td><p>Return a scaled copy of this configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Configuration.to_data.html#compas_fab.robots.Configuration.to_data" title="compas_fab.robots.Configuration.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
 <td><p>Get the data dictionary that represents the configuration.</p></td>
 </tr>
 </tbody>
@@ -215,16 +212,19 @@ revolute joints.</p></li>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
 <td><p>The data representing the configuration.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">joint_states</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_joint_names</span></code></p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> when there is a joint name for every value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">joint_states</span></code></p></td>
 <td><p>A dictionary of joint values by joint name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">prismatic_values</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">prismatic_values</span></code></p></td>
 <td><p>Prismatic joint values in meters.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">revolute_values</span></code></p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">revolute_values</span></code></p></td>
 <td><p>Revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_states</span></code></p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">type_states</span></code></p></td>
 <td><p>A dictionary of joint types by joint name.</p></td>
 </tr>
 </tbody>

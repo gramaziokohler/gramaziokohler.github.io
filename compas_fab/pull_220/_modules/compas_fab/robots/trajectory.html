@@ -279,63 +279,70 @@
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort</span><span class="p">))</span>
 
 <div class="viewcode-block" id="JointTrajectoryPoint.merge"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.merge.html#compas_fab.robots.JointTrajectoryPoint.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Merge the `JointTrajectoryPoint` with another `JointTrajectoryPoint` in place</span>
-<span class="sd">        along joint names.  The other `JointTrajectoryPoint` takes precedence over this</span>
-<span class="sd">        `JointTrajectoryPoint` in case a joint value is present in both.</span>
-<span class="sd">        Caution: `joint_names` may be rearranged.</span>
+        <span class="sd">&quot;&quot;&quot;Merge the ``JointTrajectoryPoint`` with another ``JointTrajectoryPoint`` in place</span>
+<span class="sd">        along joint names.  The other ``JointTrajectoryPoint`` takes precedence over this</span>
+<span class="sd">        ``JointTrajectoryPoint`` in case a joint value is present in both.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Caution: ``joint_names`` may be rearranged.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        other : :class:`JointTrajectoryPoint`</span>
-<span class="sd">            The `JointTrajectoryPoint` to be merged.</span>
+<span class="sd">            The ``JointTrajectoryPoint`` to be merged.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        :exc:`ValueError`</span>
-<span class="sd">            If the `JointTrajectoryPoint` or the other `JointTrajectoryPoint` does not specify</span>
+<span class="sd">            If the ``JointTrajectoryPoint`` or the other ``JointTrajectoryPoint`` does not specify</span>
 <span class="sd">            joint names for all joint values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">self_joint_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_states</span>
-        <span class="n">self_joint_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_states</span><span class="p">)</span>
+        <span class="n">_joint_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_states</span>
+        <span class="n">_joint_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_states</span><span class="p">)</span>
 
-        <span class="n">self_type_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_states</span>
-        <span class="n">self_type_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_states</span><span class="p">)</span>
+        <span class="n">_type_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_states</span>
+        <span class="n">_type_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_states</span><span class="p">)</span>
 
-        <span class="n">self_velocity_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_states</span>
-        <span class="n">self_velocity_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_states</span><span class="p">)</span>
+        <span class="n">_velocity_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_states</span>
+        <span class="n">_velocity_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_states</span><span class="p">)</span>
 
-        <span class="n">self_acceleration_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_states</span>
-        <span class="n">self_acceleration_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_states</span><span class="p">)</span>
+        <span class="n">_acceleration_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_states</span>
+        <span class="n">_acceleration_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_states</span><span class="p">)</span>
 
-        <span class="n">self_effort_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_states</span>
-        <span class="n">self_effort_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_states</span><span class="p">)</span>
+        <span class="n">_effort_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_states</span>
+        <span class="n">_effort_states</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_states</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">self_joint_states</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_joint_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_type_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_velocity_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_acceleration_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_effort_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_states</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">_velocity_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_acceleration_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">_effort_states</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="JointTrajectoryPoint.merged"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.merged.html#compas_fab.robots.JointTrajectoryPoint.merged">[docs]</a>    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Get a new `JointTrajectoryPoint` with this `JointTrajectoryPoint` merged with another `JointTrajectoryPoint`.</span>
-<span class="sd">        The other `JointTrajectoryPoint` takes precedence over this `JointTrajectoryPoint` in</span>
-<span class="sd">        case a joint value is present in both.</span>
+        <span class="sd">&quot;&quot;&quot;Get a new ``JointTrajectoryPoint`` with this ``JointTrajectoryPoint`` merged</span>
+<span class="sd">        with another ``JointTrajectoryPoint``.  The other ``JointTrajectoryPoint``</span>
+<span class="sd">        takes precedence over this ``JointTrajectoryPoint`` in case a joint value is present in both.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Caution: ``joint_names`` may be rearranged.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        other : :class:`JointTrajectoryPoint`</span>
-<span class="sd">            The `JointTrajectoryPoint` to be merged.</span>
+<span class="sd">            The ``JointTrajectoryPoint`` to be merged.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :class:`JointTrajectoryPoint`</span>
-<span class="sd">            A `JointTrajectoryPoint` with values for all included joints.</span>
+<span class="sd">            A ``JointTrajectoryPoint`` with values for all included joints.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        :exc:`ValueError`</span>
-<span class="sd">            If the `JointTrajectoryPoint` or the other `JointTrajectoryPoint` does not specify</span>
+<span class="sd">            If the ``JointTrajectoryPoint`` or the other ``JointTrajectoryPoint`` does not specify</span>
 <span class="sd">            joint names for all joint values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">jtp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
