@@ -114,6 +114,15 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">ClientInterface</span></code>, <code class="docutils literal notranslate"><span class="pre">PlannerInterface</span></code> and various backend feature interfaces</p></li>
 <li><p>Added implementations of these interfaces for ROS and V-REP</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attributes</span></code> dictionary to <code class="docutils literal notranslate"><span class="pre">Robot</span></code> class</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Tool.from_t0cf_to_tcf</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Tool.from_tcf_to_t0cf</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">`joint_names</span></code> as optional parameter for all <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code> constructors</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.iter_differences</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.max_difference</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.close_to</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.merge</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Semantics.group_states</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -125,6 +134,11 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>The signatures of all kinematics, motion planning and planning scene management methods have been homogenized across backend clients and within <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
 <li><p>All examples have been updated to reflect these changes</p></li>
 <li><p>The installer to Rhino has been unified with COMPAS core. Now running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">compas_rhino.install</span></code> will also detect and install COMPAS FAB and its dependencies.</p></li>
+<li><p>Renamed all <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> implementations to <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code> to reflect
+the fact they depend on <code class="docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code>.</p></li>
+<li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tool0_to_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_t0cf_to_tcf</span></code></p></li>
+<li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tcf_to_t0cf</span></code></p></li>
+<li><p>Changed ROS planning scene methods to be synchronous.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -135,6 +149,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>The methods <code class="docutils literal notranslate"><span class="pre">forward_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code>
 of <code class="docutils literal notranslate"><span class="pre">Robot</span></code> class have been refactored, but a backwards-compatible deprecated version with the old
 signatures still exists suffixed by <code class="docutils literal notranslate"><span class="pre">_deprecated</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">forward_kinematics_deprecated</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> are deprecated in favor of <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code>.</p></li>
 </ul>
 <p><strong>Removed</strong></p>
 </div>
@@ -164,7 +179,7 @@ geometry if links and/or joints are not defined.</p></li>
 <li><p>In <a class="reference internal" href="reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>, changed the <code class="docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code>
 function with <code class="docutils literal notranslate"><span class="pre">tolerances_above</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerances_below</span></code>.</p></li>
 <li><p><a class="reference internal" href="reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale" title="compas_fab.robots.CollisionMesh.scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh.scale()</span></code></a> now takes a scale factor
-instead of a <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
+instead of a <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code> instance as an argument.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -198,7 +213,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/api/g
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">draw_attached_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">from_tool0_to_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">Artist</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">add_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
-<li><p>Added redraw/clear layer support to <a class="reference internal" href="reference/generated/compas_fab.rhino.RobotArtist.html#compas_fab.rhino.RobotArtist" title="compas_fab.rhino.RobotArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotArtist</span></code></a> for Rhino</p></li>
+<li><p>Added redraw/clear layer support to <code class="xref py py-class docutils literal notranslate"><span class="pre">RobotArtist</span></code> for Rhino</p></li>
 <li><p>Added material/color support for DAE files on ROS file loader</p></li>
 </ul>
 <p><strong>Changed</strong></p>
@@ -208,7 +223,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/api/g
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fixed mutable init parameters of <code class="docutils literal notranslate"><span class="pre">Configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectory</span></code> and <code class="docutils literal notranslate"><span class="pre">Robot.basic</span></code>.</p></li>
-<li><p>Fixed interface of <a class="reference internal" href="reference/generated/compas_fab.blender.RobotArtist.html#compas_fab.blender.RobotArtist" title="compas_fab.blender.RobotArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotArtist</span></code></a> for Blender</p></li>
+<li><p>Fixed interface of <code class="xref py py-class docutils literal notranslate"><span class="pre">RobotArtist</span></code> for Blender</p></li>
 <li><p>Fixed DAE parsing of meshes with multiple triangle sets</p></li>
 </ul>
 </div>

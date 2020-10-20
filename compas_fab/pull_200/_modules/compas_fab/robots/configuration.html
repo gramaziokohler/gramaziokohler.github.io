@@ -102,6 +102,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
 <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Joint</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
@@ -184,13 +185,15 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Configuration.from_revolute_values"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.from_revolute_values.html#compas_fab.robots.Configuration.from_revolute_values">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_revolute_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_revolute_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a configuration from revolute joint values in radians.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        values : :obj:`list` of :obj:`float`</span>
 <span class="sd">            Joint values expressed in radians.</span>
+<span class="sd">        joint_names : :obj:`list` of :obj:`str`, optional</span>
+<span class="sd">            List of joint names.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -198,10 +201,11 @@
 <span class="sd">             An instance of :class:`Configuration` instance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">({</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)})</span></div>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">({</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="s1">&#39;joint_names&#39;</span><span class="p">:</span> <span class="n">joint_names</span><span class="p">})</span></div>
 
 <div class="viewcode-block" id="Configuration.from_prismatic_and_revolute_values"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.from_prismatic_and_revolute_values.html#compas_fab.robots.Configuration.from_prismatic_and_revolute_values">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_prismatic_and_revolute_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">prismatic_values</span><span class="p">,</span> <span class="n">revolute_values</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_prismatic_and_revolute_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">prismatic_values</span><span class="p">,</span> <span class="n">revolute_values</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a configuration from prismatic and revolute joint values.</span>
 
 <span class="sd">        Parameters</span>
@@ -210,6 +214,8 @@
 <span class="sd">            Positions on the external axis system in meters.</span>
 <span class="sd">        revolute_values : :obj:`list` of :obj:`float`</span>
 <span class="sd">            Joint values expressed in radians.</span>
+<span class="sd">        joint_names : :obj:`list` of :obj:`str`, optional</span>
+<span class="sd">            List of joint names.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -219,10 +225,11 @@
         <span class="c1"># Force iterables into lists</span>
         <span class="n">prismatic_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">prismatic_values</span><span class="p">)</span>
         <span class="n">revolute_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">revolute_values</span><span class="p">)</span>
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">prismatic_values</span> <span class="o">+</span> <span class="n">revolute_values</span>
         <span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">PRISMATIC</span><span class="p">]</span> <span class="o">*</span> \
             <span class="nb">len</span><span class="p">(</span><span class="n">prismatic_values</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">revolute_values</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">({</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="n">types</span><span class="p">})</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">({</span><span class="s1">&#39;values&#39;</span><span class="p">:</span> <span class="n">values</span><span class="p">,</span> <span class="s1">&#39;types&#39;</span><span class="p">:</span> <span class="n">types</span><span class="p">,</span> <span class="s1">&#39;joint_names&#39;</span><span class="p">:</span> <span class="n">joint_names</span><span class="p">})</span></div>
 
 <div class="viewcode-block" id="Configuration.from_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.from_data.html#compas_fab.robots.Configuration.from_data">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -339,7 +346,197 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">config</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">config</span></div></div>
+        <span class="k">return</span> <span class="n">config</span></div>
+
+<div class="viewcode-block" id="Configuration.iter_differences"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.iter_differences.html#compas_fab.robots.Configuration.iter_differences">[docs]</a>    <span class="k">def</span> <span class="nf">iter_differences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generator over the differences to another `Configuration`&#39;s values.</span>
+
+<span class="sd">        If the joint type is revolute or continuous, the smaller difference</span>
+<span class="sd">        (+/- 2*:math:`\\pi`) is calculated.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : :class:`Configuration`</span>
+<span class="sd">            The configuration to compare to.</span>
+
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">        :obj:`float`</span>
+<span class="sd">            The next difference to the `Configuration`&#39;s values.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the configurations are not comparable.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, 2 * pi, 4])</span>
+<span class="sd">        &gt;&gt;&gt; allclose(c1.iter_differences(c2), [0.0, 0.0, -1.0])</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, -2 * pi - 0.2, 4])</span>
+<span class="sd">        &gt;&gt;&gt; allclose(c1.iter_differences(c2), [0.0, 0.2, -1.0])</span>
+<span class="sd">        True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">set</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Configurations have different joint names.&quot;</span><span class="p">)</span>
+            <span class="n">other_value_by_name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+            <span class="n">sorted_other_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">other_value_by_name</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+            <span class="n">value_pairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">sorted_other_values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t compare configurations with different lengths of values.&quot;</span><span class="p">)</span>
+            <span class="n">value_pairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">value_pairs</span><span class="p">):</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">v1</span> <span class="o">-</span> <span class="n">v2</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="n">Joint</span><span class="o">.</span><span class="n">REVOLUTE</span><span class="p">,</span> <span class="n">Joint</span><span class="o">.</span><span class="n">CONTINUOUS</span><span class="p">]:</span>
+                <span class="n">d1</span> <span class="o">=</span> <span class="n">diff</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span>
+                <span class="n">d1</span> <span class="o">=</span> <span class="n">d1</span> <span class="k">if</span> <span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">d1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
+                <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span> <span class="k">if</span> <span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">d1</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span>
+                <span class="n">diff</span> <span class="o">=</span> <span class="n">d1</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span> <span class="k">else</span> <span class="n">d2</span>
+            <span class="k">yield</span> <span class="n">diff</span></div>
+
+<div class="viewcode-block" id="Configuration.max_difference"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.max_difference.html#compas_fab.robots.Configuration.max_difference">[docs]</a>    <span class="k">def</span> <span class="nf">max_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the maximum difference to another `Configuration`&#39;s values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : :class:`Configuration`</span>
+<span class="sd">            The configuration to compare to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        ------</span>
+<span class="sd">        :obj:`float`</span>
+<span class="sd">            The maximum absolute difference.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, 2 * pi, 4])</span>
+<span class="sd">        &gt;&gt;&gt; c1.max_difference(c2)</span>
+<span class="sd">        1.0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">([</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_differences</span><span class="p">(</span><span class="n">other</span><span class="p">)])</span></div>
+
+<div class="viewcode-block" id="Configuration.close_to"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.close_to.html#compas_fab.robots.Configuration.close_to">[docs]</a>    <span class="k">def</span> <span class="nf">close_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns ``True`` if the other `Configuration`&#39;s values are within a certain range.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : :class:`Configuration`</span>
+<span class="sd">            The configuration to compare to.</span>
+<span class="sd">        tol : float</span>
+<span class="sd">            The tolerance under which we consider 2 floats the same. Defaults to 1e-3.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`bool`</span>
+<span class="sd">            ``True`` if the other `Configuration`&#39;s values are within a certain</span>
+<span class="sd">            tolerance, `False` otherwise.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; c1 = Configuration.from_revolute_values([1, 0, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c2 = Configuration.from_revolute_values([1, 2 * pi, 3])</span>
+<span class="sd">        &gt;&gt;&gt; c1.close_to(c2)</span>
+<span class="sd">        True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">diff</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_differences</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_joint_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns ``True`` when there is a joint name for every value.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Configuration.check_joint_names"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.check_joint_names.html#compas_fab.robots.Configuration.check_joint_names">[docs]</a>    <span class="k">def</span> <span class="nf">check_joint_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Raises an error if there is not a joint name for every value.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_joint_names</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Joint names are required for this operation.&#39;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">joint_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A dictionary of joint values by joint name.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">type_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A dictionary of joint types by joint name.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Configuration.merge"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.merge.html#compas_fab.robots.Configuration.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Merge the configuration with another configuration in place along joint names.</span>
+<span class="sd">        The other configuration takes precedence over this configuration in</span>
+<span class="sd">        case a joint value is present in both.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Caution: ``joint_names`` may be rearranged.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : :class:`Configuration`</span>
+<span class="sd">            The configuration to be merged.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`ValueError`</span>
+<span class="sd">            If the configuration or the ``other`` configuration does not specify</span>
+<span class="sd">            joint names for all joint values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_dict</span>
+        <span class="n">_joint_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_dict</span><span class="p">)</span>
+
+        <span class="n">_type_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_dict</span>
+        <span class="n">_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_dict</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Configuration.merged"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.merged.html#compas_fab.robots.Configuration.merged">[docs]</a>    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a new ``Configuration`` with this configuration merged with another configuration.</span>
+<span class="sd">        The other configuration takes precedence over this configuration in</span>
+<span class="sd">        case a joint value is present in both.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Caution: ``joint_names`` may be rearranged.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : :class:`Configuration`</span>
+<span class="sd">            The configuration to be merged.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`Configuration`</span>
+<span class="sd">            A configuration with values for all included joints.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`ValueError`</span>
+<span class="sd">            If the configuration or the ``other`` configuration does not specify</span>
+<span class="sd">            joint names for all joint values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">configuration</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">configuration</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">math</span>  <span class="c1"># noqa F401</span>
+    <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">allclose</span>   <span class="c1"># noqa F401</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">(</span><span class="n">globs</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
 </code></pre></div>
         
       </main>

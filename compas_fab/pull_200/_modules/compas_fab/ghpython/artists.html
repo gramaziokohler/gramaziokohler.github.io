@@ -102,39 +102,52 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
+<span class="kn">import</span> <span class="nn">compas</span>
 <span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="kn">import</span> <span class="n">rgb_to_rgb</span>
+<span class="kn">from</span> <span class="nn">compas_fab.artists</span> <span class="kn">import</span> <span class="n">BaseRobotModelArtist</span>
 
-<span class="kn">from</span> <span class="nn">compas_ghpython</span> <span class="kn">import</span> <span class="n">mesh_draw</span>
-<span class="kn">from</span> <span class="nn">compas_ghpython.geometry</span> <span class="kn">import</span> <span class="n">xform_from_transformation</span>
+<span class="k">if</span> <span class="n">compas</span><span class="o">.</span><span class="n">RHINO</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">compas_ghpython.utilities</span> <span class="kn">import</span> <span class="n">draw_mesh</span>
+    <span class="kn">from</span> <span class="nn">compas_rhino.geometry.transformations</span> <span class="kn">import</span> <span class="n">xtransform</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.artists</span> <span class="kn">import</span> <span class="n">BaseRobotArtist</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;RobotArtist&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RobotModelArtist&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="RobotArtist"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.html#compas_fab.ghpython.RobotArtist">[docs]</a><span class="k">class</span> <span class="nc">RobotArtist</span><span class="p">(</span><span class="n">BaseRobotArtist</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Visualizer for robots inside a Grasshopper environment.&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="RobotModelArtist"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotModelArtist.html#compas_fab.ghpython.RobotModelArtist">[docs]</a><span class="k">class</span> <span class="nc">RobotModelArtist</span><span class="p">(</span><span class="n">BaseRobotModelArtist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Visualizer for robots inside a Grasshopper environment.</span>
 
-<div class="viewcode-block" id="RobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.__init__.html#compas_fab.ghpython.RobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span></div>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    model : :class:`compas.robots.RobotModel`</span>
+<span class="sd">        Robot model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RobotArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.transform.html#compas_fab.ghpython.RobotArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
-        <span class="n">T</span> <span class="o">=</span> <span class="n">xform_from_transformation</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span>
-        <span class="n">native_mesh</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">T</span><span class="p">)</span></div>
+<div class="viewcode-block" id="RobotModelArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotModelArtist.__init__.html#compas_fab.ghpython.RobotModelArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RobotModelArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotArtist.draw_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotArtist.draw_geometry.html#compas_fab.ghpython.RobotArtist.draw_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">draw_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotModelArtist.transform.html#compas_fab.ghpython.RobotModelArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
+        <span class="n">xtransform</span><span class="p">(</span><span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RobotModelArtist.draw_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.ghpython.RobotModelArtist.draw_geometry.html#compas_fab.ghpython.RobotModelArtist.draw_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">draw_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">color</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="n">rgb_to_rgb</span><span class="p">(</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">to_vertices_and_faces</span><span class="p">()</span>
 
-        <span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh_draw</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">draw_mesh</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
 
         <span class="c1"># Try to fix invalid meshes</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mesh</span><span class="o">.</span><span class="n">IsValid</span><span class="p">:</span>
             <span class="n">mesh</span><span class="o">.</span><span class="n">FillHoles</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">mesh</span></div></div>
+
+
+<span class="c1"># deprecated alias</span>
+<span class="n">RobotArtist</span> <span class="o">=</span> <span class="n">RobotModelArtist</span>
 </code></pre></div>
         
       </main>

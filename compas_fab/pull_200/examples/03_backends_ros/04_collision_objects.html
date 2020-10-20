@@ -142,11 +142,10 @@ itself, the backend’s planning scene has to be updated.</p>
     <span class="n">cm</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;floor&#39;</span><span class="p">)</span>
     <span class="n">scene</span><span class="o">.</span><span class="n">add_collision_mesh</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
 
+    <span class="c1"># sleep a bit before removing the floor</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">scene</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="s1">&#39;floor&#39;</span><span class="p">)</span>
 
-    <span class="c1"># sleep a bit before terminating the client</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="s1">&#39;floor&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene while executing the above script.</p>
@@ -181,11 +180,10 @@ all identifiers when we later remove them.</p>
 
         <span class="n">scene</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">cm</span><span class="p">)</span>
 
+    <span class="c1"># sleep a bit before removing the bricks</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">scene</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="s1">&#39;brick&#39;</span><span class="p">)</span>
 
-    <span class="c1"># sleep a bit before terminating the client</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="s1">&#39;brick&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene while executing the above script. Note the
@@ -220,11 +218,10 @@ Collision objects can be attached to any of the robot’s links.</p>
     <span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
     <span class="n">scene</span><span class="o">.</span><span class="n">attach_collision_mesh_to_robot_end_effector</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
 
+    <span class="c1"># sleep a bit before removing the tip</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 
-    <span class="c1"># sleep a bit before terminating the client</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene while executing the above script.</p>

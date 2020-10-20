@@ -111,7 +111,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which inverse kinematics is being calculated.</p></li>
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
+<li><p><strong>frame_WCF</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code>) – The frame to calculate the inverse for.</p></li>
 <li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>, optional) – If passed, the inverse will be calculated such that the calculated
 joint positions differ the least from the start_configuration.
 Defaults to the zero configuration.</p></li>
@@ -119,13 +119,13 @@ Defaults to the zero configuration.</p></li>
 main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link_name&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) Name of the link for which
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link_name&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) Name of the link for which
 to compute the inverse kinematics.  Defaults to the given robot’s end
 effector.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;semi-constrained&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;semi-constrained&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the
 position and not the orientation of <code class="docutils literal notranslate"><span class="pre">frame_WCF</span></code> will not be considered
 in the calculation.  Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;enforce_joint_limits&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;enforce_joint_limits&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
 robot’s joint limits will be ignored in the calculation.  Defaults to
 <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 </ul>
@@ -133,7 +133,7 @@ robot’s joint limits will be ignored in the calculation.  Defaults to
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="compas_fab.backends.InverseKinematicsError.html#compas_fab.backends.InverseKinematicsError" title="compas_fab.backends.InverseKinematicsError"><strong>compas_fab.backends.InverseKinematicsError</strong></a> – </p>
