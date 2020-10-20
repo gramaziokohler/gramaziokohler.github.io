@@ -239,6 +239,19 @@
         <span class="sd">&quot;&quot;&quot;:obj:`str`: Robot&#39;s root name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">group_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`dict` of :obj:`dict`: All group states of the robot.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; set(robot.group_states[&#39;manipulator&#39;].keys())</span>
+<span class="sd">        {&#39;home&#39;, &#39;up&#39;}</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_semantics</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span><span class="o">.</span><span class="n">group_states</span>
+
 <div class="viewcode-block" id="Robot.get_end_effector_link_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_end_effector_link_name.html#compas_fab.robots.Robot.get_end_effector_link_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_end_effector_link_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the name of the robot&#39;s end effector link.</span>
 
