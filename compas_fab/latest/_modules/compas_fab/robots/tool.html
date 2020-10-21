@@ -104,10 +104,9 @@
 
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Transformation</span>
-<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">ToolModel</span><span class="p">,</span> <span class="n">Geometry</span>
 
+<span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">CollisionMesh</span>
 
 
@@ -118,12 +117,14 @@
 <span class="sd">    ----------</span>
 <span class="sd">    visual : :class:`compas.datastructures.Mesh`</span>
 <span class="sd">        The visual mesh of the tool.</span>
-<span class="sd">    frame : :class:`compas.geometry.Frame`</span>
+<span class="sd">    frame_in_tool0_frame : :class:`compas.geometry.Frame`</span>
 <span class="sd">        The frame of the tool in tool0 frame.</span>
 <span class="sd">    collision : :class:`compas.datastructures.Mesh`</span>
 <span class="sd">        The collision mesh representation of the tool.</span>
 <span class="sd">    name : :obj:`str`</span>
 <span class="sd">        The name of the `Tool`. Defaults to &#39;attached_tool&#39;.</span>
+<span class="sd">    link_name : :obj:`str`</span>
+<span class="sd">        The name of the `Link` to which the tool is attached.  Defaults to ``None``.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -134,25 +135,43 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Tool.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.__init__.html#compas_fab.robots.Tool.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">visual</span><span class="p">,</span> <span class="n">frame_in_tool0_frame</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;attached_tool&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visual</span> <span class="o">=</span> <span class="n">visual</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">frame_in_tool0_frame</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collision</span> <span class="o">=</span> <span class="n">collision</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span></div>
+                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;attached_tool&quot;</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span> <span class="o">=</span> <span class="n">ToolModel</span><span class="p">(</span><span class="n">visual</span><span class="p">,</span> <span class="n">frame_in_tool0_frame</span><span class="p">,</span> <span class="n">collision</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">link_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attached_collision_meshes</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Tool.from_tool_model"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.from_tool_model.html#compas_fab.robots.Tool.from_tool_model">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_tool_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tool_model</span><span class="p">):</span>
+        <span class="n">tool</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">tool</span><span class="o">.</span><span class="n">tool_model</span> <span class="o">=</span> <span class="n">tool_model</span>
+        <span class="n">tool</span><span class="o">.</span><span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">tool</span><span class="o">.</span><span class="n">get_attached_collision_meshes</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">tool</span></div>
+
+<div class="viewcode-block" id="Tool.get_attached_collision_meshes"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.get_attached_collision_meshes.html#compas_fab.robots.Tool.get_attached_collision_meshes">[docs]</a>    <span class="k">def</span> <span class="nf">get_attached_collision_meshes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tool_attached_collision_meshes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">iter_links</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">:</span>
+                <span class="n">meshes</span> <span class="o">=</span> <span class="n">Geometry</span><span class="o">.</span><span class="n">_get_item_meshes</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">meshes</span><span class="p">:</span>
+                    <span class="n">collision_mesh</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span>
+                    <span class="n">attached_collision_mesh</span> <span class="o">=</span> <span class="n">AttachedCollisionMesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">link_name</span><span class="p">])</span>
+                    <span class="n">tool_attached_collision_meshes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attached_collision_mesh</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tool_attached_collision_meshes</span></div>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The collision mesh representation of the tool.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span>
+    <span class="k">def</span> <span class="nf">link_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">link_name</span>
 
-    <span class="nd">@collision</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span> <span class="o">=</span> <span class="n">collision</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">visual</span>
+    <span class="nd">@link_name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">link_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">link_name</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the collision mesh of the tool.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">collision</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">frame</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">frame</span>
+
+    <span class="nd">@frame</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -164,17 +183,13 @@
 <span class="sd">            The frame data.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;visual&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">visual</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-                <span class="s1">&#39;frame&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-                <span class="s1">&#39;collision&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">collision</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-                <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="n">data</span>
 
     <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">visual</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;visual&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">collision</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;collision&#39;</span><span class="p">])</span> <span class="k">if</span> <span class="s1">&#39;collision&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">in</span> <span class="n">data</span> <span class="k">else</span> <span class="s1">&#39;attached_tool&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attached_collision_meshes</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Tool.from_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.from_data.html#compas_fab.robots.Tool.from_data">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -247,6 +262,11 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Tool.update_touch_links"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.update_touch_links.html#compas_fab.robots.Tool.update_touch_links">[docs]</a>    <span class="k">def</span> <span class="nf">update_touch_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">touch_links</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">touch_links</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">:</span>
+                <span class="n">acm</span><span class="o">.</span><span class="n">touch_links</span> <span class="o">=</span> <span class="n">touch_links</span></div>
+
 <div class="viewcode-block" id="Tool.from_tcf_to_t0cf"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.from_tcf_to_t0cf.html#compas_fab.robots.Tool.from_tcf_to_t0cf">[docs]</a>    <span class="k">def</span> <span class="nf">from_tcf_to_t0cf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_tcf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts a list of frames at the robot&#39;s tool tip (tcf frame) to frames at the robot&#39;s flange (tool0 frame).</span>
 
@@ -269,8 +289,7 @@
 <span class="sd">        &gt;&gt;&gt; tool.from_tcf_to_t0cf(frames_tcf)</span>
 <span class="sd">        [Frame(Point(-0.363, 0.003, -0.147), Vector(0.388, -0.351, -0.852), Vector(0.276, 0.926, -0.256))]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">Te</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">())</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">Te</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frames_tcf</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">from_tcf_to_t0cf</span><span class="p">(</span><span class="n">frames_tcf</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Tool.from_t0cf_to_tcf"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.from_t0cf_to_tcf.html#compas_fab.robots.Tool.from_t0cf_to_tcf">[docs]</a>    <span class="k">def</span> <span class="nf">from_t0cf_to_tcf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frames_t0cf</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Converts frames at the robot&#39;s flange (tool0 frame) to frames at the robot&#39;s tool tip (tcf frame).</span>
@@ -294,8 +313,7 @@
 <span class="sd">        &gt;&gt;&gt; tool.from_t0cf_to_tcf(frames_t0cf)</span>
 <span class="sd">        [Frame(Point(-0.309, -0.046, -0.266), Vector(0.276, 0.926, -0.256), Vector(0.879, -0.136, 0.456))]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">Te</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame_to_frame</span><span class="p">(</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Frame</span><span class="o">.</span><span class="n">from_transformation</span><span class="p">(</span><span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">*</span> <span class="n">Te</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">frames_t0cf</span><span class="p">]</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tool_model</span><span class="o">.</span><span class="n">from_t0cf_to_tcf</span><span class="p">(</span><span class="n">frames_t0cf</span><span class="p">)</span></div></div>
 </code></pre></div>
         
       </main>

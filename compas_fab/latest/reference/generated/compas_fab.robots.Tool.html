@@ -105,16 +105,17 @@
 <h1 class="display-4 p-0 mb-5">Tool</h1>
 <dl class="py class">
 <dt id="compas_fab.robots.Tool">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Tool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">visual</span></em>, <em class="sig-param"><span class="n">frame_in_tool0_frame</span></em>, <em class="sig-param"><span class="n">collision</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'attached_tool'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/tool.html#Tool"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Tool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">visual</span></em>, <em class="sig-param"><span class="n">frame_in_tool0_frame</span></em>, <em class="sig-param"><span class="n">collision</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'attached_tool'</span></em>, <em class="sig-param"><span class="n">link_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/tool.html#Tool"><span class="viewcode-link">[source]</span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a tool to be attached to the robot’s flange.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>visual</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code>) – The visual mesh of the tool.</p></li>
-<li><p><strong>frame</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code>) – The frame of the tool in tool0 frame.</p></li>
+<li><p><strong>frame_in_tool0_frame</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code>) – The frame of the tool in tool0 frame.</p></li>
 <li><p><strong>collision</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code>) – The collision mesh representation of the tool.</p></li>
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Tool</cite>. Defaults to ‘attached_tool’.</p></li>
+<li><p><strong>link_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Link</cite> to which the tool is attached.  Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -146,8 +147,17 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Tool.from_tcf_to_t0cf.html#compas_fab.robots.Tool.from_tcf_to_t0cf" title="compas_fab.robots.Tool.from_tcf_to_t0cf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tcf_to_t0cf</span></code></a>(frames_tcf)</p></td>
 <td><p>Converts a list of frames at the robot’s tool tip (tcf frame) to frames at the robot’s flange (tool0 frame).</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Tool.from_tool_model.html#compas_fab.robots.Tool.from_tool_model" title="compas_fab.robots.Tool.from_tool_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tool_model</span></code></a>(tool_model)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Tool.get_attached_collision_meshes.html#compas_fab.robots.Tool.get_attached_collision_meshes" title="compas_fab.robots.Tool.get_attached_collision_meshes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_attached_collision_meshes</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Tool.to_json.html#compas_fab.robots.Tool.to_json" title="compas_fab.robots.Tool.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>(filepath)</p></td>
 <td><p>Serialise the data dictionary representing the tool to JSON and store in a file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Tool.update_touch_links.html#compas_fab.robots.Tool.update_touch_links" title="compas_fab.robots.Tool.update_touch_links"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_touch_links</span></code></a>([touch_links])</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -158,14 +168,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">collision</span></code></p></td>
-<td><p>The collision mesh representation of the tool.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">collision_mesh</span></code></p></td>
-<td><p>Returns the collision mesh of the tool.</p></td>
-</tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">data</span></code></p></td>
 <td><p>Returns the data dictionary that represents the tool.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">frame</span></code></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">link_name</span></code></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -219,7 +229,6 @@
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.backends.html">compas_fab.backends</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.artists.html">compas_fab.artists</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.blender.html">compas_fab.blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../compas_fab.rhino.html">compas_fab.rhino</a></li>
