@@ -123,6 +123,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.merge</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Semantics.group_states</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.get_configuration_from_group_state</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -133,6 +134,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> of forward kinematics has been renamed to <code class="docutils literal notranslate"><span class="pre">solver</span></code></p></li>
 <li><p>The signatures of all kinematics, motion planning and planning scene management methods have been homogenized across backend clients and within <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
 <li><p>All examples have been updated to reflect these changes</p></li>
+<li><p>The installer to Rhino has been unified with COMPAS core. Now running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">compas_rhino.install</span></code> will also detect and install COMPAS FAB and its dependencies.</p></li>
 <li><p>Renamed all <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> implementations to <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code> to reflect
 the fact they depend on <code class="docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code>.</p></li>
 <li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tool0_to_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_t0cf_to_tcf</span></code></p></li>
