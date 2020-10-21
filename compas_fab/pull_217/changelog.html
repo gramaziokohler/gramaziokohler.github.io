@@ -120,6 +120,10 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.iter_differences</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.max_difference</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.close_to</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration.merge</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Semantics.group_states</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.get_configuration_from_group_state</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -130,6 +134,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Parameter <code class="docutils literal notranslate"><span class="pre">backend</span></code> of forward kinematics has been renamed to <code class="docutils literal notranslate"><span class="pre">solver</span></code></p></li>
 <li><p>The signatures of all kinematics, motion planning and planning scene management methods have been homogenized across backend clients and within <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
 <li><p>All examples have been updated to reflect these changes</p></li>
+<li><p>The installer to Rhino has been unified with COMPAS core. Now running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">compas_rhino.install</span></code> will also detect and install COMPAS FAB and its dependencies.</p></li>
 <li><p>Renamed all <code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> implementations to <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code> to reflect
 the fact they depend on <code class="docutils literal notranslate"><span class="pre">compas.robots.RobotModel</span></code>.</p></li>
 <li><p>Renamed  <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_tool0_to_attached_tool</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.from_t0cf_to_tcf</span></code></p></li>
@@ -172,10 +177,10 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 geometry if links and/or joints are not defined.</p></li>
 <li><p>In <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.JointConstraint</span></code>, added <code class="docutils literal notranslate"><span class="pre">tolerance_above</span></code> and
 <code class="docutils literal notranslate"><span class="pre">tolerance_below</span></code> for allowing asymmetrical constraints.</p></li>
-<li><p>In <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code>, changed the <code class="docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code>
+<li><p>In <a class="reference internal" href="reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>, changed the <code class="docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code>
 function with <code class="docutils literal notranslate"><span class="pre">tolerances_above</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerances_below</span></code>.</p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh.scale()</span></code> now takes a scale factor
-instead of a <a class="reference external" href="https://compas.dev/compas/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v0.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
+<li><p><a class="reference internal" href="reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale" title="compas_fab.robots.CollisionMesh.scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh.scale()</span></code></a> now takes a scale factor
+instead of a <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code> instance as an argument.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">

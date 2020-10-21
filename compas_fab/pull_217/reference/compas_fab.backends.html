@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="&lt;no title&gt;" href="compas_fab.artists.html" />
+    <link rel="next" title="VrepClient" href="generated/compas_fab.backends.VrepClient.html" />
   
   
   
-    <link rel="prev" title="&lt;no title&gt;" href="compas_fab.robots.html" />
+    <link rel="prev" title="to_radians" href="generated/compas_fab.robots.to_radians.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -101,7 +101,116 @@
       <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
-        
+        <span class="target" id="module-compas_fab.backends"></span><div class="section" id="compas-fab-backends">
+<h1 class="display-4 p-0 mb-5">compas_fab.backends</h1>
+<p>This package contains classes backends for simulation, planning and execution.</p>
+<div class="section" id="v-rep">
+<h2>V-REP</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepClient.html#compas_fab.backends.VrepClient" title="compas_fab.backends.VrepClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepClient</span></code></a></p></td>
+<td><p>Interface to run simulations using VREP as the engine for kinematics and path planning.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepPlanner.html#compas_fab.backends.VrepPlanner" title="compas_fab.backends.VrepPlanner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepPlanner</span></code></a></p></td>
+<td><p>Implement the planner backend interface for V-REP</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ros">
+<h2>ROS</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosClient</span></code></a></p></td>
+<td><p>Interface to use ROS as backend via the <strong>rosbridge</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosFileServerLoader.html#compas_fab.backends.RosFileServerLoader" title="compas_fab.backends.RosFileServerLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosFileServerLoader</span></code></a></p></td>
+<td><p>Allows to retrieve the mesh files specified in the robot model from the ROS File Server.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.MoveItPlanner.html#compas_fab.backends.MoveItPlanner" title="compas_fab.backends.MoveItPlanner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveItPlanner</span></code></a></p></td>
+<td><p>Implement the planner backend interface based on MoveIt!</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pybullet">
+<h2>PyBullet</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.PyBulletClient.html#compas_fab.backends.PyBulletClient" title="compas_fab.backends.PyBulletClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PyBulletClient</span></code></a></p></td>
+<td><p>Interface to use pybullet as backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.PyBulletPlanner.html#compas_fab.backends.PyBulletPlanner" title="compas_fab.backends.PyBulletPlanner"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PyBulletPlanner</span></code></a></p></td>
+<td><p>Implement the planner backend interface for PyBullet.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="long-running-tasks">
+<h2>Long-running tasks</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.FutureResult.html#compas_fab.backends.FutureResult" title="compas_fab.backends.FutureResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FutureResult</span></code></a></p></td>
+<td><p>Represents a future result value.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.CancellableFutureResult.html#compas_fab.backends.CancellableFutureResult" title="compas_fab.backends.CancellableFutureResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancellableFutureResult</span></code></a></p></td>
+<td><p>Represents a future result of a long-running asynchronous operation that can be cancelled.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions</h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.BackendError.html#compas_fab.backends.BackendError" title="compas_fab.backends.BackendError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BackendError</span></code></a></p></td>
+<td><p>Indicates an exceptional state that caused an error within the backend engine.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.CollisionError.html#compas_fab.backends.CollisionError" title="compas_fab.backends.CollisionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionError</span></code></a></p></td>
+<td><p>Exception raised when two objects have been found to be in collision in PyBullet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.InverseKinematicsError.html#compas_fab.backends.InverseKinematicsError" title="compas_fab.backends.InverseKinematicsError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InverseKinematicsError</span></code></a></p></td>
+<td><p>Exception raised when no IK solution can be found in PyBullet.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosError.html#compas_fab.backends.RosError" title="compas_fab.backends.RosError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosError</span></code></a></p></td>
+<td><p>Wraps an exception that occurred on the communication with ROS.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.backends.RosValidationError.html#compas_fab.backends.RosValidationError" title="compas_fab.backends.RosValidationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RosValidationError</span></code></a></p></td>
+<td><p>Wraps an exception that occurred on validation of a ROS response.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.backends.VrepError.html#compas_fab.backends.VrepError" title="compas_fab.backends.VrepError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VrepError</span></code></a></p></td>
+<td><p>Wraps an exception that occurred inside the simulation engine.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="interfaces">
+<h2>Interfaces</h2>
+<p>For details about integrating new backends, check
+the <a class="reference internal" href="../architecture.html#architecture"><span class="std std-ref">Backend Client Architecture</span></a> documentation.</p>
+</div>
+</div>
+
         
       </main>
       <!-- content -->
@@ -118,12 +227,38 @@
         
         
           <div id="compas-navigation" class="collapse compas-navigation">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../reference.html">API Reference</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../reference.html">API Reference</a><ul class="nav flex-column active">
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.robots.html">compas_fab.robots</a></li>
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.backends</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.VrepClient.html">VrepClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.VrepPlanner.html">VrepPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.RosClient.html">RosClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.RosFileServerLoader.html">RosFileServerLoader</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.FutureResult.html">FutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.BackendError.html">BackendError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.CollisionError.html">CollisionError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.InverseKinematicsError.html">InverseKinematicsError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.RosError.html">RosError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.RosValidationError.html">RosValidationError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.backends.VrepError.html">VrepError</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="../contributing.html">Contributor’s Guide</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../changelog.html">Changelog</a></li>
@@ -137,7 +272,16 @@
       <!-- toc -->
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
-        <ul class="simple">
+        <ul class="nav flex-column" id="compas-toc">
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.backends</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#v-rep">V-REP</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#ros">ROS</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#pybullet">PyBullet</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#long-running-tasks">Long-running tasks</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#exceptions">Exceptions</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#interfaces">Interfaces</a></li>
+</ul>
+</li>
 </ul>
 
       </div>
