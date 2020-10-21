@@ -17,11 +17,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="Robot.get_end_effector_link" href="compas_fab.robots.Robot.get_end_effector_link.html" />
+    <link rel="next" title="Robot.get_end_effector_frame" href="compas_fab.robots.Robot.get_end_effector_frame.html" />
   
   
   
-    <link rel="prev" title="Robot.get_configuration_from_group_state" href="compas_fab.robots.Robot.get_configuration_from_group_state.html" />
+    <link rel="prev" title="Robot.get_configurable_joints" href="compas_fab.robots.Robot.get_configurable_joints.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -101,22 +101,21 @@
       <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
-        <div class="detail section" id="robot-get-end-effector-frame">
-<h1 class="display-4 p-0 mb-5">Robot.get_end_effector_frame</h1>
+        <div class="detail section" id="robot-get-configuration-from-group-state">
+<h1 class="display-4 p-0 mb-5">Robot.get_configuration_from_group_state</h1>
 <dl class="py method">
-<dt id="compas_fab.robots.Robot.get_end_effector_frame">
-<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">get_end_effector_frame</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_configuration</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.get_end_effector_frame"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Get the frame of the robot’s end effector.</p>
+<dt id="compas_fab.robots.Robot.get_configuration_from_group_state">
+<code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">get_configuration_from_group_state</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group</span></em>, <em class="sig-param"><span class="n">group_state</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.get_configuration_from_group_state"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Get a <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> from a group’s group state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The name of the planning group. Defaults to the main planning group.</p></li>
-<li><p><strong>full_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>, optional) – The robot’s full configuration, i.e. values for all configurable
-joints of the entire robot. Defaults to the all-zero configuration.</p></li>
+<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the planning group.</p></li>
+<li><p><strong>group_state</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str)</span> <span class="pre">--</span> <span class="pre">The</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">``group_state`</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></p>
+<dd class="field-even"><p><a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a> – The configuration specified by the <code class="docutils literal notranslate"><span class="pre">group_state</span></code>.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -191,7 +190,7 @@ joints of the entire robot. Defaults to the all-zero configuration.</p></li>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Robot.get_end_effector_frame</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">Robot.get_configuration_from_group_state</a></li>
 </ul>
 
       </div>

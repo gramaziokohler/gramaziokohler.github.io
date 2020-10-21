@@ -707,6 +707,27 @@
                 <span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="n">joint_names</span>
         <span class="k">return</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Robot.get_configuration_from_group_state"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_configuration_from_group_state.html#compas_fab.robots.Robot.get_configuration_from_group_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration_from_group_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">group_state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a ``Configuration`` from a group&#39;s group state.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        group : :obj:`str`</span>
+<span class="sd">            The name of the planning group.</span>
+<span class="sd">        group_state : :obj:`str</span>
+<span class="sd">            The name of the ``group_state``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`Configuration`</span>
+<span class="sd">            The configuration specified by the ``group_state``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_states</span><span class="p">[</span><span class="n">group</span><span class="p">][</span><span class="n">group_state</span><span class="p">]</span>
+        <span class="n">group_joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">group_joint_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_types</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">group_joint_names</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Configuration</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">group_joint_types</span><span class="p">,</span> <span class="n">group_joint_names</span><span class="p">)</span></div>
+
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># transformations, coordinate frames</span>
     <span class="c1"># ==========================================================================</span>
