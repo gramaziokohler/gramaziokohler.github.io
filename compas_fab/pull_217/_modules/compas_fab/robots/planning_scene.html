@@ -213,7 +213,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">    &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">    &gt;&gt;&gt; cm = CollisionMesh(mesh, &#39;tip&#39;)</span>
 <span class="sd">    &gt;&gt;&gt; ee_link_name = &#39;ee_link&#39;</span>
 <span class="sd">    &gt;&gt;&gt; touch_links = [&#39;wrist_3_link&#39;, &#39;ee_link&#39;]</span>
@@ -380,7 +380,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; scene = PlanningScene(robot)</span>
-<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; cm = CollisionMesh(mesh, &#39;tip&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; ee_link_name = &#39;ee_link&#39;</span>
 <span class="sd">        &gt;&gt;&gt; touch_links = [&#39;wrist_3_link&#39;, &#39;ee_link&#39;]</span>
@@ -438,7 +438,7 @@
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; scene = PlanningScene(robot)</span>
-<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; cm = CollisionMesh(mesh, &#39;tip&#39;)</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; scene.attach_collision_mesh_to_robot_end_effector(cm, group=group)</span>

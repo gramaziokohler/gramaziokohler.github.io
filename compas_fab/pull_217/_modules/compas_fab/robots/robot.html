@@ -115,7 +115,6 @@
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">JointConstraint</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">OrientationConstraint</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.constraints</span> <span class="kn">import</span> <span class="n">PositionConstraint</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Robot&#39;</span><span class="p">,</span>
@@ -861,7 +860,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; robot.attach_tool(Tool(mesh, frame))</span>
 <span class="sd">        &gt;&gt;&gt; frames_tcf = [Frame((-0.309, -0.046, -0.266), (0.276, 0.926, -0.256), (0.879, -0.136, 0.456))]</span>
@@ -892,7 +891,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; robot.attach_tool(Tool(mesh, frame))</span>
 <span class="sd">        &gt;&gt;&gt; frames_t0cf = [Frame((-0.363, 0.003, -0.147), (0.388, -0.351, -0.852), (0.276, 0.926, -0.256))]</span>
@@ -927,7 +926,7 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas.get(&#39;cone.stl&#39;))</span>
+<span class="sd">        &gt;&gt;&gt; mesh = Mesh.from_stl(compas_fab.get(&#39;planning_scene/cone.stl&#39;))</span>
 <span class="sd">        &gt;&gt;&gt; frame = Frame([0.14, 0, 0], [0, 1, 0], [0, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; tool = Tool(mesh, frame)</span>
 <span class="sd">        &gt;&gt;&gt; robot.attach_tool(tool)</span>
@@ -938,9 +937,6 @@
         <span class="n">tool</span><span class="o">.</span><span class="n">update_touch_links</span><span class="p">(</span><span class="n">touch_links</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attached_tool</span> <span class="o">=</span> <span class="n">tool</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="p">:</span>
-            <span class="n">zero_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
-            <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">zero_config</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">zero_config</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># TODO: this is not so ideal! should be called from within artist</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">attach_tool_model</span><span class="p">(</span><span class="n">tool</span><span class="o">.</span><span class="n">tool_model</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.detach_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.detach_tool.html#compas_fab.robots.Robot.detach_tool">[docs]</a>    <span class="k">def</span> <span class="nf">detach_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
