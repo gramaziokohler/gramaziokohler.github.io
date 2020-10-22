@@ -1699,7 +1699,7 @@
     <span class="c1"># drawing</span>
     <span class="c1"># ==========================================================================</span>
 
-<div class="viewcode-block" id="Robot.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Robot.update"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">visual</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">collision</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update the robot&#39;s geometry.</span>
 
 <span class="sd">        Parameters</span>
@@ -1716,9 +1716,12 @@
 <span class="sd">            ``True`` if the collision geometry should be also updated, otherwise ``False``.</span>
 <span class="sd">            Defaults to ``True``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">group</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_group_name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span> <span class="k">else</span> <span class="kc">None</span>
+
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
             <span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="n">joint_state</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">joint_state</span><span class="p">,</span> <span class="n">visual</span><span class="p">,</span> <span class="n">collision</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.draw_visual.html#compas_fab.robots.Robot.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

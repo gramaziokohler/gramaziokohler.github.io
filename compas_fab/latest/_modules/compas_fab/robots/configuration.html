@@ -458,7 +458,10 @@
 <div class="viewcode-block" id="Configuration.check_joint_names"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.check_joint_names.html#compas_fab.robots.Configuration.check_joint_names">[docs]</a>    <span class="k">def</span> <span class="nf">check_joint_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Raises an error if there is not a joint name for every value.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_joint_names</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Joint names are required for this operation.&#39;</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Joint names are required for this operation.&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Joint names do not match the number of joint values. Joint names=</span><span class="si">{}</span><span class="s1">, Joint values=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">)))</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">joint_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
