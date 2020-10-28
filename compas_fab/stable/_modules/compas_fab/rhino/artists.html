@@ -39,17 +39,42 @@
   <header id="header" class="compas-header d-flex align-items-center">
     <nav class="navbar navbar-expand navbar-dark col flex-column flex-md-row text-center">
       <!-- brand -->
-      <a class="navbar-brand" href="/index.html">
+      <a class="navbar-brand" href="https://gramaziokohler.github.io/compas_fab/">
         <img src="../../../_static/images/compas_icon_white.png" alt="COMPAS FAB" width="48px" height="48px" />
       </a>
       <!-- brand -->
       <!-- primary -->
       <ul class="navbar-nav">
-        <li class="nav-item active"><a class="nav-link" href="">COMPAS FAB</a></li>
+        <li class="nav-item active"><a class="nav-link" href="https://gramaziokohler.github.io/compas_fab/">COMPAS FAB</a></li>
       </ul>
       <!-- primary -->
-      <!-- social -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
+        
+        <!-- version -->
+        <li class="nav-item nav-versions dropdown">
+          <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Version
+          </a>
+          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
+            
+          </div>
+        </li>
+        
+        <!-- version -->
+        <!-- social -->
         <li class="nav-item">
           <a class="nav-link" href="https://github.com/compas-dev/compas_fab" target="_blank">
             <span class="fab fa-github fa-1x"></span>
@@ -60,8 +85,8 @@
             <span class="fab fa-discourse fa-1x"></span>
           </a>
         </li>
+        <!-- social -->
       </ul>
-      <!-- social -->
     </nav>
   </header>
   <!-- header -->
@@ -69,7 +94,7 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-4 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
         
         
         <h1 class="display-4 p-0 mb-5">Source code for compas_fab.rhino.artists</h1><div class="highlight"><pre><code>
@@ -80,47 +105,47 @@
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">import</span> <span class="nn">compas</span>
-<span class="kn">import</span> <span class="nn">compas_rhino</span>
-
-<span class="kn">from</span> <span class="nn">compas_fab.artists</span> <span class="kn">import</span> <span class="n">BaseRobotArtist</span>
-<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="kn">import</span> <span class="n">pairwise</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">centroid_polygon</span>
+<span class="kn">from</span> <span class="nn">compas.utilities</span> <span class="kn">import</span> <span class="n">pairwise</span>
 
-<span class="k">try</span><span class="p">:</span>
+<span class="kn">from</span> <span class="nn">compas_fab.artists</span> <span class="kn">import</span> <span class="n">BaseRobotModelArtist</span>
+
+<span class="k">if</span> <span class="n">compas</span><span class="o">.</span><span class="n">RHINO</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">Rhino.Geometry</span>
     <span class="kn">import</span> <span class="nn">scriptcontext</span> <span class="k">as</span> <span class="nn">sc</span>
     <span class="kn">from</span> <span class="nn">System.Drawing</span> <span class="kn">import</span> <span class="n">Color</span>
     <span class="kn">from</span> <span class="nn">Rhino.DocObjects.ObjectColorSource</span> <span class="kn">import</span> <span class="n">ColorFromObject</span>
     <span class="kn">from</span> <span class="nn">Rhino.DocObjects.ObjectColorSource</span> <span class="kn">import</span> <span class="n">ColorFromLayer</span>
     <span class="kn">from</span> <span class="nn">Rhino.DocObjects.ObjectMaterialSource</span> <span class="kn">import</span> <span class="n">MaterialFromObject</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="n">compas</span><span class="o">.</span><span class="n">raise_if_ironpython</span><span class="p">()</span>
+
+    <span class="kn">import</span> <span class="nn">compas_rhino</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;RobotArtist&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RobotModelArtist&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
 
-<div class="viewcode-block" id="RobotArtist"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.html#compas_fab.rhino.RobotArtist">[docs]</a><span class="k">class</span> <span class="nc">RobotArtist</span><span class="p">(</span><span class="n">BaseRobotArtist</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.html#compas_fab.rhino.RobotModelArtist">[docs]</a><span class="k">class</span> <span class="nc">RobotModelArtist</span><span class="p">(</span><span class="n">BaseRobotModelArtist</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Visualizer for robots inside a Rhino environment.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    robot : compas.robots.RobotModel</span>
+<span class="sd">    model : :class:`compas.robots.RobotModel`</span>
 <span class="sd">        Robot model.</span>
 <span class="sd">    layer : str, optional</span>
 <span class="sd">        The name of the layer that will contain the robot meshes.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RobotArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.__init__.html#compas_fab.rhino.RobotArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">RobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+<div class="viewcode-block" id="RobotModelArtist.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.__init__.html#compas_fab.rhino.RobotModelArtist.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RobotModelArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">layer</span></div>
 
-<div class="viewcode-block" id="RobotArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.transform.html#compas_fab.rhino.RobotArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist.transform"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.transform.html#compas_fab.rhino.RobotModelArtist.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">native_mesh</span><span class="p">,</span> <span class="n">transformation</span><span class="p">):</span>
         <span class="n">T</span> <span class="o">=</span> <span class="n">xform_from_transformation</span><span class="p">(</span><span class="n">transformation</span><span class="p">)</span>
         <span class="n">native_mesh</span><span class="o">.</span><span class="n">Transform</span><span class="p">(</span><span class="n">T</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="RobotArtist.draw_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.draw_geometry.html#compas_fab.rhino.RobotArtist.draw_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">draw_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist.draw_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.draw_geometry.html#compas_fab.rhino.RobotModelArtist.draw_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">draw_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Imported colors take priority over a the parameter color</span>
         <span class="k">if</span> <span class="s1">&#39;mesh_color.diffuse&#39;</span> <span class="ow">in</span> <span class="n">geometry</span><span class="o">.</span><span class="n">attributes</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;mesh_color.diffuse&#39;</span><span class="p">]</span>
@@ -185,8 +210,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">redraw</span><span class="p">()</span>
 
-<div class="viewcode-block" id="RobotArtist.draw_collision"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.draw_collision.html#compas_fab.rhino.RobotArtist.draw_collision">[docs]</a>    <span class="k">def</span> <span class="nf">draw_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">collisions</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">draw_collision</span><span class="p">()</span>
+<div class="viewcode-block" id="RobotModelArtist.draw_collision"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.draw_collision.html#compas_fab.rhino.RobotModelArtist.draw_collision">[docs]</a>    <span class="k">def</span> <span class="nf">draw_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">collisions</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RobotModelArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">draw_collision</span><span class="p">()</span>
         <span class="n">collisions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">collisions</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_layer</span><span class="p">()</span>
@@ -196,8 +221,8 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_exit_layer</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RobotArtist.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.draw_visual.html#compas_fab.rhino.RobotArtist.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">visuals</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RobotArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
+<div class="viewcode-block" id="RobotModelArtist.draw_visual"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.draw_visual.html#compas_fab.rhino.RobotModelArtist.draw_visual">[docs]</a>    <span class="k">def</span> <span class="nf">draw_visual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">visuals</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">RobotModelArtist</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">draw_visual</span><span class="p">()</span>
         <span class="n">visuals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">visuals</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_enter_layer</span><span class="p">()</span>
@@ -207,7 +232,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_exit_layer</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RobotArtist.redraw"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.redraw.html#compas_fab.rhino.RobotArtist.redraw">[docs]</a>    <span class="k">def</span> <span class="nf">redraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist.redraw"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.redraw.html#compas_fab.rhino.RobotModelArtist.redraw">[docs]</a>    <span class="k">def</span> <span class="nf">redraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Redraw the Rhino view.</span>
 
 <span class="sd">        Parameters</span>
@@ -224,7 +249,7 @@
         <span class="n">compas_rhino</span><span class="o">.</span><span class="n">rs</span><span class="o">.</span><span class="n">EnableRedraw</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">compas_rhino</span><span class="o">.</span><span class="n">rs</span><span class="o">.</span><span class="n">Redraw</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="RobotArtist.clear_layer"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotArtist.clear_layer.html#compas_fab.rhino.RobotArtist.clear_layer">[docs]</a>    <span class="k">def</span> <span class="nf">clear_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RobotModelArtist.clear_layer"><a class="viewcode-back" href="../../../reference/generated/compas_fab.rhino.RobotModelArtist.clear_layer.html#compas_fab.rhino.RobotModelArtist.clear_layer">[docs]</a>    <span class="k">def</span> <span class="nf">clear_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Clear the main layer of the artist.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">:</span>
             <span class="n">compas_rhino</span><span class="o">.</span><span class="n">clear_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">)</span>
@@ -251,7 +276,7 @@
                 <span class="n">attr</span><span class="o">.</span><span class="n">ObjectColor</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">FromArgb</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
                 <span class="n">attr</span><span class="o">.</span><span class="n">ColorSource</span> <span class="o">=</span> <span class="n">ColorFromObject</span>
 
-                <span class="n">material_name</span> <span class="o">=</span> <span class="s1">&#39;robotartist.</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+                <span class="n">material_name</span> <span class="o">=</span> <span class="s1">&#39;robotmodelartist.</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">_</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
                 <span class="n">material_index</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">Materials</span><span class="o">.</span><span class="n">Find</span><span class="p">(</span><span class="n">material_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
                 <span class="c1"># Material does not exist, create it</span>
@@ -273,13 +298,12 @@
             <span class="n">obj</span><span class="o">.</span><span class="n">CommitChanges</span><span class="p">()</span></div>
 
 
-<span class="c1"># TODO: Move to compas_rhino.geometry</span>
+<span class="c1"># TODO: switch to compas_rhino.geometry.transformations.xtransform</span>
+<span class="c1"># as soon as this is in the release</span>
 <span class="k">def</span> <span class="nf">xform_from_transformation</span><span class="p">(</span><span class="n">transformation</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Creates a Rhino Transform instance from a :class:`Transformation`.</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        transformation (:class:`Transformation`): the transformation.</span>
-
 <span class="sd">    Returns:</span>
 <span class="sd">        (:class:`Rhino.Geometry.Transform`)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -288,6 +312,10 @@
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
             <span class="n">transform</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformation</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">transform</span>
+
+
+<span class="c1"># deprecated alias</span>
+<span class="n">RobotArtist</span> <span class="o">=</span> <span class="n">RobotModelArtist</span>
 </code></pre></div>
         
       </main>
@@ -395,6 +423,11 @@
 
     hljs.initHighlighting();
     anchors.add();
+
+    $('.nav-versions .dropdown-item').filter(function(i, ver) {
+      return window.location.href.startsWith(ver.href);
+    }).addClass("active");
+
   });
   </script>
   
