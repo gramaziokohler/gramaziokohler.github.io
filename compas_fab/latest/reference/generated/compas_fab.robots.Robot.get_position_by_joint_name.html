@@ -108,20 +108,20 @@
 <dl class="py method">
 <dt id="compas_fab.robots.Robot.get_position_by_joint_name">
 <code class="sig-prename descclassname">Robot.</code><code class="sig-name descname">get_position_by_joint_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">configuration</span></em>, <em class="sig-param"><span class="n">joint_name</span></em>, <em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot.get_position_by_joint_name"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>Get the position of named joint in given configuration.
-:Parameters: * <strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>) – The configuration of the configurable joints.</p>
-<blockquote>
-<div><ul class="simple">
+<dd><p>Get the position of named joint in given configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a>) – The configuration of the configurable joints.</p></li>
 <li><p><strong>joint_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Name of joint.</p></li>
 <li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The name of the planning group. Defaults to the main planning group.</p></li>
 </ul>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> – Joint position for the given joint.</p>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – If the number of joints in the <cite>configuration</cite> parameter does not
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> – Joint position for the given joint.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – If the number of joints in the <cite>configuration</cite> parameter does not
     match the configurable joints of the given <cite>group</cite>.</p>
 </dd>
 </dl>

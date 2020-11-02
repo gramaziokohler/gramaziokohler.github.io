@@ -659,6 +659,7 @@
 
 <div class="viewcode-block" id="Robot.get_position_by_joint_name"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.get_position_by_joint_name.html#compas_fab.robots.Robot.get_position_by_joint_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_position_by_joint_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">joint_name</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the position of named joint in given configuration.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        configuration : :class:`Configuration`</span>
@@ -667,10 +668,12 @@
 <span class="sd">            Name of joint.</span>
 <span class="sd">        group : :obj:`str`, optional</span>
 <span class="sd">            The name of the planning group. Defaults to the main planning group.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :obj:`float`</span>
 <span class="sd">            Joint position for the given joint.</span>
+
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        :exc:`ValueError`</span>
@@ -1429,9 +1432,12 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt; robot.client = RosClient()</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.run()</span>
 <span class="sd">        &gt;&gt;&gt; frames = [Frame([0.3, 0.1, 0.5], [1, 0, 0], [0, 1, 0]),\</span>
-<span class="sd">                      Frame([0.4, 0.3, 0.4], [0, 1, 0], [0, 0, 1])]</span>
-<span class="sd">        &gt;&gt;&gt; start_configuration = Configuration.from_revolute_values([-0.042, 4.295, -4.110, -3.327, 4.755, 0.])</span>
+<span class="sd">                      Frame([0.5, 0.1, 0.6], [1, 0, 0], [0, 1, 0])]</span>
+<span class="sd">        &gt;&gt;&gt; start_configuration = Configuration.from_revolute_values([-0.042, 0.033, -2.174, 5.282, -1.528, 0.000])</span>
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; options = {&#39;max_step&#39;: 0.01,\</span>
 <span class="sd">                       &#39;jump_threshold&#39;: 1.57,\</span>
@@ -1440,8 +1446,9 @@
 <span class="sd">                                                     start_configuration,\</span>
 <span class="sd">                                                     group=group,\</span>
 <span class="sd">                                                     options=options)</span>
-<span class="sd">        &gt;&gt;&gt; type(trajectory)</span>
-<span class="sd">        &lt;class &#39;compas_fab.robots.trajectory.JointTrajectory&#39;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; len(trajectory.points) &gt; 1</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.close()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="n">max_step</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_step&#39;</span><span class="p">)</span>
@@ -1552,7 +1559,11 @@
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-<span class="sd">        &gt;&gt;&gt; # Example with position and orientation constraints</span>
+
+<span class="sd">        Using position and orientation constraints:</span>
+
+<span class="sd">        &gt;&gt;&gt; robot.client = RosClient()</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.run()</span>
 <span class="sd">        &gt;&gt;&gt; frame = Frame([0.4, 0.3, 0.4], [0, 1, 0], [0, 0, 1])</span>
 <span class="sd">        &gt;&gt;&gt; tolerance_position = 0.001</span>
 <span class="sd">        &gt;&gt;&gt; tolerances_axes = [math.radians(1)] * 3</span>
@@ -1563,7 +1574,14 @@
 <span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRTConnectkConfigDefault&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; trajectory.fraction</span>
 <span class="sd">        1.0</span>
-<span class="sd">        &gt;&gt;&gt; # Example with joint constraints (to the UP configuration)</span>
+<span class="sd">        &gt;&gt;&gt; len(trajectory.points) &gt; 1</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.close()</span>
+
+<span class="sd">        Using joint constraints (to the UP configuration):</span>
+
+<span class="sd">        &gt;&gt;&gt; robot.client = RosClient()</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.run()</span>
 <span class="sd">        &gt;&gt;&gt; configuration = Configuration.from_revolute_values([0.0, -1.5707, 0.0, -1.5707, 0.0, 0.0])</span>
 <span class="sd">        &gt;&gt;&gt; tolerances_above = [math.radians(5)] * len(configuration.values)</span>
 <span class="sd">        &gt;&gt;&gt; tolerances_below = [math.radians(5)] * len(configuration.values)</span>
@@ -1572,8 +1590,9 @@
 <span class="sd">        &gt;&gt;&gt; trajectory = robot.plan_motion(goal_constraints, start_configuration, group, {&#39;planner_id&#39;: &#39;RRTConnectkConfigDefault&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; trajectory.fraction</span>
 <span class="sd">        1.0</span>
-<span class="sd">        &gt;&gt;&gt; type(trajectory)</span>
-<span class="sd">        &lt;class &#39;compas_fab.robots.trajectory.JointTrajectory&#39;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; len(trajectory.points) &gt; 1</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; robot.client.close()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">options</span> <span class="o">=</span> <span class="n">options</span> <span class="ow">or</span> <span class="p">{}</span>
         <span class="n">path_constraints</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;path_constraints&#39;</span><span class="p">)</span>
@@ -1663,6 +1682,7 @@
 
 <div class="viewcode-block" id="Robot.transformed_frames"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames">[docs]</a>    <span class="k">def</span> <span class="nf">transformed_frames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the robot&#39;s transformed frames.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        configuration : :class:`Configuration`</span>
@@ -1670,9 +1690,11 @@
 <span class="sd">        group : :obj:`str`, optional</span>
 <span class="sd">            The planning group used for the calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :obj:`list` of :class:`compas.geometry.Frame`</span>
+<span class="sd">            Transformed frames.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
             <span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
@@ -1681,6 +1703,7 @@
 
 <div class="viewcode-block" id="Robot.transformed_axes"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes">[docs]</a>    <span class="k">def</span> <span class="nf">transformed_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get the robot&#39;s transformed axes.</span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        configuration : :class:`Configuration`</span>
@@ -1688,9 +1711,11 @@
 <span class="sd">        group : :obj:`str`, optional</span>
 <span class="sd">            The planning group used for the calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :obj:`list` of :class:`compas.geometry.Vector`</span>
+<span class="sd">            Transformed axes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">):</span>
             <span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configurable_joint_names</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>

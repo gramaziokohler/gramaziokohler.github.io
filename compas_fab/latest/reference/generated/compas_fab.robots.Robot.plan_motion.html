@@ -148,7 +148,9 @@ for more details.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example with position and orientation constraints</span>
+<p>Using position and orientation constraints:</p>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerance_position</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">3</span>
@@ -159,7 +161,14 @@ for more details.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;planner_id&#39;</span><span class="p">:</span> <span class="s1">&#39;RRTConnectkConfigDefault&#39;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span>
 <span class="go">1.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Example with joint constraints (to the UP configuration)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<p>Using joint constraints (to the UP configuration):</p>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">RosClient</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5707</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5707</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_above</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tolerances_below</span> <span class="o">=</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -168,8 +177,9 @@ for more details.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;planner_id&#39;</span><span class="p">:</span> <span class="s1">&#39;RRTConnectkConfigDefault&#39;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span>
 <span class="go">1.0</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>
-<span class="go">&lt;class &#39;compas_fab.robots.trajectory.JointTrajectory&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
 </div>
 </dd></dl>
