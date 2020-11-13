@@ -54,7 +54,7 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Version
+            0.13.1
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
@@ -468,9 +468,11 @@
         <span class="n">acm</span> <span class="o">=</span> <span class="n">AttachedCollisionMesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="n">ee_link_name</span><span class="p">,</span> <span class="n">touch_links</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PlanningScene.add_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_attached_tool.html#compas_fab.robots.PlanningScene.add_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PlanningScene.add_attached_tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_attached_tool.html#compas_fab.robots.PlanningScene.add_attached_tool">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tool</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add the robot&#39;s attached tool to the planning scene if tool is set.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">tool</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attach_tool</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span></div>
@@ -479,7 +481,9 @@
         <span class="sd">&quot;&quot;&quot;Remove the robot&#39;s attached tool from the planning scene.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
+            <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">attached_tool</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">detach_tool</span><span class="p">()</span></div></div>
 </code></pre></div>
         
       </main>
