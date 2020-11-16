@@ -121,12 +121,12 @@
 <li><p><strong>start_configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>, optional) – If passed, the inverse will be calculated such that the calculated
 joint positions differ the least from the start_configuration.
 Defaults to the zero configuration.</p></li>
-<li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for calculation. Defaults to the robot’s
-main planning group.</p></li>
+<li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for determining the end effector and labeling
+the <code class="docutils literal notranslate"><span class="pre">start_configuration</span></code>. Defaults to the robot’s main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;link_name&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) Name of the link for which
-to compute the inverse kinematics.  Defaults to the given robot’s end
+to compute the inverse kinematics.  Defaults to the given group’s end
 effector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;semi-constrained&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the
 position and not the orientation of <code class="docutils literal notranslate"><span class="pre">frame_WCF</span></code> will not be considered
