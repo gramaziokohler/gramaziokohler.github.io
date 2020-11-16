@@ -120,8 +120,8 @@
 <li><p><strong>configuration</strong> (<a class="reference internal" href="compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>) – The full configuration to calculate the forward kinematic for. If no
 full configuration is passed, the zero-joint state for the other
 configurable joints is assumed.</p></li>
-<li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for calculation. Defaults to the robot’s
-main planning group.</p></li>
+<li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for determining the end effector and labeling
+the <code class="docutils literal notranslate"><span class="pre">configuration</span></code>. Defaults to the robot’s main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
