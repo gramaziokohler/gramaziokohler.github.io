@@ -108,9 +108,6 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
-
 
 <div class="viewcode-block" id="ForwardKinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ForwardKinematics.html#compas_fab.backends.interfaces.ForwardKinematics">[docs]</a><span class="k">class</span> <span class="nc">ForwardKinematics</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Interface for a Planner&#39;s forward kinematics feature.  Any implementation of</span>
@@ -120,13 +117,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="ForwardKinematics.forward_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics.html#compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ForwardKinematics.forward_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics.html#compas_fab.backends.interfaces.ForwardKinematics.forward_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">forward_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s forward kinematic.</span>
 
 <span class="sd">        Parameters</span>
@@ -159,13 +154,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="InverseKinematics.inverse_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics.html#compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="InverseKinematics.inverse_kinematics"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics.html#compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics">[docs]</a>    <span class="k">def</span> <span class="nf">inverse_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculate the robot&#39;s inverse kinematic for a given frame.</span>
 
 <span class="sd">        Parameters</span>
@@ -197,13 +190,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_motion</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlanMotion.plan_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanMotion.plan_motion.html#compas_fab.backends.interfaces.PlanMotion.plan_motion">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PlanMotion.plan_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanMotion.plan_motion.html#compas_fab.backends.interfaces.PlanMotion.plan_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">goal_constraints</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a motion path.</span>
 
 <span class="sd">        Parameters</span>
@@ -241,13 +232,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PlanCartesianMotion.plan_cartesian_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion.html#compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="PlanCartesianMotion.plan_cartesian_motion"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion.html#compas_fab.backends.interfaces.PlanCartesianMotion.plan_cartesian_motion">[docs]</a>    <span class="k">def</span> <span class="nf">plan_cartesian_motion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Calculates a cartesian motion path (linear in tool space).</span>
 
 <span class="sd">        Parameters</span>
@@ -281,13 +270,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="GetPlanningScene.get_planning_scene"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.GetPlanningScene.get_planning_scene.html#compas_fab.backends.interfaces.GetPlanningScene.get_planning_scene">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">get_planning_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="GetPlanningScene.get_planning_scene"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.GetPlanningScene.get_planning_scene.html#compas_fab.backends.interfaces.GetPlanningScene.get_planning_scene">[docs]</a>    <span class="k">def</span> <span class="nf">get_planning_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrieve the planning scene.</span>
 
 <span class="sd">        Parameters</span>
@@ -303,6 +290,34 @@
         <span class="k">pass</span></div></div>
 
 
+<div class="viewcode-block" id="ResetPlanningScene"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ResetPlanningScene.html#compas_fab.backends.interfaces.ResetPlanningScene">[docs]</a><span class="k">class</span> <span class="nc">ResetPlanningScene</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Interface for a Planner&#39;s reset planning scene feature.  Any implementation of</span>
+<span class="sd">    ``ResetPlanningScene`` must define the method ``reset_planning_scene``.  The</span>
+<span class="sd">    ``__call__`` magic method allows an instance of an implementation of</span>
+<span class="sd">    ``ResetPlanningScene`` to be treated as its ``reset_planning_scene`` method.  See</span>
+<span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
+<span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset_planning_scene</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResetPlanningScene.reset_planning_scene"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.ResetPlanningScene.reset_planning_scene.html#compas_fab.backends.interfaces.ResetPlanningScene.reset_planning_scene">[docs]</a>    <span class="k">def</span> <span class="nf">reset_planning_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve the planning scene.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        options : dict, optional</span>
+<span class="sd">            Dictionary containing kwargs for arguments specific to</span>
+<span class="sd">            the client being queried.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ``None``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
 <div class="viewcode-block" id="AddCollisionMesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AddCollisionMesh.html#compas_fab.backends.interfaces.AddCollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">AddCollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Interface for a Planner&#39;s add collision mesh feature.  Any implementation of</span>
 <span class="sd">    ``AddCollisionMesh`` must define the method ``add_collision_mesh``.  The</span>
@@ -311,13 +326,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AddCollisionMesh.add_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AddCollisionMesh.add_collision_mesh.html#compas_fab.backends.interfaces.AddCollisionMesh.add_collision_mesh">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">add_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AddCollisionMesh.add_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AddCollisionMesh.add_collision_mesh.html#compas_fab.backends.interfaces.AddCollisionMesh.add_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a collision mesh to the planning scene.</span>
 
 <span class="sd">        Parameters</span>
@@ -343,13 +356,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RemoveCollisionMesh.remove_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.RemoveCollisionMesh.remove_collision_mesh.html#compas_fab.backends.interfaces.RemoveCollisionMesh.remove_collision_mesh">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">remove_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RemoveCollisionMesh.remove_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.RemoveCollisionMesh.remove_collision_mesh.html#compas_fab.backends.interfaces.RemoveCollisionMesh.remove_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">remove_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove a collision mesh from the planning scene.</span>
 
 <span class="sd">        Parameters</span>
@@ -375,13 +386,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">append_collision_mesh</span><span class="p">(</span><span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AppendCollisionMesh.append_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AppendCollisionMesh.append_collision_mesh.html#compas_fab.backends.interfaces.AppendCollisionMesh.append_collision_mesh">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">append_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AppendCollisionMesh.append_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AppendCollisionMesh.append_collision_mesh.html#compas_fab.backends.interfaces.AppendCollisionMesh.append_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">append_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Append a collision mesh to the planning scene.</span>
 
 <span class="sd">        Parameters</span>
@@ -407,13 +416,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attached_collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">attached_collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AddAttachedCollisionMesh.add_attached_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AddAttachedCollisionMesh.add_attached_collision_mesh.html#compas_fab.backends.interfaces.AddAttachedCollisionMesh.add_attached_collision_mesh">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">add_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attached_collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="AddAttachedCollisionMesh.add_attached_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.AddAttachedCollisionMesh.add_attached_collision_mesh.html#compas_fab.backends.interfaces.AddAttachedCollisionMesh.add_attached_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attached_collision_mesh</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a collision mesh and attach it to the robot.</span>
 
 <span class="sd">        Parameters</span>
@@ -439,13 +446,11 @@
 <span class="sd">    &lt;https://docs.python.org/3/reference/datamodel.html#object.__call__&gt; and</span>
 <span class="sd">    &lt;https://en.wikipedia.org/wiki/Function_object#In_Python&gt;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 
-<div class="viewcode-block" id="RemoveAttachedCollisionMesh.remove_attached_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.remove_attached_collision_mesh.html#compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.remove_attached_collision_mesh">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="RemoveAttachedCollisionMesh.remove_attached_collision_mesh"><a class="viewcode-back" href="../../../../generated/compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.remove_attached_collision_mesh.html#compas_fab.backends.interfaces.RemoveAttachedCollisionMesh.remove_attached_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">remove_attached_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove an attached collision mesh from the robot.</span>
 
 <span class="sd">        Parameters</span>

@@ -270,6 +270,11 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s1">&#39;This method is only callable once a client is assigned&#39;</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="PlanningScene.reset"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.reset.html#compas_fab.robots.PlanningScene.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resets the planning scene, removing all added collision meshes.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_client</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">reset_planning_scene</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="PlanningScene.add_collision_mesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh">[docs]</a>    <span class="k">def</span> <span class="nf">add_collision_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collision_mesh</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a collision mesh to the planning scene.</span>
 
