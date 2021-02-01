@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <title>compas_fab - compas_fab.backends.ros.fileserver_loader</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -327,6 +329,7 @@
             <span class="c1"># XML parsers, so, we just get rid of it for DAE files</span>
             <span class="k">if</span> <span class="n">file_extension</span> <span class="o">==</span> <span class="s1">&#39;dae&#39;</span><span class="p">:</span>
                 <span class="n">file_content</span> <span class="o">=</span> <span class="n">file_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;xmlns=&quot;http://www.collada.org/2005/11/COLLADASchema&quot;&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">file_content</span> <span class="o">=</span> <span class="n">file_content</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;xmlns=&quot;https://www.collada.org/2005/11/COLLADASchema&quot;&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 
             <span class="c1"># compas.files does not support file-like objects so we need to</span>
             <span class="c1"># save the file to disk always. If local caching is enabled,</span>

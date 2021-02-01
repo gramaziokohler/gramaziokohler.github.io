@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <title>compas_fab - 3.7. Creating a URDF with an UR5 robot and a custom end-effector</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -194,7 +196,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 </div>
 <p>Paste the following into the file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- Here we define the 2 parameters of the macro --&gt;</span>
   <span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;measurement_tool&quot;</span> <span class="na">params=</span><span class="s">&quot;prefix connected_to&quot;</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- Create a fixed joint with a parameterized name. --&gt;</span>
@@ -249,7 +251,7 @@ urdf.</p>
 </div>
 <p>Paste the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span> <span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span> <span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
 
   <span class="c">&lt;!-- ur5 --&gt;</span>
   <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur5.urdf.xacro&quot;</span> <span class="nt">/&gt;</span>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <title>compas_fab - 3.5. Plan motion</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -126,7 +128,8 @@ make sure you have the <a class="reference internal" href="../../backends/ros.ht
 configured and the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">UR5 Demo</span></a> started.</p>
 </div>
 <p>There are 2 function that allow to plan a robotic movement without collisions:
-<cite>plan_cartesian_motion</cite> and <cite>plan_motion</cite>.</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">plan_motion</span></code>.</p>
 <div class="section" id="plan-cartesian-motion">
 <h2><span class="section-number">3.5.1. </span>Plan cartesian motion</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
@@ -159,8 +162,8 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 </div>
 <div class="section" id="id1">
 <h2><span class="section-number">3.5.2. </span>Plan motion</h2>
-<p>In contrast to the cartesian path, the <cite>plan_motion</cite> allows to describe the
-goal with constraints rather than defined frames.</p>
+<p>In contrast to the cartesian path, the <code class="xref py py-class docutils literal notranslate"><span class="pre">plan_motion</span></code>
+allows to describe the goal with constraints rather than defined frames.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
