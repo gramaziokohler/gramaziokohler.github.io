@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>COMPAS FAB</title>
+  
+  <title>compas_fab - Changelog</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,23 +21,12 @@
   
     <link rel="next" title="License" href="license.html" />
   
-  
+
   
     <link rel="prev" title="Citing" href="authors.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-  <style>
-    .footer-text,
-    .footer-link,
-    .footer-title {
-      color: rgba(255, 255, 255, 0.25);
-    }
-    .footer-link:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    </style>
 </head>
 
 <body data-spy="scroll" data-target="#compas-toc">
@@ -53,18 +44,24 @@
       </ul>
       <!-- primary -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
-        
         <!-- version -->
+        
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.13.1
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
             
@@ -104,30 +101,68 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 pt-2 pb-5 compas-content" role="main">
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-3 bg-white px-0">
+            <li class="breadcrumb-item"><a href="index.html">docs</a></li>
+            
+            <li class="breadcrumb-item active" aria-current="page">Changelog</li>
+          </ol>
+        </nav>
+        
+
         
         
         <div class="section" id="changelog">
-<h1 class="display-4 p-0 mb-5">Changelog</h1>
+<h1>Changelog</h1>
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
 and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <div class="section" id="unreleased">
 <h2>Unreleased</h2>
 <p><strong>Added</strong></p>
+<p><strong>Changed</strong></p>
+<p><strong>Fixed</strong></p>
+<p><strong>Deprecated</strong></p>
+<p><strong>Removed</strong></p>
+</div>
+<div class="section" id="id1">
+<h2>0.16.0</h2>
+<p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.0</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>0.15.0</h2>
+<p><strong>Added</strong></p>
+<p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.19</span></code></p></li>
+</ul>
+<p><strong>Fixed</strong></p>
+<p><strong>Deprecated</strong></p>
+<p><strong>Removed</strong></p>
+</div>
+<div class="section" id="id3">
+<h2>0.14.0</h2>
+<p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added new backend feature <code class="docutils literal notranslate"><span class="pre">ResetPlanningScene</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">MoveItResetPlanningScene</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.18</span></code></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">compas.IPY</span></code> to check for IronPython</p></li>
+</ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> of <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
 </ul>
-<p><strong>Deprecated</strong></p>
-<p><strong>Removed</strong></p>
 </div>
-<div class="section" id="id1">
+<div class="section" id="id4">
 <h2>0.13.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -140,14 +175,14 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed freeze with some sync planning scene methods on Grasshopper/IronPython</p></li>
 </ul>
 </div>
-<div class="section" id="id2">
+<div class="section" id="id5">
 <h2>0.13.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.17</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id3">
+<div class="section" id="id6">
 <h2>0.12.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -195,7 +230,7 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 </ul>
 <p><strong>Removed</strong></p>
 </div>
-<div class="section" id="id4">
+<div class="section" id="id7">
 <h2>0.11.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -221,7 +256,7 @@ geometry if links and/or joints are not defined.</p></li>
 <li><p>In <a class="reference internal" href="reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>, changed the <code class="docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code>
 function with <code class="docutils literal notranslate"><span class="pre">tolerances_above</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerances_below</span></code>.</p></li>
 <li><p><a class="reference internal" href="reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale" title="compas_fab.robots.CollisionMesh.scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh.scale()</span></code></a> now takes a scale factor
-instead of a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v0.18)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
+instead of a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -229,7 +264,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fix support for trajectory constraints on kinematic planner</p></li>
 </ul>
 </div>
-<div class="section" id="id5">
+<div class="section" id="id8">
 <h2>0.10.2</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -240,7 +275,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.13</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id6">
+<div class="section" id="id9">
 <h2>0.10.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -248,7 +283,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Bumped <code class="docutils literal notranslate"><span class="pre">roslibpy</span></code> dependency to <code class="docutils literal notranslate"><span class="pre">0.7.1</span></code> to fix blocking service call issue on Mac OS</p></li>
 </ul>
 </div>
-<div class="section" id="id7">
+<div class="section" id="id10">
 <h2>0.10.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -269,7 +304,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed DAE parsing of meshes with multiple triangle sets</p></li>
 </ul>
 </div>
-<div class="section" id="id8">
+<div class="section" id="id11">
 <h2>0.9.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -282,7 +317,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.11</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id9">
+<div class="section" id="id12">
 <h2>0.8.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -296,7 +331,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed DAE support on ROS File loader</p></li>
 </ul>
 </div>
-<div class="section" id="id10">
+<div class="section" id="id13">
 <h2>0.7.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -325,7 +360,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed missing planner initialization when used without context manager.</p></li>
 </ul>
 </div>
-<div class="section" id="id11">
+<div class="section" id="id14">
 <h2>0.6.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -348,7 +383,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id12">
+<div class="section" id="id15">
 <h2>0.5.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -385,7 +420,7 @@ to the new trajectory classes.</p></li>
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
 </div>
-<div class="section" id="id13">
+<div class="section" id="id16">
 <h2>0.4.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -396,7 +431,7 @@ to the new trajectory classes.</p></li>
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <code class="docutils literal notranslate"><span class="pre">compas</span></code> core.</p></li>
 </ul>
 </div>
-<div class="section" id="id14">
+<div class="section" id="id17">
 <h2>0.4.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -407,7 +442,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.10</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id15">
+<div class="section" id="id18">
 <h2>0.3.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -421,14 +456,14 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.8</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id16">
+<div class="section" id="id19">
 <h2>0.2.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
 </div>
-<div class="section" id="id17">
+<div class="section" id="id20">
 <h2>0.2.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -437,7 +472,7 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.3.2</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id18">
+<div class="section" id="id21">
 <h2>0.1.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -450,7 +485,7 @@ to the new trajectory classes.</p></li>
       </main>
       <!-- content -->
       <!-- sidebar -->
-      <div class="col-12 col-md-3 compas-sidebar" role="navigation"> 
+      <div class="col-12 col-md-3 compas-sidebar" role="navigation">
         <form id="search" class="d-flex align-items-center compas-searchbox" action="search.html" method="get">
           <input class="form-control" type="text" name="q" placeholder="Search docs" />
           <input type="hidden" name="check_keywords" value="yes" />
@@ -484,24 +519,27 @@ to the new trajectory classes.</p></li>
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Changelog</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#unreleased">Unreleased</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.13.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.13.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.12.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.11.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.10.2</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.10.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.10.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.9.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.8.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.7.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.6.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id12">0.5.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id13">0.4.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id14">0.4.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id15">0.3.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id16">0.2.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id17">0.2.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id18">0.1.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.16.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.15.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.14.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.13.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.13.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.12.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.11.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.10.2</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.10.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.10.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.9.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id12">0.8.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id13">0.7.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id14">0.6.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id15">0.5.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id16">0.4.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id17">0.4.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id18">0.3.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id19">0.2.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id20">0.2.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id21">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -512,24 +550,48 @@ to the new trajectory classes.</p></li>
   </div>
   <!-- main -->
   <!-- footer -->
+  <footer class="compas-footer">
+    <nav class="nav p-2">
+      
+        <a href="authors.html" title="Citing" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
+          <div class="nav-title flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Previous</div>
+            Citing
+          </div>
+        </a>
+      
+
+      
+        <a href="license.html" title="License" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+          <div class="nav-title footer-link flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Next</div>
+            License
+          </div>
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
+        </a>
+      
+    </nav>  
+  </footer>
   <!-- footer -->
+  <!-- below -->
   <div class="below py-5" style="background-color: #222;">
     <div class="container">
       <div class="row flex-column">
       <div class="col-12 col-md-6 mx-md-auto text-center">
-        <h4 class="pb-3 footer-text">COMPAS</h4>
-        <p class="footer-text">
+        <h4 class="pb-3 below-text">COMPAS</h4>
+        <p class="below-text">
           A computational framework for collaboration and research
           in Architecture, Engineering, Fabrication, and Construction.
         </p>
         <nav class="nav justify-content-center pb-3">
-          <a class="nav-link mx-2 px-0 footer-link" href="http://github.com/compas-dev" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://github.com/compas-dev" target="_blank">
             <span class="fab fa-github fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="http://forum.compas-framework.org" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://forum.compas-framework.org" target="_blank">
             <span class="fab fa-discourse fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="https://pypi.org/project/COMPAS/" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="https://pypi.org/project/COMPAS/" target="_blank">
             <span class="fab fa-python fa-1x"></span>
           </a>
         </nav>
@@ -537,16 +599,17 @@ to the new trajectory classes.</p></li>
       </div>
       <div class="row">
       <div class="col text-center">
-        <p class="p-0 m-0 footer-text">Copyright &copy; 2017-2020 compas-dev</p>
+        <p class="p-0 m-0 below-text">Copyright &copy; 2017-2021 compas-dev</p>
       </div>
       </div>
     </div>
   </div>
-
+  <!-- below -->
+  <!-- scripts -->
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.13.1',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -595,8 +658,8 @@ to the new trajectory classes.</p></li>
       });
     })
   }
-
   </script>
+  <!-- scripts -->
   
   
 </body>

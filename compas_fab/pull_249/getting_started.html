@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>COMPAS FAB</title>
+  
+  <title>compas_fab - Getting started</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,23 +21,12 @@
   
     <link rel="next" title="Working with backends" href="backends.html" />
   
-  
+
   
     <link rel="prev" title="Overview" href="overview.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-  <style>
-    .footer-text,
-    .footer-link,
-    .footer-title {
-      color: rgba(255, 255, 255, 0.25);
-    }
-    .footer-link:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    </style>
 </head>
 
 <body data-spy="scroll" data-target="#compas-toc">
@@ -53,18 +44,24 @@
       </ul>
       <!-- primary -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
-        
         <!-- version -->
+        
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.13.1
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
             
@@ -104,14 +101,24 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 pt-2 pb-5 compas-content" role="main">
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-3 bg-white px-0">
+            <li class="breadcrumb-item"><a href="index.html">docs</a></li>
+            
+            <li class="breadcrumb-item active" aria-current="page">Getting started</li>
+          </ol>
+        </nav>
+        
+
         
         
         <div class="section" id="getting-started">
-<h1 class="display-4 p-0 mb-5">Getting started</h1>
+<h1>Getting started</h1>
 <div class="section" id="installation">
 <h2>Installation</h2>
-<p>The recommended way to install <strong>COMPAS FAB</strong> is to use <a class="reference external" href="https://conda.io/docs/">Anaconda/conda</a>:</p>
+<p>The recommended way to install <strong>COMPAS FAB</strong> is to use <a class="reference external" href="https://docs.conda.io/">Anaconda/conda</a>:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -c conda-forge compas_fab
 </code></pre></div>
 </div>
@@ -122,7 +129,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On Windows, you may need to install
-<a class="reference external" href="https://www.scivision.co/python-windows-visual-c++-14-required/">Microsoft Visual C++ 14.0</a>.</p>
+<a class="reference external" href="https://www.scivision.co/python-windows-visual-c-14-required/">Microsoft Visual C++ 14.0</a>.</p>
 </div>
 <p>Once the installation is completed, you can verify your setup.
 Start Python from the command prompt and run the following:</p>
@@ -130,6 +137,31 @@ Start Python from the command prompt and run the following:</p>
 </code></pre></div>
 </div>
 <p>You are ready to use <strong>COMPAS FAB</strong>!</p>
+</div>
+<div class="section" id="update">
+<h2>Update</h2>
+<div class="section" id="update-with-conda">
+<h3>Update with conda</h3>
+<p>To update COMPAS to the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code></p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda update compas_fab
+</code></pre></div>
+</div>
+<p>To switch to a specific version</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install <span class="nv">compas_fab</span><span class="o">=</span><span class="m">0</span>.15.0
+</code></pre></div>
+</div>
+</div>
+<div class="section" id="update-with-pip">
+<h3>Update with pip</h3>
+<p>If you installed COMPAS with <code class="docutils literal notranslate"><span class="pre">pip</span></code> the update command is the following</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install --upgrade compas_fab
+</code></pre></div>
+</div>
+<p>Or to switch to a specific version</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install <span class="nv">compas_fab</span><span class="o">==</span><span class="m">0</span>.15.0
+</code></pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="working-in-rhino">
 <h2>Working in Rhino</h2>
@@ -144,7 +176,7 @@ run it to verify that your installation is working.</p>
 <div class="section" id="working-in-blender">
 <h2>Working in Blender</h2>
 <p>Once <strong>COMPAS</strong> itself is installed for Blender following the
-<a class="reference external" href="https://compas.dev/compas/gettingstarted/cad/blender.html">documented procedure</a>,
+<a class="reference external" href="https://compas.dev/compas/latest/gettingstarted/blender.html">documented procedure</a>,
 <strong>COMPAS FAB</strong> will automatically be available as well after installing it.</p>
 </div>
 <div class="section" id="working-in-visual-studio-code">
@@ -206,8 +238,8 @@ the newly selected interpreter will be used.</p>
 <li><p><a class="reference internal" href="backends.html#backends"><span class="std std-ref">Working with backends</span></a></p></li>
 <li><p><a class="reference internal" href="examples.html#examples"><span class="std std-ref">COMPAS FAB Examples</span></a></p></li>
 <li><p><a class="reference internal" href="reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
-<li><p><a class="reference external" href="https://compas.dev/compas/tutorial.html">COMPAS Tutorials</a></p></li>
-<li><p><a class="reference external" href="https://compas.dev/compas/api.html">COMPAS API Reference</a></p></li>
+<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial.html">COMPAS Tutorials</a></p></li>
+<li><p><a class="reference external" href="https://compas.dev/compas/latest/api.html">COMPAS API Reference</a></p></li>
 </ul>
 </div>
 </div>
@@ -216,7 +248,7 @@ the newly selected interpreter will be used.</p>
       </main>
       <!-- content -->
       <!-- sidebar -->
-      <div class="col-12 col-md-3 compas-sidebar" role="navigation"> 
+      <div class="col-12 col-md-3 compas-sidebar" role="navigation">
         <form id="search" class="d-flex align-items-center compas-searchbox" action="search.html" method="get">
           <input class="form-control" type="text" name="q" placeholder="Search docs" />
           <input type="hidden" name="check_keywords" value="yes" />
@@ -250,6 +282,11 @@ the newly selected interpreter will be used.</p>
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Getting started</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#installation">Installation</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#update">Update</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#update-with-conda">Update with conda</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#update-with-pip">Update with pip</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="#working-in-rhino">Working in Rhino</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#working-in-blender">Working in Blender</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#working-in-visual-studio-code">Working in Visual Studio Code</a><ul class="nav flex-column">
@@ -268,24 +305,48 @@ the newly selected interpreter will be used.</p>
   </div>
   <!-- main -->
   <!-- footer -->
+  <footer class="compas-footer">
+    <nav class="nav p-2">
+      
+        <a href="overview.html" title="Overview" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
+          <div class="nav-title flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Previous</div>
+            Overview
+          </div>
+        </a>
+      
+
+      
+        <a href="backends.html" title="Working with backends" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+          <div class="nav-title footer-link flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Next</div>
+            Working with backends
+          </div>
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
+        </a>
+      
+    </nav>  
+  </footer>
   <!-- footer -->
+  <!-- below -->
   <div class="below py-5" style="background-color: #222;">
     <div class="container">
       <div class="row flex-column">
       <div class="col-12 col-md-6 mx-md-auto text-center">
-        <h4 class="pb-3 footer-text">COMPAS</h4>
-        <p class="footer-text">
+        <h4 class="pb-3 below-text">COMPAS</h4>
+        <p class="below-text">
           A computational framework for collaboration and research
           in Architecture, Engineering, Fabrication, and Construction.
         </p>
         <nav class="nav justify-content-center pb-3">
-          <a class="nav-link mx-2 px-0 footer-link" href="http://github.com/compas-dev" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://github.com/compas-dev" target="_blank">
             <span class="fab fa-github fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="http://forum.compas-framework.org" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://forum.compas-framework.org" target="_blank">
             <span class="fab fa-discourse fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="https://pypi.org/project/COMPAS/" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="https://pypi.org/project/COMPAS/" target="_blank">
             <span class="fab fa-python fa-1x"></span>
           </a>
         </nav>
@@ -293,16 +354,17 @@ the newly selected interpreter will be used.</p>
       </div>
       <div class="row">
       <div class="col text-center">
-        <p class="p-0 m-0 footer-text">Copyright &copy; 2017-2020 compas-dev</p>
+        <p class="p-0 m-0 below-text">Copyright &copy; 2017-2021 compas-dev</p>
       </div>
       </div>
     </div>
   </div>
-
+  <!-- below -->
+  <!-- scripts -->
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.13.1',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -351,8 +413,8 @@ the newly selected interpreter will be used.</p>
       });
     })
   }
-
   </script>
+  <!-- scripts -->
   
   
 </body>

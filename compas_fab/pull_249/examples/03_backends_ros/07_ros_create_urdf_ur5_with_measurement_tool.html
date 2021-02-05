@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>COMPAS FAB</title>
+  
+  <title>compas_fab - 3.7. Creating a URDF with an UR5 robot and a custom end-effector</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,23 +21,12 @@
   
     <link rel="next" title="3.8. Creating a MoveIt! package from the custom created URDF" href="08_ros_create_moveit_package_from_custom_urdf.html" />
   
-  
+
   
     <link rel="prev" title="3.6. ROS in Grasshopper" href="06_ros_in_grasshopper.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-  <style>
-    .footer-text,
-    .footer-link,
-    .footer-title {
-      color: rgba(255, 255, 255, 0.25);
-    }
-    .footer-link:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    </style>
 </head>
 
 <body data-spy="scroll" data-target="#compas-toc">
@@ -53,18 +44,24 @@
       </ul>
       <!-- primary -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
-        
         <!-- version -->
+        
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.13.1
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
             
@@ -104,11 +101,25 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 pt-2 pb-5 compas-content" role="main">
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-3 bg-white px-0">
+            <li class="breadcrumb-item"><a href="../../index.html">docs</a></li>
+            
+              <li class="breadcrumb-item"><a href="../../examples.html">Examples</a></li>
+            
+              <li class="breadcrumb-item"><a href="../03_backends_ros.html"><span class="section-number">3. </span>Backends: ROS</a></li>
+            
+            <li class="breadcrumb-item active" aria-current="page"><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector</li>
+          </ol>
+        </nav>
+        
+
         
         
         <div class="section" id="creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector">
-<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1 class="display-4 p-0 mb-5"><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector</h1>
+<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector</h1>
 <div class="section" id="export-your-meshes">
 <h2><span class="section-number">3.7.1. </span>Export your meshes</h2>
 <p>In ROS, robot link (and end-effector) geometry is defined with 2 different
@@ -176,7 +187,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For more examples, have a look at the
-<a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File">Xacro tutorials on the ROS Wiki</a>.</p>
+<a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Using%20Xacro%20to%20Clean%20Up%20a%20URDF%20File">Xacro tutorials on the ROS Wiki</a>.</p>
 </div>
 <p>Go to the <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder and create a xacro file for your end-effector with the text editor of your choice (e.g. <code class="docutils literal notranslate"><span class="pre">pico</span></code>):</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">urdf</span>
@@ -185,7 +196,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 </div>
 <p>Paste the following into the file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
   <span class="c">&lt;!-- Here we define the 2 parameters of the macro --&gt;</span>
   <span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;measurement_tool&quot;</span> <span class="na">params=</span><span class="s">&quot;prefix connected_to&quot;</span><span class="nt">&gt;</span>
     <span class="c">&lt;!-- Create a fixed joint with a parameterized name. --&gt;</span>
@@ -240,7 +251,7 @@ urdf.</p>
 </div>
 <p>Paste the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;http://ros.org/wiki/xacro&quot;</span> <span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span> <span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
 
   <span class="c">&lt;!-- ur5 --&gt;</span>
   <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur5.urdf.xacro&quot;</span> <span class="nt">/&gt;</span>
@@ -368,11 +379,11 @@ that they match the following:</p>
 <div class="section" id="further-links">
 <h2><span class="section-number">3.7.6. </span>Further links</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
-<li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
-<li><p><a class="reference external" href="http://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file">Create your own URDF file</a></p></li>
-<li><p><a class="reference external" href="http://wiki.ros.org/Industrial/Tutorials/Create%20a%20URDF%20for%20an%20Industrial%20Robot">Create a URDF for an Industrial Robot</a></p></li>
-<li><p><a class="reference external" href="http://wiki.ros.org/Industrial/Tutorials/WorkingWithRosIndustrialRobotSupportPackages">Working with ROS-Industrial Robot Support Packages</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Create%20your%20own%20urdf%20file">Create your own URDF file</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/Industrial/Tutorials/Create%20a%20URDF%20for%20an%20Industrial%20Robot">Create a URDF for an Industrial Robot</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ros.org/Industrial/Tutorials/WorkingWithRosIndustrialRobotSupportPackages">Working with ROS-Industrial Robot Support Packages</a></p></li>
 </ul>
 </div>
 </div>
@@ -381,7 +392,7 @@ that they match the following:</p>
       </main>
       <!-- content -->
       <!-- sidebar -->
-      <div class="col-12 col-md-3 compas-sidebar" role="navigation"> 
+      <div class="col-12 col-md-3 compas-sidebar" role="navigation">
         <form id="search" class="d-flex align-items-center compas-searchbox" action="../../search.html" method="get">
           <input class="form-control" type="text" name="q" placeholder="Search docs" />
           <input type="hidden" name="check_keywords" value="yes" />
@@ -451,24 +462,48 @@ that they match the following:</p>
   </div>
   <!-- main -->
   <!-- footer -->
+  <footer class="compas-footer">
+    <nav class="nav p-2">
+      
+        <a href="06_ros_in_grasshopper.html" title="<span class="section-number">3.6. </span>ROS in Grasshopper" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
+          <div class="nav-title flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Previous</div>
+            <span class="section-number">3.6. </span>ROS in Grasshopper
+          </div>
+        </a>
+      
+
+      
+        <a href="08_ros_create_moveit_package_from_custom_urdf.html" title="<span class="section-number">3.8. </span>Creating a MoveIt! package from the custom created URDF" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+          <div class="nav-title footer-link flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Next</div>
+            <span class="section-number">3.8. </span>Creating a MoveIt! package from the custom created URDF
+          </div>
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
+        </a>
+      
+    </nav>  
+  </footer>
   <!-- footer -->
+  <!-- below -->
   <div class="below py-5" style="background-color: #222;">
     <div class="container">
       <div class="row flex-column">
       <div class="col-12 col-md-6 mx-md-auto text-center">
-        <h4 class="pb-3 footer-text">COMPAS</h4>
-        <p class="footer-text">
+        <h4 class="pb-3 below-text">COMPAS</h4>
+        <p class="below-text">
           A computational framework for collaboration and research
           in Architecture, Engineering, Fabrication, and Construction.
         </p>
         <nav class="nav justify-content-center pb-3">
-          <a class="nav-link mx-2 px-0 footer-link" href="http://github.com/compas-dev" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://github.com/compas-dev" target="_blank">
             <span class="fab fa-github fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="http://forum.compas-framework.org" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://forum.compas-framework.org" target="_blank">
             <span class="fab fa-discourse fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="https://pypi.org/project/COMPAS/" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="https://pypi.org/project/COMPAS/" target="_blank">
             <span class="fab fa-python fa-1x"></span>
           </a>
         </nav>
@@ -476,16 +511,17 @@ that they match the following:</p>
       </div>
       <div class="row">
       <div class="col text-center">
-        <p class="p-0 m-0 footer-text">Copyright &copy; 2017-2020 compas-dev</p>
+        <p class="p-0 m-0 below-text">Copyright &copy; 2017-2021 compas-dev</p>
       </div>
       </div>
     </div>
   </div>
-
+  <!-- below -->
+  <!-- scripts -->
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.13.1',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -534,8 +570,8 @@ that they match the following:</p>
       });
     })
   }
-
   </script>
+  <!-- scripts -->
   
   
 </body>

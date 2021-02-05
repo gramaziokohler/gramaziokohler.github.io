@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>COMPAS FAB</title>
+  
+  <title>compas_fab - ROS</title>
+  
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -19,23 +21,12 @@
   
     <link rel="next" title="V-REP" href="vrep.html" />
   
-  
+
   
     <link rel="prev" title="PyBullet" href="pybullet.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-  <style>
-    .footer-text,
-    .footer-link,
-    .footer-title {
-      color: rgba(255, 255, 255, 0.25);
-    }
-    .footer-link:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-    </style>
 </head>
 
 <body data-spy="scroll" data-target="#compas-toc">
@@ -53,18 +44,24 @@
       </ul>
       <!-- primary -->
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
-        
         <!-- version -->
+        
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.13.1
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
             
@@ -104,12 +101,24 @@
   <div class="container-fluid">
     <div class="row">
       <!-- main -->
-      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 py-5 compas-content" role="main">
+      <main class="col-12 col-md-9 col-xl-7 px-2 px-md-5 pt-2 pb-5 compas-content" role="main">
+        
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-3 bg-white px-0">
+            <li class="breadcrumb-item"><a href="../index.html">docs</a></li>
+            
+              <li class="breadcrumb-item"><a href="../backends.html">Working with backends</a></li>
+            
+            <li class="breadcrumb-item active" aria-current="page">ROS</li>
+          </ol>
+        </nav>
+        
+
         
         
         <div class="section" id="ros">
-<span id="ros-backend"></span><h1 class="display-4 p-0 mb-5">ROS</h1>
-<p>The <a class="reference external" href="http://www.ros.org">Robot Operating System</a> (ROS) is a flexible framework
+<span id="ros-backend"></span><h1>ROS</h1>
+<p>The <a class="reference external" href="https://www.ros.org">Robot Operating System</a> (ROS) is a flexible framework
 for writing robot software. It is a collection of tools, libraries, and
 conventions that aim to simplify the task of creating complex and robust
 robot behavior across a wide variety of robotic platforms.</p>
@@ -125,10 +134,10 @@ virtualized network within your computer.</p>
 <p>Besides easing deployment, containers have the added benefit of ensuring
 repeatability.</p>
 <p>Once you made sure <a class="reference external" href="https://www.docker.com/">Docker</a> is running, you can run ROS nodes as containers.
-Gramazio Kohler Research publishes ROS images on <a class="reference external" href="https://hub.docker.com/r/gramaziokohler/">Docker Hub</a> but there are
+Gramazio Kohler Research publishes ROS images on <a class="reference external" href="https://hub.docker.com/u/gramaziokohler/">Docker Hub</a> but there are
 many more to be found online.</p>
 <p>You can start a minimally functional ROS system, containing a ROS master and
-the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
+the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run -p <span class="m">9090</span>:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
@@ -146,7 +155,7 @@ and run the following command:</p>
 </code></pre></div>
 </div>
 <p>You now have a ROS system with two nodes running: a ROS master and
-the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate with ROS.</p>
+the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate with ROS.</p>
 <p>Creating new ROS bundles using containers is usually only a matter of combining
 them into a new <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
 <p id="ros-bundles-list"><strong>List of complete ROS systems</strong></p>
@@ -313,7 +322,7 @@ them into a new <code class="docutils literal notranslate"><span class="pre">doc
 <p>The usual but most involved way to install ROS is on a Linux machine,
 either virtual or real. The machine should have an IP address reachable
 from your computer.</p>
-<p>Follow the <a class="reference external" href="http://wiki.ros.org/ROS/Installation">ROS installation instructions</a> for all the details, or
+<p>Follow the <a class="reference external" href="https://wiki.ros.org/ROS/Installation">ROS installation instructions</a> for all the details, or
 alternatively, use the following commands as a brief outline of the steps
 required to install ROS on <strong>Ubuntu 16.04</strong>:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</span>
@@ -334,7 +343,7 @@ catkin_make
 </code></pre></div>
 </div>
 <p>Once ROS is installed, you can start a minimally functional ROS system,
-containing a ROS master and the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
+containing a ROS master and the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
@@ -361,7 +370,7 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
 <div class="section" id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v0.18)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
+<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.0)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/02_description_models.html#examples-description-models"><span class="std std-ref">Examples: Description models</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/03_backends_ros.html#examples-ros"><span class="std std-ref">Examples: ROS Backend</span></a></p></li>
 <li><p><a class="reference internal" href="../reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
@@ -379,7 +388,7 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
       </main>
       <!-- content -->
       <!-- sidebar -->
-      <div class="col-12 col-md-3 compas-sidebar" role="navigation"> 
+      <div class="col-12 col-md-3 compas-sidebar" role="navigation">
         <form id="search" class="d-flex align-items-center compas-searchbox" action="../search.html" method="get">
           <input class="form-control" type="text" name="q" placeholder="Search docs" />
           <input type="hidden" name="check_keywords" value="yes" />
@@ -435,24 +444,48 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
   </div>
   <!-- main -->
   <!-- footer -->
+  <footer class="compas-footer">
+    <nav class="nav p-2">
+      
+        <a href="pybullet.html" title="PyBullet" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
+          <div class="nav-title flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Previous</div>
+            PyBullet
+          </div>
+        </a>
+      
+
+      
+        <a href="vrep.html" title="V-REP" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+          <div class="nav-title footer-link flex-grow-1 align-self-center">
+            <div class="nav-direction small font-weight-light">Next</div>
+            V-REP
+          </div>
+          <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
+        </a>
+      
+    </nav>  
+  </footer>
   <!-- footer -->
+  <!-- below -->
   <div class="below py-5" style="background-color: #222;">
     <div class="container">
       <div class="row flex-column">
       <div class="col-12 col-md-6 mx-md-auto text-center">
-        <h4 class="pb-3 footer-text">COMPAS</h4>
-        <p class="footer-text">
+        <h4 class="pb-3 below-text">COMPAS</h4>
+        <p class="below-text">
           A computational framework for collaboration and research
           in Architecture, Engineering, Fabrication, and Construction.
         </p>
         <nav class="nav justify-content-center pb-3">
-          <a class="nav-link mx-2 px-0 footer-link" href="http://github.com/compas-dev" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://github.com/compas-dev" target="_blank">
             <span class="fab fa-github fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="http://forum.compas-framework.org" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="http://forum.compas-framework.org" target="_blank">
             <span class="fab fa-discourse fa-1x"></span>
           </a>
-          <a class="nav-link mx-2 px-0 footer-link" href="https://pypi.org/project/COMPAS/" target="_blank">
+          <a class="nav-link mx-2 px-0 below-link" href="https://pypi.org/project/COMPAS/" target="_blank">
             <span class="fab fa-python fa-1x"></span>
           </a>
         </nav>
@@ -460,16 +493,17 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
       </div>
       <div class="row">
       <div class="col text-center">
-        <p class="p-0 m-0 footer-text">Copyright &copy; 2017-2020 compas-dev</p>
+        <p class="p-0 m-0 below-text">Copyright &copy; 2017-2021 compas-dev</p>
       </div>
       </div>
     </div>
   </div>
-
+  <!-- below -->
+  <!-- scripts -->
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.13.1',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -518,8 +552,8 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
       });
     })
   }
-
   </script>
+  <!-- scripts -->
   
   
 </body>
