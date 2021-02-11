@@ -129,25 +129,37 @@
 </code></pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Make sure all tests pass:</p></li>
+<li><p>From the <cite>compas_fab</cite> directory, run the docker containers:</p></li>
 </ol>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;tests/integration_setup/docker-compose.yml&quot;&quot; up -d --build</span>
 </code></pre></div>
 </div>
 <ol class="arabic simple" start="5">
+<li><p>Make sure all tests pass:</p></li>
+</ol>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span> <span class="o">--</span><span class="n">doctest</span> <span class="o">--</span><span class="n">codeblock</span>
+</code></pre></div>
+</div>
+<ol class="arabic simple" start="6">
 <li><p>Start making your changes to the <strong>master</strong> branch (or branch off of it).</p></li>
 <li><p>Make sure all tests still pass:</p></li>
 </ol>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span> <span class="o">--</span><span class="n">doctest</span> <span class="o">--</span><span class="n">codeblock</span>
 </code></pre></div>
 </div>
-<ol class="arabic simple" start="7">
+<ol class="arabic simple" start="8">
+<li><p>From the <cite>compas_fab</cite> directory, stop the docker containers:</p></li>
+</ol>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;tests/integration_setup/docker-compose.yml&quot;&quot; down</span>
+</code></pre></div>
+</div>
+<ol class="arabic simple" start="9">
 <li><p>Check there are no linter errors:</p></li>
 </ol>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">lint</span>
 </code></pre></div>
 </div>
-<ol class="arabic simple" start="8">
+<ol class="arabic simple" start="10">
 <li><p>Add yourself to <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code>.</p></li>
 <li><p>Commit your changes and push your branch to GitHub.</p></li>
 <li><p>Create a <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">pull request</a> through the GitHub website.</p></li>
