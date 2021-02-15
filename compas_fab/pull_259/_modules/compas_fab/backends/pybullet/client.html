@@ -325,6 +325,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_add_ids_to_robot_links</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PyBulletClient.reload_from_cache"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.reload_from_cache.html#compas_fab.backends.PyBulletClient.reload_from_cache">[docs]</a>    <span class="k">def</span> <span class="nf">reload_from_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reloads the PyBullet server with the robot&#39;s cached model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot to be saved for use with PyBullet.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_robot_configuration</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="n">cached_robot_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="n">cached_robot_filepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot_filepath</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
@@ -340,6 +348,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">step_simulation</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.cache_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.cache_robot.html#compas_fab.backends.PyBulletClient.cache_robot">[docs]</a>    <span class="k">def</span> <span class="nf">cache_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves an editable copy of the robot&#39;s model and its meshes</span>
+<span class="sd">        for shadowing the state of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot to be saved for use with PyBullet.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If geometry has not been loaded.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">robot</span><span class="o">.</span><span class="n">ensure_geometry</span><span class="p">()</span>
         <span class="c1"># write meshes to cache</span>
         <span class="n">address_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -372,25 +394,76 @@
 
 <div class="viewcode-block" id="PyBulletClient.ensure_cached_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.ensure_cached_robot.html#compas_fab.backends.PyBulletClient.ensure_cached_robot">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if a :class:`compas_fab.robots.Robot` has been cached for use with PyBullet.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s1">&#39;This method is only callable once the robot has been cached.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.ensure_cached_robot_geometry"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.ensure_cached_robot_geometry.html#compas_fab.backends.PyBulletClient.ensure_cached_robot_geometry">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">ensure_cached_robot_geometry</span><span class="p">(</span><span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if the geometry of a :class:`compas_fab.robots.Robot` has been cached for use with PyBullet.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;robot_geometry_cached&#39;</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s1">&#39;This method is only callable once the robot with loaded geometry has been cached.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.get_cached_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_cached_robot.html#compas_fab.backends.PyBulletClient.get_cached_robot">[docs]</a>    <span class="k">def</span> <span class="nf">get_cached_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the editable copy of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`compas.robots.RobotModel`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If the robot has not been cached.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.get_cached_robot_filepath"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_cached_robot_filepath.html#compas_fab.backends.PyBulletClient.get_cached_robot_filepath">[docs]</a>    <span class="k">def</span> <span class="nf">get_cached_robot_filepath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the filepath of the editable copy of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`str`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If the robot has not been cached.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot_filepath&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.get_uid"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_uid.html#compas_fab.backends.PyBulletClient.get_uid">[docs]</a>    <span class="k">def</span> <span class="nf">get_uid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the internal PyBullet id of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cached_robot : :class:`compas.robots.RobotModel`</span>
+<span class="sd">            The robot model saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`int`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span></div>
 
     <span class="k">def</span> <span class="nf">_add_ids_to_robot_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
