@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -113,10 +115,10 @@
         
         
         <div class="section" id="getting-started">
-<h1>Getting started</h1>
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="installation">
-<h2>Installation</h2>
-<p>The recommended way to install <strong>COMPAS FAB</strong> is to use <a class="reference external" href="https://conda.io/docs/">Anaconda/conda</a>:</p>
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The recommended way to install <strong>COMPAS FAB</strong> is to use <a class="reference external" href="https://docs.conda.io/">Anaconda/conda</a>:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -c conda-forge compas_fab
 </code></pre></div>
 </div>
@@ -127,7 +129,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>On Windows, you may need to install
-<a class="reference external" href="https://www.scivision.co/python-windows-visual-c++-14-required/">Microsoft Visual C++ 14.0</a>.</p>
+<a class="reference external" href="https://www.scivision.dev/python-windows-visual-c-14-required/">Microsoft Visual C++ 14.0</a>.</p>
 </div>
 <p>Once the installation is completed, you can verify your setup.
 Start Python from the command prompt and run the following:</p>
@@ -137,9 +139,9 @@ Start Python from the command prompt and run the following:</p>
 <p>You are ready to use <strong>COMPAS FAB</strong>!</p>
 </div>
 <div class="section" id="update">
-<h2>Update</h2>
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="update-with-conda">
-<h3>Update with conda</h3>
+<h3>Update with conda<a class="headerlink" href="#update-with-conda" title="Permalink to this headline">¶</a></h3>
 <p>To update COMPAS to the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code></p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda update compas_fab
 </code></pre></div>
@@ -150,7 +152,7 @@ Start Python from the command prompt and run the following:</p>
 </div>
 </div>
 <div class="section" id="update-with-pip">
-<h3>Update with pip</h3>
+<h3>Update with pip<a class="headerlink" href="#update-with-pip" title="Permalink to this headline">¶</a></h3>
 <p>If you installed COMPAS with <code class="docutils literal notranslate"><span class="pre">pip</span></code> the update command is the following</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install --upgrade compas_fab
 </code></pre></div>
@@ -162,7 +164,7 @@ Start Python from the command prompt and run the following:</p>
 </div>
 </div>
 <div class="section" id="working-in-rhino">
-<h2>Working in Rhino</h2>
+<h2>Working in Rhino<a class="headerlink" href="#working-in-rhino" title="Permalink to this headline">¶</a></h2>
 <p>To make <strong>COMPAS FAB</strong> available inside Rhino, open the <em>command prompt</em>
 and type the following:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>python -m compas_rhino.install
@@ -172,13 +174,13 @@ and type the following:</p>
 run it to verify that your installation is working.</p>
 </div>
 <div class="section" id="working-in-blender">
-<h2>Working in Blender</h2>
+<h2>Working in Blender<a class="headerlink" href="#working-in-blender" title="Permalink to this headline">¶</a></h2>
 <p>Once <strong>COMPAS</strong> itself is installed for Blender following the
 <a class="reference external" href="https://compas.dev/compas/latest/gettingstarted/blender.html">documented procedure</a>,
 <strong>COMPAS FAB</strong> will automatically be available as well after installing it.</p>
 </div>
 <div class="section" id="working-in-visual-studio-code">
-<h2>Working in Visual Studio Code</h2>
+<h2>Working in Visual Studio Code<a class="headerlink" href="#working-in-visual-studio-code" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> is a free and open source text
 editor with very good support for Python programming.</p>
 <p>We recommend installing the following VS Code extensions:</p>
@@ -213,7 +215,7 @@ Kill all opened terminals for it to take effect.</p>
 </li>
 </ul>
 <div class="section" id="run-scripts">
-<h3>Run scripts</h3>
+<h3>Run scripts<a class="headerlink" href="#run-scripts" title="Permalink to this headline">¶</a></h3>
 <p>To run Python scripts from within VS Code, simply open the file and press
 <code class="docutils literal notranslate"><span class="pre">F5</span></code>. This will start the script with the debugger attached, which means
 you can add breakpoints (clicking on the gutter, next to the line numbers),
@@ -221,7 +223,7 @@ inspect variables and step into your code for debugging.</p>
 <p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">Ctrl+F5</span></code> to start the script without debugger.</p>
 </div>
 <div class="section" id="virtual-environments">
-<h3>Virtual environments</h3>
+<h3>Virtual environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">¶</a></h3>
 <p>If you are using <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your virtual environments, VS Code has
 built-in support for them. When a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is open on VS Code, the bottom
 left side of the <strong>Status bar</strong> will show the Python interpreter used to run
@@ -231,7 +233,7 @@ the newly selected interpreter will be used.</p>
 </div>
 </div>
 <div class="section" id="next-steps">
-<h2>Next Steps</h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="backends.html#backends"><span class="std std-ref">Working with backends</span></a></p></li>
 <li><p><a class="reference internal" href="examples.html#examples"><span class="std std-ref">COMPAS FAB Examples</span></a></p></li>
@@ -362,7 +364,7 @@ the newly selected interpreter will be used.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -117,10 +119,10 @@
         
         
         <div class="detail section" id="jointconstraint">
-<h1>JointConstraint</h1>
+<h1>JointConstraint<a class="headerlink" href="#jointconstraint" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="compas_fab.robots.JointConstraint">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">JointConstraint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">joint_name</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">tolerance_above</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">tolerance_below</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">weight</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#JointConstraint"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></code><code class="sig-name descname"><span class="pre">JointConstraint</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance_above</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance_below</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#JointConstraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compas_fab.robots.JointConstraint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></p>
 <p>Constrains the value of a joint to be within a certain bound.</p>
 <dl class="field-list simple">
@@ -183,16 +185,16 @@ other constraints. Closer to zero means less important.</p></li>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CONSTRAINT_TYPES</span></code></p></td>
-<td><p></p></td>
+<td><p>List of possible constraint types.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">JOINT</span></code></p></td>
-<td><p></p></td>
+<td><p>Joint constraint type.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ORIENTATION</span></code></p></td>
-<td><p></p></td>
+<td><p>Orientational constraint type.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">POSITION</span></code></p></td>
-<td><p></p></td>
+<td><p>Positional constraint type.</p></td>
 </tr>
 </tbody>
 </table>
@@ -335,7 +337,7 @@ other constraints. Closer to zero means less important.</p></li>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

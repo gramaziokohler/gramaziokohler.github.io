@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -117,10 +119,10 @@
         
         
         <div class="detail section" id="inertia">
-<h1>Inertia</h1>
+<h1>Inertia<a class="headerlink" href="#inertia" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="compas_fab.robots.Inertia">
-<em class="property">class </em><code class="sig-prename descclassname">compas_fab.robots.</code><code class="sig-name descname">Inertia</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inertia_tensor</span></em>, <em class="sig-param"><span class="n">mass</span></em>, <em class="sig-param"><span class="n">center_of_mass</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link">[source]</span></a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></code><code class="sig-name descname"><span class="pre">Inertia</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inertia_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_of_mass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/inertia.html#Inertia"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compas_fab.robots.Inertia" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The moments of inertia represent the spatial distribution of mass in a rigid body.</p>
 <p>It depends on the mass, size, and shape of a rigid body with units of
@@ -152,8 +154,7 @@ with [ixx, iyy, izz] as the principal moments of inertia and
 </div>
 <p class="rubric">Notes</p>
 <p>Assuming uniform mass density, inertial data can be obtained using the
-free software MeshLab, refering to this great tutorial:
-<a class="reference external" href="http://gazebosim.org/tutorials?tut=inertia">http://gazebosim.org/tutorials?tut=inertia</a></p>
+free software MeshLab, refering to this great <a class="reference external" href="http://gazebosim.org/tutorials?tut=inertia">tutorial</a>.</p>
 <p class="rubric">Methods</p>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -320,7 +321,7 @@ free software MeshLab, refering to this great tutorial:
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

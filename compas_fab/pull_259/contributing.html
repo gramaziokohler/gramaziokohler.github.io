@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -113,10 +115,10 @@
         
         
         <div class="section" id="contributor-s-guide">
-<span id="contributors-guide"></span><h1>Contributor’s Guide</h1>
+<span id="contributors-guide"></span><h1>Contributor’s Guide<a class="headerlink" href="#contributor-s-guide" title="Permalink to this headline">¶</a></h1>
 <p>Contributions are always welcome and greatly appreciated!</p>
 <div class="section" id="code-contributions">
-<h2>Code contributions</h2>
+<h2>Code contributions<a class="headerlink" href="#code-contributions" title="Permalink to this headline">¶</a></h2>
 <p>We love pull requests from everyone! Here’s a quick guide to improve the code:</p>
 <ol class="arabic simple">
 <li><p>Fork <a class="reference external" href="https://github.com/compas-dev/compas_fab">the repository</a> and clone the fork.</p></li>
@@ -127,28 +129,40 @@
 </code></pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Make sure all tests pass:</p></li>
+<li><p>From the <cite>compas_fab</cite> directory, run the docker containers:</p></li>
 </ol>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;tests/integration_setup/docker-compose.yml&quot;&quot; up -d --build</span>
 </code></pre></div>
 </div>
 <ol class="arabic simple" start="5">
+<li><p>Make sure all tests pass:</p></li>
+</ol>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span> <span class="o">--</span><span class="n">doctest</span> <span class="o">--</span><span class="n">codeblock</span>
+</code></pre></div>
+</div>
+<ol class="arabic simple" start="6">
 <li><p>Start making your changes to the <strong>master</strong> branch (or branch off of it).</p></li>
 <li><p>Make sure all tests still pass:</p></li>
 </ol>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">test</span> <span class="o">--</span><span class="n">doctest</span> <span class="o">--</span><span class="n">codeblock</span>
 </code></pre></div>
 </div>
-<ol class="arabic simple" start="7">
+<ol class="arabic simple" start="8">
+<li><p>From the <cite>compas_fab</cite> directory, stop the docker containers:</p></li>
+</ol>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;tests/integration_setup/docker-compose.yml&quot;&quot; down</span>
+</code></pre></div>
+</div>
+<ol class="arabic simple" start="9">
 <li><p>Check there are no linter errors:</p></li>
 </ol>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">lint</span>
 </code></pre></div>
 </div>
-<ol class="arabic simple" start="8">
+<ol class="arabic simple" start="10">
 <li><p>Add yourself to <code class="docutils literal notranslate"><span class="pre">AUTHORS.rst</span></code>.</p></li>
 <li><p>Commit your changes and push your branch to GitHub.</p></li>
-<li><p>Create a <a class="reference external" href="https://help.github.com/articles/about-pull-requests/">pull request</a> through the GitHub website.</p></li>
+<li><p>Create a <a class="reference external" href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">pull request</a> through the GitHub website.</p></li>
 </ol>
 <p>During development, use <a class="reference external" href="http://docs.pyinvoke.org/">pyinvoke</a> tasks on the
 command prompt to ease recurring operations:</p>
@@ -162,20 +176,21 @@ command prompt to ease recurring operations:</p>
 </ul>
 </div>
 <div class="section" id="documentation-improvements">
-<h2>Documentation improvements</h2>
+<h2>Documentation improvements<a class="headerlink" href="#documentation-improvements" title="Permalink to this headline">¶</a></h2>
 <p>We could always use more documentation, whether as part of the
 introduction/examples/usage documentation or API documentation in docstrings.</p>
-<p>Documentation is written in <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>
-and use <a class="reference external" href="http://sphinx-doc.org/index.html">Sphinx</a> with
-<a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html">numpy-style docstrings</a>
-to generate the HTML output.</p>
+<p>Documentation is written in <a class="reference external" href="https://docutils.sourceforge.io/rst.html">reStructuredText</a>
+and use <a class="reference external" href="https://www.sphinx-doc.org/">Sphinx</a> to generate the HTML output.</p>
+<p>The project uses Numpy style docstrings, see
+<a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html">Sphinx extension Napoleon’s documentation</a>
+for examples.</p>
 <p>Once you made the documentation changes locally, run the documentation generation:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">invoke</span> <span class="n">docs</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="bug-reports">
-<h2>Bug reports</h2>
+<h2>Bug reports<a class="headerlink" href="#bug-reports" title="Permalink to this headline">¶</a></h2>
 <p>When <a class="reference external" href="https://github.com/compas-dev/compas_fab/issues">reporting a bug</a>
 please include:</p>
 <ul class="simple">
@@ -186,7 +201,7 @@ please include:</p>
 </ul>
 </div>
 <div class="section" id="feature-requests-and-feedback">
-<h2>Feature requests and feedback</h2>
+<h2>Feature requests and feedback<a class="headerlink" href="#feature-requests-and-feedback" title="Permalink to this headline">¶</a></h2>
 <p>The best way to send feedback is to file an issue on
 <a class="reference external" href="https://github.com/compas-dev/compas_fab/issues">Github</a>. If you are proposing a feature:</p>
 <ul class="simple">
@@ -195,13 +210,13 @@ please include:</p>
 </ul>
 </div>
 <div class="section" id="a-note-on-architecture-for-backend-clients">
-<h2>A Note on Architecture for Backend Clients</h2>
+<h2>A Note on Architecture for Backend Clients<a class="headerlink" href="#a-note-on-architecture-for-backend-clients" title="Permalink to this headline">¶</a></h2>
 <p>To maintain consistency from one backend client to another and to promote modularity,
 we make use of several interfaces.  Please reference <a class="reference internal" href="architecture.html#architecture"><span class="std std-ref">Note on Architecture</span></a>
 for more details on how to add or amend a backend client.</p>
 </div>
 <div class="section" id="design-documents">
-<h2>Design documents</h2>
+<h2>Design documents<a class="headerlink" href="#design-documents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">Backend Client Architecture</a></li>
@@ -325,7 +340,7 @@ for more details on how to add or amend a backend client.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

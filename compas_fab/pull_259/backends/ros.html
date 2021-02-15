@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -115,8 +117,8 @@
         
         
         <div class="section" id="ros">
-<span id="ros-backend"></span><h1>ROS</h1>
-<p>The <a class="reference external" href="http://www.ros.org">Robot Operating System</a> (ROS) is a flexible framework
+<span id="ros-backend"></span><h1>ROS<a class="headerlink" href="#ros" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference external" href="https://www.ros.org">Robot Operating System</a> (ROS) is a flexible framework
 for writing robot software. It is a collection of tools, libraries, and
 conventions that aim to simplify the task of creating complex and robust
 robot behavior across a wide variety of robotic platforms.</p>
@@ -125,22 +127,22 @@ virtual), interconnected through a master controller.</p>
 <p>There are at least 3 different ways to run ROS: using Docker, using Linux, and
 using WSL on Windows.</p>
 <div class="section" id="ros-on-docker">
-<h2>ROS on Docker</h2>
+<h2>ROS on Docker<a class="headerlink" href="#ros-on-docker" title="Permalink to this headline">¶</a></h2>
 <p>To massively simplify the use of these tools, we package complete ROS systems
 into bundles of <a class="reference external" href="https://www.docker.com/">Docker</a> containers. Each of these bundles runs in a
 virtualized network within your computer.</p>
 <p>Besides easing deployment, containers have the added benefit of ensuring
 repeatability.</p>
 <p>Once you made sure <a class="reference external" href="https://www.docker.com/">Docker</a> is running, you can run ROS nodes as containers.
-Gramazio Kohler Research publishes ROS images on <a class="reference external" href="https://hub.docker.com/r/gramaziokohler/">Docker Hub</a> but there are
+Gramazio Kohler Research publishes ROS images on <a class="reference external" href="https://hub.docker.com/u/gramaziokohler/">Docker Hub</a> but there are
 many more to be found online.</p>
 <p>You can start a minimally functional ROS system, containing a ROS master and
-the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
+the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run -p <span class="m">9090</span>:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
 <div class="section" id="complete-ros-systems">
-<h3>Complete ROS systems</h3>
+<h3>Complete ROS systems<a class="headerlink" href="#complete-ros-systems" title="Permalink to this headline">¶</a></h3>
 <p>It is usually not enough to run single ROS nodes. ROS systems are networks of
 multiple interconnected nodes. Docker provides a way to compose virtualized
 networks using the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> command. These commands take one simple
@@ -153,12 +155,12 @@ and run the following command:</p>
 </code></pre></div>
 </div>
 <p>You now have a ROS system with two nodes running: a ROS master and
-the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate with ROS.</p>
+the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate with ROS.</p>
 <p>Creating new ROS bundles using containers is usually only a matter of combining
 them into a new <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
 <p id="ros-bundles-list"><strong>List of complete ROS systems</strong></p>
 <table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">Table of ROS systems provided via <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code></span></caption>
+<caption><span class="caption-text">Table of ROS systems provided via <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code></span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 20%" />
 <col style="width: 8%" />
@@ -316,11 +318,11 @@ them into a new <code class="docutils literal notranslate"><span class="pre">doc
 </div>
 </div>
 <div class="section" id="ros-on-linux">
-<h2>ROS on Linux</h2>
+<h2>ROS on Linux<a class="headerlink" href="#ros-on-linux" title="Permalink to this headline">¶</a></h2>
 <p>The usual but most involved way to install ROS is on a Linux machine,
 either virtual or real. The machine should have an IP address reachable
 from your computer.</p>
-<p>Follow the <a class="reference external" href="http://wiki.ros.org/ROS/Installation">ROS installation instructions</a> for all the details, or
+<p>Follow the <a class="reference external" href="https://wiki.ros.org/ROS/Installation">ROS installation instructions</a> for all the details, or
 alternatively, use the following commands as a brief outline of the steps
 required to install ROS on <strong>Ubuntu 16.04</strong>:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</span>
@@ -341,13 +343,13 @@ catkin_make
 </code></pre></div>
 </div>
 <p>Once ROS is installed, you can start a minimally functional ROS system,
-containing a ROS master and the <a class="reference external" href="http://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
+containing a ROS master and the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="ros-on-wsl">
-<h2>ROS on WSL</h2>
+<h2>ROS on WSL<a class="headerlink" href="#ros-on-wsl" title="Permalink to this headline">¶</a></h2>
 <p>For Windows 10 users, an alternative is to install the
 <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a> (WSL). WSL allows to run Linux within
 Windows without the need for an additional virtual machine.</p>
@@ -366,7 +368,7 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
 </div>
 </div>
 <div class="section" id="next-steps">
-<h2>Next Steps</h2>
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.1)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/02_description_models.html#examples-description-models"><span class="std std-ref">Examples: Description models</span></a></p></li>
@@ -501,7 +503,7 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

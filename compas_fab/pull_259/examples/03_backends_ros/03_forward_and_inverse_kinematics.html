@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.15.0
+            0.16.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
             
@@ -117,19 +119,19 @@
         
         
         <div class="section" id="forward-and-inverse-kinematics">
-<h1><span class="section-number">3.3. </span>Forward and inverse kinematics</h1>
+<h1><span class="section-number">3.3. </span>Forward and inverse kinematics<a class="headerlink" href="#forward-and-inverse-kinematics" title="Permalink to this headline">¶</a></h1>
 <div class="figure align-default">
 <img alt="../../_images/03_forward_and_inverse_kinematics.jpg" class="figure-img img-fluid" src="../../_images/03_forward_and_inverse_kinematics.jpg" />
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The following examples use the <a class="reference external" href="http://www.ros.org/">ROS</a> backend
+<p>The following examples use the <a class="reference external" href="https://www.ros.org/">ROS</a> backend
 and the MoveI! planner for UR5 robots. Before running them, please
 make sure you have the <a class="reference internal" href="../../backends/ros.html#ros-backend"><span class="std std-ref">ROS backend</span></a> correctly
 configured and the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">UR5 Demo</span></a> started.</p>
 </div>
 <div class="section" id="forward-kinematics">
-<h2><span class="section-number">3.3.1. </span>Forward kinematics</h2>
+<h2><span class="section-number">3.3.1. </span>Forward kinematics<a class="headerlink" href="#forward-kinematics" title="Permalink to this headline">¶</a></h2>
 <p>The forward kinematics function calculates the pose of the robot’s end-effector
 from joint states (<strong>cartesian space</strong> to <strong>joint space</strong>). This means the
 state of each joint in the articulated body of a robot needs to be defined.</p>
@@ -171,7 +173,7 @@ solutions but calculated by ROS:</p>
 </div>
 </div>
 <div class="section" id="inverse-kinematics">
-<h2><span class="section-number">3.3.2. </span>Inverse kinematics</h2>
+<h2><span class="section-number">3.3.2. </span>Inverse kinematics<a class="headerlink" href="#inverse-kinematics" title="Permalink to this headline">¶</a></h2>
 <p>Inverse kinematics is the inverse function of forward kinematics. The
 inverse kinematics function calculates the joint states required for the
 end-effector to reach a certain target pose (<strong>joint space</strong> to
@@ -321,7 +323,7 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.15.0',
+  VERSION           : '0.16.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
