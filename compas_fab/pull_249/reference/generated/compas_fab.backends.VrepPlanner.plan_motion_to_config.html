@@ -121,10 +121,10 @@
         
         
         <div class="detail section" id="vrepplanner-plan-motion-to-config">
-<h1>VrepPlanner.plan_motion_to_config</h1>
+<h1>VrepPlanner.plan_motion_to_config<a class="headerlink" href="#vrepplanner-plan-motion-to-config" title="Permalink to this headline">¶</a></h1>
 <dl class="py method">
 <dt id="compas_fab.backends.VrepPlanner.plan_motion_to_config">
-<code class="sig-prename descclassname">VrepPlanner.</code><code class="sig-name descname">plan_motion_to_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/planner.html#VrepPlanner.plan_motion_to_config"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname"><span class="pre">VrepPlanner.</span></code><code class="sig-name descname"><span class="pre">plan_motion_to_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/planner.html#VrepPlanner.plan_motion_to_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compas_fab.backends.VrepPlanner.plan_motion_to_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find a path plan to move the selected robot from its current position to one of the <cite>goal_configs</cite>.</p>
 <p>This function is useful when it is required to get a path plan that ends in one
 specific goal configuration.</p>
@@ -141,7 +141,7 @@ specific goal configuration.</p>
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
 move during inverse kinematic solving.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
 to be taken into account when calculating the motion plan.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;planner_id&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the planner to use. Defaults to <code class="docutils literal notranslate"><span class="pre">rrtconnect</span></code>.</p></li>

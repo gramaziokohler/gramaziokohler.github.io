@@ -121,16 +121,16 @@
         
         
         <div class="detail section" id="moveitplanner-plan-cartesian-motion">
-<h1>MoveItPlanner.plan_cartesian_motion</h1>
+<h1>MoveItPlanner.plan_cartesian_motion<a class="headerlink" href="#moveitplanner-plan-cartesian-motion" title="Permalink to this headline">¶</a></h1>
 <dl class="py method">
 <dt id="compas_fab.backends.MoveItPlanner.plan_cartesian_motion">
-<code class="sig-prename descclassname">MoveItPlanner.</code><code class="sig-name descname">plan_cartesian_motion</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/planner.html#MoveItPlanner.plan_cartesian_motion"><span class="viewcode-link">[source]</span></a></dt>
+<code class="sig-prename descclassname"><span class="pre">MoveItPlanner.</span></code><code class="sig-name descname"><span class="pre">plan_cartesian_motion</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/ros/planner.html#MoveItPlanner.plan_cartesian_motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#compas_fab.backends.MoveItPlanner.plan_cartesian_motion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates a cartesian motion path (linear in tool space).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which the cartesian motion plan is being calculated.</p></li>
-<li><p><strong>frames_WCF</strong> (list of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
+<li><p><strong>frames_WCF</strong> (list of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>, optional) – The robot’s full configuration, i.e. values for all configurable
 joints of the entire robot, at the starting position. Defaults to
 the all-zero configuration.</p></li>

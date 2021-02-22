@@ -119,9 +119,9 @@
         
         
         <div class="section" id="creating-a-urdf-of-the-ur10-on-two-linear-axes">
-<span id="ros-examples-create-urdf-ur10-on-tower"></span><h1><span class="section-number">3.9. </span>Creating a URDF of the UR10 on two linear axes</h1>
+<span id="ros-examples-create-urdf-ur10-on-tower"></span><h1><span class="section-number">3.9. </span>Creating a URDF of the UR10 on two linear axes<a class="headerlink" href="#creating-a-urdf-of-the-ur10-on-two-linear-axes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="export-meshes">
-<h2><span class="section-number">3.9.1. </span>Export meshes</h2>
+<h2><span class="section-number">3.9.1. </span>Export meshes<a class="headerlink" href="#export-meshes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Before exporting, please move the elements of the tower’s axes such that they are
 positioned in their zero-positions and make sure that the model is defined in
@@ -149,7 +149,7 @@ we use the same visual and collision meshes.)</p></li>
 </div>
 </div>
 <div class="section" id="prepare-your-catkin-workspace">
-<h2><span class="section-number">3.9.2. </span>Prepare your catkin workspace</h2>
+<h2><span class="section-number">3.9.2. </span>Prepare your catkin workspace<a class="headerlink" href="#prepare-your-catkin-workspace" title="Permalink to this headline">¶</a></h2>
 <p>Open your command prompt and go to your robotic setups src folder:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span>
 </code></pre></div>
@@ -182,9 +182,9 @@ the line <code class="docutils literal notranslate"><span class="pre">&lt;buildt
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
 </div>
 <div class="section" id="create-xacros-and-generate-urdf">
-<h2><span class="section-number">3.9.3. </span>Create xacros and generate urdf</h2>
+<h2><span class="section-number">3.9.3. </span>Create xacros and generate urdf<a class="headerlink" href="#create-xacros-and-generate-urdf" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="tower-xacro">
-<h3><span class="section-number">3.9.3.1. </span>tower.xacro</h3>
+<h3><span class="section-number">3.9.3.1. </span>tower.xacro<a class="headerlink" href="#tower-xacro" title="Permalink to this headline">¶</a></h3>
 <p>Go to the <code class="docutils literal notranslate"><span class="pre">urdf</span></code> folder and create a xacro file for the tower:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">urdf</span>
 <span class="n">pico</span> <span class="n">tower</span><span class="o">.</span><span class="n">xacro</span>
@@ -269,7 +269,7 @@ the line <code class="docutils literal notranslate"><span class="pre">&lt;buildt
 </div>
 </div>
 <div class="section" id="explanation">
-<h3><span class="section-number">3.9.3.2. </span>Explanation:</h3>
+<h3><span class="section-number">3.9.3.2. </span>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this headline">¶</a></h3>
 <p>We define a parameterized macro with 1 parameter (<code class="docutils literal notranslate"><span class="pre">prefix</span></code>). That is practical
 if we want to use the tower twice in the same urdf, then we need to use both
 towers with different prefixes to distinguish links and joints.</p>
@@ -290,7 +290,7 @@ the minimal and maximal position (translation) of the joint.</p></li>
 </ul>
 </div>
 <div class="section" id="ur10-tower-xacro">
-<h3><span class="section-number">3.9.3.3. </span>ur10_tower.xacro</h3>
+<h3><span class="section-number">3.9.3.3. </span>ur10_tower.xacro<a class="headerlink" href="#ur10-tower-xacro" title="Permalink to this headline">¶</a></h3>
 <p>Now we create a new xacro file, which combines the ur10 with the tower:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">pico</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
@@ -326,7 +326,7 @@ the minimal and maximal position (translation) of the joint.</p></li>
 </div>
 </div>
 <div class="section" id="id1">
-<h3><span class="section-number">3.9.3.4. </span>Explanation:</h3>
+<h3><span class="section-number">3.9.3.4. </span>Explanation:<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>To define the tower in regard to the world coordinate frame, we add first the
 <code class="docutils literal notranslate"><span class="pre">world</span></code> link (no geometry) with the <code class="docutils literal notranslate"><span class="pre">world_joint</span></code> in the worldXY frame and add the
@@ -352,7 +352,7 @@ side. The rotation is expressed in static “xyz” euler angles.</p>
 </div>
 </div>
 <div class="section" id="create-urdf">
-<h3><span class="section-number">3.9.3.5. </span>Create URDF</h3>
+<h3><span class="section-number">3.9.3.5. </span>Create URDF<a class="headerlink" href="#create-urdf" title="Permalink to this headline">¶</a></h3>
 <p>Now create the urdf.:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">-</span><span class="n">o</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">urdf</span> <span class="n">ur10_tower</span><span class="o">.</span><span class="n">xacro</span>
 </code></pre></div>
@@ -384,7 +384,7 @@ side. The rotation is expressed in static “xyz” euler angles.</p>
 </div>
 </div>
 <div class="section" id="view-urdf">
-<h2><span class="section-number">3.9.4. </span>View urdf</h2>
+<h2><span class="section-number">3.9.4. </span>View urdf<a class="headerlink" href="#view-urdf" title="Permalink to this headline">¶</a></h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
@@ -434,7 +434,7 @@ value for the global fixed frame is <code class="docutils literal notranslate"><
 <p>Then you should see something like that:</p>
 <div class="figure align-default" id="id2">
 <img alt="../../_images/09_ur10_tower_urdf_06.jpg" class="figure-img img-fluid" src="../../_images/09_ur10_tower_urdf_06.jpg" />
-<p class="caption"><span class="caption-text">Screenshot of RViz showing the ur10 on the tower.</span></p>
+<p class="caption"><span class="caption-text">Screenshot of RViz showing the ur10 on the tower.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>You can play with the sliders on the side to move the elements and check if all is fine.</p>
 <p>And later create a MoveIt! package from it.</p>
@@ -446,7 +446,7 @@ value for the global fixed frame is <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="section" id="further-links">
-<h2><span class="section-number">3.9.5. </span>Further links</h2>
+<h2><span class="section-number">3.9.5. </span>Further links<a class="headerlink" href="#further-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
 <li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
