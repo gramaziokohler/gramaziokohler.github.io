@@ -132,14 +132,24 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <code class="xref py py-class docutils literal notranslate"><span class="pre">plan_motion</span></code>.</p>
 <div class="section" id="plan-cartesian-motion">
 <h2><span class="section-number">3.5.1. </span>Plan cartesian motion<a class="headerlink" href="#plan-cartesian-motion" title="Permalink to this headline">¶</a></h2>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
+<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+
+<span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">CollisionMesh</span><span class="p">,</span> <span class="n">AttachedCollisionMesh</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
     <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5&#39;</span>
+
+    <span class="n">ee_link_name</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_end_effector_link_name</span><span class="p">()</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/cone.stl&#39;</span><span class="p">))</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
+    <span class="n">acm</span> <span class="o">=</span> <span class="n">AttachedCollisionMesh</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">link_name</span><span class="o">=</span><span class="n">ee_link_name</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">add_attached_collision_mesh</span><span class="p">(</span><span class="n">acm</span><span class="p">)</span>
 
     <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
@@ -157,6 +167,8 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computed cartesian path with </span><span class="si">%d</span><span class="s2"> configurations, &quot;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;following </span><span class="si">%d%%</span><span class="s2"> of requested trajectory.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span> <span class="o">*</span> <span class="mi">100</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Path plan computed with the attached collision meshes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">acm</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">]))</span>
 </code></pre></div>
 </div>
 </div>
