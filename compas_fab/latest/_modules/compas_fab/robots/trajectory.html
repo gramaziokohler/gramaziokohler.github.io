@@ -118,6 +118,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.time_</span> <span class="kn">import</span> <span class="n">Duration</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
@@ -392,6 +393,8 @@
 <span class="sd">    fraction : :obj:`float`, optional</span>
 <span class="sd">        Indicates the percentage of requested trajectory that was calculated,</span>
 <span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
+<span class="sd">    attached_collision_meshes : :obj:`list` of :closs:`compas_fab.robots.AttachedCollisionMesh`</span>
+<span class="sd">        The attached collision meshes included in the calculation of this trajectory.</span>
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
@@ -404,16 +407,19 @@
 <span class="sd">    fraction : :obj:`float`</span>
 <span class="sd">        Indicates the percentage of requested trajectory that was calculated,</span>
 <span class="sd">        e.g. ``1`` means the full trajectory was found.</span>
+<span class="sd">    attached_collision_meshes : :obj:`list` of :class:`compas_fab.robots.AttachedCollisionMesh`</span>
+<span class="sd">        The attached collision meshes included in the calculation of this trajectory.</span>
 <span class="sd">    data : :obj:`dict`</span>
 <span class="sd">        The data representing the trajectory.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="JointTrajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.__init__.html#compas_fab.robots.JointTrajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory_points</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attached_collision_meshes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">trajectory_points</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">start_configuration</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">fraction</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="n">attached_collision_meshes</span> <span class="ow">or</span> <span class="p">[]</span></div>
 
 <div class="viewcode-block" id="JointTrajectory.from_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.from_data.html#compas_fab.robots.JointTrajectory.from_data">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -452,6 +458,7 @@
         <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;joint_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;fraction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">acm</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span> <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">]</span>
 
         <span class="k">return</span> <span class="n">data_obj</span>
 
@@ -462,6 +469,7 @@
         <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">start_configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_configuration&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fraction</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;fraction&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_meshes</span> <span class="o">=</span> <span class="p">[</span><span class="n">AttachedCollisionMesh</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">acm_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">acm_data</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attached_collision_meshes&#39;</span><span class="p">)]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">time_from_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

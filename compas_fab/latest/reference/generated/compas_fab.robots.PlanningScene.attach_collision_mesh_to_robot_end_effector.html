@@ -148,7 +148,12 @@ to. Defaults to the robot’s main planning group.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">attach_collision_mesh_to_robot_end_effector</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really there</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;tip&#39;</span> <span class="ow">in</span> <span class="n">objects</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really gone</span>

@@ -117,6 +117,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
+<span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Scale</span>
 
@@ -194,7 +195,54 @@
 <span class="sd">            Scale factor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CollisionMesh.to_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.to_data.html#compas_fab.robots.CollisionMesh.to_data">[docs]</a>    <span class="k">def</span> <span class="nf">to_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the data dictionary that represents the collision mesh.</span>
+
+<span class="sd">        This can be used to reconstruct the :class:`CollisionMesh` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`dict`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
+
+<div class="viewcode-block" id="CollisionMesh.from_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.CollisionMesh.from_data.html#compas_fab.robots.CollisionMesh.from_data">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct a collision mesh from its data representation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : :obj:`dict`</span>
+<span class="sd">            The data dictionary.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`CollisionMesh`</span>
+<span class="sd">             An instance of :class:`CollisionMesh`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">collision_mesh</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">collision_mesh</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">return</span> <span class="n">collision_mesh</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`dict` : The data representing the collision mesh.&quot;&quot;&quot;</span>
+        <span class="n">data_obj</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;mesh&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;root_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root_name</span>
+
+        <span class="k">return</span> <span class="n">data_obj</span>
+
+    <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;mesh&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;root_name&#39;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="AttachedCollisionMesh"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh">[docs]</a><span class="k">class</span> <span class="nc">AttachedCollisionMesh</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -240,7 +288,54 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">root_name</span> <span class="o">=</span> <span class="n">link_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">link_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">touch_links</span> <span class="o">=</span> <span class="n">touch_links</span> <span class="k">if</span> <span class="n">touch_links</span> <span class="k">else</span> <span class="p">[</span><span class="n">link_name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span></div>
+
+<div class="viewcode-block" id="AttachedCollisionMesh.to_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.to_data.html#compas_fab.robots.AttachedCollisionMesh.to_data">[docs]</a>    <span class="k">def</span> <span class="nf">to_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the data dictionary that represents the attached collision mesh.</span>
+
+<span class="sd">        This can be used to reconstruct the :class:`AttachedCollisionMesh` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`dict`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span></div>
+
+<div class="viewcode-block" id="AttachedCollisionMesh.from_data"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.AttachedCollisionMesh.from_data.html#compas_fab.robots.AttachedCollisionMesh.from_data">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construct an attached collision mesh from its data representation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : :obj:`dict`</span>
+<span class="sd">            The data dictionary.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`AttachedCollisionMesh`</span>
+<span class="sd">             An instance of :class:`AttachedCollisionMesh`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">acm</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">acm</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">return</span> <span class="n">acm</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`dict` : The data representing the attached collision mesh.&quot;&quot;&quot;</span>
+        <span class="n">data_obj</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;collision_mesh&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">to_data</span><span class="p">()</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;link_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;touch_links&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">touch_links</span>
+        <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span>
+
+        <span class="k">return</span> <span class="n">data_obj</span>
+
+    <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">collision_mesh</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;collision_mesh&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">link_name</span> <span class="o">=</span> <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;link_name&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">touch_links</span> <span class="o">=</span> <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;touch_links&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">data_obj</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="PlanningScene"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.PlanningScene.html#compas_fab.robots.PlanningScene">[docs]</a><span class="k">class</span> <span class="nc">PlanningScene</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -463,6 +558,11 @@
 <span class="sd">        &gt;&gt;&gt; group = robot.main_group_name</span>
 <span class="sd">        &gt;&gt;&gt; scene.attach_collision_mesh_to_robot_end_effector(cm, group=group)</span>
 
+<span class="sd">        &gt;&gt;&gt; # check if it&#39;s really there</span>
+<span class="sd">        &gt;&gt;&gt; planning_scene = robot.client.get_planning_scene()</span>
+<span class="sd">        &gt;&gt;&gt; objects = [c.object[&#39;id&#39;] for c in planning_scene.robot_state.attached_collision_objects]</span>
+<span class="sd">        &gt;&gt;&gt; &#39;tip&#39; in objects</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; scene.remove_attached_collision_mesh(&#39;tip&#39;)</span>
 
 <span class="sd">        &gt;&gt;&gt; # check if it&#39;s really gone</span>
