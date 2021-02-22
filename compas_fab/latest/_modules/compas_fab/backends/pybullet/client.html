@@ -117,13 +117,15 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
+<span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
 
 <span class="kn">import</span> <span class="nn">compas</span>
+<span class="kn">from</span> <span class="nn">compas.files</span> <span class="kn">import</span> <span class="n">URDF</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">MeshDescriptor</span>
 <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">RobotModel</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces.client</span> <span class="kn">import</span> <span class="n">ClientInterface</span>
@@ -254,13 +256,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">collision_objects</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_objects</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 
 <div class="viewcode-block" id="PyBulletClient.step_simulation"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.step_simulation.html#compas_fab.backends.PyBulletClient.step_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">step_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -272,7 +277,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pybullet</span><span class="o">.</span><span class="n">stepSimulation</span><span class="p">(</span><span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PyBulletClient.load_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.load_robot.html#compas_fab.backends.PyBulletClient.load_robot">[docs]</a>    <span class="k">def</span> <span class="nf">load_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urdf_file</span><span class="p">):</span>
+<div class="viewcode-block" id="PyBulletClient.load_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.load_robot.html#compas_fab.backends.PyBulletClient.load_robot">[docs]</a>    <span class="k">def</span> <span class="nf">load_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urdf_file</span><span class="p">,</span> <span class="n">resource_loaders</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create a pybullet robot using the input urdf file.</span>
 
 <span class="sd">        Parameters</span>
@@ -280,6 +285,10 @@
 <span class="sd">        urdf_file : :obj:`str` or file object</span>
 <span class="sd">            Absolute file path to the urdf file name or file object. The mesh file can be linked by either</span>
 <span class="sd">            `&quot;package::&quot;` or relative path.</span>
+<span class="sd">        resource_loaders : :obj:`list`</span>
+<span class="sd">            List of :class:`compas.robots.AbstractMeshLoader` for loading geometry of the robot.  That the</span>
+<span class="sd">            geometry of the robot model is loaded is required before adding or removing attached collision meshes</span>
+<span class="sd">            to or from the scene. Defaults to the empty list.</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
@@ -290,44 +299,202 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">robot_model</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">urdf_file</span><span class="p">)</span>
         <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">(</span><span class="n">robot_model</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">resource_loaders</span><span class="p">:</span>
+            <span class="n">robot_model</span><span class="o">.</span><span class="n">load_geometry</span><span class="p">(</span><span class="o">*</span><span class="n">resource_loaders</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span>
+            <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot_filepath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urdf_file</span>
 
+        <span class="n">urdf_fp</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot_filepath&#39;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_robot_to_pybullet</span><span class="p">(</span><span class="n">urdf_fp</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">robot</span></div>
+
+    <span class="k">def</span> <span class="nf">_load_robot_to_pybullet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urdf_file</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">redirect_stdout</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">):</span>
             <span class="n">pybullet_uid</span> <span class="o">=</span> <span class="n">pybullet</span><span class="o">.</span><span class="n">loadURDF</span><span class="p">(</span><span class="n">urdf_file</span><span class="p">,</span> <span class="n">useFixedBase</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                              <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
                                              <span class="n">flags</span><span class="o">=</span><span class="n">pybullet</span><span class="o">.</span><span class="n">URDF_USE_SELF_COLLISION</span><span class="p">)</span>
-            <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pybullet_uid</span>
+            <span class="n">cached_robot</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pybullet_uid</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_ids_to_robot_joints</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_add_ids_to_robot_links</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">robot</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_ids_to_robot_joints</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_ids_to_robot_links</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_ids_to_robot_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="PyBulletClient.reload_from_cache"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.reload_from_cache.html#compas_fab.backends.PyBulletClient.reload_from_cache">[docs]</a>    <span class="k">def</span> <span class="nf">reload_from_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reloads the PyBullet server with the robot&#39;s cached model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot to be saved for use with PyBullet.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">current_configuration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_robot_configuration</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">cached_robot_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">cached_robot_filepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot_filepath</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">robot_uid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot_model</span><span class="p">)</span>
+        <span class="n">pybullet</span><span class="o">.</span><span class="n">removeBody</span><span class="p">(</span><span class="n">robot_uid</span><span class="p">,</span> <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">)</span>
+
+        <span class="n">cached_robot_model</span><span class="o">.</span><span class="n">to_urdf_file</span><span class="p">(</span><span class="n">cached_robot_filepath</span><span class="p">,</span> <span class="n">prettify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">pybullet</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">enableFileCaching</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_robot_to_pybullet</span><span class="p">(</span><span class="n">cached_robot_filepath</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
+        <span class="n">pybullet</span><span class="o">.</span><span class="n">setPhysicsEngineParameter</span><span class="p">(</span><span class="n">enableFileCaching</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_robot_configuration</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">current_configuration</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step_simulation</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.cache_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.cache_robot.html#compas_fab.backends.PyBulletClient.cache_robot">[docs]</a>    <span class="k">def</span> <span class="nf">cache_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Saves an editable copy of the robot&#39;s model and its meshes</span>
+<span class="sd">        for shadowing the state of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot to be saved for use with PyBullet.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If geometry has not been loaded.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">ensure_geometry</span><span class="p">()</span>
+        <span class="c1"># write meshes to cache</span>
+        <span class="n">address_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># must work with given robot.model here because it has the geometry loaded</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">visual</span><span class="p">,</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">):</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">shape</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">MeshDescriptor</span><span class="p">):</span>
+                    <span class="n">mesh</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">geometry</span>
+                    <span class="n">mesh_file_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.stl&#39;</span>
+                    <span class="n">fp</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mesh_file_name</span><span class="p">)</span>
+                    <span class="n">mesh</span><span class="o">.</span><span class="n">to_stl</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mesh_file_name</span><span class="p">),</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="n">address_dict</span><span class="p">[</span><span class="n">shape</span><span class="o">.</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp</span>
+
+        <span class="c1"># create urdf with new mesh locations</span>
+        <span class="n">urdf</span> <span class="o">=</span> <span class="n">URDF</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">meshes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">urdf</span><span class="o">.</span><span class="n">xml</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">mesh</span> <span class="ow">in</span> <span class="n">meshes</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span>
+            <span class="n">mesh</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">address_dict</span><span class="p">[</span><span class="n">filename</span><span class="p">]</span>
+
+        <span class="c1"># write urdf</span>
+        <span class="n">cached_robot_file_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.urdf&#39;</span>
+        <span class="n">cached_robot_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cached_robot_file_name</span><span class="p">)</span>
+        <span class="n">urdf</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">cached_robot_filepath</span><span class="p">,</span> <span class="n">prettify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="n">RobotModel</span><span class="o">.</span><span class="n">from_urdf_file</span><span class="p">(</span><span class="n">cached_robot_filepath</span><span class="p">)</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cached_robot</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot_filepath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cached_robot_filepath</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;robot_geometry_cached&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.ensure_cached_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.ensure_cached_robot.html#compas_fab.backends.PyBulletClient.ensure_cached_robot">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if a :class:`compas_fab.robots.Robot` has been cached for use with PyBullet.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s1">&#39;This method is only callable once the robot has been cached.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.ensure_cached_robot_geometry"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.ensure_cached_robot_geometry.html#compas_fab.backends.PyBulletClient.ensure_cached_robot_geometry">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">ensure_cached_robot_geometry</span><span class="p">(</span><span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if the geometry of a :class:`compas_fab.robots.Robot` has been cached for use with PyBullet.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;robot_geometry_cached&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s1">&#39;This method is only callable once the robot with loaded geometry has been cached.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.get_cached_robot"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_cached_robot.html#compas_fab.backends.PyBulletClient.get_cached_robot">[docs]</a>    <span class="k">def</span> <span class="nf">get_cached_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the editable copy of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`compas.robots.RobotModel`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If the robot has not been cached.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.get_cached_robot_filepath"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_cached_robot_filepath.html#compas_fab.backends.PyBulletClient.get_cached_robot_filepath">[docs]</a>    <span class="k">def</span> <span class="nf">get_cached_robot_filepath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the filepath of the editable copy of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`str`</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If the robot has not been cached.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensure_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;cached_robot_filepath&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.get_uid"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_uid.html#compas_fab.backends.PyBulletClient.get_uid">[docs]</a>    <span class="k">def</span> <span class="nf">get_uid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the internal PyBullet id of the robot&#39;s model for shadowing the state</span>
+<span class="sd">        of the robot on the PyBullet server.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cached_robot : :class:`compas.robots.RobotModel`</span>
+<span class="sd">            The robot model saved for use with PyBullet.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :obj:`int`</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;uid&#39;</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_ids_to_robot_joints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
+        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids</span><span class="p">(</span><span class="n">body_id</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">joint_id</span> <span class="ow">in</span> <span class="n">joint_ids</span><span class="p">:</span>
-            <span class="n">joint_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_name</span><span class="p">(</span><span class="n">joint_id</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
-            <span class="n">joint</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">joint_name</span><span class="p">)</span>
+            <span class="n">joint_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_name</span><span class="p">(</span><span class="n">joint_id</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
+            <span class="n">joint</span> <span class="o">=</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">joint_name</span><span class="p">)</span>
             <span class="n">pybullet_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">joint_id</span><span class="p">}</span>
             <span class="n">joint</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;pybullet&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pybullet_attr</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_add_ids_to_robot_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">_add_ids_to_robot_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
+        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids</span><span class="p">(</span><span class="n">body_id</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">link_id</span> <span class="ow">in</span> <span class="n">joint_ids</span><span class="p">:</span>
-            <span class="n">link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_name</span><span class="p">(</span><span class="n">link_id</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
-            <span class="n">link</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">link_name</span><span class="p">)</span>
+            <span class="n">link_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_name</span><span class="p">(</span><span class="n">link_id</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
+            <span class="n">link</span> <span class="o">=</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">link_name</span><span class="p">)</span>
             <span class="n">pybullet_attr</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">link_id</span><span class="p">}</span>
             <span class="n">link</span><span class="o">.</span><span class="n">attr</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;pybullet&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pybullet_attr</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_joint_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_get_joint_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_joint_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_get_joint_ids_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_id_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_joint_ids_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_id_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_link_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">_get_link_id_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_link_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;pybullet&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_get_link_ids_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_get_link_ids_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PyBulletClient.filter_configurations_in_collision"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.filter_configurations_in_collision.html#compas_fab.backends.PyBulletClient.filter_configurations_in_collision">[docs]</a>    <span class="k">def</span> <span class="nf">filter_configurations_in_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configurations</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Filters from a list of configurations those which are in collision.</span>
@@ -369,9 +536,11 @@
 <span class="sd">        -------</span>
 <span class="sd">        :class:`compas_fab.backends.pybullet.DetectedCollision`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">configuration</span><span class="p">:</span>
-            <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids_by_name</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_set_joint_positions</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
+            <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids_by_name</span><span class="p">(</span><span class="n">configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_set_joint_positions</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">configuration</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_collision_with_objects</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">check_robot_self_collision</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span></div>
 
@@ -390,7 +559,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">body_ids</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">collision_objects</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">body_id</span> <span class="ow">in</span> <span class="n">body_ids</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_check_collision</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">],</span> <span class="s1">&#39;robot&#39;</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_collision</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)),</span> <span class="s1">&#39;robot&#39;</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.check_robot_self_collision"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.check_robot_self_collision.html#compas_fab.backends.PyBulletClient.check_robot_self_collision">[docs]</a>    <span class="k">def</span> <span class="nf">check_robot_self_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks whether the robot and its attached collision objects with its current</span>
@@ -405,20 +574,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        :class:`compas_fab.backends.pybullet.DetectedCollision`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">link_names</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_link_names_with_collision_geometry</span><span class="p">()</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
+        <span class="n">link_names</span> <span class="o">=</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_link_names_with_collision_geometry</span><span class="p">()</span>
         <span class="c1"># check for collisions between robot links</span>
         <span class="k">for</span> <span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">link_names</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">{</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span><span class="p">}</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">link_1_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
-            <span class="n">link_2_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_2_name</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_check_collision</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">],</span> <span class="n">link_1_name</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">],</span> <span class="n">link_2_name</span><span class="p">,</span> <span class="n">link_1_id</span><span class="p">,</span> <span class="n">link_2_id</span><span class="p">)</span>
-        <span class="c1"># check for collisions between robot links and attached collision objects</span>
-        <span class="k">for</span> <span class="n">link_name</span> <span class="ow">in</span> <span class="n">link_names</span><span class="p">:</span>
-            <span class="n">link_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_name</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">constraint_info_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="k">for</span> <span class="n">constraint_info</span> <span class="ow">in</span> <span class="n">constraint_info_list</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_check_collision</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">],</span> <span class="n">link_name</span><span class="p">,</span> <span class="n">constraint_info</span><span class="o">.</span><span class="n">body_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">link_id</span><span class="p">)</span></div>
+            <span class="n">link_1_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+            <span class="n">link_2_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_2_name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_collision</span><span class="p">(</span><span class="n">body_id</span><span class="p">,</span> <span class="n">link_1_name</span><span class="p">,</span> <span class="n">body_id</span><span class="p">,</span> <span class="n">link_2_name</span><span class="p">,</span> <span class="n">link_1_id</span><span class="p">,</span> <span class="n">link_2_id</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PyBulletClient.check_collision_objects_for_collision"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.check_collision_objects_for_collision.html#compas_fab.backends.PyBulletClient.check_collision_objects_for_collision">[docs]</a>    <span class="k">def</span> <span class="nf">check_collision_objects_for_collision</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks whether any of the collision objects are colliding.</span>
@@ -458,6 +623,12 @@
 
     <span class="k">def</span> <span class="nf">_get_link_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link_id</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">const</span><span class="o">.</span><span class="n">LinkState</span><span class="p">(</span><span class="o">*</span><span class="n">pybullet</span><span class="o">.</span><span class="n">getLinkState</span><span class="p">(</span><span class="n">body_id</span><span class="p">,</span> <span class="n">link_id</span><span class="p">,</span> <span class="n">computeForwardKinematics</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_get_joint_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_id</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">const</span><span class="o">.</span><span class="n">JointState</span><span class="p">(</span><span class="o">*</span><span class="n">pybullet</span><span class="o">.</span><span class="n">getJointState</span><span class="p">(</span><span class="n">body_id</span><span class="p">,</span> <span class="n">joint_id</span><span class="p">,</span> <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_get_joint_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_ids</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">const</span><span class="o">.</span><span class="n">JointState</span><span class="p">(</span><span class="o">*</span><span class="n">js</span><span class="p">)</span> <span class="k">for</span> <span class="n">js</span> <span class="ow">in</span> <span class="n">pybullet</span><span class="o">.</span><span class="n">getJointStates</span><span class="p">(</span><span class="n">body_id</span><span class="p">,</span> <span class="n">joint_ids</span><span class="p">,</span> <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">)]</span>
 
     <span class="k">def</span> <span class="nf">_get_body_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">const</span><span class="o">.</span><span class="n">BodyInfo</span><span class="p">(</span><span class="o">*</span><span class="n">pybullet</span><span class="o">.</span><span class="n">getBodyInfo</span><span class="p">(</span><span class="n">body_id</span><span class="p">,</span> <span class="n">physicsClientId</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">))</span>
@@ -500,6 +671,10 @@
         <span class="k">for</span> <span class="n">joint_id</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_joint_position</span><span class="p">(</span><span class="n">joint_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_ids</span><span class="p">,</span> <span class="n">body_id</span><span class="p">):</span>
+        <span class="n">joint_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_states</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">js</span><span class="o">.</span><span class="n">jointPosition</span> <span class="k">for</span> <span class="n">js</span> <span class="ow">in</span> <span class="n">joint_states</span><span class="p">]</span>
+
 <div class="viewcode-block" id="PyBulletClient.set_robot_configuration"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.set_robot_configuration.html#compas_fab.backends.PyBulletClient.set_robot_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">set_robot_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the robot&#39;s pose to the given configuration. Should be followed by</span>
 <span class="sd">        `step_simulation` for visualization purposes.</span>
@@ -514,11 +689,32 @@
 <span class="sd">            The planning group used for calculation. Defaults to the robot&#39;s</span>
 <span class="sd">            main planning group.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
         <span class="n">default_config</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
         <span class="n">full_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">merge_group_with_full_configuration</span><span class="p">(</span><span class="n">configuration</span><span class="p">,</span> <span class="n">default_config</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids_by_name</span><span class="p">(</span><span class="n">full_configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_joint_positions</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">full_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s1">&#39;pybullet_uid&#39;</span><span class="p">])</span>
+        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids_by_name</span><span class="p">(</span><span class="n">full_configuration</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_joint_positions</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">full_configuration</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">full_configuration</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.get_robot_configuration"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.get_robot_configuration.html#compas_fab.backends.PyBulletClient.get_robot_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">get_robot_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the robot&#39;s current pose.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`  The robot to be configured.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        :class:`compas.robots.Configuration`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
+        <span class="n">default_config</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
+        <span class="n">joint_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_ids_by_name</span><span class="p">(</span><span class="n">default_config</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+        <span class="n">joint_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_joint_positions</span><span class="p">(</span><span class="n">joint_ids</span><span class="p">,</span> <span class="n">body_id</span><span class="p">)</span>
+        <span class="n">default_config</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">joint_values</span>
+        <span class="k">return</span> <span class="n">default_config</span></div>
 
     <span class="c1"># =======================================</span>
 <div class="viewcode-block" id="PyBulletClient.convert_mesh_to_body"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.convert_mesh_to_body.html#compas_fab.backends.PyBulletClient.convert_mesh_to_body">[docs]</a>    <span class="k">def</span> <span class="nf">convert_mesh_to_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">concavity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="n">const</span><span class="o">.</span><span class="n">STATIC_MASS</span><span class="p">):</span>
@@ -541,20 +737,16 @@
 <span class="sd">        -------</span>
 <span class="sd">        :obj:`int`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">tmp_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
-        <span class="n">tmp_obj_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s1">&#39;temp.obj&#39;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">mesh</span><span class="o">.</span><span class="n">to_obj</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">)</span>
-            <span class="n">tmp_obj_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_concavity</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">,</span> <span class="n">tmp_dir</span><span class="p">,</span> <span class="n">concavity</span><span class="p">,</span> <span class="n">mass</span><span class="p">)</span>
-            <span class="n">pyb_body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_from_obj</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">,</span> <span class="n">concavity</span><span class="o">=</span><span class="n">concavity</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_set_base_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">pyb_body_id</span><span class="p">)</span>
-            <span class="c1"># The following lines are for visual debugging purposes</span>
-            <span class="c1"># To be deleted or rewritten later.</span>
-            <span class="c1"># if name:</span>
-            <span class="c1">#     from pybullet_planning import add_body_name</span>
-            <span class="c1">#     add_body_name(pyb_body, name)</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">)</span>
+        <span class="n">tmp_obj_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;temp.obj&#39;</span><span class="p">)</span>
+        <span class="n">mesh</span><span class="o">.</span><span class="n">to_obj</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">)</span>
+        <span class="n">tmp_obj_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handle_concavity</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">concavity</span><span class="p">,</span> <span class="n">mass</span><span class="p">)</span>
+        <span class="n">pyb_body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">body_from_obj</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">,</span> <span class="n">concavity</span><span class="o">=</span><span class="n">concavity</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_base_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">pyb_body_id</span><span class="p">)</span>
+        <span class="c1"># The following lines are for visual debugging purposes</span>
+        <span class="c1"># To be deleted or rewritten later.</span>
+        <span class="c1"># if name:</span>
+        <span class="c1">#     from pybullet_planning import add_body_name</span>
+        <span class="c1">#     add_body_name(pyb_body, name)</span>
         <span class="k">return</span> <span class="n">pyb_body_id</span></div>
 
     <span class="nd">@staticmethod</span>

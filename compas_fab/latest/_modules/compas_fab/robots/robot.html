@@ -981,7 +981,7 @@
 <span class="sd">       &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                <span class="s1">&#39;This method is only callable once a client is assigned&#39;</span><span class="p">)</span></div>
+                <span class="s1">&#39;This method is only callable once a client is assigned.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Robot.ensure_semantics"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.ensure_semantics.html#compas_fab.robots.Robot.ensure_semantics">[docs]</a>    <span class="k">def</span> <span class="nf">ensure_semantics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check if semantics is set.</span>
@@ -992,8 +992,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">semantics</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                <span class="s1">&#39;This method is only callable once a semantic model is assigned&#39;</span><span class="p">)</span></div>
+                <span class="s1">&#39;This method is only callable once a semantic model is assigned.&#39;</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Robot.ensure_geometry"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Robot.ensure_geometry.html#compas_fab.robots.Robot.ensure_geometry">[docs]</a>    <span class="k">def</span> <span class="nf">ensure_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the model&#39;s geometry has been loaded.</span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        :exc:`Exception`</span>
+<span class="sd">            If geometry has not been loaded.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">ensure_geometry</span><span class="p">()</span></div>
     <span class="c1"># ==========================================================================</span>
     <span class="c1"># constraints</span>
     <span class="c1"># ==========================================================================</span>
