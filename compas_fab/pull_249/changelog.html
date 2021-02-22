@@ -123,8 +123,21 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <h2>Unreleased<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong>
 * Added python components library for Grasshopper</p>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.PyBulletClient.get_robot_configuration</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.ensure_geometry</span></code></p></li>
+<li><p>Added serialization methods to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh</span></code> and <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">attached_collision_meshes</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></p></li>
+</ul>
 <p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.1</span></code></p></li>
+</ul>
 <p><strong>Fixed</strong></p>
+<ul class="simple">
+<li><p>Fixed bug in the PyBullet client where one could not update the configuration of a robot with an attached collision mesh</p></li>
+<li><p>Fixed bug existing since version 0.12 where <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient.add_attached_collision_mesh</span></code> added collision objects to the scene, but did not attached them to the robot</p></li>
+</ul>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
 </div>
