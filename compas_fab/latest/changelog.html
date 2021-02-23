@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.16.0
+            0.17.0
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
             
@@ -122,7 +124,16 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <div class="section" id="unreleased">
 <h2>Unreleased<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
+<p><strong>Changed</strong></p>
+<p><strong>Fixed</strong></p>
+<p><strong>Deprecated</strong></p>
+<p><strong>Removed</strong></p>
+</div>
+<div class="section" id="id1">
+<h2>0.17.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><strong>Added</strong></p>
 <ul class="simple">
+<li><p>Added python components library for Grasshopper</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.PyBulletClient.get_robot_configuration</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.ensure_geometry</span></code></p></li>
 <li><p>Added serialization methods to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh</span></code> and <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></p></li>
@@ -136,19 +147,20 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <ul class="simple">
 <li><p>Fixed bug in the PyBullet client where one could not update the configuration of a robot with an attached collision mesh</p></li>
 <li><p>Fixed bug existing since version 0.12 where <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient.add_attached_collision_mesh</span></code> added collision objects to the scene, but did not attached them to the robot</p></li>
+<li><p>Fixed bug when keys with <code class="docutils literal notranslate"><span class="pre">None</span></code> values were passed to the planner.</p></li>
 </ul>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
 </div>
-<div class="section" id="id1">
-<h2>0.16.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2>0.16.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.0</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2>0.15.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>0.15.0<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -158,8 +170,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
 </div>
-<div class="section" id="id3">
-<h2>0.14.0<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>0.14.0<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added new backend feature <code class="docutils literal notranslate"><span class="pre">ResetPlanningScene</span></code></p></li>
@@ -175,8 +187,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> of <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id4">
-<h2>0.13.1<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>0.13.1<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">name</span></code> property to <code class="docutils literal notranslate"><span class="pre">Tool</span></code> class.</p></li>
@@ -188,15 +200,15 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed freeze with some sync planning scene methods on Grasshopper/IronPython</p></li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h2>0.13.0<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>0.13.0<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.17</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h2>0.12.0<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id7">
+<h2>0.12.0<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p><strong>PyBullet integration</strong>: added support for PyBullet client and forward/inverse kinematic solver</p></li>
@@ -243,8 +255,8 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 </ul>
 <p><strong>Removed</strong></p>
 </div>
-<div class="section" id="id7">
-<h2>0.11.0<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h2>0.11.0<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added optional <code class="docutils literal notranslate"><span class="pre">joint_names</span></code> to <code class="docutils literal notranslate"><span class="pre">Configuration</span></code></p></li>
@@ -277,8 +289,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fix support for trajectory constraints on kinematic planner</p></li>
 </ul>
 </div>
-<div class="section" id="id8">
-<h2>0.10.2<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h2>0.10.2<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added Python 3.8 support</p></li>
@@ -288,16 +300,16 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.13</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h2>0.10.1<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h2>0.10.1<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fix DAE parser to handle <code class="docutils literal notranslate"><span class="pre">polylist</span></code> meshes</p></li>
 <li><p>Bumped <code class="docutils literal notranslate"><span class="pre">roslibpy</span></code> dependency to <code class="docutils literal notranslate"><span class="pre">0.7.1</span></code> to fix blocking service call issue on Mac OS</p></li>
 </ul>
 </div>
-<div class="section" id="id10">
-<h2>0.10.0<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h2>0.10.0<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">draw_attached_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">from_tool0_to_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
@@ -317,8 +329,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed DAE parsing of meshes with multiple triangle sets</p></li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h2>0.9.0<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h2>0.9.0<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">load_robot</span></code> method to ROS client to simplify loading robots from running ROS setup.</p></li>
@@ -330,8 +342,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.11</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id12">
-<h2>0.8.0<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h2>0.8.0<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.10</span></code></p></li>
@@ -344,8 +356,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed DAE support on ROS File loader</p></li>
 </ul>
 </div>
-<div class="section" id="id13">
-<h2>0.7.0<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h2>0.7.0<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Fixed Python 2 vs Python 3 incompatibilities in <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors</span></code> module</p></li>
@@ -373,8 +385,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed missing planner initialization when used without context manager.</p></li>
 </ul>
 </div>
-<div class="section" id="id14">
-<h2>0.6.0<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h2>0.6.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated <code class="docutils literal notranslate"><span class="pre">COMPAS</span></code> dependency to <code class="docutils literal notranslate"><span class="pre">0.8.1</span></code></p></li>
@@ -396,8 +408,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id15">
-<h2>0.5.0<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h2>0.5.0<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>ROS Client: renamed <code class="docutils literal notranslate"><span class="pre">compute_cartesian_path</span></code> to <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></p></li>
@@ -433,8 +445,8 @@ to the new trajectory classes.</p></li>
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
 </div>
-<div class="section" id="id16">
-<h2>0.4.1<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h2>0.4.1<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fixed missing library for V-REP on macOS</p></li>
@@ -444,8 +456,8 @@ to the new trajectory classes.</p></li>
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <code class="docutils literal notranslate"><span class="pre">compas</span></code> core.</p></li>
 </ul>
 </div>
-<div class="section" id="id17">
-<h2>0.4.0<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h2>0.4.0<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Color parameter to Rhino robot artist</p></li>
@@ -455,8 +467,8 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.10</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id18">
-<h2>0.3.0<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id19">
+<h2>0.3.0<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Deeper integration with MoveIt! motion planning services</p></li>
@@ -469,15 +481,15 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.8</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id19">
-<h2>0.2.1<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h2>0.2.1<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
 </div>
-<div class="section" id="id20">
-<h2>0.2.0<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h2>0.2.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>First open source release!</p></li>
@@ -485,8 +497,8 @@ to the new trajectory classes.</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.3.2</span></code></p></li>
 </ul>
 </div>
-<div class="section" id="id21">
-<h2>0.1.0<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h2>0.1.0<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Initial version</p></li>
@@ -532,27 +544,28 @@ to the new trajectory classes.</p></li>
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Changelog</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#unreleased">Unreleased</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.16.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.15.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.14.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.13.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.13.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.12.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.11.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.10.2</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.10.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.10.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.9.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id12">0.8.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id13">0.7.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id14">0.6.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id15">0.5.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id16">0.4.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id17">0.4.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id18">0.3.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id19">0.2.1</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id20">0.2.0</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id21">0.1.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.17.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id2">0.16.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id3">0.15.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.14.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id5">0.13.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id6">0.13.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.12.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id8">0.11.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.10.2</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id10">0.10.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id11">0.10.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id12">0.9.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id13">0.8.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id14">0.7.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id15">0.6.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id16">0.5.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id17">0.4.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id18">0.4.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id19">0.3.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id20">0.2.1</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id21">0.2.0</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id22">0.1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -622,7 +635,7 @@ to the new trajectory classes.</p></li>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.16.0',
+  VERSION           : '0.17.0',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
