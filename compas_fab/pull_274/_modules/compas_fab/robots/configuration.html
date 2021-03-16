@@ -215,7 +215,7 @@
         <span class="n">joint_names</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">joint_names</span> <span class="ow">or</span> <span class="p">[])</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> joint_values must have </span><span class="si">%d</span><span class="s2"> types, but </span><span class="si">%d</span><span class="s2"> given.&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> joint_values must have </span><span class="si">{}</span><span class="s1"> types, but </span><span class="si">{}</span><span class="s1"> given.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="nb">len</span><span class="p">(</span><span class="n">joint_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">joint_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">)))</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_precision</span> <span class="o">=</span> <span class="s1">&#39;3f&#39;</span>
@@ -517,7 +517,7 @@
             <span class="k">yield</span> <span class="n">diff</span></div>
 
 <div class="viewcode-block" id="Configuration.max_difference"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Configuration.max_difference.html#compas_fab.robots.Configuration.max_difference">[docs]</a>    <span class="k">def</span> <span class="nf">max_difference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns the maximum difference to another `Configuration`&#39;s joint_values.</span>
+        <span class="sd">&quot;&quot;&quot;Returns the maximum difference to another `Configuration`&#39;s joint values.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
