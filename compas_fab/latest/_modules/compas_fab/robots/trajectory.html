@@ -123,6 +123,7 @@
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.time_</span> <span class="kn">import</span> <span class="n">Duration</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots.configuration</span> <span class="kn">import</span> <span class="n">FixedLengthList</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;JointTrajectoryPoint&#39;</span><span class="p">,</span>
@@ -137,15 +138,15 @@
 <span class="sd">    A trajectory point is a sub-class of :class:`Configuration` extended</span>
 <span class="sd">    with acceleration, effort and time from start information.</span>
 
-<span class="sd">    Trajectory points are defined either as *values + velocities and</span>
-<span class="sd">    accelerations*, or as *values + efforts*.</span>
+<span class="sd">    Trajectory points are defined either as *joint_values + velocities and</span>
+<span class="sd">    accelerations*, or as *joint_values + efforts*.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    values : :obj:`list` of :obj:`float`, optional</span>
+<span class="sd">    joint_values : :obj:`list` of :obj:`float`, optional</span>
 <span class="sd">        Joint values expressed in radians or meters, depending on the respective</span>
 <span class="sd">        type.</span>
-<span class="sd">    types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`, optional</span>
+<span class="sd">    joint_types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`, optional</span>
 <span class="sd">        Joint types, e.g. a :obj:`list` of</span>
 <span class="sd">        :attr:`compas.robots.Joint.REVOLUTE` for revolute joints.</span>
 <span class="sd">    velocities : :obj:`list` of :obj:`float`, optional</span>
@@ -159,10 +160,10 @@
 
 <span class="sd">    Attributes</span>
 <span class="sd">    ----------</span>
-<span class="sd">    values : :obj:`list` of :obj:`float`</span>
+<span class="sd">    joint_values : :obj:`list` of :obj:`float`</span>
 <span class="sd">        Joint values expressed in radians or meters, depending on the respective</span>
 <span class="sd">        type.</span>
-<span class="sd">    types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`</span>
+<span class="sd">    joint_types : :obj:`list` of :attr:`compas.robots.Joint.TYPE`</span>
 <span class="sd">        Joint types, e.g. a :obj:`list` of</span>
 <span class="sd">        :attr:`compas.robots.Joint.REVOLUTE` for revolute joints.</span>
 <span class="sd">    velocities : :obj:`list` of :obj:`float`</span>
@@ -174,24 +175,24 @@
 <span class="sd">    time_from_start : :class:`Duration`</span>
 <span class="sd">        Duration of trajectory point counting from the start.</span>
 <span class="sd">    positions : :obj:`list` of :obj:`float`</span>
-<span class="sd">        Alias of `values`.</span>
+<span class="sd">        Alias of `joint_values`.</span>
 <span class="sd">    data : obj:`dict`</span>
 <span class="sd">        The data representing the trajectory point.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="JointTrajectoryPoint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accelerations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">effort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">JointTrajectoryPoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="n">velocities</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="n">accelerations</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="n">effort</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
+<div class="viewcode-block" id="JointTrajectoryPoint.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.__init__.html#compas_fab.robots.JointTrajectoryPoint.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">velocities</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accelerations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">effort</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">time_from_start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">JointTrajectoryPoint</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">joint_values</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="n">velocities</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="n">accelerations</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="n">effort</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">time_from_start</span> <span class="ow">or</span> <span class="n">Duration</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a human-readable string representation of the instance.&quot;&quot;&quot;</span>
         <span class="n">vs</span> <span class="o">=</span> <span class="s1">&#39;%.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_precision</span>
         <span class="k">return</span> <span class="s1">&#39;JointTrajectoryPoint((</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">, (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), (</span><span class="si">{}</span><span class="s1">), </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span>
-            <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">),</span>
+            <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">),</span>
+            <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_types</span><span class="p">),</span>
             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span><span class="p">),</span>
             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span><span class="p">),</span>
             <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vs</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort</span><span class="p">),</span>
@@ -200,8 +201,8 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">positions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Alias of `values`.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
+        <span class="sd">&quot;&quot;&quot;:obj:`list` of :obj:`float` : Alias of `joint_values`.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -210,11 +211,11 @@
 
     <span class="nd">@velocities</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">velocities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">velocities</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">velocities</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">velocities</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must have </span><span class="si">{}</span><span class="s1"> velocities, but </span><span class="si">{}</span><span class="s1"> given.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">velocities</span><span class="p">)))</span>
+                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">velocities</span><span class="p">)))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_velocities</span> <span class="o">=</span> <span class="n">velocities</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_velocities</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">velocities</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">accelerations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -223,11 +224,11 @@
 
     <span class="nd">@accelerations</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">accelerations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">accelerations</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">accelerations</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">accelerations</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must have </span><span class="si">{}</span><span class="s1"> accelerations, but </span><span class="si">{}</span><span class="s1"> given.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">accelerations</span><span class="p">)))</span>
+                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">accelerations</span><span class="p">)))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_accelerations</span> <span class="o">=</span> <span class="n">accelerations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_accelerations</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">accelerations</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">effort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -236,11 +237,11 @@
 
     <span class="nd">@effort</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">effort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">effort</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">effort</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">effort</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must have </span><span class="si">{}</span><span class="s1"> efforts, but </span><span class="si">{}</span><span class="s1"> given.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">effort</span><span class="p">)))</span>
+                <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_values</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">effort</span><span class="p">)))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_effort</span> <span class="o">=</span> <span class="n">effort</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_effort</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">effort</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -260,11 +261,11 @@
 
     <span class="nd">@data</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;types&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;velocities&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;accelerations&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;effort&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joint_values</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;joint_values&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_joint_types</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;joint_types&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_velocities</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;velocities&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_accelerations</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;accelerations&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_effort</span> <span class="o">=</span> <span class="n">FixedLengthList</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;effort&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time_from_start</span> <span class="o">=</span> <span class="n">Duration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time_from_start&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">{})</span>
 
 <div class="viewcode-block" id="JointTrajectoryPoint.copy"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.copy.html#compas_fab.robots.JointTrajectoryPoint.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -296,48 +297,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">check_joint_names</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort</span><span class="p">))</span>
 
-<div class="viewcode-block" id="JointTrajectoryPoint.merge"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.merge.html#compas_fab.robots.JointTrajectoryPoint.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Merge the ``JointTrajectoryPoint`` with another ``JointTrajectoryPoint`` in place</span>
-<span class="sd">        along joint names.  The other ``JointTrajectoryPoint`` takes precedence over this</span>
-<span class="sd">        ``JointTrajectoryPoint`` in case a joint value is present in both.</span>
-
-<span class="sd">        Note</span>
-<span class="sd">        ----</span>
-<span class="sd">            Caution: ``joint_names`` may be rearranged.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        other : :class:`JointTrajectoryPoint`</span>
-<span class="sd">            The ``JointTrajectoryPoint`` to be merged.</span>
-
-<span class="sd">        Raises</span>
-<span class="sd">        ------</span>
-<span class="sd">        :exc:`ValueError`</span>
-<span class="sd">            If the ``JointTrajectoryPoint`` or the other ``JointTrajectoryPoint`` does not specify</span>
-<span class="sd">            joint names for all joint values.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">_joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_dict</span>
-        <span class="n">_joint_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_dict</span><span class="p">)</span>
-
-        <span class="n">_type_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_dict</span>
-        <span class="n">_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_dict</span><span class="p">)</span>
-
-        <span class="n">_velocity_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_dict</span>
-        <span class="n">_velocity_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_dict</span><span class="p">)</span>
-
-        <span class="n">_acceleration_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_dict</span>
-        <span class="n">_acceleration_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_dict</span><span class="p">)</span>
-
-        <span class="n">_effort_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_dict</span>
-        <span class="n">_effort_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_dict</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">_velocity_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_acceleration_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">_effort_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_names</span><span class="p">]</span></div>
-
 <div class="viewcode-block" id="JointTrajectoryPoint.merged"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectoryPoint.merged.html#compas_fab.robots.JointTrajectoryPoint.merged">[docs]</a>    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get a new ``JointTrajectoryPoint`` with this ``JointTrajectoryPoint`` merged</span>
 <span class="sd">        with another ``JointTrajectoryPoint``.  The other ``JointTrajectoryPoint``</span>
@@ -363,9 +322,29 @@
 <span class="sd">            If the ``JointTrajectoryPoint`` or the other ``JointTrajectoryPoint`` does not specify</span>
 <span class="sd">            joint names for all joint values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">jtp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="n">jtp</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">jtp</span></div></div>
+        <span class="n">_joint_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_dict</span>
+        <span class="n">_joint_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">joint_dict</span><span class="p">)</span>
+
+        <span class="n">_type_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type_dict</span>
+        <span class="n">_type_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">type_dict</span><span class="p">)</span>
+
+        <span class="n">_velocity_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity_dict</span>
+        <span class="n">_velocity_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">velocity_dict</span><span class="p">)</span>
+
+        <span class="n">_acceleration_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_dict</span>
+        <span class="n">_acceleration_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">acceleration_dict</span><span class="p">)</span>
+
+        <span class="n">_effort_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effort_dict</span>
+        <span class="n">_effort_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">effort_dict</span><span class="p">)</span>
+
+        <span class="n">joint_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_joint_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">joint_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">_joint_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">]</span>
+        <span class="n">joint_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">_type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">]</span>
+        <span class="n">velocities</span> <span class="o">=</span> <span class="p">[</span><span class="n">_velocity_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">]</span>
+        <span class="n">accelerations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_acceleration_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">]</span>
+        <span class="n">effort</span> <span class="o">=</span> <span class="p">[</span><span class="n">_effort_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">joint_names</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">JointTrajectoryPoint</span><span class="p">(</span><span class="n">joint_values</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">accelerations</span><span class="p">,</span> <span class="n">effort</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="n">joint_names</span><span class="p">)</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">Trajectory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
