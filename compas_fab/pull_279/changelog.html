@@ -146,10 +146,13 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added serialization methods to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh</span></code> and <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attached_collision_meshes</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.ros.PlanningSceneComponents.__ne__</span></code></p></li>
+<li><p>Added dictionary behavior to <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
+<li><p>Added length limitations to attributes of <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Configuration</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>: the attributes <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">types</span></code> changed to <code class="docutils literal notranslate"><span class="pre">joint_values</span></code> and <cite>joint_types</cite> respectively.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -159,6 +162,9 @@ and this project adheres to <a class="reference external" href="https://semver.o
 </ul>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
+<ul class="simple">
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
+</ul>
 </div>
 <div class="section" id="id2">
 <h2>0.16.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
