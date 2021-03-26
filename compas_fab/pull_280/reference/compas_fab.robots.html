@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-  <title>compas_fab - &lt;no title&gt;</title>
+  <title>compas_fab - compas_fab.robots</title>
   
 
   <meta charset="utf-8" />
@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="../_static/css/compas-reference.css" />
 
   
-    <link rel="next" title="&lt;no title&gt;" href="compas_fab.backends.html" />
+    <link rel="next" title="Robot" href="generated/compas_fab.robots.Robot.html" />
   
 
   
@@ -111,14 +111,133 @@
             
               <li class="breadcrumb-item"><a href="../reference.html">API Reference</a></li>
             
-            <li class="breadcrumb-item active" aria-current="page">&lt;no title&gt;</li>
+            <li class="breadcrumb-item active" aria-current="page">compas_fab.robots</li>
           </ol>
         </nav>
         
 
         
         
-        
+        <span class="target" id="module-compas_fab.robots"></span><div class="section" id="compas-fab-robots">
+<h1>compas_fab.robots<a class="headerlink" href="#compas-fab-robots" title="Permalink to this headline">¶</a></h1>
+<p>This package contains classes for robot modeling and they are used by the
+simulation, planning and execution backends to exchange information.</p>
+<div class="section" id="main-classes">
+<h2>Main classes<a class="headerlink" href="#main-classes" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
+<td><p>Represents a robot.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotSemantics</span></code></a></p></td>
+<td><p>Represents semantic information of a robot.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tool</span></code></a></p></td>
+<td><p>Represents a tool to be attached to the robot’s flange.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
+<td><p>Duration consists of two integers: seconds and nanoseconds.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Wrench.html#compas_fab.robots.Wrench" title="compas_fab.robots.Wrench"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wrench</span></code></a></p></td>
+<td><p>A wrench represents force in free space, separated into its linear (force) and angular (torque) parts.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Inertia.html#compas_fab.robots.Inertia" title="compas_fab.robots.Inertia"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Inertia</span></code></a></p></td>
+<td><p>The moments of inertia represent the spatial distribution of mass in a rigid body.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="path-planning">
+<h2>Path planning<a class="headerlink" href="#path-planning" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointTrajectory</span></code></a></p></td>
+<td><p>Describes a joint trajectory as a list of trajectory points.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a></p></td>
+<td><p>Defines a point within a trajectory.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html#compas_fab.robots.PathPlan" title="compas_fab.robots.PathPlan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathPlan</span></code></a></p></td>
+<td><p>Describes a complete path plan for one or more robots.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="planning-scene">
+<h2>Planning scene<a class="headerlink" href="#planning-scene" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></a></p></td>
+<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>’s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionMesh</span></code></a></p></td>
+<td><p>Represents a collision mesh.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PlanningScene.html#compas_fab.robots.PlanningScene" title="compas_fab.robots.PlanningScene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanningScene</span></code></a></p></td>
+<td><p>Represents the planning scene.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="constraints">
+<h2>Constraints<a class="headerlink" href="#constraints" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.BoundingVolume.html#compas_fab.robots.BoundingVolume" title="compas_fab.robots.BoundingVolume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingVolume</span></code></a></p></td>
+<td><p>A container for describing a bounding volume.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraint</span></code></a></p></td>
+<td><p>Base class for robot constraints.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.JointConstraint.html#compas_fab.robots.JointConstraint" title="compas_fab.robots.JointConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JointConstraint</span></code></a></p></td>
+<td><p>Constrains the value of a joint to be within a certain bound.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.OrientationConstraint.html#compas_fab.robots.OrientationConstraint" title="compas_fab.robots.OrientationConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a></p></td>
+<td><p>Constrains a link to be within a certain orientation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PositionConstraint.html#compas_fab.robots.PositionConstraint" title="compas_fab.robots.PositionConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PositionConstraint</span></code></a></p></td>
+<td><p>Constrains a link to be within a certain bounding volume.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="unit-conversion">
+<h2>Unit conversion<a class="headerlink" href="#unit-conversion" title="Permalink to this headline">¶</a></h2>
+<p>The unit systems most commonly used in <strong>COMPAS FAB</strong> are <strong>meters</strong> and <strong>radians</strong>.
+The following functions help with converting units from one system to the other.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.to_degrees.html#compas_fab.robots.to_degrees" title="compas_fab.robots.to_degrees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_degrees</span></code></a></p></td>
+<td><p>Convert a list of floats representing radians to a list of degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.to_radians.html#compas_fab.robots.to_radians" title="compas_fab.robots.to_radians"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_radians</span></code></a></p></td>
+<td><p>Convert a list of floats representing degrees to a list of radians.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
         
       </main>
       <!-- content -->
@@ -135,12 +254,42 @@
         
         
           <div id="compas-navigation" class="collapse compas-navigation">
-          <ul class="nav flex-column">
+          <ul class="nav flex-column active">
 <li class="nav-item"><a class="nav-link reference internal" href="../overview.html">Overview</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../backends.html">Working with backends</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../examples.html">Examples</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="../reference.html">API Reference</a></li>
+<li class="nav-item active"><a class="nav-link reference internal" href="../reference.html">API Reference</a><ul class="nav flex-column active">
+<li class="nav-item active"><a class="nav-link active current reference internal" href="#">compas_fab.robots</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Robot.html">Robot</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.RobotSemantics.html">RobotSemantics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Tool.html">Tool</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Duration.html">Duration</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Wrench.html">Wrench</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Inertia.html">Inertia</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.BoundingVolume.html">BoundingVolume</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Constraint.html">Constraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.JointConstraint.html">JointConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.OrientationConstraint.html">OrientationConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.PositionConstraint.html">PositionConstraint</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.to_degrees.html">to_degrees</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.to_radians.html">to_radians</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
+</ul>
+</li>
 <li class="nav-item"><a class="nav-link reference internal" href="../contributing.html">Contributor’s Guide</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../authors.html">Citing</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="../changelog.html">Changelog</a></li>
@@ -154,7 +303,15 @@
       <!-- toc -->
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
-        <ul class="simple">
+        <ul class="nav flex-column" id="compas-toc">
+<li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.robots</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#main-classes">Main classes</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#path-planning">Path planning</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#planning-scene">Planning scene</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#constraints">Constraints</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#unit-conversion">Unit conversion</a></li>
+</ul>
+</li>
 </ul>
 
       </div>
@@ -176,10 +333,10 @@
       
 
       
-        <a href="compas_fab.backends.html" title="&lt;no title&gt;" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+        <a href="generated/compas_fab.robots.Robot.html" title="Robot" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
           <div class="nav-title footer-link flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Next</div>
-            &lt;no title&gt;
+            Robot
           </div>
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
         </a>
