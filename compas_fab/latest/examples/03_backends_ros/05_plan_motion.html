@@ -138,10 +138,11 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 
 <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
 <span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">CollisionMesh</span><span class="p">,</span> <span class="n">AttachedCollisionMesh</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">CollisionMesh</span><span class="p">,</span> <span class="n">AttachedCollisionMesh</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
@@ -180,7 +181,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 allows to describe the goal with constraints rather than defined frames.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>

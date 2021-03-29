@@ -154,10 +154,11 @@ referenced by the identifiers: <code class="docutils literal notranslate"><span 
 on the cell are positioned correctly and not colliding with each other
 at start, otherwise path planning will fail.</p>
 <p>The state of a robot is specified as an instance of
-<a class="reference internal" href="../../reference/generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a>.</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code>.</p>
 <p>Here’s a simple example on how to position two of the robots using
 forward kinematics:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">rfl</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">VrepClient</span>
 
@@ -215,6 +216,7 @@ to start the process. In its minimal expression, a path planning request must
 define a start configuration and a goal pose and rely on defaults for the rest.</p>
 <p>Here is an example of such a request:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">rfl</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">VrepClient</span>

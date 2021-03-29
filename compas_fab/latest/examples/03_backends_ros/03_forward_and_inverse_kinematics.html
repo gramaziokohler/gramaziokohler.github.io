@@ -138,10 +138,10 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 from joint states (<strong>cartesian space</strong> to <strong>joint space</strong>). This means the
 state of each joint in the articulated body of a robot needs to be defined.</p>
 <p>Joint states are described in <strong>COMPAS FAB</strong> with the
-<a class="reference internal" href="../../reference/generated/compas_fab.robots.Configuration.html#compas_fab.robots.Configuration" title="compas_fab.robots.Configuration"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code></a> class.</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code> class.</p>
 <p>The simplest way to calculate forward kinematics is based on the properties defined
 by the robot model and does not require ROS to be running:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.ur5</span> <span class="kn">import</span> <span class="n">Robot</span>
 
 <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">()</span>
@@ -158,8 +158,8 @@ by the robot model and does not require ROS to be running:</p>
 <p>Additionally, if the <a class="reference internal" href="../../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a> is assigned a <code class="docutils literal notranslate"><span class="pre">client</span></code>, it
 will try to use it to resolve forward kinematics. The following example shows the same
 solutions but calculated by ROS:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>

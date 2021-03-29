@@ -138,7 +138,8 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">VrepClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="n">config</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_prismatic_and_revolute_values</span><span class="p">([</span><span class="mf">7.600</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.500</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.500</span><span class="p">],</span>
 <span class="gp">... </span>                                                              <span class="n">to_radians</span><span class="p">([</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">]))</span>

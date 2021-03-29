@@ -128,12 +128,18 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added support for MoveIt on ROS Noetic</p></li>
 </ul>
 <p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>The <cite>Configuration</cite> class has moved to <cite>compas.robots</cite>, but is still aliased within <cite>compas_fab.robots</cite></p></li>
+</ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">repr()</span></code> of <code class="docutils literal notranslate"><span class="pre">ROSmsg</span></code> class</p></li>
 <li><p>Fix data type of secs and nsecs in <code class="docutils literal notranslate"><span class="pre">Time</span></code> ROS message</p></li>
 </ul>
 <p><strong>Deprecated</strong></p>
+<ul class="simple">
+<li><p><cite>compas_fab.robots.Configuration</cite> is being deprecated in favor of <cite>compas.robots.Configuration</cite></p></li>
+</ul>
 <p><strong>Removed</strong></p>
 </div>
 <div class="section" id="id1">
