@@ -121,9 +121,9 @@
         
         
         <div class="section" id="creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector">
-<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector<a class="headerlink" href="#creating-a-urdf-with-an-ur5-robot-and-a-custom-end-effector" title="Permalink to this headline">¶</a></h1>
+<span id="ros-examples-create-urdf-ur5-with-measurement-tool"></span><h1><span class="section-number">3.7. </span>Creating a URDF with an UR5 robot and a custom end-effector</h1>
 <div class="section" id="export-your-meshes">
-<h2><span class="section-number">3.7.1. </span>Export your meshes<a class="headerlink" href="#export-your-meshes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.1. </span>Export your meshes</h2>
 <p>In ROS, robot link (and end-effector) geometry is defined with 2 different
 meshes: <em>visual</em> and <em>collision</em>. The visual mesh represents how the robot looks
 like and the collision mesh is used for collision detection. You could have the
@@ -137,11 +137,11 @@ to be defined in <em>meters</em>. Then export both visual and a collision meshes
 your end-effector in a ROS-friendly format, like .stl or .obj (see below).</p>
 <div class="figure align-default" id="id1">
 <img alt="../../_images/07_urdf_tool_00.jpg" class="figure-img img-fluid" src="../../_images/07_urdf_tool_00.jpg" />
-<p class="caption"><span class="caption-text">Screenshot of exporting a tool geometry from Rhino3D positioned in (0,0,0).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Screenshot of exporting a tool geometry from Rhino3D positioned in (0,0,0).</span></p>
 </div>
 </div>
 <div class="section" id="prepare-your-catkin-workspace">
-<h2><span class="section-number">3.7.2. </span>Prepare your catkin workspace<a class="headerlink" href="#prepare-your-catkin-workspace" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.2. </span>Prepare your catkin workspace</h2>
 <p>Open your command prompt and go to your home directory:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~</span>
 </code></pre></div>
@@ -181,7 +181,7 @@ following lines after the line <code class="docutils literal notranslate"><span 
 <p>Copy your meshes into <code class="docutils literal notranslate"><span class="pre">meshes/visual</span></code> and <code class="docutils literal notranslate"><span class="pre">meshes/collision</span></code>.</p>
 </div>
 <div class="section" id="create-xacros-and-generate-urdf">
-<h2><span class="section-number">3.7.3. </span>Create xacros and generate urdf<a class="headerlink" href="#create-xacros-and-generate-urdf" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.3. </span>Create xacros and generate urdf</h2>
 <p>Rather than writing urdf files directly, it is more convinient to write xacro
 files from which urdfs are generated. As its name implies, xacro is a macro
 language. The language allows to use constants, to perform simple math
@@ -237,7 +237,7 @@ operations and to parameterize macros simply by using <code class="docutils lite
 </code></pre></div>
 </div>
 <div class="section" id="explanation">
-<h3><span class="section-number">3.7.3.1. </span>Explanation<a class="headerlink" href="#explanation" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.7.3.1. </span>Explanation</h3>
 <p>The end-effector consists of one fixed joint (that will be attached to the tool0
 of the robot), one link with geometry (the tool geometry), one fixed joint (the
 tcp joint, defining the TCP frame) and the tcp link without geometry.</p>
@@ -325,7 +325,7 @@ is never child to a joint (first link).</p>
 </div>
 </div>
 <div class="section" id="view-urdf">
-<h2><span class="section-number">3.7.4. </span>View urdf<a class="headerlink" href="#view-urdf" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.4. </span>View urdf</h2>
 <p>Copy some boilerplate files from the <code class="docutils literal notranslate"><span class="pre">urdf_tutorial</span></code> package with the following commands:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">roscd</span> <span class="n">urdf_tutorial</span>
 <span class="n">cp</span> <span class="n">rviz</span><span class="o">/</span><span class="n">urdf</span><span class="o">.</span><span class="n">rviz</span> <span class="o">~/</span><span class="n">robotic_setups</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">ur5_with_measurement_tool</span><span class="o">/</span><span class="n">rviz</span><span class="o">/</span>
@@ -367,19 +367,19 @@ that they match the following:</p>
 </div>
 <div class="figure align-default" id="id2">
 <img alt="../../_images/07_urdf_tool_01.jpg" class="figure-img img-fluid" src="../../_images/07_urdf_tool_01.jpg" />
-<p class="caption"><span class="caption-text">Screenshot of RViz showing the ur5 with the custom end-effector.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Screenshot of RViz showing the ur5 with the custom end-effector.</span></p>
 </div>
 <p>In RViz you can customize the display settings and save the <code class="docutils literal notranslate"><span class="pre">urdf.rviz</span></code></p>
 </div>
 <div class="section" id="add-path-to-search-paths">
-<h2><span class="section-number">3.7.5. </span>Add path to search paths<a class="headerlink" href="#add-path-to-search-paths" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.5. </span>Add path to search paths</h2>
 <p>For convenience, add the path to your <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> in order to make it available on every start of ROS:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">echo</span> <span class="s1">&#39;source ~/robotic_setups/devel/setup.bash&#39;</span> <span class="o">&gt;&gt;</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </code></pre></div>
 </div>
 </div>
 <div class="section" id="further-links">
-<h2><span class="section-number">3.7.6. </span>Further links<a class="headerlink" href="#further-links" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.7.6. </span>Further links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Building%20a%20Visual%20Robot%20Model%20with%20URDF%20from%20Scratch">Building a visual robot model with URDF from scratch</a></p></li>
 <li><p><a class="reference external" href="https://wiki.ros.org/urdf/Tutorials/Adding%20Physical%20and%20Collision%20Properties%20to%20a%20URDF%20Model">Adding Physical and Collision Properties to a URDF Model</a></p></li>
