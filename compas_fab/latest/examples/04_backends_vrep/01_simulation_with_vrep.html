@@ -120,14 +120,14 @@
 
         
         
-        <div class="section" id="simulation-examples-with-v-rep">
+        <section id="simulation-examples-with-v-rep">
 <h1><span class="section-number">4.1. </span>Simulation examples with V-REP</h1>
 <p>The following examples demonstrate the <a class="reference external" href="https://www.coppeliarobotics.com/">V-REP</a>
 simulation backend. They are based on a sample scene of the Robotic Fabrication
 Lab (RFL).</p>
 <p>Before running them, make sure you have configured the
 <a class="reference internal" href="../../backends/vrep.html#vrep-backend"><span class="std std-ref">V-REP backend</span></a> correctly.</p>
-<div class="section" id="first-step">
+<section id="first-step">
 <h2><span class="section-number">4.1.1. </span>First step</h2>
 <p>The first step is just connect to the simulator and verify the connection
 is working.</p>
@@ -140,16 +140,16 @@ see the output <code class="docutils literal notranslate"><span class="pre">Conn
     <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Connected: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">client</span><span class="o">.</span><span class="n">is_connected</span><span class="p">)</span>
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="forward-kinematics">
+</section>
+<section id="forward-kinematics">
 <h2><span class="section-number">4.1.2. </span>Forward Kinematics</h2>
-<div class="section" id="moving-robots">
+<section id="moving-robots">
 <h3><span class="section-number">4.1.2.1. </span>Moving robots</h3>
 <p>The RFL scene used on these examples has 4 robots that can be
 referenced by the identifiers: <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code> and <code class="docutils literal notranslate"><span class="pre">D</span></code>.</p>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/01_rfl.png" class="figure-img img-fluid" src="../../_images/01_rfl.png" />
-</div>
+</figure>
 <p>When planning on a multi-robotic cell, it’s important to make sure all robots
 on the cell are positioned correctly and not colliding with each other
 at start, otherwise path planning will fail.</p>
@@ -181,9 +181,9 @@ forward kinematics:</p>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End effector poses: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_b</span><span class="p">))</span>
 </code></pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="inverse-kinematics">
+</section>
+</section>
+<section id="inverse-kinematics">
 <h2><span class="section-number">4.1.3. </span>Inverse Kinematics</h2>
 <p>When the configuration required to reach a certain frame with a robot is not
 know, we use inverse kinematics to resolve it and find a suitable pose.
@@ -208,8 +208,8 @@ that there is at least one valid configuration to reach the goal pose.</p>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found valid configuration: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">configs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="path-planning">
+</section>
+<section id="path-planning">
 <h2><span class="section-number">4.1.4. </span>Path planning</h2>
 <p>Calculating a path plan requires several parameters to be configured in order
 to start the process. In its minimal expression, a path planning request must
@@ -286,12 +286,12 @@ define a start configuration and a goal pose and rely on defaults for the rest.<
 <li><p><a class="reference download internal" download="" href="../../_downloads/7a2788e7b3cd6f08e5ad4010f70e3a6e/01_complete_path_planning_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Path</span> <span class="pre">planning</span> <span class="pre">example</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
-</div></div>
-<div class="section" id="grasshopper-integration">
+</div></section>
+<section id="grasshopper-integration">
 <h2><span class="section-number">4.1.5. </span>Grasshopper integration</h2>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/01_grasshopper.png" class="figure-img img-fluid" src="../../_images/01_grasshopper.png" />
-</div>
+</figure>
 <p>Besides the examples above that can be run standalone or inside CAD software,
 this package contains a ready-made integration for Grasshopper that allows
 configuration of most available parameters.</p>
@@ -302,8 +302,8 @@ configuration of most available parameters.</p>
 <li><p><a class="reference download internal" download="" href="../../_downloads/8f1ca0b32b981b2c4a5d01c5c17e31cb/01_grasshopper_path_planner.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Complete</span> <span class="pre">path</span> <span class="pre">planning</span> <span class="pre">example</span></code></a>.</p></li>
 </ul>
 </div>
-</div></div>
-</div>
+</div></section>
+</section>
 
         
       </main>
