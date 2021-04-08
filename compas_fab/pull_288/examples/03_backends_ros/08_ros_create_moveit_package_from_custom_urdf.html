@@ -120,12 +120,12 @@
 
         
         
-        <div class="section" id="creating-a-moveit-package-from-the-custom-created-urdf">
+        <section id="creating-a-moveit-package-from-the-custom-created-urdf">
 <span id="ros-examples-create-moveit-package-from-custom-urdf"></span><h1><span class="section-number">3.8. </span>Creating a MoveIt! package from the custom created URDF</h1>
 <p>This example is mainly copied from <a class="reference external" href="https://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html">MoveIt! Setup Assistant Tutorial</a></p>
 <p>It is based on the previous example:
 <a class="reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html#ros-examples-create-urdf-ur5-with-measurement-tool"><span class="std std-ref">Creating a URDF with an UR5 robot and a custom end-effector</span></a></p>
-<div class="section" id="start-the-moveit-setup-assistant">
+<section id="start-the-moveit-setup-assistant">
 <h2><span class="section-number">3.8.1. </span>Start the MoveIt! Setup Assistant</h2>
 <p>The MoveIt! Setup Assistant is a graphical user interface for configuring any
 robot for use with MoveIt!. Its primary functions are to generate a Semantic Robot
@@ -143,11 +143,11 @@ file you created in the last example. Choose that file and then click
 <em>Load Files.</em> The Setup Assistant will load the files (this might take a few
 seconds) and present you with this screen:</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_00.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_00.jpg" />
-</div>
-</div>
-<div class="section" id="generate-self-collision-matrix">
+</figure>
+</section>
+<section id="generate-self-collision-matrix">
 <h2><span class="section-number">3.8.2. </span>Generate Self-Collision Matrix</h2>
 <ul class="simple">
 <li><p>Click on the <em>Self-Collisions</em> pane selector on the left-hand side.</p></li>
@@ -159,11 +159,11 @@ seconds before presenting you the results of its computation in the main table.<
 collision. The default value of 10’000 collision checks should be fine.</p>
 </dd>
 </dl>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_01.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_01.jpg" />
-</div>
-</div>
-<div class="section" id="add-virtual-joints">
+</figure>
+</section>
+<section id="add-virtual-joints">
 <h2><span class="section-number">3.8.3. </span>Add Virtual Joints</h2>
 <p>Virtual joints are used primarily to attach the robot to the world coordinate
 frame. We will define only one virtual joint, attaching the
@@ -175,11 +175,11 @@ frame. We will define only one virtual joint, attaching the
 <li><p>Set the Joint Type as “fixed”.</p></li>
 <li><p>Click <em>Save</em>.</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_02.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_02.jpg" />
-</div>
-</div>
-<div class="section" id="add-planning-groups">
+</figure>
+</section>
+<section id="add-planning-groups">
 <h2><span class="section-number">3.8.4. </span>Add Planning Groups</h2>
 <p>Planning groups are used for semantically describing different parts of your
 robot, such as defining what an arm is, or an end-effector. The planning group
@@ -188,10 +188,10 @@ is later used for path- and motion planning.</p>
 <li><p>Click on the <em>Planning Groups</em> pane selector.</p></li>
 <li><p>Click on <em>Add Group</em> and you should see the following screen:</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_03.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_03.jpg" />
-</div>
-<div class="section" id="add-the-arm">
+</figure>
+<section id="add-the-arm">
 <h3><span class="section-number">3.8.4.1. </span>Add the arm</h3>
 <ul class="simple">
 <li><p>Enter <em>Group Name</em> as “manipulator”</p></li>
@@ -199,21 +199,21 @@ is later used for path- and motion planning.</p>
 <li><p>Let <em>Kin. Search Resolution</em>, <em>Kin. Search Timeout (sec)</em>, <em>Kin. Solver Attempts</em> and
 <em>Group Default Planner</em> stay at their default values.</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_04.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_04.jpg" />
-</div>
+</figure>
 <ul class="simple">
 <li><p>Click on the <em>Add Kin. Chain</em> button. Press <em>Expand All</em></p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_05.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_05.jpg" />
-</div>
+</figure>
 <ul class="simple">
 <li><p>Select the “base_link” as <em>Base Link</em> and the “tcp” as <em>Tip Link</em></p></li>
 <li><p>Press the <em>Save</em> button.</p></li>
 </ul>
-</div>
-<div class="section" id="add-the-gripper">
+</section>
+<section id="add-the-gripper">
 <h3><span class="section-number">3.8.4.2. </span>Add the gripper</h3>
 <p>We will also add a group for the end-effector.</p>
 <div class="admonition note">
@@ -229,12 +229,12 @@ is later used for path- and motion planning.</p>
 <li><p>Choose measurment_tool and tcp (The links you defined in the measurement_tool.xacro) and add them to the list of <em>Selected Links</em> on     the right hand side.</p></li>
 <li><p>Click <em>Save</em></p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_06.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_06.jpg" />
-</div>
-</div>
-</div>
-<div class="section" id="add-robot-poses">
+</figure>
+</section>
+</section>
+<section id="add-robot-poses">
 <h2><span class="section-number">3.8.5. </span>Add Robot Poses</h2>
 <p>The <em>Setup Assistant</em> allows you to add certain fixed poses into the
 configuration. This helps if, for example, you want to define a certain position
@@ -251,11 +251,11 @@ and then <em>Save</em> the pose.</p></li>
 with the joint limits in your URDF, you should be able to see it immediately here.</p>
 </dd>
 </dl>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_07.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_07.jpg" />
-</div>
-</div>
-<div class="section" id="label-end-effectors">
+</figure>
+</section>
+<section id="label-end-effectors">
 <h2><span class="section-number">3.8.6. </span>Label End-Effectors</h2>
 <p>We have already added the measurement_tool of the ur5. Now, we will designate
 this group as a special group: end effectors.</p>
@@ -268,22 +268,22 @@ this group as a special group: end effectors.</p>
 <li><p>Leave <em>Parent Group</em> empty.</p></li>
 <li><p>Press <em>Save</em>.</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_08.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_08.jpg" />
-</div>
-</div>
-<div class="section" id="add-passive-joints">
+</figure>
+</section>
+<section id="add-passive-joints">
 <h2><span class="section-number">3.8.7. </span>Add Passive Joints</h2>
 <p>Skip this step.</p>
-</div>
-<div class="section" id="add-author-information">
+</section>
+<section id="add-author-information">
 <h2><span class="section-number">3.8.8. </span>Add Author Information</h2>
 <ul class="simple">
 <li><p>Click on the <em>Author Information</em> pane.</p></li>
 <li><p>Enter your name and email address.</p></li>
 </ul>
-</div>
-<div class="section" id="generate-configuration-files">
+</section>
+<section id="generate-configuration-files">
 <h2><span class="section-number">3.8.9. </span>Generate Configuration Files</h2>
 <p>You are almost there. One last step!</p>
 <ul class="simple">
@@ -296,11 +296,11 @@ and write a set of launch and config files into the directory of your choosing.
 All the generated files will appear in the Generated Files/Folders tab and you
 can click on each of them for a description of what they contain.</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_09.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_09.jpg" />
-</div>
-</div>
-<div class="section" id="start-the-newly-generated-moveit-configuration">
+</figure>
+</section>
+<section id="start-the-newly-generated-moveit-configuration">
 <h2><span class="section-number">3.8.10. </span>Start the newly generated MoveIt! Configuration</h2>
 <p>Now, optionally, you can already start the MoveIt! Demo and play:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">robotic_setups</span>
@@ -309,18 +309,18 @@ can click on each of them for a description of what they contain.</p></li>
 <span class="n">roslaunch</span> <span class="n">ur5_with_measurement_tool_moveit_config</span>  <span class="n">demo</span><span class="o">.</span><span class="n">launch</span> <span class="n">rviz_tutorial</span><span class="o">:=</span><span class="n">true</span>
 </code></pre></div>
 </div>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/08_ros_create_moveit_package_10.jpg" class="figure-img img-fluid" src="../../_images/08_ros_create_moveit_package_10.jpg" />
-</div>
-</div>
-<div class="section" id="further-links">
+</figure>
+</section>
+<section id="further-links">
 <h2><span class="section-number">3.8.11. </span>Further links</h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html">https://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/setup_assistant/setup_assistant_tutorial.html</a></p></li>
 <li><p><a class="reference external" href="https://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/urdf_srdf/urdf_srdf_tutorial.html">https://docs.ros.org/kinetic/api/moveit_tutorials/html/doc/urdf_srdf/urdf_srdf_tutorial.html</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
         
       </main>
