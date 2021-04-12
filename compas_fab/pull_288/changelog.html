@@ -116,17 +116,18 @@
 
         
         
-        <section id="changelog">
+        <div class="section" id="changelog">
 <h1>Changelog</h1>
 <p>All notable changes to this project will be documented in this file.</p>
 <p>The format is based on <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
 and this project adheres to <a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
-<section id="unreleased">
+<div class="section" id="unreleased">
 <h2>Unreleased</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Added support for MoveIt on ROS Noetic</p></li>
-<li><p>In`compas.datastructures`, added <cite>Plan</cite>, <cite>PlannedAction</cite>, <cite>Action</cite> and <cite>IntegerIdGenerator</cite></p></li>
+<li><p>Added support for Python 3.9</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">compas.datastructures</span></code>, added <code class="docutils literal notranslate"><span class="pre">Plan</span></code>, <code class="docutils literal notranslate"><span class="pre">PlannedAction</span></code>, <code class="docutils literal notranslate"><span class="pre">Action</span></code> and <code class="docutils literal notranslate"><span class="pre">IntegerIdGenerator</span></code></p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -144,8 +145,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p><cite>compas_fab.robots.Configuration</cite> is being deprecated in favor of <cite>compas.robots.Configuration</cite></p></li>
 </ul>
 <p><strong>Removed</strong></p>
-</section>
-<section id="id1">
+</div>
+<div class="section" id="id1">
 <h2>0.17.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -174,15 +175,15 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <ul class="simple">
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
 </ul>
-</section>
-<section id="id2">
+</div>
+<div class="section" id="id2">
 <h2>0.16.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.0</span></code></p></li>
 </ul>
-</section>
-<section id="id3">
+</div>
+<div class="section" id="id3">
 <h2>0.15.0</h2>
 <p><strong>Added</strong></p>
 <p><strong>Changed</strong></p>
@@ -192,8 +193,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <p><strong>Fixed</strong></p>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
-</section>
-<section id="id4">
+</div>
+<div class="section" id="id4">
 <h2>0.14.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -209,8 +210,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <ul class="simple">
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> of <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
 </ul>
-</section>
-<section id="id5">
+</div>
+<div class="section" id="id5">
 <h2>0.13.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -222,15 +223,15 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">frame_id</span></code> generation when tool name changes</p></li>
 <li><p>Fixed freeze with some sync planning scene methods on Grasshopper/IronPython</p></li>
 </ul>
-</section>
-<section id="id6">
+</div>
+<div class="section" id="id6">
 <h2>0.13.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.17</span></code></p></li>
 </ul>
-</section>
-<section id="id7">
+</div>
+<div class="section" id="id7">
 <h2>0.12.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -277,8 +278,8 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 <li><p><code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> are deprecated in favor of <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code>.</p></li>
 </ul>
 <p><strong>Removed</strong></p>
-</section>
-<section id="id8">
+</div>
+<div class="section" id="id8">
 <h2>0.11.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -304,15 +305,15 @@ geometry if links and/or joints are not defined.</p></li>
 <li><p>In <a class="reference internal" href="reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>, changed the <code class="docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code>
 function with <code class="docutils literal notranslate"><span class="pre">tolerances_above</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerances_below</span></code>.</p></li>
 <li><p><a class="reference internal" href="reference/generated/compas_fab.robots.CollisionMesh.scale.html#compas_fab.robots.CollisionMesh.scale" title="compas_fab.robots.CollisionMesh.scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh.scale()</span></code></a> now takes a scale factor
-instead of a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v1.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
+instead of a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Convert constraints on inverse kinematics and cartesian planner to ROS messages</p></li>
 <li><p>Fix support for trajectory constraints on kinematic planner</p></li>
 </ul>
-</section>
-<section id="id9">
+</div>
+<div class="section" id="id9">
 <h2>0.10.2</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -322,16 +323,16 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.13</span></code></p></li>
 </ul>
-</section>
-<section id="id10">
+</div>
+<div class="section" id="id10">
 <h2>0.10.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fix DAE parser to handle <code class="docutils literal notranslate"><span class="pre">polylist</span></code> meshes</p></li>
 <li><p>Bumped <code class="docutils literal notranslate"><span class="pre">roslibpy</span></code> dependency to <code class="docutils literal notranslate"><span class="pre">0.7.1</span></code> to fix blocking service call issue on Mac OS</p></li>
 </ul>
-</section>
-<section id="id11">
+</div>
+<div class="section" id="id11">
 <h2>0.10.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -351,8 +352,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed interface of <code class="xref py py-class docutils literal notranslate"><span class="pre">RobotArtist</span></code> for Blender</p></li>
 <li><p>Fixed DAE parsing of meshes with multiple triangle sets</p></li>
 </ul>
-</section>
-<section id="id12">
+</div>
+<div class="section" id="id12">
 <h2>0.9.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -364,8 +365,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.11</span></code></p></li>
 </ul>
-</section>
-<section id="id13">
+</div>
+<div class="section" id="id13">
 <h2>0.8.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -378,8 +379,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed parsing of semantics (SRDF) containing nested groups</p></li>
 <li><p>Fixed DAE support on ROS File loader</p></li>
 </ul>
-</section>
-<section id="id14">
+</div>
+<div class="section" id="id14">
 <h2>0.7.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -407,8 +408,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <ul class="simple">
 <li><p>Fixed missing planner initialization when used without context manager.</p></li>
 </ul>
-</section>
-<section id="id15">
+</div>
+<div class="section" id="id15">
 <h2>0.6.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -430,8 +431,8 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <ul class="simple">
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
-</section>
-<section id="id16">
+</div>
+<div class="section" id="id16">
 <h2>0.5.0</h2>
 <p><strong>Changed</strong></p>
 <ul class="simple">
@@ -467,8 +468,8 @@ to the new trajectory classes.</p></li>
 <ul class="simple">
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
-</section>
-<section id="id17">
+</div>
+<div class="section" id="id17">
 <h2>0.4.1</h2>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
@@ -478,8 +479,8 @@ to the new trajectory classes.</p></li>
 <ul class="simple">
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <code class="docutils literal notranslate"><span class="pre">compas</span></code> core.</p></li>
 </ul>
-</section>
-<section id="id18">
+</div>
+<div class="section" id="id18">
 <h2>0.4.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -489,8 +490,8 @@ to the new trajectory classes.</p></li>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.10</span></code></p></li>
 </ul>
-</section>
-<section id="id19">
+</div>
+<div class="section" id="id19">
 <h2>0.3.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -503,15 +504,15 @@ to the new trajectory classes.</p></li>
 <li><p>Renamed <code class="docutils literal notranslate"><span class="pre">UrdfImporter</span></code> to <code class="docutils literal notranslate"><span class="pre">RosFileServerLoader</span></code></p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.8</span></code></p></li>
 </ul>
-</section>
-<section id="id20">
+</div>
+<div class="section" id="id20">
 <h2>0.2.1</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
-</section>
-<section id="id21">
+</div>
+<div class="section" id="id21">
 <h2>0.2.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
@@ -519,15 +520,15 @@ to the new trajectory classes.</p></li>
 <li><p>V-REP and ROS clients</p></li>
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.3.2</span></code></p></li>
 </ul>
-</section>
-<section id="id22">
+</div>
+<div class="section" id="id22">
 <h2>0.1.0</h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
 <li><p>Initial version</p></li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
         
       </main>
