@@ -120,7 +120,7 @@
 
         
         
-        <section id="plan-motion">
+        <div class="section" id="plan-motion">
 <h1><span class="section-number">3.5. </span>Plan motion</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -132,7 +132,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <p>There are 2 function that allow to plan a robotic movement without collisions:
 <code class="xref py py-class docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and
 <code class="xref py py-class docutils literal notranslate"><span class="pre">plan_motion</span></code>.</p>
-<section id="plan-cartesian-motion">
+<div class="section" id="plan-cartesian-motion">
 <h2><span class="section-number">3.5.1. </span>Plan cartesian motion</h2>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
@@ -174,8 +174,8 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
         <span class="p">[</span><span class="n">acm</span><span class="o">.</span><span class="n">collision_mesh</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">acm</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">attached_collision_meshes</span><span class="p">]))</span>
 </code></pre></div>
 </div>
-</section>
-<section id="id1">
+</div>
+<div class="section" id="id1">
 <h2><span class="section-number">3.5.2. </span>Plan motion</h2>
 <p>In contrast to the cartesian path, the <code class="xref py py-class docutils literal notranslate"><span class="pre">plan_motion</span></code>
 allows to describe the goal with constraints rather than defined frames.</p>
@@ -212,8 +212,8 @@ allows to describe the goal with constraints rather than defined frames.</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Executing this path at full speed would take approx. </span><span class="si">%.3f</span><span class="s2"> seconds.&quot;</span> <span class="o">%</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">time_from_start</span><span class="p">)</span>
 </code></pre></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
         
       </main>

@@ -118,7 +118,7 @@
 
         
         
-        <section id="ros">
+        <div class="section" id="ros">
 <span id="ros-backend"></span><h1>ROS</h1>
 <p>The <a class="reference external" href="https://www.ros.org">Robot Operating System</a> (ROS) is a flexible framework
 for writing robot software. It is a collection of tools, libraries, and
@@ -128,7 +128,7 @@ robot behavior across a wide variety of robotic platforms.</p>
 virtual), interconnected through a master controller.</p>
 <p>There are at least 3 different ways to run ROS: using Docker, using Linux, and
 using WSL on Windows.</p>
-<section id="ros-on-docker">
+<div class="section" id="ros-on-docker">
 <h2>ROS on Docker</h2>
 <p>To massively simplify the use of these tools, we package complete ROS systems
 into bundles of <a class="reference external" href="https://www.docker.com/">Docker</a> containers. Each of these bundles runs in a
@@ -143,7 +143,7 @@ the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">RO
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run -p <span class="m">9090</span>:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
-<section id="complete-ros-systems">
+<div class="section" id="complete-ros-systems">
 <h3>Complete ROS systems</h3>
 <p>It is usually not enough to run single ROS nodes. ROS systems are networks of
 multiple interconnected nodes. Docker provides a way to compose virtualized
@@ -317,9 +317,9 @@ them into a new <code class="docutils literal notranslate"><span class="pre">doc
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>http://localhost:8080/vnc.html?resize<span class="o">=</span>scale<span class="p">&amp;</span><span class="nv">autoconnect</span><span class="o">=</span><span class="nb">true</span>
 </code></pre></div>
 </div>
-</section>
-</section>
-<section id="ros-on-linux">
+</div>
+</div>
+<div class="section" id="ros-on-linux">
 <h2>ROS on Linux</h2>
 <p>The usual but most involved way to install ROS is on a Linux machine,
 either virtual or real. The machine should have an IP address reachable
@@ -349,8 +349,8 @@ containing a ROS master and the <a class="reference external" href="https://wiki
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
-</section>
-<section id="ros-on-wsl">
+</div>
+<div class="section" id="ros-on-wsl">
 <h2>ROS on WSL</h2>
 <p>For Windows 10 users, an alternative is to install the
 <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a> (WSL). WSL allows to run Linux within
@@ -368,11 +368,11 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
 <p class="admonition-title">See also</p>
 <p>For additional details, see <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Microsoft WSL documentation</a>.</p>
 </div>
-</section>
-<section id="next-steps">
+</div>
+<div class="section" id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.3)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
+<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.4)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/02_description_models.html#examples-description-models"><span class="std std-ref">Examples: Description models</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/03_backends_ros.html#examples-ros"><span class="std std-ref">Examples: ROS Backend</span></a></p></li>
 <li><p><a class="reference internal" href="../reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
@@ -383,8 +383,8 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
 <dd><p>Web UI is based on <a class="reference external" href="https://novnc.com/">NoVNC</a>.</p>
 </dd>
 </dl>
-</section>
-</section>
+</div>
+</div>
 
         
       </main>

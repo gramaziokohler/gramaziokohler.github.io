@@ -119,9 +119,9 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">DEFAULT_OP_MODE</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces.client</span> <span class="kn">import</span> <span class="n">ClientInterface</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep</span> <span class="kn">import</span> <span class="n">VrepError</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">DEFAULT_OP_MODE</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">assert_robot</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">config_from_vrep</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">config_to_vrep</span>
@@ -129,11 +129,13 @@
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">floats_to_vrep</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.helpers</span> <span class="kn">import</span> <span class="n">resolve_host</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.planner</span> <span class="kn">import</span> <span class="n">VrepPlanner</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.remote_api</span> <span class="kn">import</span> <span class="n">vrep</span>
+<span class="kn">from</span> <span class="nn">compas_fab.utilities</span> <span class="kn">import</span> <span class="n">LazyLoader</span>
 
 <span class="n">DEFAULT_SCALE</span> <span class="o">=</span> <span class="mf">1.</span>
-<span class="n">CHILD_SCRIPT_TYPE</span> <span class="o">=</span> <span class="n">vrep</span><span class="o">.</span><span class="n">sim_scripttype_childscript</span>
+<span class="n">CHILD_SCRIPT_TYPE</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># defined in vrepConst.sim_scripttype_childscript, but redefined here to prevent loading the remoteApi library</span>
 <span class="n">LOG</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;compas_fab.backends.vrep.client&#39;</span><span class="p">)</span>
+
+<span class="n">vrep</span> <span class="o">=</span> <span class="n">LazyLoader</span><span class="p">(</span><span class="s1">&#39;vrep&#39;</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="s1">&#39;compas_fab.backends.vrep.remote_api.vrep&#39;</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;VrepClient&#39;</span><span class="p">,</span>
