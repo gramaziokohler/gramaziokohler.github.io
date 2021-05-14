@@ -49,13 +49,17 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
@@ -118,11 +122,11 @@
 
         
         
-        <div class="section" id="getting-started">
+        <section id="getting-started">
 <h1>Getting started</h1>
 <p><strong>COMPAS FAB</strong> can be easily installed on multiple platforms,
 using popular package managers such as conda or pip.</p>
-<div class="section" id="install-with-conda">
+<section id="install-with-conda">
 <h2>Install with conda</h2>
 <p>The recommended way to install <strong>COMPAS FAB</strong> is with <a class="reference external" href="https://conda.io/docs/">conda</a>.
 For example, create an environment named <code class="docutils literal notranslate"><span class="pre">my-project</span></code> and install COMPAS and COMPAS FAB.</p>
@@ -136,11 +140,11 @@ and run the following command to check if the installation process was successfu
 python -c <span class="s2">&quot;import compas_fab; print(compas_fab.__version__)&quot;</span>
 </code></pre></div>
 </div>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span>0.18.0
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span>0.18.2
 </code></pre></div>
 </div>
 <p>You are ready to use <strong>COMPAS FAB</strong>!</p>
-<div class="section" id="installation-options">
+<section id="installation-options">
 <h3>Installation options</h3>
 <p>Install COMPAS FAB in an environment with a specific version of Python.</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda create -n my-project <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8 compas_fab
@@ -150,9 +154,9 @@ python -c <span class="s2">&quot;import compas_fab; print(compas_fab.__version__
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install -n my-project compas_fab
 </code></pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="install-with-pip">
+</section>
+</section>
+<section id="install-with-pip">
 <h2>Install with pip</h2>
 <p>Install COMPAS FAB using <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the Python Package Index.</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install compas_fab
@@ -173,30 +177,30 @@ pip install -e .
 <p>On Windows, you may need to install
 <a class="reference external" href="https://www.scivision.dev/python-windows-visual-c-14-required/">Microsoft Visual C++ 14.0</a>.</p>
 </div>
-</div>
-<div class="section" id="update-with-conda">
+</section>
+<section id="update-with-conda">
 <h2>Update with conda</h2>
 <p>To update COMPAS FAB to the latest version with <code class="docutils literal notranslate"><span class="pre">conda</span></code></p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda update compas_fab
 </code></pre></div>
 </div>
 <p>To switch to a specific version</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install <span class="nv">compas_fab</span><span class="o">=</span><span class="m">0</span>.18.0
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install <span class="nv">compas_fab</span><span class="o">=</span><span class="m">0</span>.18.2
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="update-with-pip">
+</section>
+<section id="update-with-pip">
 <h2>Update with pip</h2>
 <p>If you installed COMPAS FAB with <code class="docutils literal notranslate"><span class="pre">pip</span></code> the update command is the following</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install --upgrade compas_fab
 </code></pre></div>
 </div>
 <p>Or to switch to a specific version</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install <span class="nv">compas_fab</span><span class="o">==</span><span class="m">0</span>.18.0
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install <span class="nv">compas_fab</span><span class="o">==</span><span class="m">0</span>.18.2
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="working-in-rhino">
+</section>
+<section id="working-in-rhino">
 <h2>Working in Rhino</h2>
 <p>To make <strong>COMPAS FAB</strong> available inside Rhino, open the <em>command prompt</em>
 and type the following:</p>
@@ -205,14 +209,14 @@ and type the following:</p>
 </div>
 <p>Open Rhino, start the Python script editor, type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">compas_fab</span></code> and
 run it to verify that your installation is working.</p>
-</div>
-<div class="section" id="working-in-blender">
+</section>
+<section id="working-in-blender">
 <h2>Working in Blender</h2>
 <p>Once <strong>COMPAS</strong> itself is installed for Blender following the
 <a class="reference external" href="https://compas.dev/compas/latest/gettingstarted/blender.html">documented procedure</a>,
 <strong>COMPAS FAB</strong> will automatically be available as well after installing it.</p>
-</div>
-<div class="section" id="working-in-visual-studio-code">
+</section>
+<section id="working-in-visual-studio-code">
 <h2>Working in Visual Studio Code</h2>
 <p><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> is a free and open source text
 editor with very good support for Python programming.</p>
@@ -247,15 +251,15 @@ select it and from the options, select <code class="docutils literal notranslate
 Kill all opened terminals for it to take effect.</p>
 </li>
 </ul>
-<div class="section" id="run-scripts">
+<section id="run-scripts">
 <h3>Run scripts</h3>
 <p>To run Python scripts from within VS Code, simply open the file and press
 <code class="docutils literal notranslate"><span class="pre">F5</span></code>. This will start the script with the debugger attached, which means
 you can add breakpoints (clicking on the gutter, next to the line numbers),
 inspect variables and step into your code for debugging.</p>
 <p>Alternatively, use <code class="docutils literal notranslate"><span class="pre">Ctrl+F5</span></code> to start the script without debugger.</p>
-</div>
-<div class="section" id="virtual-environments">
+</section>
+<section id="virtual-environments">
 <h3>Virtual environments</h3>
 <p>If you are using <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your virtual environments, VS Code has
 built-in support for them. When a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file is open on VS Code, the bottom
@@ -263,9 +267,9 @@ left side of the <strong>Status bar</strong> will show the Python interpreter us
 scripts. Click on it and a list of all available interpreters including all
 environments will be shown. Select one, and the next time you run a script,
 the newly selected interpreter will be used.</p>
-</div>
-</div>
-<div class="section" id="next-steps">
+</section>
+</section>
+<section id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="backends.html#backends"><span class="std std-ref">Working with backends</span></a></p></li>
@@ -274,8 +278,8 @@ the newly selected interpreter will be used.</p>
 <li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial.html">COMPAS Tutorials</a></p></li>
 <li><p><a class="reference external" href="https://compas.dev/compas/latest/api.html">COMPAS API Reference</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
         
       </main>
@@ -398,7 +402,7 @@ the newly selected interpreter will be used.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

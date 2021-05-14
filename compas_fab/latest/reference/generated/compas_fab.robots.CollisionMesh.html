@@ -49,13 +49,17 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
@@ -122,34 +126,34 @@
 
         
         
-        <div class="detail section" id="collisionmesh">
+        <section class="detail" id="collisionmesh">
 <h1>CollisionMesh</h1>
 <dl class="py class">
-<dt id="compas_fab.robots.CollisionMesh">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></code><code class="sig-name descname"><span class="pre">CollisionMesh</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#CollisionMesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dt class="sig sig-object py" id="compas_fab.robots.CollisionMesh">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">CollisionMesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/planning_scene.html#CollisionMesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a collision mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The collision mesh. Ideally it is as coarse as possible.</p></li>
+<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The collision mesh. Ideally it is as coarse as possible.</p></li>
 <li><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The id of the mesh, used to identify it for later operations
 (<a class="reference internal" href="compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh" title="compas_fab.robots.PlanningScene.add_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_collision_mesh()</span></code></a>,
 <a class="reference internal" href="compas_fab.robots.PlanningScene.remove_collision_mesh.html#compas_fab.robots.PlanningScene.remove_collision_mesh" title="compas_fab.robots.PlanningScene.remove_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_collision_mesh()</span></code></a>,
 <a class="reference internal" href="compas_fab.robots.PlanningScene.append_collision_mesh.html#compas_fab.robots.PlanningScene.append_collision_mesh" title="compas_fab.robots.PlanningScene.append_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_collision_mesh()</span></code></a> etc.)</p></li>
-<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>, optional) – The frame of the mesh. Defaults to :meth:<a href="#id1"><span class="problematic" id="id2">`</span></a>~compas.geometry.Frame.worldXY().</p></li>
+<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>, optional) – The frame of the mesh. Defaults to :meth:<a href="#id1"><span class="problematic" id="id2">`</span></a>~compas.geometry.Frame.worldXY().</p></li>
 <li><p><strong>root_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the root link the collision mesh will be placed in. Defaults
 to <cite>‘world’</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Attributes</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The collision mesh. Ideally it is as coarse as possible.</p></li>
+<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The collision mesh. Ideally it is as coarse as possible.</p></li>
 <li><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The id of the mesh, used to identify it for later operations
 (<a class="reference internal" href="compas_fab.robots.PlanningScene.add_collision_mesh.html#compas_fab.robots.PlanningScene.add_collision_mesh" title="compas_fab.robots.PlanningScene.add_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_collision_mesh()</span></code></a>,
 <a class="reference internal" href="compas_fab.robots.PlanningScene.remove_collision_mesh.html#compas_fab.robots.PlanningScene.remove_collision_mesh" title="compas_fab.robots.PlanningScene.remove_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_collision_mesh()</span></code></a>,
 <a class="reference internal" href="compas_fab.robots.PlanningScene.append_collision_mesh.html#compas_fab.robots.PlanningScene.append_collision_mesh" title="compas_fab.robots.PlanningScene.append_collision_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_collision_mesh()</span></code></a> etc.)</p></li>
-<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>, optional) – The frame of the mesh. Defaults to :meth:<a href="#id3"><span class="problematic" id="id4">`</span></a>~compas.geometry.Frame.worldXY().</p></li>
+<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>, optional) – The frame of the mesh. Defaults to :meth:<a href="#id3"><span class="problematic" id="id4">`</span></a>~compas.geometry.Frame.worldXY().</p></li>
 <li><p><strong>root_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the root link the collision mesh will be placed in. Defaults
 to <cite>‘world’</cite>.</p></li>
 </ul>
@@ -200,7 +204,7 @@ to <cite>‘world’</cite>.</p></li>
 </table>
 </dd></dl>
 
-</div>
+</section>
 
         
       </main>
@@ -336,7 +340,7 @@ to <cite>‘world’</cite>.</p></li>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

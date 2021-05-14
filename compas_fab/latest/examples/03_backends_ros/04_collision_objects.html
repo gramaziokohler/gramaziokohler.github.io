@@ -49,13 +49,17 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
@@ -122,7 +126,7 @@
 
         
         
-        <div class="section" id="planning-scene-and-collision-objects">
+        <section id="planning-scene-and-collision-objects">
 <h1><span class="section-number">3.4. </span>Planning scene and collision objects</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -134,15 +138,15 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <p>To plan motion paths that avoid collisions with other objects than the robot
 itself, the backend’s planning scene has to be updated.</p>
 <p>This is the representation of the planning scene in RViz with the UR5.</p>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/04_collision_objects_attached_without.jpg" class="figure-img img-fluid" src="../../_images/04_collision_objects_attached_without.jpg" />
-</div>
+</figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If using Docker to run ROS, you can open
 <a class="reference external" href="http://localhost:8080/vnc.html?resize=scale&amp;autoconnect=true">RViz on your browser</a>.</p>
 </div>
-<div class="section" id="collision-meshes">
+<section id="collision-meshes">
 <h2><span class="section-number">3.4.1. </span>Collision meshes</h2>
 <p>The following script adds and then removes a floor to the planning scene.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -170,9 +174,9 @@ itself, the backend’s planning scene has to be updated.</p>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene while executing the above script.</p>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/04_collision_objects.jpg" class="figure-img img-fluid" src="../../_images/04_collision_objects.jpg" />
-</div>
+</figure>
 <p>The following script adds several boxes (bricks) to the planning scene. Here,
 we use <code class="docutils literal notranslate"><span class="pre">append</span></code> instead of <code class="docutils literal notranslate"><span class="pre">add</span></code> to have multiple collision objects
 clustered under the same identifier. Like that, we don’t need to keep track of
@@ -209,11 +213,11 @@ all identifiers when we later remove them.</p>
 </div>
 <p>The backend’s updated planning scene while executing the above script. Note the
 red robot link indicating the collision.</p>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/04_collision_objects_append.jpg" class="figure-img img-fluid" src="../../_images/04_collision_objects_append.jpg" />
-</div>
-</div>
-<div class="section" id="attach-a-collision-mesh-to-a-robot-s-end-effector">
+</figure>
+</section>
+<section id="attach-a-collision-mesh-to-a-robot-s-end-effector">
 <h2><span class="section-number">3.4.2. </span>Attach a collision mesh to a robot’s end-effector</h2>
 <p>The following script attaches and removes a collision mesh to the robot’s end-effector.
 Collision objects can be attached to any of the robot’s links.</p>
@@ -246,15 +250,15 @@ Collision objects can be attached to any of the robot’s links.</p>
 </code></pre></div>
 </div>
 <p>The backend’s updated planning scene while executing the above script.</p>
-<div class="figure align-default">
+<figure class="figure align-default">
 <img alt="../../_images/04_collision_objects_attached.jpg" class="figure-img img-fluid" src="../../_images/04_collision_objects_attached.jpg" />
-</div>
-</div>
-<div class="section" id="plan-motion-with-an-attached-collision-mesh">
+</figure>
+</section>
+<section id="plan-motion-with-an-attached-collision-mesh">
 <h2><span class="section-number">3.4.3. </span>Plan motion with an attached collision mesh</h2>
 <p>Coming soon…</p>
-</div>
-</div>
+</section>
+</section>
 
         
       </main>
@@ -383,7 +387,7 @@ Collision objects can be attached to any of the robot’s links.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

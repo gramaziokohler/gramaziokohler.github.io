@@ -49,13 +49,17 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
@@ -124,17 +128,17 @@
 
         
         
-        <div class="detail section" id="pybulletclient-convert-mesh-to-body">
+        <section class="detail" id="pybulletclient-convert-mesh-to-body">
 <h1>PyBulletClient.convert_mesh_to_body</h1>
 <dl class="py method">
-<dt id="compas_fab.backends.PyBulletClient.convert_mesh_to_body">
-<code class="sig-prename descclassname"><span class="pre">PyBulletClient.</span></code><code class="sig-name descname"><span class="pre">convert_mesh_to_body</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concavity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/pybullet/client.html#PyBulletClient.convert_mesh_to_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dt class="sig sig-object py" id="compas_fab.backends.PyBulletClient.convert_mesh_to_body">
+<span class="sig-prename descclassname"><span class="pre">PyBulletClient.</span></span><span class="sig-name descname"><span class="pre">convert_mesh_to_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concavity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/pybullet/client.html#PyBulletClient.convert_mesh_to_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Convert compas mesh and its frame to a pybullet body</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>)</p></li>
-<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>)</p></li>
+<li><p><strong>mesh</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>)</p></li>
+<li><p><strong>frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>)</p></li>
 <li><p><strong>_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – Name of the mesh for tagging in PyBullet’s GUI</p></li>
 <li><p><strong>concavity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), the mesh will be loaded as its convex hull for collision checking purposes.
 When <code class="docutils literal notranslate"><span class="pre">True</span></code>, a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
@@ -148,7 +152,7 @@ the object is static.</p></li>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
         
       </main>
@@ -280,7 +284,7 @@ the object is static.</p></li>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

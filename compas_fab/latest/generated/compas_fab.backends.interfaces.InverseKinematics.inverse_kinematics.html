@@ -49,13 +49,17 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
@@ -126,17 +130,17 @@
 
         
         
-        <div class="detail section" id="inversekinematics-inverse-kinematics">
+        <section class="detail" id="inversekinematics-inverse-kinematics">
 <h1>InverseKinematics.inverse_kinematics</h1>
 <dl class="py method">
-<dt id="compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics">
-<code class="sig-prename descclassname"><span class="pre">InverseKinematics.</span></code><code class="sig-name descname"><span class="pre">inverse_kinematics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_WCF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compas_fab/backends/interfaces/backend_features.html#InverseKinematics.inverse_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dt class="sig sig-object py" id="compas_fab.backends.interfaces.InverseKinematics.inverse_kinematics">
+<span class="sig-prename descclassname"><span class="pre">InverseKinematics.</span></span><span class="sig-name descname"><span class="pre">inverse_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_WCF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/compas_fab/backends/interfaces/backend_features.html#InverseKinematics.inverse_kinematics"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate the robot’s inverse kinematic for a given frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which inverse kinematics is being calculated.</p></li>
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code>, optional)</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for calculation.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing kwargs for arguments specific to
@@ -149,7 +153,7 @@ the client being queried.</p></li>
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
         
       </main>
@@ -261,7 +265,7 @@ the client being queried.</p></li>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
