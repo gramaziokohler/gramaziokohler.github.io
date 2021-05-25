@@ -45,13 +45,19 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.17.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
             
@@ -122,14 +128,13 @@
 <span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Configuration</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="kn">import</span> <span class="n">BackendError</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.vrep.remote_api</span> <span class="kn">import</span> <span class="n">vrep</span>
 
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;VrepError&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="n">DEFAULT_OP_MODE</span> <span class="o">=</span> <span class="n">vrep</span><span class="o">.</span><span class="n">simx_opmode_blocking</span>
+<span class="n">DEFAULT_OP_MODE</span> <span class="o">=</span> <span class="mh">0x010000</span>  <span class="c1"># defined in vrepConst.simx_opmode_blocking, but redefined here to prevent loading the remoteApi library</span>
 
 <span class="c1"># --------------------------------------------------------------------------</span>
 <span class="c1"># MAPPINGS</span>
@@ -299,7 +304,7 @@
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.17.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

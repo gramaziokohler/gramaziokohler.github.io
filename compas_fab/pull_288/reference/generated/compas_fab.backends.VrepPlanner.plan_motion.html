@@ -49,13 +49,19 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.17.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
             
@@ -122,11 +128,11 @@
 
         
         
-        <div class="detail section" id="vrepplanner-plan-motion">
+        <section class="detail" id="vrepplanner-plan-motion">
 <h1>VrepPlanner.plan_motion</h1>
 <dl class="py method">
-<dt id="compas_fab.backends.VrepPlanner.plan_motion">
-<code class="sig-prename descclassname"><span class="pre">VrepPlanner.</span></code><code class="sig-name descname"><span class="pre">plan_motion</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/planner.html#VrepPlanner.plan_motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dt class="sig sig-object py" id="compas_fab.backends.VrepPlanner.plan_motion">
+<span class="sig-prename descclassname"><span class="pre">VrepPlanner.</span></span><span class="sig-name descname"><span class="pre">plan_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/vrep/planner.html#VrepPlanner.plan_motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Finds a path plan to move the selected robot from its current position to the <cite>goal_constraints</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -141,7 +147,7 @@
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
 move during inverse kinematic solving.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.4)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
 to be taken into account when calculating the motion plan.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;planner_id&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the planner to use. Defaults to <code class="docutils literal notranslate"><span class="pre">rrtconnect</span></code>.</p></li>
@@ -169,7 +175,7 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
 </dl>
 </dd></dl>
 
-</div>
+</section>
 
         
       </main>
@@ -301,7 +307,7 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.17.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

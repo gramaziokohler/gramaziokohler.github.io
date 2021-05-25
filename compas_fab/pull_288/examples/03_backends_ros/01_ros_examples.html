@@ -49,13 +49,19 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.17.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
             
@@ -120,7 +126,7 @@
 
         
         
-        <div class="section" id="using-ros">
+        <section id="using-ros">
 <span id="ros-examples"></span><h1><span class="section-number">3.1. </span>Using ROS</h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -129,7 +135,7 @@ Before running them, please make sure you have the
 <a class="reference internal" href="../../backends/ros.html#ros-backend"><span class="std std-ref">ROS backend</span></a> correctly configured and
 the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">Base</span></a> system started.</p>
 </div>
-<div class="section" id="first-step">
+<section id="first-step">
 <h2><span class="section-number">3.1.1. </span>First step</h2>
 <p>The first step is to connect to ROS to verify that the system is working.</p>
 <p>Copy and paste the following example into any Python environment
@@ -158,13 +164,13 @@ during its own execution. Whenever code needs to respond to an event,
 one of the easiest ways to achieve it is to pass a <em>callback</em> function
 that the framework will invoke when the event is fired.</p>
 </div>
-</div>
-<div class="section" id="hello-world">
+</section>
+<section id="hello-world">
 <h2><span class="section-number">3.1.2. </span>Hello World</h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world</span></code> of ROS is to start two nodes: a talker and a listener.
 The nodes are extremely simple but they exemplify a distributed system with
 communication between two processes over the ROS infrastructure.</p>
-<div class="section" id="writing-the-talker-node">
+<section id="writing-the-talker-node">
 <h3><span class="section-number">3.1.2.1. </span>Writing the talker node</h3>
 <p>The following example starts a ROS node and begins to publish
 messages in loop (to terminate, press <code class="docutils literal notranslate"><span class="pre">ctrl+c</span></code>):</p>
@@ -192,8 +198,8 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <li><p><a class="reference download internal" download="" href="../../_downloads/e559eb1bb4cbd173cc90a7345a0abb9c/01_ros_hello_world_talker.py"><code class="xref download docutils literal notranslate"><span class="pre">Talker</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
-</div></div>
-<div class="section" id="writing-the-listener-node">
+</div></section>
+<section id="writing-the-listener-node">
 <h3><span class="section-number">3.1.2.2. </span>Writing the listener node</h3>
 <p>Now let’s move on to the listener side:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">time</span>
@@ -221,8 +227,8 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <li><p><a class="reference download internal" download="" href="../../_downloads/9dcd55d6df43e6650222dab2675cbf71/01_ros_hello_world_listener.py"><code class="xref download docutils literal notranslate"><span class="pre">Listener</span> <span class="pre">node</span> <span class="pre">(.PY)</span></code></a></p></li>
 </ul>
 </div>
-</div></div>
-<div class="section" id="running-the-example">
+</div></section>
+<section id="running-the-example">
 <h3><span class="section-number">3.1.2.3. </span>Running the example</h3>
 <p>Open a command prompt and start the talker:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="n">python</span> <span class="mi">01</span><span class="n">_ros_hello_world_talker</span><span class="o">.</span><span class="n">py</span>
@@ -238,9 +244,9 @@ messages in loop (to terminate, press <code class="docutils literal notranslate"
 <p>It is not relevant where the files are located. They can be in different
 folders or even in different computers as long as the ROS master is the same.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
         
       </main>
@@ -373,7 +379,7 @@ folders or even in different computers as long as the ROS master is the same.</p
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.17.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',

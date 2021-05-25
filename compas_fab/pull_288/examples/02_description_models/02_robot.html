@@ -49,13 +49,19 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.17.0
+            0.18.2
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
             
@@ -120,13 +126,13 @@
 
         
         
-        <div class="section" id="robot-models">
+        <section id="robot-models">
 <h1><span class="section-number">2.2. </span>Robot models</h1>
 <p>Robot models can be programatically defined, as shown in the previous examples,
 but in most cases, they are loaded from an existing location.
 <strong>COMPAS FAB</strong> supports loading models from local files, from remote Github
 repositories as well as from a running ROS instance.</p>
-<div class="section" id="loading-model-from-disk">
+<section id="loading-model-from-disk">
 <h2><span class="section-number">2.2.1. </span>Loading model from disk</h2>
 <p>The installation of <strong>COMPAS FAB</strong> includes some robot models which are used
 to exemplify loading from disk:</p>
@@ -152,8 +158,8 @@ to exemplify loading from disk:</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="loading-model-from-github">
+</section>
+<section id="loading-model-from-github">
 <h2><span class="section-number">2.2.2. </span>Loading model from Github</h2>
 <p>Since a large amount of robot models defined in URDF are available on Github,
 <strong>COMPAS FAB</strong> provides a specialized loader that follows the conventions
@@ -182,8 +188,8 @@ defined by ROS to locate a Robot’s model and geometry files.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="loading-model-from-ros">
+</section>
+<section id="loading-model-from-ros">
 <h2><span class="section-number">2.2.3. </span>Loading model from ROS</h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -228,8 +234,8 @@ to enable this behavior, pass an argument with the folder where the cache should
     <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
 </code></pre></div>
 </div>
-</div>
-<div class="section" id="visualizing-robot-models">
+</section>
+<section id="visualizing-robot-models">
 <h2><span class="section-number">2.2.4. </span>Visualizing robot models</h2>
 <p>Once a model is loaded, we can visualize it in our favorite design environment.</p>
 <p><strong>COMPAS</strong> includes the concept of <code class="docutils literal notranslate"><span class="pre">artists</span></code>: classes that assist with the
@@ -268,8 +274,8 @@ ROS and render it in Rhino:</p>
 <li><p><a class="reference download internal" download="" href="../../_downloads/7a82a790b057b80472712632a2a4d52f/02_robot_artist_grasshopper.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">artist</span> <span class="pre">from</span> <span class="pre">Github</span> <span class="pre">(Grasshopper)</span> <span class="pre">(.GHX)</span></code></a></p></li>
 </ul>
 </div>
-</div></div>
-</div>
+</div></section>
+</section>
 
         
       </main>
@@ -392,7 +398,7 @@ ROS and render it in Rhino:</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.17.0',
+  VERSION           : '0.18.2',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
