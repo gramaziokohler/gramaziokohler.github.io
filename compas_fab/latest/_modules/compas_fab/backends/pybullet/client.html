@@ -726,7 +726,7 @@
 
     <span class="c1"># =======================================</span>
 <div class="viewcode-block" id="PyBulletClient.convert_mesh_to_body"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.convert_mesh_to_body.html#compas_fab.backends.PyBulletClient.convert_mesh_to_body">[docs]</a>    <span class="k">def</span> <span class="nf">convert_mesh_to_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">concavity</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="n">const</span><span class="o">.</span><span class="n">STATIC_MASS</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Convert compas mesh and its frame to a pybullet body</span>
+        <span class="sd">&quot;&quot;&quot;Convert compas mesh and its frame to a pybullet body.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -744,6 +744,14 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        :obj:`int`</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        If this method is called several times with the same ``mesh`` instance, but the ``mesh`` has been modified</span>
+<span class="sd">        in between calls, PyBullet&#39;s default caching behavior will prevent it from recognizing these changes.  It</span>
+<span class="sd">        is best practice to create a new mesh instance or to make use of the `frame` argument, if applicable.  If</span>
+<span class="sd">        this is not possible, PyBullet&#39;s caching behavior can be changed with</span>
+<span class="sd">        ``pybullet.setPhysicsEngineParameter(enableFileCaching=0)``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tmp_obj_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.obj&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">guid</span><span class="p">))</span>
         <span class="n">mesh</span><span class="o">.</span><span class="n">to_obj</span><span class="p">(</span><span class="n">tmp_obj_path</span><span class="p">)</span>
