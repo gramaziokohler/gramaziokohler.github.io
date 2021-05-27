@@ -146,7 +146,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nsecs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nsecs</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;Duration(</span><span class="si">{}</span><span class="s1">, </span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">secs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsecs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;Duration(</span><span class="si">{!r}</span><span class="s1">, </span><span class="si">{!r}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">secs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nsecs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
