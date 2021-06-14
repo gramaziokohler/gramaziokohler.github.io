@@ -133,7 +133,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.JointTrajectoryPoint">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">JointTrajectoryPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accelerations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_from_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/trajectory.html#JointTrajectoryPoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.configuration.Configuration</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.configuration.Configuration</span></code></a></p>
 <p>Defines a point within a trajectory.</p>
 <p>A trajectory point is a sub-class of <code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code> extended
 with acceleration, effort and time from start information.</p>
@@ -187,7 +187,7 @@ type.</p></li>
 <td><p>Create a copy of this <a class="reference internal" href="#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_data.html#compas_fab.robots.JointTrajectoryPoint.from_data" title="compas_fab.robots.JointTrajectoryPoint.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a>(data)</p></td>
-<td><p>Construct a configuration from its data representation.</p></td>
+<td><p>Construct an object of this type from the provided data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_json.html#compas_fab.robots.JointTrajectoryPoint.from_json" title="compas_fab.robots.JointTrajectoryPoint.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a>(filepath)</p></td>
 <td><p>Construct an object from serialized data contained in a JSON file.</p></td>
@@ -229,7 +229,7 @@ type.</p></li>
 <td><p>Return a scaled copy of this configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.to_data.html#compas_fab.robots.JointTrajectoryPoint.to_data" title="compas_fab.robots.JointTrajectoryPoint.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a>()</p></td>
-<td><p>Get the data dictionary that represents the configuration.</p></td>
+<td><p>Convert an object to its native data representation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.to_json.html#compas_fab.robots.JointTrajectoryPoint.to_json" title="compas_fab.robots.JointTrajectoryPoint.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a>(filepath[, pretty])</p></td>
 <td><p>Serialize the data representation of an object to a JSON file.</p></td>
