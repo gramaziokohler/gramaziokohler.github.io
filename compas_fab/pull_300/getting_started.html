@@ -49,13 +49,15 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.2
+            0.18.3
           </a>
           <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
+            
+              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.3">0.18.3</a>
             
               <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
             
@@ -140,7 +142,7 @@ and run the following command to check if the installation process was successfu
 python -c <span class="s2">&quot;import compas_fab; print(compas_fab.__version__)&quot;</span>
 </code></pre></div>
 </div>
-<div class="language-none notranslate"><div class="highlight"><pre><code><span></span>0.18.2
+<div class="language-none notranslate"><div class="highlight"><pre><code><span></span>0.18.3
 </code></pre></div>
 </div>
 <p>You are ready to use <strong>COMPAS FAB</strong>!</p>
@@ -185,7 +187,7 @@ pip install -e .
 </code></pre></div>
 </div>
 <p>To switch to a specific version</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install <span class="nv">compas_fab</span><span class="o">=</span><span class="m">0</span>.18.2
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>conda install <span class="nv">compas_fab</span><span class="o">=</span><span class="m">0</span>.18.3
 </code></pre></div>
 </div>
 </section>
@@ -196,19 +198,22 @@ pip install -e .
 </code></pre></div>
 </div>
 <p>Or to switch to a specific version</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install <span class="nv">compas_fab</span><span class="o">==</span><span class="m">0</span>.18.2
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>pip install <span class="nv">compas_fab</span><span class="o">==</span><span class="m">0</span>.18.3
 </code></pre></div>
 </div>
 </section>
 <section id="working-in-rhino">
 <h2>Working in Rhino</h2>
-<p>To make <strong>COMPAS FAB</strong> available inside Rhino, open the <em>command prompt</em>
-and type the following:</p>
+<p>To make <strong>COMPAS FAB</strong> available inside Rhino, open the <em>command prompt</em>,
+activate the appropriate environment, and type the following:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>python -m compas_rhino.install
 </code></pre></div>
 </div>
 <p>Open Rhino, start the Python script editor, type <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">compas_fab</span></code> and
 run it to verify that your installation is working.</p>
+<p>Making <strong>COMPAS FAB</strong> available in Rhino also installs a suite of Grasshopper
+components with <strong>COMPAS FAB</strong> functionality.  See
+<a class="reference internal" href="examples/03_backends_ros/06_ros_in_grasshopper.html#examples-ros-in-grasshopper"><span class="std std-ref">ROS in Grasshopper</span></a> for an example.</p>
 </section>
 <section id="working-in-blender">
 <h2>Working in Blender</h2>
@@ -402,7 +407,7 @@ the newly selected interpreter will be used.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.2',
+  VERSION           : '0.18.3',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
