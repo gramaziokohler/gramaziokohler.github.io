@@ -590,7 +590,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
         <span class="n">body_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uid</span><span class="p">(</span><span class="n">cached_robot</span><span class="p">)</span>
-        <span class="n">link_names</span> <span class="o">=</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">get_link_names_with_collision_geometry</span><span class="p">()</span>
+        <span class="n">link_names</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_link_names_with_collision_geometry</span><span class="p">()</span>
         <span class="c1"># check for collisions between robot links</span>
         <span class="k">for</span> <span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">link_names</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">{</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span><span class="p">}</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span><span class="p">:</span>
