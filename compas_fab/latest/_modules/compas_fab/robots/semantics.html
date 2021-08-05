@@ -168,6 +168,10 @@
     <span class="k">def</span> <span class="nf">group_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unordered_disabled_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span><span class="p">}</span>
+
 <div class="viewcode-block" id="RobotSemantics.from_srdf_file"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_srdf_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">robot_model</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create an instance of semantics based on an SRDF file path or file-like object.&quot;&quot;&quot;</span>

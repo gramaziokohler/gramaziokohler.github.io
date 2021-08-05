@@ -282,6 +282,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unordered_disabled_collisions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span><span class="p">}</span>
+
 <div class="viewcode-block" id="PyBulletClient.step_simulation"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.step_simulation.html#compas_fab.backends.PyBulletClient.step_simulation">[docs]</a>    <span class="k">def</span> <span class="nf">step_simulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;By default, the physics server will not step the simulation,</span>
 <span class="sd">        unless you explicitly send a ``step_simulation`` command.  This</span>
@@ -593,7 +597,7 @@
         <span class="n">link_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">link</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">cached_robot</span><span class="o">.</span><span class="n">iter_links</span><span class="p">()</span> <span class="k">if</span> <span class="n">link</span><span class="o">.</span><span class="n">collision</span><span class="p">]</span>
         <span class="c1"># check for collisions between robot links</span>
         <span class="k">for</span> <span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">link_names</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">{</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span><span class="p">}</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">{</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">link_2_name</span><span class="p">}</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unordered_disabled_collisions</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">link_1_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_1_name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
             <span class="n">link_2_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_link_id_by_name</span><span class="p">(</span><span class="n">link_2_name</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>

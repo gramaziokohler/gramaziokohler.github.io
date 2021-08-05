@@ -136,13 +136,14 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <section id="unreleased">
 <h2>Unreleased</h2>
 <p><strong>Added</strong>
-* Added <code class="docutils literal notranslate"><span class="pre">PoseArray</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayDimension</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">Int8MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Float32MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Int32</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.ros.messages</span></code></p>
+* Added <code class="docutils literal notranslate"><span class="pre">PoseArray</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayDimension</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">Int8MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Float32MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Int32</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.ros.messages</span></code>
+* Added <code class="docutils literal notranslate"><span class="pre">unordered_disabled_collisions</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> and <code class="docutils literal notranslate"><span class="pre">RobotSemantics</span></code></p>
 <p><strong>Changed</strong></p>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
-<li><p>Fixed <cite>UnsupportedOperation</cite> error when using <cite>PybulletClient</cite> in Jupyter notebook (raised by <cite>redirect_stdout</cite>)</p></li>
-<li><p>Fixed <cite>JointTrajectoryPoint.from_data</cite> to be backward-compatible with JSON data generated before <cite>compas_fab 0.18</cite></p></li>
-<li><p>Fixed <cite>JointTrajectory.from_data</cite> to be backward-compatible with JSON data generated before <cite>compas_fab 0.17</cite></p></li>
+<li><p>Fixed <code class="docutils literal notranslate"><span class="pre">UnsupportedOperation</span></code> error when using <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> in Jupyter notebook (raised by <code class="docutils literal notranslate"><span class="pre">redirect_stdout</span></code>)</p></li>
+<li><p>Fixed <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint.from_data</span></code> to be backward-compatible with JSON data generated before <code class="docutils literal notranslate"><span class="pre">compas_fab</span></code> 0.18</p></li>
+<li><p>Fixed <code class="docutils literal notranslate"><span class="pre">JointTrajectory.from_data</span></code> to be backward-compatible with JSON data generated before <code class="docutils literal notranslate"><span class="pre">compas_fab</span></code> 0.17</p></li>
 </ul>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
