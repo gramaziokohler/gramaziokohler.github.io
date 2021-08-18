@@ -94,10 +94,16 @@
 
 <span class="kn">import</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">ToolModel</span><span class="p">,</span> <span class="n">Geometry</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">Geometry</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">ToolModel</span>
 
 <span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">AttachedCollisionMesh</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.planning_scene</span> <span class="kn">import</span> <span class="n">CollisionMesh</span>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Tool&#39;</span>
+<span class="p">]</span>
 
 
 <div class="viewcode-block" id="Tool"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool">[docs]</a><span class="k">class</span> <span class="nc">Tool</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>

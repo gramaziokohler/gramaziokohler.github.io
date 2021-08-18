@@ -95,10 +95,10 @@
 <span class="kn">from</span> <span class="nn">compas_fab.backends.exceptions</span> <span class="kn">import</span> <span class="n">BackendError</span>
 
 
-<span class="k">class</span> <span class="nc">PyBulletError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
+<div class="viewcode-block" id="PyBulletError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletError.html#compas_fab.backends.PyBulletError">[docs]</a><span class="k">class</span> <span class="nc">PyBulletError</span><span class="p">(</span><span class="n">BackendError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base case for exceptions in ``compas_fab.backends.pybullet``.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PyBulletError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PyBulletError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CollisionError"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.CollisionError.html#compas_fab.backends.CollisionError">[docs]</a><span class="k">class</span> <span class="nc">CollisionError</span><span class="p">(</span><span class="n">PyBulletError</span><span class="p">):</span>

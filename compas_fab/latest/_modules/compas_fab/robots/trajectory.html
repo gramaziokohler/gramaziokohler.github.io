@@ -99,8 +99,8 @@
 <span class="kn">from</span> <span class="nn">compas_fab.robots.time_</span> <span class="kn">import</span> <span class="n">Duration</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;JointTrajectoryPoint&#39;</span><span class="p">,</span>
     <span class="s1">&#39;JointTrajectory&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;JointTrajectoryPoint&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Trajectory&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 
@@ -321,7 +321,7 @@
         <span class="k">return</span> <span class="n">JointTrajectoryPoint</span><span class="p">(</span><span class="n">joint_values</span><span class="p">,</span> <span class="n">joint_types</span><span class="p">,</span> <span class="n">velocities</span><span class="p">,</span> <span class="n">accelerations</span><span class="p">,</span> <span class="n">effort</span><span class="p">,</span> <span class="n">joint_names</span><span class="o">=</span><span class="n">joint_names</span><span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">Trajectory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="Trajectory"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Trajectory.html#compas_fab.robots.Trajectory">[docs]</a><span class="k">class</span> <span class="nc">Trajectory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base trajectory class.</span>
 
 <span class="sd">    Attribute</span>
@@ -330,8 +330,8 @@
 <span class="sd">        Amount of time it took to complete the motion plan</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">planning_time</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="viewcode-block" id="Trajectory.__init__"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.Trajectory.__init__.html#compas_fab.robots.Trajectory.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">planning_time</span> <span class="o">=</span> <span class="kc">None</span></div></div>
 
 
 <div class="viewcode-block" id="JointTrajectory"><a class="viewcode-back" href="../../../reference/generated/compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory">[docs]</a><span class="k">class</span> <span class="nc">JointTrajectory</span><span class="p">(</span><span class="n">Trajectory</span><span class="p">):</span>
