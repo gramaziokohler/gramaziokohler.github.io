@@ -105,7 +105,13 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>collision_mesh</strong> (<a class="reference internal" href="compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.CollisionMesh</span></code></a>) – Object containing the collision mesh to be appended.</p></li>
-<li><p><strong>options</strong> (<em>dict, optional</em>) – Unused parameter.</p></li>
+<li><p><strong>options</strong> (<em>dict</em>) – Dictionary containing the following key-value pairs:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;concavity&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default),
+the mesh will be loaded as its convex hull for collision checking purposes.
+When <code class="docutils literal notranslate"><span class="pre">True</span></code>, a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
