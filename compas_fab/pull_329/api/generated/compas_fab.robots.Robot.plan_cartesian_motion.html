@@ -94,29 +94,29 @@
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul>
-<li><p><strong>frames_WCF</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
+<li><p><strong>frames_WCF</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>, optional) – The robot’s full configuration, i.e. values for all configurable
 joints of the entire robot, at the starting position. Defaults to
 the all-zero configuration.</p></li>
-<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The planning group used for calculation. Defaults to the robot’s
+<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The planning group used for calculation. Defaults to the robot’s
 main planning group.</p></li>
-<li><p><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Dictionary containing the following key-value pairs:</p>
+<li><p><strong>options</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>, optional) – Dictionary containing the following key-value pairs:</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt>max_step :: <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional</dt><dd><p>The approximate distance between the
+<dt>max_step :: <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional</dt><dd><p>The approximate distance between the
 calculated points. (Defined in the robot’s units.) Defaults to <code class="docutils literal notranslate"><span class="pre">0.01</span></code>.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>path_constraints :: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional</dt><dd><p>Optional constraints that can be imposed along the solution path.
+<dt>path_constraints :: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional</dt><dd><p>Optional constraints that can be imposed along the solution path.
 Note that path calculation won’t work if the start_configuration
 violates these constraints. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>attached_collision_meshes :: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a></dt><dd><p>Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dt>attached_collision_meshes :: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a></dt><dd><p>Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </li>

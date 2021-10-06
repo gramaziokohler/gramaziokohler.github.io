@@ -99,9 +99,9 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;robot&quot;</span></code>: (<a class="reference internal" href="../../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) Robot instance
 to which the object should be attached.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;mass&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) The mass of the attached collision
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;mass&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) The mass of the attached collision
 object.  Defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inertia&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a>) The elements of the inertia matrix
+<li><p><code class="docutils literal notranslate"><span class="pre">inertia&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a>) The elements of the inertia matrix
 of the attached collision object given as
 <code class="docutils literal notranslate"><span class="pre">[&lt;ixx&gt;,</span> <span class="pre">&lt;ixy&gt;,</span> <span class="pre">&lt;ixz&gt;,</span> <span class="pre">&lt;iyy&gt;,</span> <span class="pre">&lt;iyz&gt;,</span> <span class="pre">&lt;izz&gt;]</span></code>.  Defaults to
 <code class="docutils literal notranslate"><span class="pre">[1.,</span> <span class="pre">0.,</span> <span class="pre">0.,</span> <span class="pre">1.,</span> <span class="pre">0.,</span> <span class="pre">1.]</span></code>.</p></li>
@@ -113,7 +113,7 @@ reference frame. Defaults to
 the pose of the collision reference frame, relative to the link
 reference frame. Defaults to
 <code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame.worldXY()</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;concavity&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default),
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;concavity&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default),
 the mesh will be loaded as its convex hull for collision checking purposes.
 When <code class="docutils literal notranslate"><span class="pre">True</span></code>, a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
 </ul>
