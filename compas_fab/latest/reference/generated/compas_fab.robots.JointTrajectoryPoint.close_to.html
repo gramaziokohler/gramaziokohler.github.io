@@ -109,7 +109,7 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the other <cite>Configuration</cite>’s joint_values are within a certain
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> – <code class="docutils literal notranslate"><span class="pre">True</span></code> if the other <cite>Configuration</cite>’s joint_values are within a certain
 tolerance, <cite>False</cite> otherwise.</p>
 </dd>
 </dl>
@@ -290,10 +290,6 @@ tolerance, <cite>False</cite> otherwise.</p>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -306,6 +302,13 @@ tolerance, <cite>False</cite> otherwise.</p>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

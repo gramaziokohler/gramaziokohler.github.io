@@ -96,13 +96,13 @@ for shadowing the state of the robot on the PyBullet server.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="../../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot to be saved for use with PyBullet.</p></li>
-<li><p><strong>concavity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), the mesh will be loaded as its
+<li><p><strong>concavity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) – When <code class="docutils literal notranslate"><span class="pre">False</span></code> (the default), the mesh will be loaded as its
 convex hull for collision checking purposes.  When <code class="docutils literal notranslate"><span class="pre">True</span></code>,
 a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><strong>Exception</strong></a> – If geometry has not been loaded.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><strong>Exception</strong></a> – If geometry has not been loaded.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -228,10 +228,6 @@ a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -244,6 +240,13 @@ a non-static mesh will be decomposed into convex parts using v-HACD.</p></li>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

@@ -113,7 +113,7 @@ this class on a <code class="docutils literal notranslate"><span class="pre">wit
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>serial</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">serial.Serial</span></code>) – Instance of the serial port used to communicate with the sensor.</p></li>
-<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosCon3D sensors have an address assigned, which defaults to 1.
+<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosCon3D sensors have an address assigned, which defaults to 1.
 There’s also a broadcast address (<code class="docutils literal notranslate"><span class="pre">PosCon3D.BROADCAST_ADDRESS</span></code>)
 that can be used to query the address of the sensor connected to
 the RS-485 bus. Only one sensor can be in the bus when using the
@@ -168,7 +168,7 @@ broadcast address to query for sensor’s address.</p></li>
 <td><p>Gets the address of the RS-485 sensors currently connected to the bus.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosCon3D.get_live_monitor_data.html#compas_fab.sensors.baumer.PosCon3D.get_live_monitor_data" title="compas_fab.sensors.baumer.PosCon3D.get_live_monitor_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_live_monitor_data</span></code></a>()</p></td>
-<td><p>Retrieves the distance to the surface in the center of the laser beam and the angle at which it’s found.</p></td>
+<td><p>Retrieves the distance to the surface in the center of the laser beam and the angle at which it's found.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosCon3D.get_measurement.html#compas_fab.sensors.baumer.PosCon3D.get_measurement" title="compas_fab.sensors.baumer.PosCon3D.get_measurement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_measurement</span></code></a>()</p></td>
 <td><p>Retrieves the current measurement of the sensor according to the current settings.</p></td>
@@ -180,7 +180,7 @@ broadcast address to query for sensor’s address.</p></li>
 <td><p>Resets the sensor to factory settings.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosCon3D.send_command.html#compas_fab.sensors.baumer.PosCon3D.send_command" title="compas_fab.sensors.baumer.PosCon3D.send_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_command</span></code></a>(address, command[, data])</p></td>
-<td><p>Sends a command to the sensor’s address specified.</p></td>
+<td><p>Sends a command to the sensor's address specified.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosCon3D.set_edge_height.html#compas_fab.sensors.baumer.PosCon3D.set_edge_height" title="compas_fab.sensors.baumer.PosCon3D.set_edge_height"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_edge_height</span></code></a>(height)</p></td>
 <td><p>Defines the minimum height of an edge to be detected.</p></td>
@@ -376,10 +376,6 @@ broadcast address to query for sensor’s address.</p></li>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -392,6 +388,13 @@ broadcast address to query for sensor’s address.</p></li>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

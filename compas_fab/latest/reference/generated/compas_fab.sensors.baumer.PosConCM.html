@@ -113,7 +113,7 @@ this class on a <code class="docutils literal notranslate"><span class="pre">wit
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>serial</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">serial.Serial</span></code>) – Instance of the serial port used to communicate with the sensor.</p></li>
-<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosConCM sensors have an address assigned, which defaults to 1.
+<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosConCM sensors have an address assigned, which defaults to 1.
 There’s also a broadcast address (<code class="docutils literal notranslate"><span class="pre">PosConCM.BROADCAST_ADDRESS</span></code>)
 that can be used to query the address of the sensor connected to
 the RS-485 bus. Only one sensor can be in the bus when using the
@@ -177,7 +177,7 @@ broadcast address to query for sensor’s address.</p></li>
 <td><p>Resets the sensor to factory settings.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosConCM.send_command.html#compas_fab.sensors.baumer.PosConCM.send_command" title="compas_fab.sensors.baumer.PosConCM.send_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">send_command</span></code></a>(address, command[, data])</p></td>
-<td><p>Sends a command to the sensor’s address specified.</p></td>
+<td><p>Sends a command to the sensor's address specified.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.sensors.baumer.PosConCM.set_flex_mount.html#compas_fab.sensors.baumer.PosConCM.set_flex_mount" title="compas_fab.sensors.baumer.PosConCM.set_flex_mount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_flex_mount</span></code></a>(angle, distance)</p></td>
 <td><p>Sets the FLEX Mount feature to a specific angle and distance.</p></td>
@@ -373,10 +373,6 @@ broadcast address to query for sensor’s address.</p></li>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -389,6 +385,13 @@ broadcast address to query for sensor’s address.</p></li>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

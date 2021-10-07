@@ -104,7 +104,7 @@ simulation, planning and execution backends to exchange information.</p>
 <td><p>Represents semantic information of a robot.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tool</span></code></a></p></td>
-<td><p>Represents a tool to be attached to the robot’s flange.</p></td>
+<td><p>Represents a tool to be attached to the robot's flange.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
 <td><p>Duration consists of two integers: seconds and nanoseconds.</p></td>
@@ -150,7 +150,7 @@ simulation, planning and execution backends to exchange information.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></a></p></td>
-<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>’s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
+<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="../reference/generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>'s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../reference/generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionMesh</span></code></a></p></td>
 <td><p>Represents a collision mesh.</p></td>
@@ -334,10 +334,6 @@ The following functions help with converting units from one system to the other.
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -350,6 +346,13 @@ The following functions help with converting units from one system to the other.
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

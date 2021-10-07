@@ -101,8 +101,14 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">PoseArray</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayDimension</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">Int8MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Float32MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Int32</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.ros.messages</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">unordered_disabled_collisions</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> and <code class="docutils literal notranslate"><span class="pre">RobotSemantics</span></code></p></li>
 <li><p>Added better support for concave meshes in the <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code></p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">Robot.iter_inverse_kinematics</span></code> to allow iterating over all IK solutions provided by a solver</p></li>
 </ul>
 <p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p>Changed the backend feature <code class="docutils literal notranslate"><span class="pre">InverseKinematics.inverse_kinematics</span></code> to be a generator. As a consequence of this, <code class="docutils literal notranslate"><span class="pre">ClientInterface.inverse_kinematics</span></code> and <code class="docutils literal notranslate"><span class="pre">PlannerInterface.inverse_kinematics</span></code> have changed to generators as well</p></li>
+<li><p>Standardized the yielded type of <code class="docutils literal notranslate"><span class="pre">InverseKinematics.inverse_kinematics</span></code> across the PyBullet, MoveIt and V-REP planners</p></li>
+<li><p>Added iterative accurate IK resolution for PyBullet</p></li>
+</ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">UnsupportedOperation</span></code> error when using <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> in Jupyter notebook (raised by <code class="docutils literal notranslate"><span class="pre">redirect_stdout</span></code>)</p></li>
@@ -743,10 +749,6 @@ to the new trajectory classes.</p></li>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -759,6 +761,13 @@ to the new trajectory classes.</p></li>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

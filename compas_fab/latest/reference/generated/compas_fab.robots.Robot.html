@@ -98,7 +98,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.Robot">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">Robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">artist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semantics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/robot.html#Robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a robot.</p>
 <p>This class binds together several building blocks, such as the robot’s
 descriptive model, its semantic information and an instance of a backend
@@ -113,7 +113,7 @@ the <strong>COMPAS</strong> framework.</p>
 <li><p><strong>semantics</strong> (<a class="reference internal" href="compas_fab.robots.RobotSemantics.html#compas_fab.robots.RobotSemantics" title="compas_fab.robots.RobotSemantics"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.RobotSemantics</span></code></a>) – The semantic model of the robot. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><strong>client</strong> (<a class="reference internal" href="../../generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.ClientInterface</span></code></a>) – The backend client to use for communication,
 e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.RosClient</span></code></a></p></li>
-<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>) – Named attributes related to the robot instance.</p></li>
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a>) – Named attributes related to the robot instance.</p></li>
 <li><p><strong>attached_tool</strong> (<a class="reference internal" href="compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Tool</span></code></a>) – Instance of the tool attached to the robot, if any.</p></li>
 </ul>
 </dd>
@@ -134,11 +134,11 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.basic.html#compas_fab.robots.Robot.basic" title="compas_fab.robots.Robot.basic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">basic</span></code></a>(name[, joints, links, materials])</p></td>
 <td><p>Create the most basic instance of a robot, based only on name.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.constraints_from_configuration.html#compas_fab.robots.Robot.constraints_from_configuration" title="compas_fab.robots.Robot.constraints_from_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code></a>(…[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.constraints_from_configuration.html#compas_fab.robots.Robot.constraints_from_configuration" title="compas_fab.robots.Robot.constraints_from_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">constraints_from_configuration</span></code></a>(...[, group])</p></td>
 <td><p>Create joint constraints for all joints of the configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.constraints_from_frame.html#compas_fab.robots.Robot.constraints_from_frame" title="compas_fab.robots.Robot.constraints_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">constraints_from_frame</span></code></a>(frame_WCF, …[, group])</p></td>
-<td><p>Create a position and an orientation constraint from a frame calculated for the group’s end-effector link.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.constraints_from_frame.html#compas_fab.robots.Robot.constraints_from_frame" title="compas_fab.robots.Robot.constraints_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">constraints_from_frame</span></code></a>(frame_WCF, ...[, group])</p></td>
+<td><p>Create a position and an orientation constraint from a frame calculated for the group's end-effector link.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.detach_tool.html#compas_fab.robots.Robot.detach_tool" title="compas_fab.robots.Robot.detach_tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">detach_tool</span></code></a>()</p></td>
 <td><p>Detach the attached tool.</p></td>
@@ -147,43 +147,43 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <td><p>Alias of <a class="reference internal" href="compas_fab.robots.Robot.draw_visual.html#compas_fab.robots.Robot.draw_visual" title="compas_fab.robots.Robot.draw_visual"><code class="xref py py-meth docutils literal notranslate"><span class="pre">draw_visual()</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.draw_collision.html#compas_fab.robots.Robot.draw_collision" title="compas_fab.robots.Robot.draw_collision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_collision</span></code></a>()</p></td>
-<td><p>Draw the robot’s collision geometry using the defined <code class="xref py py-attr docutils literal notranslate"><span class="pre">Robot.artist</span></code>.</p></td>
+<td><p>Draw the robot's collision geometry using the defined <code class="xref py py-attr docutils literal notranslate"><span class="pre">Robot.artist</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.draw_visual.html#compas_fab.robots.Robot.draw_visual" title="compas_fab.robots.Robot.draw_visual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">draw_visual</span></code></a>()</p></td>
-<td><p>Draw the robot’s visual geometry using the defined <code class="xref py py-attr docutils literal notranslate"><span class="pre">Robot.artist</span></code>.</p></td>
+<td><p>Draw the robot's visual geometry using the defined <code class="xref py py-attr docutils literal notranslate"><span class="pre">Robot.artist</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.ensure_client.html#compas_fab.robots.Robot.ensure_client" title="compas_fab.robots.Robot.ensure_client"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_client</span></code></a>()</p></td>
 <td><p>Check if the client is set.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.ensure_geometry.html#compas_fab.robots.Robot.ensure_geometry" title="compas_fab.robots.Robot.ensure_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_geometry</span></code></a>()</p></td>
-<td><p>Check if the model’s geometry has been loaded.</p></td>
+<td><p>Check if the model's geometry has been loaded.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.ensure_semantics.html#compas_fab.robots.Robot.ensure_semantics" title="compas_fab.robots.Robot.ensure_semantics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ensure_semantics</span></code></a>()</p></td>
 <td><p>Check if semantics is set.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics" title="compas_fab.robots.Robot.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(configuration[, group, …])</p></td>
-<td><p>Calculate the robot’s forward kinematic.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.forward_kinematics.html#compas_fab.robots.Robot.forward_kinematics" title="compas_fab.robots.Robot.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(configuration[, group, ...])</p></td>
+<td><p>Calculate the robot's forward kinematic.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.forward_kinematics_deprecated.html#compas_fab.robots.Robot.forward_kinematics_deprecated" title="compas_fab.robots.Robot.forward_kinematics_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics_deprecated</span></code></a>(configuration)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.from_t0cf_to_tcf.html#compas_fab.robots.Robot.from_t0cf_to_tcf" title="compas_fab.robots.Robot.from_t0cf_to_tcf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_t0cf_to_tcf</span></code></a>(frames_t0cf)</p></td>
-<td><p>Convert frames at the robot’s flange (tool0 frame) to frames at the robot’s tool tip (tcf frame) using the attached tool.</p></td>
+<td><p>Convert frames at the robot's flange (tool0 frame) to frames at the robot's tool tip (tcf frame) using the attached tool.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.from_tcf_to_t0cf.html#compas_fab.robots.Robot.from_tcf_to_t0cf" title="compas_fab.robots.Robot.from_tcf_to_t0cf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tcf_to_t0cf</span></code></a>(frames_tcf)</p></td>
-<td><p>Convert a list of frames at the robot’s tool tip (tcf frame) to frames at the robot’s flange (tool0 frame) using the attached tool.</p></td>
+<td><p>Convert a list of frames at the robot's tool tip (tcf frame) to frames at the robot's flange (tool0 frame) using the attached tool.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_RCF.html#compas_fab.robots.Robot.get_RCF" title="compas_fab.robots.Robot.get_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_RCF</span></code></a>([group])</p></td>
 <td><p>Get the origin frame of the robot.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_base_frame.html#compas_fab.robots.Robot.get_base_frame" title="compas_fab.robots.Robot.get_base_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_frame</span></code></a>([group, full_configuration])</p></td>
-<td><p>Get the frame of the robot’s base link, which is the robot’s origin frame.</p></td>
+<td><p>Get the frame of the robot's base link, which is the robot's origin frame.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_base_link.html#compas_fab.robots.Robot.get_base_link" title="compas_fab.robots.Robot.get_base_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link</span></code></a>([group])</p></td>
-<td><p>Get the robot’s base link.</p></td>
+<td><p>Get the robot's base link.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_base_link_name.html#compas_fab.robots.Robot.get_base_link_name" title="compas_fab.robots.Robot.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a>([group])</p></td>
-<td><p>Get the name of the robot’s base link.</p></td>
+<td><p>Get the name of the robot's base link.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_configurable_joint_names.html#compas_fab.robots.Robot.get_configurable_joint_names" title="compas_fab.robots.Robot.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a>([group])</p></td>
 <td><p>Get the configurable joint names.</p></td>
@@ -192,22 +192,22 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <td><p>Get the configurable joint types.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_configurable_joints.html#compas_fab.robots.Robot.get_configurable_joints" title="compas_fab.robots.Robot.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a>([group])</p></td>
-<td><p>Get the robot’s configurable joints.</p></td>
+<td><p>Get the robot's configurable joints.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_configuration_from_group_state.html#compas_fab.robots.Robot.get_configuration_from_group_state" title="compas_fab.robots.Robot.get_configuration_from_group_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configuration_from_group_state</span></code></a>(group, …)</p></td>
-<td><p>Get a <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> from a group’s group state.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_configuration_from_group_state.html#compas_fab.robots.Robot.get_configuration_from_group_state" title="compas_fab.robots.Robot.get_configuration_from_group_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configuration_from_group_state</span></code></a>(group, ...)</p></td>
+<td><p>Get a <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> from a group's group state.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_end_effector_frame.html#compas_fab.robots.Robot.get_end_effector_frame" title="compas_fab.robots.Robot.get_end_effector_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_frame</span></code></a>([group, …])</p></td>
-<td><p>Get the frame of the robot’s end effector.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_end_effector_frame.html#compas_fab.robots.Robot.get_end_effector_frame" title="compas_fab.robots.Robot.get_end_effector_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_frame</span></code></a>([group, ...])</p></td>
+<td><p>Get the frame of the robot's end effector.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_end_effector_link.html#compas_fab.robots.Robot.get_end_effector_link" title="compas_fab.robots.Robot.get_end_effector_link"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link</span></code></a>([group])</p></td>
-<td><p>Get the robot’s end effector link.</p></td>
+<td><p>Get the robot's end effector link.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_end_effector_link_name.html#compas_fab.robots.Robot.get_end_effector_link_name" title="compas_fab.robots.Robot.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a>([group])</p></td>
-<td><p>Get the name of the robot’s end effector link.</p></td>
+<td><p>Get the name of the robot's end effector link.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_group_configuration.html#compas_fab.robots.Robot.get_group_configuration" title="compas_fab.robots.Robot.get_group_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_configuration</span></code></a>(group, …)</p></td>
-<td><p>Get the group’s configuration.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_group_configuration.html#compas_fab.robots.Robot.get_group_configuration" title="compas_fab.robots.Robot.get_group_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_configuration</span></code></a>(group, ...)</p></td>
+<td><p>Get the group's configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_group_names_from_link_name.html#compas_fab.robots.Robot.get_group_names_from_link_name" title="compas_fab.robots.Robot.get_group_names_from_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_group_names_from_link_name</span></code></a>(link_name)</p></td>
 <td><p>Get the names of the groups <cite>link_name</cite> belongs to.</p></td>
@@ -224,70 +224,73 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_link_names_with_collision_geometry.html#compas_fab.robots.Robot.get_link_names_with_collision_geometry" title="compas_fab.robots.Robot.get_link_names_with_collision_geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_link_names_with_collision_geometry</span></code></a>()</p></td>
 <td><p>Get the names of the links with collision geometry.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_position_by_joint_name.html#compas_fab.robots.Robot.get_position_by_joint_name" title="compas_fab.robots.Robot.get_position_by_joint_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_position_by_joint_name</span></code></a>(configuration, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.get_position_by_joint_name.html#compas_fab.robots.Robot.get_position_by_joint_name" title="compas_fab.robots.Robot.get_position_by_joint_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_position_by_joint_name</span></code></a>(configuration, ...)</p></td>
 <td><p>Get the position of named joint in given configuration.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.info.html#compas_fab.robots.Robot.info" title="compas_fab.robots.Robot.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>()</p></td>
 <td><p>Print information about the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics" title="compas_fab.robots.Robot.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(frame_WCF[, …])</p></td>
-<td><p>Calculate the robot’s inverse kinematic for a given frame.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.inverse_kinematics.html#compas_fab.robots.Robot.inverse_kinematics" title="compas_fab.robots.Robot.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(frame_WCF[, ...])</p></td>
+<td><p>Calculate the robot's inverse kinematic for a given frame.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.inverse_kinematics_deprecated.html#compas_fab.robots.Robot.inverse_kinematics_deprecated" title="compas_fab.robots.Robot.inverse_kinematics_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics_deprecated</span></code></a>(frame_WCF[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.inverse_kinematics_deprecated.html#compas_fab.robots.Robot.inverse_kinematics_deprecated" title="compas_fab.robots.Robot.inverse_kinematics_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics_deprecated</span></code></a>(frame_WCF[, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.merge_group_with_full_configuration.html#compas_fab.robots.Robot.merge_group_with_full_configuration" title="compas_fab.robots.Robot.merge_group_with_full_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_group_with_full_configuration</span></code></a>(…)</p></td>
-<td><p>Get the robot’s full configuration by merging a group’s configuration with a full configuration.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.iter_inverse_kinematics.html#compas_fab.robots.Robot.iter_inverse_kinematics" title="compas_fab.robots.Robot.iter_inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_inverse_kinematics</span></code></a>(frame_WCF[, ...])</p></td>
+<td><p>Iterate over the inverse kinematic solutions of a robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.orientation_constraint_from_frame.html#compas_fab.robots.Robot.orientation_constraint_from_frame" title="compas_fab.robots.Robot.orientation_constraint_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orientation_constraint_from_frame</span></code></a>(frame_WCF, …)</p></td>
-<td><p>Create an orientation constraint from a frame on the group’s end-effector link.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.merge_group_with_full_configuration.html#compas_fab.robots.Robot.merge_group_with_full_configuration" title="compas_fab.robots.Robot.merge_group_with_full_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge_group_with_full_configuration</span></code></a>(...)</p></td>
+<td><p>Get the robot's full configuration by merging a group's configuration with a full configuration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_cartesian_motion.html#compas_fab.robots.Robot.plan_cartesian_motion" title="compas_fab.robots.Robot.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(frames_WCF[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.orientation_constraint_from_frame.html#compas_fab.robots.Robot.orientation_constraint_from_frame" title="compas_fab.robots.Robot.orientation_constraint_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orientation_constraint_from_frame</span></code></a>(frame_WCF, ...)</p></td>
+<td><p>Create an orientation constraint from a frame on the group's end-effector link.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_cartesian_motion.html#compas_fab.robots.Robot.plan_cartesian_motion" title="compas_fab.robots.Robot.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(frames_WCF[, ...])</p></td>
 <td><p>Calculate a cartesian motion path (linear in tool space).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_cartesian_motion_deprecated.html#compas_fab.robots.Robot.plan_cartesian_motion_deprecated" title="compas_fab.robots.Robot.plan_cartesian_motion_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion_deprecated</span></code></a>(frames_WCF)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_cartesian_motion_deprecated.html#compas_fab.robots.Robot.plan_cartesian_motion_deprecated" title="compas_fab.robots.Robot.plan_cartesian_motion_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion_deprecated</span></code></a>(frames_WCF)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_motion.html#compas_fab.robots.Robot.plan_motion" title="compas_fab.robots.Robot.plan_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion</span></code></a>(goal_constraints[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_motion.html#compas_fab.robots.Robot.plan_motion" title="compas_fab.robots.Robot.plan_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion</span></code></a>(goal_constraints[, ...])</p></td>
 <td><p>Calculate a motion path.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_motion_deprecated.html#compas_fab.robots.Robot.plan_motion_deprecated" title="compas_fab.robots.Robot.plan_motion_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion_deprecated</span></code></a>(goal_constraints[, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.plan_motion_deprecated.html#compas_fab.robots.Robot.plan_motion_deprecated" title="compas_fab.robots.Robot.plan_motion_deprecated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_motion_deprecated</span></code></a>(goal_constraints[, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.position_constraint_from_frame.html#compas_fab.robots.Robot.position_constraint_from_frame" title="compas_fab.robots.Robot.position_constraint_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position_constraint_from_frame</span></code></a>(frame_WCF, …)</p></td>
-<td><p>Create a position constraint from a frame on the group’s end-effector link.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.position_constraint_from_frame.html#compas_fab.robots.Robot.position_constraint_from_frame" title="compas_fab.robots.Robot.position_constraint_from_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">position_constraint_from_frame</span></code></a>(frame_WCF, ...)</p></td>
+<td><p>Create a position constraint from a frame on the group's end-effector link.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.random_configuration.html#compas_fab.robots.Robot.random_configuration" title="compas_fab.robots.Robot.random_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_configuration</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.random_configuration.html#compas_fab.robots.Robot.random_configuration" title="compas_fab.robots.Robot.random_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_configuration</span></code></a>([group])</p></td>
 <td><p>Get a random configuration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale" title="compas_fab.robots.Robot.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.scale.html#compas_fab.robots.Robot.scale" title="compas_fab.robots.Robot.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a>(factor)</p></td>
 <td><p>Scale the robot geometry by a factor (absolute).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.set_RCF.html#compas_fab.robots.Robot.set_RCF" title="compas_fab.robots.Robot.set_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_RCF</span></code></a>(robot_coordinate_frame[, group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.set_RCF.html#compas_fab.robots.Robot.set_RCF" title="compas_fab.robots.Robot.set_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_RCF</span></code></a>(robot_coordinate_frame[, group])</p></td>
 <td><p>Move the origin frame of the robot to the robot_coordinate_frame.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.to_local_coordinates.html#compas_fab.robots.Robot.to_local_coordinates" title="compas_fab.robots.Robot.to_local_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_local_coordinates</span></code></a>(frame_WCF[, group])</p></td>
-<td><p>Represent a frame from the world coordinate system (WCF) in the robot’s coordinate system (RCF).</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.to_local_coordinates.html#compas_fab.robots.Robot.to_local_coordinates" title="compas_fab.robots.Robot.to_local_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_local_coordinates</span></code></a>(frame_WCF[, group])</p></td>
+<td><p>Represent a frame from the world coordinate system (WCF) in the robot's coordinate system (RCF).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.to_world_coordinates.html#compas_fab.robots.Robot.to_world_coordinates" title="compas_fab.robots.Robot.to_world_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_world_coordinates</span></code></a>(frame_RCF[, group])</p></td>
-<td><p>Represent a frame from the robot’s coordinate system (RCF) in the world coordinate system (WCF).</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.to_world_coordinates.html#compas_fab.robots.Robot.to_world_coordinates" title="compas_fab.robots.Robot.to_world_coordinates"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_world_coordinates</span></code></a>(frame_RCF[, group])</p></td>
+<td><p>Represent a frame from the robot's coordinate system (RCF) in the world coordinate system (WCF).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_RCF_WCF.html#compas_fab.robots.Robot.transformation_RCF_WCF" title="compas_fab.robots.Robot.transformation_RCF_WCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_RCF_WCF</span></code></a>([group])</p></td>
-<td><p>Get the transformation from the robot’s coordinate system (RCF) to the world coordinate system (WCF).</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_RCF_WCF.html#compas_fab.robots.Robot.transformation_RCF_WCF" title="compas_fab.robots.Robot.transformation_RCF_WCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_RCF_WCF</span></code></a>([group])</p></td>
+<td><p>Get the transformation from the robot's coordinate system (RCF) to the world coordinate system (WCF).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_WCF_RCF.html#compas_fab.robots.Robot.transformation_WCF_RCF" title="compas_fab.robots.Robot.transformation_WCF_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_WCF_RCF</span></code></a>([group])</p></td>
-<td><p>Get the transformation from the world coordinate system (WCF) to the robot’s coordinate system (RCF).</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformation_WCF_RCF.html#compas_fab.robots.Robot.transformation_WCF_RCF" title="compas_fab.robots.Robot.transformation_WCF_RCF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformation_WCF_RCF</span></code></a>([group])</p></td>
+<td><p>Get the transformation from the world coordinate system (WCF) to the robot's coordinate system (RCF).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes" title="compas_fab.robots.Robot.transformed_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_axes</span></code></a>(configuration[, group])</p></td>
-<td><p>Get the robot’s transformed axes.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_axes.html#compas_fab.robots.Robot.transformed_axes" title="compas_fab.robots.Robot.transformed_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_axes</span></code></a>(configuration[, group])</p></td>
+<td><p>Get the robot's transformed axes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames" title="compas_fab.robots.Robot.transformed_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_frames</span></code></a>(configuration[, group])</p></td>
-<td><p>Get the robot’s transformed frames.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.transformed_frames.html#compas_fab.robots.Robot.transformed_frames" title="compas_fab.robots.Robot.transformed_frames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transformed_frames</span></code></a>(configuration[, group])</p></td>
+<td><p>Get the robot's transformed frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update" title="compas_fab.robots.Robot.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, group, visual, collision])</p></td>
-<td><p>Update the robot’s geometry.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.update.html#compas_fab.robots.Robot.update" title="compas_fab.robots.Robot.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(configuration[, group, visual, collision])</p></td>
+<td><p>Update the robot's geometry.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Robot.zero_configuration.html#compas_fab.robots.Robot.zero_configuration" title="compas_fab.robots.Robot.zero_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_configuration</span></code></a>([group])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Robot.zero_configuration.html#compas_fab.robots.Robot.zero_configuration" title="compas_fab.robots.Robot.zero_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">zero_configuration</span></code></a>([group])</p></td>
 <td><p>Get the zero joint configuration.</p></td>
 </tr>
 </tbody>
@@ -309,16 +312,16 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
 <td><p>All group states of the robot.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">main_group_name</span></code></p></td>
-<td><p>Robot’s main planning group.</p></td>
+<td><p>Robot's main planning group.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></p></td>
 <td><p>Name of the robot, as defined by its model.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">root_name</span></code></p></td>
-<td><p>Robot’s root name.</p></td>
+<td><p>Robot's root name.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale_factor</span></code></p></td>
-<td><p>Robot’s scale factor.</p></td>
+<td><p>Robot's scale factor.</p></td>
 </tr>
 </tbody>
 </table>
@@ -492,10 +495,6 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -508,6 +507,13 @@ e.g. <a class="reference internal" href="compas_fab.backends.RosClient.html#comp
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

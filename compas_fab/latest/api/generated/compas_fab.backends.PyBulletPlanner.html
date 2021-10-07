@@ -112,13 +112,13 @@
 <td><p>Append a collision mesh to the planning scene.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.forward_kinematics.html#compas_fab.backends.PyBulletPlanner.forward_kinematics" title="compas_fab.backends.PyBulletPlanner.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Calculate the robot’s forward kinematic.</p></td>
+<td><p>Calculate the robot's forward kinematic.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.get_planning_scene.html#compas_fab.backends.PyBulletPlanner.get_planning_scene" title="compas_fab.backends.PyBulletPlanner.get_planning_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.inverse_kinematics.html#compas_fab.backends.PyBulletPlanner.inverse_kinematics" title="compas_fab.backends.PyBulletPlanner.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Calculate the robot’s inverse kinematic for a given frame.</p></td>
+<td><p>Calculate the robot's inverse kinematic for a given frame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.plan_cartesian_motion.html#compas_fab.backends.PyBulletPlanner.plan_cartesian_motion" title="compas_fab.backends.PyBulletPlanner.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
@@ -260,10 +260,6 @@
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -276,6 +272,13 @@
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

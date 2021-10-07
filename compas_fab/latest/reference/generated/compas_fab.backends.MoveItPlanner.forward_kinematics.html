@@ -111,9 +111,9 @@ configurable joints is assumed.</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – Unused parameter.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;base_link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the base link.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;base_link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the base link.
 Defaults to the model’s root link.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
 calculate the forward kinematics for. Defaults to the group’s end
 effector link.
 Backwards compatibility note: if there’s no <code class="docutils literal notranslate"><span class="pre">link</span></code> option, the
@@ -293,10 +293,6 @@ to the end effector’s link.</p></li>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -309,6 +305,13 @@ to the end effector’s link.</p></li>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>
