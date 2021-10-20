@@ -46,48 +46,13 @@
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
         <!-- version -->
         
+        <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.3
+            0.19.1
           </a>
-          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.3">0.18.3</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.0">0.13.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.12.0">0.12.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
-            
-          </div>
+          <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
         
         <!-- version -->
@@ -184,8 +149,8 @@ forward kinematics:</p>
     <span class="n">group_a</span> <span class="o">=</span> <span class="n">robot_a</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
     <span class="n">group_b</span> <span class="o">=</span> <span class="n">robot_b</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">attr</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
 
-    <span class="n">frame_a</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group_a</span><span class="p">)</span>
-    <span class="n">frame_b</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group_b</span><span class="p">)</span>
+    <span class="n">frame_a</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot_a</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group_a</span><span class="p">)</span>
+    <span class="n">frame_b</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">forward_kinematics</span><span class="p">(</span><span class="n">robot_b</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group_b</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;End effector poses: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_a</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">frame_b</span><span class="p">))</span>
 </code></pre></div>
 </div>
@@ -210,7 +175,7 @@ that there is at least one valid configuration to reach the goal pose.</p>
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;num_joints&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">get_configurable_joints</span><span class="p">()),</span>
     <span class="p">}</span>
-    <span class="n">configs</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_pose</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+    <span class="n">configs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">goal_pose</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">))</span>
 
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">configs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;No IK solution found&#39;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found valid configuration: &#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">configs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
@@ -248,7 +213,6 @@ define a start configuration and a goal pose and rely on defaults for the rest.<
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 
 <span class="kn">import</span> <span class="nn">compas_fab</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">rfl</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">VrepClient</span>
 
@@ -437,7 +401,7 @@ configuration of most available parameters.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.3',
+  VERSION           : '0.19.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -468,10 +432,6 @@ configuration of most available parameters.</p>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -484,6 +444,13 @@ configuration of most available parameters.</p>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

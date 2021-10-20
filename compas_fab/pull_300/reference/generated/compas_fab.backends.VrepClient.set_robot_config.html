@@ -46,48 +46,13 @@
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
         <!-- version -->
         
+        <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.3
+            0.19.1
           </a>
-          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.3">0.18.3</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.0">0.13.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.12.0">0.12.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
-            
-          </div>
+          <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
         
         <!-- version -->
@@ -190,6 +155,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.MoveItPlanner.html">MoveItPlanner</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletError.html">PyBulletError</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>
@@ -289,7 +255,7 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.3',
+  VERSION           : '0.19.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -320,10 +286,6 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -336,6 +298,13 @@ robot as an instance of <code class="xref py py-class docutils literal notransla
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

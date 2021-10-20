@@ -42,48 +42,13 @@
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
         <!-- version -->
         
+        <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.3
+            0.19.1
           </a>
-          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.3">0.18.3</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.0">0.13.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.12.0">0.12.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
-            
-          </div>
+          <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
         
         <!-- version -->
@@ -148,7 +113,7 @@
     <span class="k">return</span> <span class="n">to_min</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_scaled</span> <span class="o">*</span> <span class="n">to_range</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">range_geometric_row</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">1.1</span><span class="p">):</span>
+<div class="viewcode-block" id="range_geometric_row"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.range_geometric_row.html#compas_fab.utilities.range_geometric_row">[docs]</a><span class="k">def</span> <span class="nf">range_geometric_row</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mf">1.1</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns a list of numbers with a certain relation to each other.</span>
 
 <span class="sd">    The function divides one number into a list of d numbers [n0, n1, ...], such</span>
@@ -163,7 +128,7 @@
     <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="n">n0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">numbers</span>
+    <span class="k">return</span> <span class="n">numbers</span></div>
 
 
 <div class="viewcode-block" id="arange"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.arange.html#compas_fab.utilities.arange">[docs]</a><span class="k">def</span> <span class="nf">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
@@ -178,7 +143,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">)]</span></div>
 
 
-<span class="k">def</span> <span class="nf">diffs</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
+<div class="viewcode-block" id="diffs"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.diffs.html#compas_fab.utilities.diffs">[docs]</a><span class="k">def</span> <span class="nf">diffs</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the element-wise differences between two lists.</span>
 
 <span class="sd">    Raises</span>
@@ -188,7 +153,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l2</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Pass 2 lists of equal length.&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">fabs</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)]</span></div>
 
 
 <div class="viewcode-block" id="allclose"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.allclose.html#compas_fab.utilities.allclose">[docs]</a><span class="k">def</span> <span class="nf">allclose</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">):</span>
@@ -215,7 +180,7 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">numbers</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
 
 
-<span class="k">def</span> <span class="nf">argmin</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<div class="viewcode-block" id="argmin"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.argmin.html#compas_fab.utilities.argmin">[docs]</a><span class="k">def</span> <span class="nf">argmin</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the index of the minimum value in numbers.</span>
 
 <span class="sd">    The function is similar to NumPy&#39;s *argmin* function.</span>
@@ -225,10 +190,10 @@
 <span class="sd">    For a large list of numbers reconsider using NumPy&#39;s *argmin* function,</span>
 <span class="sd">    since this function might take too long.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">argsort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">argsort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<span class="k">def</span> <span class="nf">argmax</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+<div class="viewcode-block" id="argmax"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.argmax.html#compas_fab.utilities.argmax">[docs]</a><span class="k">def</span> <span class="nf">argmax</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Returns the index of the maximum value in numbers.</span>
 
 <span class="sd">    The function is similar to NumPy&#39;s *argmax* function.</span>
@@ -238,11 +203,11 @@
 <span class="sd">    For a large list of numbers reconsider using NumPy&#39;s *argmax* function,</span>
 <span class="sd">    since this function might take too long.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">argsort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">argsort</span><span class="p">(</span><span class="n">numbers</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
 
-<span class="k">def</span> <span class="nf">clamp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Clamps a value witin the bound [min_value, max_value]</span>
+<div class="viewcode-block" id="clamp"><a class="viewcode-back" href="../../../reference/generated/compas_fab.utilities.clamp.html#compas_fab.utilities.clamp">[docs]</a><span class="k">def</span> <span class="nf">clamp</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Clamps a value within the bound [min_value, max_value]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -250,7 +215,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">min_value</span> <span class="o">&gt;</span> <span class="n">max_value</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;min_value must be bigger than max_value&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="p">),</span> <span class="n">max_value</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">min_value</span><span class="p">),</span> <span class="n">max_value</span><span class="p">))</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -346,7 +311,7 @@
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.3',
+  VERSION           : '0.19.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -377,10 +342,6 @@
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -393,6 +354,13 @@
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

@@ -46,48 +46,13 @@
       <ul class="navbar-nav d-none d-md-flex ml-md-auto">
         <!-- version -->
         
+        <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.18.3
+            0.19.1
           </a>
-          <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/latest">latest</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/stable">stable</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.3">0.18.3</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.2">0.18.2</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.1">0.18.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.18.0">0.18.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.17.0">0.17.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.16.0">0.16.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.15.0">0.15.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.14.0">0.14.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.1">0.13.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.13.0">0.13.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.12.0">0.12.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.11.0">0.11.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.1">0.10.1</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.10.0">0.10.0</a>
-            
-              <a class="dropdown-item" href="https://gramaziokohler.github.io/compas_fab/0.1.0">0.1.0</a>
-            
-          </div>
+          <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
         
         <!-- version -->
@@ -145,7 +110,7 @@ simulation, planning and execution backends to exchange information.</p>
 <td><p>Represents semantic information of a robot.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tool</span></code></a></p></td>
-<td><p>Represents a tool to be attached to the robot’s flange.</p></td>
+<td><p>Represents a tool to be attached to the robot's flange.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Duration</span></code></a></p></td>
 <td><p>Duration consists of two integers: seconds and nanoseconds.</p></td>
@@ -176,6 +141,9 @@ simulation, planning and execution backends to exchange information.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.PathPlan.html#compas_fab.robots.PathPlan" title="compas_fab.robots.PathPlan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PathPlan</span></code></a></p></td>
 <td><p>Describes a complete path plan for one or more robots.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.Trajectory.html#compas_fab.robots.Trajectory" title="compas_fab.robots.Trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trajectory</span></code></a></p></td>
+<td><p>Base trajectory class.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -188,7 +156,7 @@ simulation, planning and execution backends to exchange information.</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></a></p></td>
-<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>’s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
+<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>'s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionMesh</span></code></a></p></td>
 <td><p>Represents a collision mesh.</p></td>
@@ -278,6 +246,7 @@ The following functions help with converting units from one system to the other.
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.JointTrajectory.html">JointTrajectory</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.JointTrajectoryPoint.html">JointTrajectoryPoint</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.PathPlan.html">PathPlan</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.Trajectory.html">Trajectory</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html">AttachedCollisionMesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.CollisionMesh.html">CollisionMesh</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="generated/compas_fab.robots.PlanningScene.html">PlanningScene</a></li>
@@ -387,7 +356,7 @@ The following functions help with converting units from one system to the other.
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.18.3',
+  VERSION           : '0.19.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -418,10 +387,6 @@ The following functions help with converting units from one system to the other.
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -434,6 +399,13 @@ The following functions help with converting units from one system to the other.
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>
