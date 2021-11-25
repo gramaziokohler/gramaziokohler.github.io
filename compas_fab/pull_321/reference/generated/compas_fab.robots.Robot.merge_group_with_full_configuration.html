@@ -23,7 +23,7 @@
   
 
   
-    <link rel="prev" title="Robot.inverse_kinematics_deprecated" href="compas_fab.robots.Robot.inverse_kinematics_deprecated.html" />
+    <link rel="prev" title="Robot.iter_inverse_kinematics" href="compas_fab.robots.Robot.iter_inverse_kinematics.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -50,7 +50,7 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.19.1
+            0.20.1
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -108,14 +108,14 @@ case a joint value is present in both.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>group_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>) – The configuration for one of the robot’s planning groups.</p></li>
 <li><p><strong>full_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>) – The configuration for all configurable joints of the robot.</p></li>
-<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the planning group.</p></li>
+<li><p><strong>group</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the planning group.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code> – A full configuration with values for all configurable joints.</p>
 </dd>
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.9)"><strong>ValueError</strong></a> – If the <cite>full_configuration</cite> does not specify positions for all
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If the <cite>full_configuration</cite> does not specify positions for all
     configurable joints, or if the <cite>group_configuration</cite> does not
     specify positions for all configurable joints of the given group.</p>
 </dd>
@@ -203,11 +203,11 @@ case a joint value is present in both.</p>
   <footer class="compas-footer">
     <nav class="nav p-2">
       
-        <a href="compas_fab.robots.Robot.inverse_kinematics_deprecated.html" title="Robot.inverse_kinematics_deprecated" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+        <a href="compas_fab.robots.Robot.iter_inverse_kinematics.html" title="Robot.iter_inverse_kinematics" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
           <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
           <div class="nav-title flex-grow-1 align-self-center">
             <div class="nav-direction small font-weight-light">Previous</div>
-            Robot.inverse_kinematics_deprecated
+            Robot.iter_inverse_kinematics
           </div>
         </a>
       
@@ -259,7 +259,7 @@ case a joint value is present in both.</p>
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.19.1',
+  VERSION           : '0.20.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -290,10 +290,6 @@ case a joint value is present in both.</p>
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -306,6 +302,13 @@ case a joint value is present in both.</p>
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

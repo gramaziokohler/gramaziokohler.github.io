@@ -46,7 +46,7 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.19.1
+            0.20.1
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -89,7 +89,7 @@
 <h1>PyBulletPlanner</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.backends.PyBulletPlanner">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">PyBulletPlanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/pybullet/planner.html#PyBulletPlanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">PyBulletPlanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/backends/pybullet/planner.html#PyBulletPlanner"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../generated/compas_fab.backends.interfaces.PlannerInterface.html#compas_fab.backends.interfaces.PlannerInterface" title="compas_fab.backends.interfaces.client.PlannerInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.client.PlannerInterface</span></code></a></p>
 <p>Implement the planner backend interface for PyBullet.</p>
 <p class="rubric">Methods</p>
@@ -112,13 +112,13 @@
 <td><p>Append a collision mesh to the planning scene.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.forward_kinematics.html#compas_fab.backends.PyBulletPlanner.forward_kinematics" title="compas_fab.backends.PyBulletPlanner.forward_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">forward_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Calculate the robot’s forward kinematic.</p></td>
+<td><p>Calculate the robot's forward kinematic.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.get_planning_scene.html#compas_fab.backends.PyBulletPlanner.get_planning_scene" title="compas_fab.backends.PyBulletPlanner.get_planning_scene"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_planning_scene</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.inverse_kinematics.html#compas_fab.backends.PyBulletPlanner.inverse_kinematics" title="compas_fab.backends.PyBulletPlanner.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Calculate the robot’s inverse kinematic for a given frame.</p></td>
+<td><p>Calculate the robot's inverse kinematic for a given frame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.PyBulletPlanner.plan_cartesian_motion.html#compas_fab.backends.PyBulletPlanner.plan_cartesian_motion" title="compas_fab.backends.PyBulletPlanner.plan_cartesian_motion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Default method for planner.</p></td>
@@ -229,7 +229,7 @@
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.19.1',
+  VERSION           : '0.20.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -260,10 +260,6 @@
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -276,6 +272,13 @@
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

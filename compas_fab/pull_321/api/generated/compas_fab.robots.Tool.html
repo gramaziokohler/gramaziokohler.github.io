@@ -46,7 +46,7 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.19.1
+            0.20.1
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -89,8 +89,8 @@
 <h1>Tool</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.Tool">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">Tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_in_tool0_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_tool'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/tool.html#Tool"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">Tool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">visual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_in_tool0_frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_tool'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/tool.html#Tool"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Represents a tool to be attached to the robot’s flange.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -98,8 +98,8 @@
 <li><p><strong>visual</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The visual mesh of the tool.</p></li>
 <li><p><strong>frame_in_tool0_frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame of the tool in tool0 frame.</p></li>
 <li><p><strong>collision</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) – The collision mesh representation of the tool.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Tool</cite>. Defaults to ‘attached_tool’.</p></li>
-<li><p><strong>link_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Link</cite> to which the tool is attached.  Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Tool</cite>. Defaults to ‘attached_tool’.</p></li>
+<li><p><strong>link_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the <cite>Link</cite> to which the tool is attached.  Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -116,7 +116,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.__init__.html#compas_fab.robots.Tool.__init__" title="compas_fab.robots.Tool.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(visual, frame_in_tool0_frame[, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.__init__.html#compas_fab.robots.Tool.__init__" title="compas_fab.robots.Tool.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(visual, frame_in_tool0_frame[, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.from_data.html#compas_fab.robots.Tool.from_data" title="compas_fab.robots.Tool.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a>(data)</p></td>
@@ -126,10 +126,10 @@
 <td><p>Construct a <cite>Tool</cite> from the data contained in a JSON file.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.from_t0cf_to_tcf.html#compas_fab.robots.Tool.from_t0cf_to_tcf" title="compas_fab.robots.Tool.from_t0cf_to_tcf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_t0cf_to_tcf</span></code></a>(frames_t0cf)</p></td>
-<td><p>Converts frames at the robot’s flange (tool0 frame) to frames at the robot’s tool tip (tcf frame).</p></td>
+<td><p>Converts frames at the robot's flange (tool0 frame) to frames at the robot's tool tip (tcf frame).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.from_tcf_to_t0cf.html#compas_fab.robots.Tool.from_tcf_to_t0cf" title="compas_fab.robots.Tool.from_tcf_to_t0cf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tcf_to_t0cf</span></code></a>(frames_tcf)</p></td>
-<td><p>Converts a list of frames at the robot’s tool tip (tcf frame) to frames at the robot’s flange (tool0 frame).</p></td>
+<td><p>Converts a list of frames at the robot's tool tip (tcf frame) to frames at the robot's flange (tool0 frame).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../../reference/generated/compas_fab.robots.Tool.from_tool_model.html#compas_fab.robots.Tool.from_tool_model" title="compas_fab.robots.Tool.from_tool_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_tool_model</span></code></a>(tool_model)</p></td>
 <td><p></p></td>
@@ -258,7 +258,7 @@
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.19.1',
+  VERSION           : '0.20.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -289,10 +289,6 @@
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -305,6 +301,13 @@
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>

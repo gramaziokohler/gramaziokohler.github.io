@@ -46,7 +46,7 @@
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            0.19.1
+            0.20.1
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -103,19 +103,21 @@ Defaults to the zero configuration.</p></li>
 main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;base_link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the base link.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;base_link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the base link.
 Defaults to the model’s root link.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;avoid_collisions&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) Whether or not to avoid collisions.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;avoid_collisions&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) Whether or not to avoid collisions.
 Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;constraints&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional)
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;constraints&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Constraint</span></code></a>, optional)
 A set of constraints that the request must obey.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;timeout&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) Maximum allowed time for inverse kinematic calculation in seconds.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;timeout&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) Maximum allowed time for inverse kinematic calculation in seconds.
 Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>. This value supersedes the <code class="docutils literal notranslate"><span class="pre">&quot;attempts&quot;</span></code> argument used before ROS Noetic.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;attached_collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a>, optional)
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;attached_collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="../../reference/generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.AttachedCollisionMesh</span></code></a>, optional)
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;attempts&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) The maximum number of inverse kinematic attempts.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;attempts&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) The maximum number of inverse kinematic attempts.
 Defaults to <code class="docutils literal notranslate"><span class="pre">8</span></code>. This value is ignored on ROS Noetic and newer, use <code class="docutils literal notranslate"><span class="pre">&quot;timeout&quot;</span></code> instead.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;max_results&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) Maximum number of results to return.
+Defaults to <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p></li>
 </ul>
 </li>
 </ul>
@@ -123,8 +125,8 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">8</span
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../../reference/generated/compas_fab.backends.BackendError.html#compas_fab.backends.BackendError" title="compas_fab.backends.exceptions.BackendError"><strong>compas_fab.backends.exceptions.BackendError</strong></a> – If no configuration can be found.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -219,7 +221,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">8</span
   <script type="text/javascript">
   var DOCUMENTATION_OPTIONS = {
   URL_ROOT          : '',
-  VERSION           : '0.19.1',
+  VERSION           : '0.20.1',
   COLLAPSE_INDEX    : false,
   FILE_SUFFIX       : '.html',
   HAS_SOURCE        : 'false',
@@ -250,10 +252,6 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">8</span
     hljs.initHighlighting();
     anchors.add();
 
-    $('.nav-versions .dropdown-item').filter(function(i, ver) {
-      return window.location.href.startsWith(ver.href);
-    }).addClass("active");
-
   });
 
 
@@ -266,6 +264,13 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">8</span
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
+
+      var selected_version = $('.nav-versions .dropdown-item').filter(function(i, ver) {
+        return window.location.href.startsWith(ver.href);
+      });
+      selected_version.addClass('active');
+      $("#bd-versions").text(selected_version.text());
+
     })
   }
   </script>
