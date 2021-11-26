@@ -1343,7 +1343,10 @@
 
         <span class="c1"># The returned joint names might be more than the requested ones if there are passive joints present</span>
         <span class="k">for</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span> <span class="ow">in</span> <span class="n">solutions</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_configuration</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">return_full_configuration</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="n">joint_positions</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_configuration</span><span class="p">(</span><span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">return_full_configuration</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="kc">None</span>  <span class="c1"># to accomodate analytic ik with keeping the order of solutions</span></div>
 
     <span class="k">def</span> <span class="nf">_build_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">joint_positions</span><span class="p">,</span> <span class="n">joint_names</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">return_full_configuration</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">return_full_configuration</span><span class="p">:</span>
