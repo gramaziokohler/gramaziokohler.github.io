@@ -106,6 +106,7 @@
 <span class="kn">from</span> <span class="nn">compas_fab.backends.interfaces.client</span> <span class="kn">import</span> <span class="n">ClientInterface</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Robot</span>
 <span class="kn">from</span> <span class="nn">compas_fab.utilities</span> <span class="kn">import</span> <span class="n">LazyLoader</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">const</span>
 <span class="kn">from</span> <span class="nn">.conversions</span> <span class="kn">import</span> <span class="n">frame_from_pose</span>
@@ -295,6 +296,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_load_robot_to_pybullet</span><span class="p">(</span><span class="n">urdf_fp</span><span class="p">,</span> <span class="n">robot</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">robot</span></div>
+
+<div class="viewcode-block" id="PyBulletClient.load_semantics"><a class="viewcode-back" href="../../../../reference/generated/compas_fab.backends.PyBulletClient.load_semantics.html#compas_fab.backends.PyBulletClient.load_semantics">[docs]</a>    <span class="k">def</span> <span class="nf">load_semantics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads the semantic information of a robot.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        robot : :class:`compas_fab.robots.Robot`</span>
+<span class="sd">            The robot to be saved for use with PyBullet.</span>
+<span class="sd">        srdf_filename  : :obj:`str` or file object</span>
+<span class="sd">            Absolute file path to the srdf file name.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+        <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_file</span><span class="p">(</span><span class="n">srdf_filename</span><span class="p">,</span> <span class="n">cached_robot</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span><span class="o">.</span><span class="n">disabled_collisions</span></div>
 
     <span class="k">def</span> <span class="nf">_load_robot_to_pybullet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urdf_file</span><span class="p">,</span> <span class="n">robot</span><span class="p">):</span>
         <span class="n">cached_robot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
@@ -971,6 +986,8 @@
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

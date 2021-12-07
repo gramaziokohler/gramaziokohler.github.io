@@ -94,7 +94,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create position and orientation constraints.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create position and orientation constraints.</p></li>
 <li><p><strong>tolerance_position</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – The allowed tolerance to the frame’s position (defined in the
 robot’s units).</p></li>
 <li><p><strong>tolerances_axes</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Error tolerances t<sub>i</sub> for each of the frame’s axes in
@@ -265,6 +265,8 @@ by 0.01.</p>
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

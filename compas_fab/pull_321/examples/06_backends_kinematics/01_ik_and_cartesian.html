@@ -144,13 +144,14 @@ end-effector to reach a certain target pose.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots.ur5</span> <span class="kn">import</span> <span class="n">Robot</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">AnalyticalInverseKinematics</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">IK_SOLVERS</span>
 
 <span class="n">ik</span> <span class="o">=</span> <span class="n">AnalyticalInverseKinematics</span><span class="p">()</span>
 <span class="n">robot</span> <span class="o">=</span> <span class="n">Robot</span><span class="p">()</span>
 
 <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">0.381</span><span class="p">,</span> <span class="mf">0.093</span><span class="p">,</span> <span class="mf">0.382</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.371</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.292</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.882</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.269</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">jp</span><span class="p">,</span> <span class="n">jn</span> <span class="ow">in</span> <span class="n">ik</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>  <span class="c1"># knows that we need the IK for the UR5 robot</span>
+<span class="k">for</span> <span class="n">jp</span><span class="p">,</span> <span class="n">jn</span> <span class="ow">in</span> <span class="n">ik</span><span class="o">.</span><span class="n">inverse_kinematics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="n">IK_SOLVERS</span><span class="p">[</span><span class="s1">&#39;ur5&#39;</span><span class="p">]}):</span>  <span class="c1"># knows that we need the IK for the UR5 robot</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">jp</span><span class="p">)</span>
 </code></pre></div>
 </div>
@@ -158,8 +159,8 @@ end-effector to reach a certain target pose.</p>
 we have to use a <cite>client</cite>. See below the example for using the <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code></p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">import</span> <span class="nn">compas_fab</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">AnalyticalInverseKinematics</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">IK_SOLVERS</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">PyBulletClient</span>
 
 
@@ -173,36 +174,36 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 
     <span class="c1"># Load UR5</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
-    <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_file</span><span class="p">(</span><span class="n">srdf_filename</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-    <span class="c1"># Update disabled collisions</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span><span class="o">.</span><span class="n">disabled_collisions</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
     <span class="n">ik</span> <span class="o">=</span> <span class="n">AnalyticalInverseKinematics</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
     <span class="c1"># set a new IK function</span>
     <span class="n">client</span><span class="o">.</span><span class="n">inverse_kinematics</span> <span class="o">=</span> <span class="n">ik</span><span class="o">.</span><span class="n">inverse_kinematics</span>
 
-    <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}):</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="n">IK_SOLVERS</span><span class="p">[</span><span class="s1">&#39;ur5&#39;</span><span class="p">],</span> <span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">solution</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p>Or, alternatively, use the <code class="docutils literal notranslate"><span class="pre">AnalyticalPyBulletClient</span></code>:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics.client</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">IK_SOLVERS</span>
 
 <span class="n">urdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur_description/urdf/ur5.urdf&#39;</span><span class="p">)</span>
 <span class="n">srdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur5_moveit_config/config/ur5.srdf&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">AnalyticalPyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
-    <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_file</span><span class="p">(</span><span class="n">srdf_filename</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span><span class="o">.</span><span class="n">disabled_collisions</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">0.381</span><span class="p">,</span> <span class="mf">0.093</span><span class="p">,</span> <span class="mf">0.382</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.371</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.292</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.882</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.269</span><span class="p">))</span>
 
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="n">IK_SOLVERS</span><span class="p">[</span><span class="s1">&#39;ur5&#39;</span><span class="p">],</span> <span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
     <span class="c1"># 8 solutions, `None` are those in collision</span>
-    <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}):</span>
+    <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frame_WCF</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </code></pre></div>
 </div>
@@ -210,8 +211,8 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">import</span> <span class="nn">compas_fab</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">RobotSemantics</span>
-<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics.client</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">IK_SOLVERS</span>
 
 <span class="n">urdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur_description/urdf/ur5.urdf&#39;</span><span class="p">)</span>
 <span class="n">srdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur5_moveit_config/config/ur5.srdf&#39;</span><span class="p">)</span>
@@ -224,11 +225,11 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 
 <span class="k">with</span> <span class="n">AnalyticalPyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
-    <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span> <span class="o">=</span> <span class="n">RobotSemantics</span><span class="o">.</span><span class="n">from_srdf_file</span><span class="p">(</span><span class="n">srdf_filename</span><span class="p">,</span> <span class="n">robot</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">disabled_collisions</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">semantics</span><span class="o">.</span><span class="n">disabled_collisions</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
-    <span class="n">start_configuration</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="n">start_configuration</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="n">IK_SOLVERS</span><span class="p">[</span><span class="s1">&#39;ur5&#39;</span><span class="p">],</span> <span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="n">start_configuration</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">iter_inverse_kinematics</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">))[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">plan_cartesian_motion</span><span class="p">(</span><span class="n">frames_WCF</span><span class="p">,</span> <span class="n">start_configuration</span><span class="o">=</span><span class="n">start_configuration</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
     <span class="k">assert</span><span class="p">(</span><span class="n">trajectory</span><span class="o">.</span><span class="n">fraction</span> <span class="o">==</span> <span class="mf">1.</span><span class="p">)</span>
 
     <span class="n">j</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">joint_values</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="o">.</span><span class="n">points</span><span class="p">]</span>
@@ -398,6 +399,8 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

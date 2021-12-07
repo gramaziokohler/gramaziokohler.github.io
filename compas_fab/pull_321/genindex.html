@@ -912,14 +912,16 @@
 </li>
         <li><a href="api/generated/compas_fab.backends.RosFileServerLoader.load_mesh.html#compas_fab.backends.RosFileServerLoader.load_mesh">load_mesh() (compas_fab.backends.RosFileServerLoader method)</a>, <a href="reference/generated/compas_fab.backends.RosFileServerLoader.load_mesh.html#compas_fab.backends.RosFileServerLoader.load_mesh">[1]</a>
 </li>
-    </ul></td>
-    <td><ul>
         <li><a href="api/generated/compas_fab.backends.PyBulletClient.load_robot.html#compas_fab.backends.PyBulletClient.load_robot">load_robot() (compas_fab.backends.PyBulletClient method)</a>, <a href="reference/generated/compas_fab.backends.PyBulletClient.load_robot.html#compas_fab.backends.PyBulletClient.load_robot">[1]</a>
 
         <ul>
           <li><a href="api/generated/compas_fab.backends.RosClient.load_robot.html#compas_fab.backends.RosClient.load_robot">(compas_fab.backends.RosClient method)</a>, <a href="reference/generated/compas_fab.backends.RosClient.load_robot.html#compas_fab.backends.RosClient.load_robot">[1]</a>
 </li>
         </ul></li>
+    </ul></td>
+    <td><ul>
+        <li><a href="api/generated/compas_fab.backends.PyBulletClient.load_semantics.html#compas_fab.backends.PyBulletClient.load_semantics">load_semantics() (compas_fab.backends.PyBulletClient method)</a>, <a href="reference/generated/compas_fab.backends.PyBulletClient.load_semantics.html#compas_fab.backends.PyBulletClient.load_semantics">[1]</a>
+</li>
         <li><a href="api/generated/compas_fab.backends.RosFileServerLoader.load_srdf.html#compas_fab.backends.RosFileServerLoader.load_srdf">load_srdf() (compas_fab.backends.RosFileServerLoader method)</a>, <a href="reference/generated/compas_fab.backends.RosFileServerLoader.load_srdf.html#compas_fab.backends.RosFileServerLoader.load_srdf">[1]</a>
 </li>
         <li><a href="api/generated/compas_fab.backends.RosFileServerLoader.load_urdf.html#compas_fab.backends.RosFileServerLoader.load_urdf">load_urdf() (compas_fab.backends.RosFileServerLoader method)</a>, <a href="reference/generated/compas_fab.backends.RosFileServerLoader.load_urdf.html#compas_fab.backends.RosFileServerLoader.load_urdf">[1]</a>
@@ -1556,6 +1558,8 @@
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

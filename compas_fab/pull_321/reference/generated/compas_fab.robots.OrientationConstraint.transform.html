@@ -100,10 +100,10 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.robots.OrientationConstraint.transform">
 <span class="sig-prename descclassname"><span class="pre">OrientationConstraint.</span></span><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transformation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/compas_fab/robots/constraints.html#OrientationConstraint.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Transform the volume using a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>.</p>
+<dd><p>Transform the volume using a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>transformation</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>)</p>
+<dd class="field-odd"><p><strong>transformation</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -285,6 +285,8 @@
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
