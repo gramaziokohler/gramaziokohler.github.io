@@ -100,7 +100,7 @@ datastructures and models, in a way that maintains the data separated from the
 specific CAD interfaces, while providing a way to leverage native performance
 of the CAD environment.</p>
 <p>This package only provides a deprecated alias to the
-<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas_blender.artists.RobotModelArtist.html#compas_blender.artists.RobotModelArtist" title="(in COMPAS v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotModelArtist</span></code></a> implemented in COMPAS.</p>
+<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas_blender.artists.RobotModelArtist.html#compas_blender.artists.RobotModelArtist" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotModelArtist</span></code></a> implemented in COMPAS.</p>
 </section>
 </section>
 
@@ -260,6 +260,8 @@ of the CAD environment.</p>
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

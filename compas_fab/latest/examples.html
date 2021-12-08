@@ -134,6 +134,10 @@ can be executed from any python environment, for instance:</p>
 <li class="toctree-l2"><a class="reference internal" href="examples/05_backends_pybullet/02_forward_and_inverse_kinematics.html">5.2. Forward and inverse kinematics</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples/06_backends_kinematics.html">6. Backends: Analytical Kinematics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/06_backends_kinematics/01_ik_and_cartesian.html">6.1. Analytical kinematics</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -165,6 +169,7 @@ can be executed from any python environment, for instance:</p>
 <li class="nav-item"><a class="nav-link reference internal" href="examples/03_backends_ros.html">3. Backends: ROS</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples/04_backends_vrep.html">4. Backends: V-REP</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="examples/05_backends_pybullet.html">5. Backends: PyBullet</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="examples/06_backends_kinematics.html">6. Backends: Analytical Kinematics</a></li>
 </ul>
 </li>
 <li class="nav-item"><a class="nav-link reference internal" href="reference.html">API Reference</a></li>
@@ -293,6 +298,8 @@ can be executed from any python environment, for instance:</p>
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

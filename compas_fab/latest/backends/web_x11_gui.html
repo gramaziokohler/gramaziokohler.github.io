@@ -111,16 +111,8 @@ accessed easily. Start your browser and go to the following address:</p>
 </section>
 <section id="visualization-forwarding-display">
 <h2>Visualization forwarding display</h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>🐉 HERE BE DRAGONS!</p>
-<p>Be aware that the following can be time-consuming and frustrating to configure.
-We recommend using the web browser visualization in the general case, and only
-use X11 forwarding if you know what you are getting yourself into.</p>
-</div>
-<p>This option allows to forward a display directly to your operating system. It is
-especially useful when used in combination with WSL.</p>
-<p>However, it is important to note this is not entirely supported in all platforms.</p>
+<p>This option allows to forward a display directly to your operating system.
+However, it is important to note this is not entirely supported in all platforms.</p>
 <p>First install an <code class="docutils literal notranslate"><span class="pre">X11</span></code> server:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://sourceforge.net/projects/xming/">XMing For Windows</a></p></li>
@@ -135,8 +127,14 @@ as administrator.</p></li>
 <code class="docutils literal notranslate"><span class="pre">xhost</span> <span class="pre">-local:root</span></code>.</p></li>
 </ul>
 <p>Finally, set the <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> variable to point to your <code class="docutils literal notranslate"><span class="pre">X11</span></code> server as follows
-replacing <code class="docutils literal notranslate"><span class="pre">YOUR_IP_ADDRESS</span></code> with your current IP:</p>
+replacing <code class="docutils literal notranslate"><span class="pre">YOUR_IP_ADDRESS</span></code> with your current IP.</p>
+<p>For usage from WSL, set it using the following command:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span><span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>YOUR_IP_ADDRESS:0.0
+</code></pre></div>
+</div>
+<p>For usage from Docker, set it adding the following environment
+variable to the <code class="docutils literal notranslate"><span class="pre">moveit</span></code> service in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>- <span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0
 </code></pre></div>
 </div>
 </section>
@@ -296,6 +294,8 @@ replacing <code class="docutils literal notranslate"><span class="pre">YOUR_IP_A
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });

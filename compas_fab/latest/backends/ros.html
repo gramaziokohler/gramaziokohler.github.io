@@ -100,7 +100,8 @@ robot behavior across a wide variety of robotic platforms.</p>
 <p>Running a ROS system usually involves multiple nodes (i.e. computers, real or
 virtual), interconnected through a master controller.</p>
 <p>There are at least 3 different ways to run ROS: using Docker, using Linux, and
-using WSL on Windows.</p>
+using WSL on Windows. In recent times, it became possible to install ROS using
+Conda on Windows as well.</p>
 <section id="ros-on-docker">
 <h2>ROS on Docker</h2>
 <p>To massively simplify the use of these tools, we package complete ROS systems
@@ -113,7 +114,7 @@ Gramazio Kohler Research publishes ROS images on <a class="reference external" h
 many more to be found online.</p>
 <p>You can start a minimally functional ROS system, containing a ROS master and
 the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> with the following command:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run -p <span class="m">9090</span>:9090 -t gramaziokohler/ros-base roslaunch rosbridge_server rosbridge_websocket.launch
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>docker run -p <span class="m">9090</span>:9090 -t gramaziokohler/ros-noetic-base roslaunch rosbridge_server rosbridge_websocket.launch
 </code></pre></div>
 </div>
 <section id="complete-ros-systems">
@@ -132,164 +133,27 @@ and run the following command:</p>
 <p>You now have a ROS system with two nodes running: a ROS master and
 the <a class="reference external" href="https://wiki.ros.org/rosbridge_suite">ROS Bridge</a> which adds a web socket channel to communicate with ROS.</p>
 <p>Creating new ROS bundles using containers is usually only a matter of combining
-them into a new <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
-<p id="ros-bundles-list"><strong>List of complete ROS systems</strong></p>
-<table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">Table of ROS systems provided via <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span></code></span></caption>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 14%" />
-<col style="width: 18%" />
-<col style="width: 8%" />
-<col style="width: 10%" />
-<col style="width: 14%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Core</p></th>
-<th class="head"><p>Bridge</p></th>
-<th class="head"><p>Planner</p></th>
-<th class="head"><p>Robot drivers</p></th>
-<th class="head"><p>RViz</p></th>
-<th class="head"><p>Web UI <a class="footnote-reference brackets" href="#f1" id="id1">1</a></p></th>
-<th class="head"><p>Download</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Base setup</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/4e9c719ba8522afb0e2f9f3b4a33dbbb/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Panda Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p>❌</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/dad24abf443d9480bac241fd876b365d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>ABB IRB1600 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">abb_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/5002752187c3e7208d3755f844079c7f/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>Kuka IIWA7 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p>❌</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/4ba8ad7866448ca451d2b5126e88b6f0/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>Kuka IIWA14 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p>❌</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/e01cf88c651794183cfa4241f9b3e429/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>UR3 Planner</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/cecd0368931a7ea237b4e71272c87580/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>UR5 Planner</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/4ccdbe42de5c55968d893a6a96fe3cb0/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>UR10 Planner</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>❌</p></td>
-<td><p>❌</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/e697072cbee2f19915f258ee09fb7626/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>UR3 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/5f9ed1e019897ebc5995fe261df32ab9/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>UR5 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/9f7c233dae9a4d7bd960996fd81882c6/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>UR10 Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/b1a04b35f3564efcee059bb1199d3cb2/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>UR3 e-series Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/f900d64279a551782ce0c071d63838e5/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-even"><td><p>UR5 e-series Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/d7b36cf78806026db4bde5c6a1cf86aa/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-<tr class="row-odd"><td><p>UR10 e-series Demo</p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p>MoveIt!</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ur_modern_driver</span></code></p></td>
-<td><p>✅</p></td>
-<td><p>✅</p></td>
-<td><p><a class="reference download internal" download="" href="../_downloads/4bd2f38e7b50405bd8d8b8af0670be1f/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></td>
-</tr>
-</tbody>
-</table>
-<p>For access to the web UI, start your browser and go to:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>http://localhost:8080/vnc.html?resize<span class="o">=</span>scale<span class="p">&amp;</span><span class="nv">autoconnect</span><span class="o">=</span><span class="nb">true</span>
-</code></pre></div>
-</div>
+them into a new <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, which is relatively simple but we
+prepared some very common ones as examples.</p>
+<p id="ros-bundles-list"><strong>Complete ROS system examples</strong></p>
+<ul class="simple">
+<li><p>ROS Noetic Base setup: <a class="reference download internal" download="" href="../_downloads/4e9c719ba8522afb0e2f9f3b4a33dbbb/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>ABB IRB120: <a class="reference download internal" download="" href="../_downloads/62fde81236086aeeec97bd55a3e15026/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>ABB IRB120T: <a class="reference download internal" download="" href="../_downloads/21bdbdd40c3ebb54783eb6b065e00c7f/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>ABB IRB1600: <a class="reference download internal" download="" href="../_downloads/5002752187c3e7208d3755f844079c7f/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>ABB IRB4600 40/255: <a class="reference download internal" download="" href="../_downloads/fd8c5d555b959579cd2dc836aba41c39/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>ABB IRB4600 60/205: <a class="reference download internal" download="" href="../_downloads/a6cf7f9de92f3684882ec15cbe444447/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>Panda: <a class="reference download internal" download="" href="../_downloads/dad24abf443d9480bac241fd876b365d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>RFL: <a class="reference download internal" download="" href="../_downloads/970ac2b032ae20022073bfebb9623a81/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR3: <a class="reference download internal" download="" href="../_downloads/5f9ed1e019897ebc5995fe261df32ab9/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR3e: <a class="reference download internal" download="" href="../_downloads/f900d64279a551782ce0c071d63838e5/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR5: <a class="reference download internal" download="" href="../_downloads/9f7c233dae9a4d7bd960996fd81882c6/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR5e: <a class="reference download internal" download="" href="../_downloads/d7b36cf78806026db4bde5c6a1cf86aa/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR10: <a class="reference download internal" download="" href="../_downloads/b1a04b35f3564efcee059bb1199d3cb2/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+<li><p>UR10e: <a class="reference download internal" download="" href="../_downloads/4bd2f38e7b50405bd8d8b8af0670be1f/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Link</span></code></a></p></li>
+</ul>
+<p>Once the containers are running, it is possible to access the graphic user interface.
+Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span class="std std-ref">the following page</span></a> for more details.</p>
 </section>
 </section>
 <section id="ros-on-linux">
@@ -299,14 +163,14 @@ either virtual or real. The machine should have an IP address reachable
 from your computer.</p>
 <p>Follow the <a class="reference external" href="https://wiki.ros.org/ROS/Installation">ROS installation instructions</a> for all the details, or
 alternatively, use the following commands as a brief outline of the steps
-required to install ROS on <strong>Ubuntu 16.04</strong>:</p>
+required to install ROS on <strong>Ubuntu 20.04</strong>:</p>
 <div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</span>
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-sudo apt-get update
-sudo apt-get install ros-kinetic-desktop-full ros-kinetic-rosbridge-server ros-kinetic-tf2-web-republisher python-rosinstall python-rosinstall-generator python-wstool
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc <span class="p">|</span> sudo apt-key add -
+sudo apt update
+sudo apt install ros-noetic-desktop-full ros-noetic-rosbridge-server python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
 
 sudo rosdep init <span class="o">&amp;&amp;</span> rosdep update
-<span class="nb">echo</span> <span class="s2">&quot;source /opt/ros/kinetic/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
+<span class="nb">echo</span> <span class="s2">&quot;source /opt/ros/noetic/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
 <span class="nb">source</span> ~/.bashrc
 
 mkdir -p ~/catkin_ws/src
@@ -329,10 +193,11 @@ containing a ROS master and the <a class="reference external" href="https://wiki
 <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a> (WSL). WSL allows to run Linux within
 Windows without the need for an additional virtual machine.</p>
 <p>To install WSL, open PowerShell as administrator and run:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+<div class="language-bash notranslate"><div class="highlight"><pre><code><span></span>wsl --install
 </code></pre></div>
 </div>
-<p>Open the Microsoft Store and install <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">16.04</span></code> Linux distribution.
+<p>This command will enable the required optional components, download the latest Linux kernel,
+set WSL 2 as your default, and install a Linux distribution for you.
 Once the installation is completed, run <code class="docutils literal notranslate"><span class="pre">bash</span></code> and follow the instructions
 above to install ROS on Linux.</p>
 <p>After installation, it is possible to access the graphic user interface.
@@ -345,14 +210,14 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
 <section id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.7)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
+<li><p><a class="reference external" href="https://compas.dev/compas/latest/tutorial/robots.html#robots" title="(in COMPAS v1.12)"><span class="xref std std-ref">Tutorial: COMPAS Robots</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/02_description_models.html#examples-description-models"><span class="std std-ref">Examples: Description models</span></a></p></li>
 <li><p><a class="reference internal" href="../examples/03_backends_ros.html#examples-ros"><span class="std std-ref">Examples: ROS Backend</span></a></p></li>
 <li><p><a class="reference internal" href="../reference.html#reference"><span class="std std-ref">COMPAS FAB API Reference</span></a></p></li>
 </ul>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
-<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="f1"><span class="brackets">1</span></dt>
 <dd><p>Web UI is based on <a class="reference external" href="https://novnc.com/">NoVNC</a>.</p>
 </dd>
 </dl>
@@ -518,6 +383,8 @@ Check <a class="reference internal" href="web_x11_gui.html#backends-gui"><span c
   if (url) {
     $.get(url, res=>{
       var lines = res.match(/[^\r\n]+/g);
+      lines.sort( (a, b) => a.localeCompare(b, undefined, { numeric:true }) );
+      lines.reverse();
       lines.forEach(version => {
         $("#doc_version_list").append("<a class=\"dropdown-item\" href=\""+ docs_site + version + "\">" + version + "</a>");
       });
