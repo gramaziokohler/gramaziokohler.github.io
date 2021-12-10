@@ -114,7 +114,7 @@
 per configurable joint. Each value ranges from 0 to 1,
 where 1 indicates the axis/joint is blocked and cannot
 move during inverse kinematic solving.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;collision_meshes&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.datastructures.Mesh.html#compas.datastructures.Mesh" title="(in COMPAS v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.datastructures.Mesh</span></code></a>) Collision meshes
 to be taken into account when calculating the motion plan.
 Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;planner_id&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) Name of the planner to use. Defaults to <code class="docutils literal notranslate"><span class="pre">rrtconnect</span></code>.</p></li>
@@ -176,6 +176,9 @@ collision-free path to the <code class="docutils literal notranslate"><span clas
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletError.html">PyBulletError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalPyBulletClient.html">AnalyticalPyBulletClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalInverseKinematics.html">AnalyticalInverseKinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalPlanCartesianMotion.html">AnalyticalPlanCartesianMotion</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>

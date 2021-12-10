@@ -105,7 +105,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which inverse kinematics is being calculated.</p></li>
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code>, optional) – If passed, the inverse will be calculated such that the calculated
 joint positions differ the least from the start_configuration.
 Defaults to the zero configuration.</p></li>
@@ -178,6 +178,9 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">100</sp
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletClient.html">PyBulletClient</a></li>
 <li class="nav-item active"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletPlanner.html">PyBulletPlanner</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.PyBulletError.html">PyBulletError</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalPyBulletClient.html">AnalyticalPyBulletClient</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalInverseKinematics.html">AnalyticalInverseKinematics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.AnalyticalPlanCartesianMotion.html">AnalyticalPlanCartesianMotion</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.FutureResult.html">FutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.CancellableFutureResult.html">CancellableFutureResult</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="compas_fab.backends.BackendError.html">BackendError</a></li>

@@ -157,6 +157,7 @@ end-effector to reach a certain target pose.</p>
 <p>The above solutions, could however be in collision. In order to check for collisions,
 we have to use a <cite>client</cite>. See below the example for using the <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code></p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">LocalPackageMeshLoader</span>
 <span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics</span> <span class="kn">import</span> <span class="n">AnalyticalInverseKinematics</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">PyBulletClient</span>
@@ -171,7 +172,8 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 <span class="k">with</span> <span class="n">PyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
 
     <span class="c1"># Load UR5</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">LocalPackageMeshLoader</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot&#39;</span><span class="p">),</span> <span class="s1">&#39;ur_description&#39;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">,</span> <span class="p">[</span><span class="n">loader</span><span class="p">])</span>
     <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
     <span class="n">ik</span> <span class="o">=</span> <span class="n">AnalyticalInverseKinematics</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
@@ -187,13 +189,15 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 <p>Or, alternatively, use the <code class="docutils literal notranslate"><span class="pre">AnalyticalPyBulletClient</span></code>:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">LocalPackageMeshLoader</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics.client</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
 
 <span class="n">urdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur_description/urdf/ur5.urdf&#39;</span><span class="p">)</span>
 <span class="n">srdf_filename</span> <span class="o">=</span> <span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot/ur5_moveit_config/config/ur5.srdf&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">AnalyticalPyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">LocalPackageMeshLoader</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot&#39;</span><span class="p">),</span> <span class="s1">&#39;ur_description&#39;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">,</span> <span class="p">[</span><span class="n">loader</span><span class="p">])</span>
     <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">((</span><span class="mf">0.381</span><span class="p">,</span> <span class="mf">0.093</span><span class="p">,</span> <span class="mf">0.382</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.371</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.292</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.882</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.269</span><span class="p">))</span>
@@ -207,6 +211,7 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
 <p>We can also use the <code class="docutils literal notranslate"><span class="pre">AnalyticalPyBulletClient</span></code> to calculate a cartesian path:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><code><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.robots</span> <span class="kn">import</span> <span class="n">LocalPackageMeshLoader</span>
 <span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends.kinematics.client</span> <span class="kn">import</span> <span class="n">AnalyticalPyBulletClient</span>
 
@@ -220,7 +225,8 @@ we have to use a <cite>client</cite>. See below the example for using the <code 
               <span class="n">Frame</span><span class="p">((</span><span class="mf">0.376</span><span class="p">,</span> <span class="mf">0.087</span><span class="p">,</span> <span class="mf">0.299</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.850</span><span class="p">,</span> <span class="mf">0.000</span><span class="p">,</span> <span class="mf">0.528</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.184</span><span class="p">,</span> <span class="mf">0.937</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.296</span><span class="p">))]</span>
 
 <span class="k">with</span> <span class="n">AnalyticalPyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">LocalPackageMeshLoader</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;universal_robot&#39;</span><span class="p">),</span> <span class="s1">&#39;ur_description&#39;</span><span class="p">)</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">(</span><span class="n">urdf_filename</span><span class="p">,</span> <span class="p">[</span><span class="n">loader</span><span class="p">])</span>
     <span class="n">client</span><span class="o">.</span><span class="n">load_semantics</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="n">srdf_filename</span><span class="p">)</span>
 
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="s2">&quot;ur5&quot;</span><span class="p">,</span> <span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
