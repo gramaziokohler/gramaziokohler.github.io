@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-  <link rel="next" title="Planning scene and collision objects" href="04_collision_objects.html" />
+  <link rel="next" title="Plan motion" href="04_plan_motion.html" />
   
 
   
@@ -108,7 +108,7 @@ configured and the <a class="reference internal" href="../../backends/ros.html#r
 <section id="forward-kinematics">
 <h2>Forward kinematics</h2>
 <p>The forward kinematics function calculates the pose of the robot’s end-effector
-from joint states (<strong>cartesian space</strong> to <strong>joint space</strong>). This means the
+from joint states (<strong>joint space</strong> to <strong>cartesian space</strong>). This means the
 state of each joint in the articulated body of a robot needs to be defined.</p>
 <p>Joint states are described in <strong>COMPAS FAB</strong> with the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code> class.</p>
@@ -136,7 +136,8 @@ solutions but calculated by ROS:</p>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5_robot&#39;</span>
 
     <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="n">from_revolute_values</span><span class="p">([</span><span class="o">-</span><span class="mf">2.238</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.153</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.174</span><span class="p">,</span> <span class="mf">0.185</span><span class="p">,</span> <span class="mf">0.667</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 
@@ -150,16 +151,16 @@ solutions but calculated by ROS:</p>
 <section id="inverse-kinematics">
 <h2>Inverse kinematics</h2>
 <p>Inverse kinematics is the inverse function of forward kinematics. The
-inverse kinematics function calculates the joint states required for the
-end-effector to reach a certain target pose (<strong>joint space</strong> to
-<strong>cartesian space</strong>).</p>
+inverse kinematics function calculates the feasible joint states for the
+end-effector to reach a certain target pose (<strong>cartesian space</strong> to
+<strong>joint space</strong>).</p>
 <p>The following code exemplifies how to calculate this:</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5&#39;</span>
+    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5_robot&#39;</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
@@ -175,7 +176,7 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5&#39;</span>
+    <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5_robot&#39;</span>
 
     <span class="n">frame_WCF</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">start_configuration</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">zero_configuration</span><span class="p">()</span>
@@ -228,8 +229,8 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="01_ros_examples.html">Using ROS</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="02_robot_models.html">Robots in ROS</a></li>
 <li class="toctree-l3 nav-item active"><a class="nav-link active reference internal" href="#">Forward and inverse kinematics</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="04_collision_objects.html">Planning scene and collision objects</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="05_plan_motion.html">Plan motion</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="04_plan_motion.html">Plan motion</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="05_collision_objects.html">Planning scene and collision objects</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="06_ros_in_grasshopper.html">ROS in Grasshopper</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="07_ros_create_urdf_ur5_with_measurement_tool.html">Creating a URDF with an UR5 robot and a custom end-effector</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="08_ros_create_moveit_package_from_custom_urdf.html">Creating a MoveIt! package from the custom created URDF</a></li>
@@ -323,10 +324,10 @@ end-effector to reach a certain target pose (<strong>joint space</strong> to
       
 
       
-      <a href="04_collision_objects.html" title="Planning scene and collision objects" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+      <a href="04_plan_motion.html" title="Plan motion" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
         <div class="nav-title footer-link flex-grow-1 align-self-center">
           <div class="nav-direction small font-weight-light">Next</div>
-          Planning scene and collision objects
+          Plan motion
         </div>
         <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
       </a>

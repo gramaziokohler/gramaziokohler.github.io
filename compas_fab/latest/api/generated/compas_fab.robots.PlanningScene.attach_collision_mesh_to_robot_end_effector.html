@@ -122,22 +122,8 @@ to. Defaults to the robot’s main planning group.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/cone.stl&#39;</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cm</span> <span class="o">=</span> <span class="n">CollisionMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;tip&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">main_group_name</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">attach_collision_mesh_to_robot_end_effector</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really there</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;tip&#39;</span> <span class="ow">in</span> <span class="n">objects</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check if it&#39;s really gone</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">objects</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;tip&#39;</span> <span class="ow">in</span> <span class="n">objects</span>
-<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">attach_collision_mesh_to_robot_end_effector</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">)</span>      <span class="c1"># attach to ee</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_collision_mesh</span><span class="p">(</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>                             <span class="c1"># now detach</span>
 </code></pre></div>
 </div>
 </dd></dl>
@@ -185,8 +171,8 @@ to. Defaults to the robot’s main planning group.</p></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/01_ros_examples.html">Using ROS</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/02_robot_models.html">Robots in ROS</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/03_forward_and_inverse_kinematics.html">Forward and inverse kinematics</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/04_collision_objects.html">Planning scene and collision objects</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/05_plan_motion.html">Plan motion</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/04_plan_motion.html">Plan motion</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/05_collision_objects.html">Planning scene and collision objects</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/06_ros_in_grasshopper.html">ROS in Grasshopper</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/07_ros_create_urdf_ur5_with_measurement_tool.html">Creating a URDF with an UR5 robot and a custom end-effector</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../examples/03_backends_ros/08_ros_create_moveit_package_from_custom_urdf.html">Creating a MoveIt! package from the custom created URDF</a></li>
