@@ -113,8 +113,8 @@ available robots.</p>
 <p>Let’s consider the following (abstract) example:</p>
 <p>We have a UR5 and want the TCP of the robot to always orient itself towards a
 defined position in front of the robot. Therefore, we define a (half-)sphere
-with a certain radius and we evaluate points on this sphere. Then we create a
-plane which normal points towards the center of this sphere. From these planes
+with a certain radius and we evaluate points on this sphere. At each point, we then
+create a plane whose normal vector points towards the center of this sphere. From these planes
 we create frames for the robot’s TCP. The function is written as a generator
 because the <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code> takes a <code class="docutils literal notranslate"><span class="pre">Frame</span></code> generator as input.</p>
 <figure class="figure align-default">
@@ -153,7 +153,7 @@ real robot cell, this will usually be the case.</p>
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="s2">&quot;ur5&quot;</span><span class="p">,</span> <span class="s2">&quot;check_collision&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;keep_order&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 </code></pre></div>
 </div>
-<p>Now we create a <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code>. We calculate it with passing the <code class="docutils literal notranslate"><span class="pre">Frame</span></code>
+<p>Now we create a <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code>. We calculate it passing the <code class="docutils literal notranslate"><span class="pre">Frame</span></code>
 generator, the robot and the IK options. After calculation, we save the map as
 json for later visualization in Rhino/GH.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="c1"># 3. Create reachability map 1D</span>
