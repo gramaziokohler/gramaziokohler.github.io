@@ -110,17 +110,19 @@ orientation. We provide 2 helper vector generators with very verbose names:</p>
 <figure class="figure align-default">
 <img alt="../../_images/03_ortho_vectors.jpg" class="figure-img img-fluid" src="../../_images/03_ortho_vectors.jpg" />
 </figure>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zaxis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">OrthonormalVectorsFromAxisGenerator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zaxis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">max_alpha</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">xaxis</span> <span class="ow">in</span> <span class="n">OrthonormalVectorsFromAxisGenerator</span><span class="p">(</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">max_alpha</span><span class="p">)):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">xaxis</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">xaxis</span><span class="p">)</span>
 <span class="go">Vector(0.000, -1.000, 0.000)</span>
 <span class="go">Vector(0.866, -0.500, 0.000)</span>
 <span class="go">Vector(0.866, 0.500, 0.000)</span>
 <span class="go">Vector(0.000, 1.000, 0.000)</span>
 <span class="go">Vector(-0.866, 0.500, 0.000)</span>
 <span class="go">Vector(-0.866, -0.500, 0.000)</span>
-<span class="go">Vector(-0.000, -1.000, 0.000)</span>
 </code></pre></div>
 </div>
 </section>
@@ -131,11 +133,13 @@ orientation. We provide 2 helper vector generators with very verbose names:</p>
 <figure class="figure align-default">
 <img alt="../../_images/04_devi_vectors.jpg" class="figure-img img-fluid" src="../../_images/04_devi_vectors.jpg" />
 </figure>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">zaxis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">DeviationVectorsGenerator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zaxis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">max_alpha</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">DeviationVectorsGenerator</span><span class="p">(</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">max_alpha</span><span class="p">),</span> <span class="n">step</span><span class="p">):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
 <span class="go">Vector(0.000, 0.000, 1.000)</span>
 <span class="go">Vector(-0.643, 0.000, 0.766)</span>
 <span class="go">Vector(-0.321, -0.557, 0.766)</span>
@@ -143,7 +147,6 @@ orientation. We provide 2 helper vector generators with very verbose names:</p>
 <span class="go">Vector(0.643, -0.000, 0.766)</span>
 <span class="go">Vector(0.321, 0.557, 0.766)</span>
 <span class="go">Vector(-0.321, 0.557, 0.766)</span>
-<span class="go">Vector(-0.643, 0.000, 0.766)</span>
 </code></pre></div>
 </div>
 <p>Or another example with using <code class="docutils literal notranslate"><span class="pre">max_angle</span> <span class="pre">=</span> <span class="pre">60</span></code> and <code class="docutils literal notranslate"><span class="pre">step</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p>
@@ -154,7 +157,13 @@ orientation. We provide 2 helper vector generators with very verbose names:</p>
 <section id="generate-frames">
 <h2>Generate frames</h2>
 <p>Now having these two vector generators, we can combine them for generating frames.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="k">def</span> <span class="nf">frame_generator</span><span class="p">():</span>
+<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">DeviationVectorsGenerator</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">OrthonormalVectorsFromAxisGenerator</span>
+
+<span class="k">def</span> <span class="nf">frame_generator</span><span class="p">():</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
         <span class="n">pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">zaxis</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -245,6 +254,7 @@ orientation. We provide 2 helper vector generators with very verbose names:</p>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.rhino.html">compas_fab.rhino</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.utilities.html">compas_fab.utilities</a></li>

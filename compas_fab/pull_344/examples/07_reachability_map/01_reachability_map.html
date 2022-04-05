@@ -120,7 +120,14 @@ because the <code class="docutils literal notranslate"><span class="pre">Reachab
 <figure class="figure align-default">
 <img alt="../../_images/00_robot_halfsphere.jpg" class="figure-img img-fluid" src="../../_images/00_robot_halfsphere.jpg" />
 </figure>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="c1"># 1. Define frames on a sphere</span>
+<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Plane</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Sphere</span>
+
+<span class="c1"># 1. Define frames on a sphere</span>
 <span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">((</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mf">0.15</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">points_on_sphere_generator</span><span class="p">(</span><span class="n">sphere</span><span class="p">):</span>
@@ -144,6 +151,8 @@ set the analytical IK solver and define options for the IK solver.
 For simplicity, we do not add any tool or obstacles in the environment here, but in a
 real robot cell, this will usually be the case.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="c1"># 2. Set up robot cell</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">AnalyticalInverseKinematics</span>
+<span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">PyBulletClient</span>
 
 <span class="k">with</span> <span class="n">PyBulletClient</span><span class="p">(</span><span class="n">connection_type</span><span class="o">=</span><span class="s1">&#39;direct&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="c1"># load robot and define settings</span>
@@ -156,12 +165,10 @@ real robot cell, this will usually be the case.</p>
 <p>Now we create a <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code>. We calculate it passing the <code class="docutils literal notranslate"><span class="pre">Frame</span></code>
 generator, the robot and the IK options. After calculation, we save the map as
 json for later visualization in Rhino/GH.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="c1"># 3. Create reachability map 1D</span>
-
-<span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="p">()</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">points_on_sphere_generator</span><span class="p">(</span><span class="n">sphere</span><span class="p">),</span> <span class="n">robot</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-<span class="c1"># save to json</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="s2">&quot;reachability&quot;</span><span class="p">,</span> <span class="s2">&quot;map1D.json&quot;</span><span class="p">))</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 3. Create reachability map 1D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="p">()</span>                                                 
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">points_on_sphere_generator</span><span class="p">(</span><span class="n">sphere</span><span class="p">),</span> <span class="n">robot</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>       
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="s2">&quot;reachability&quot;</span><span class="p">,</span> <span class="s2">&quot;map1D.json&quot;</span><span class="p">))</span>           
 </code></pre></div>
 </div>
 <p><a class="reference external" href="files/01_example_1D.py">Link to full script</a></p>
@@ -170,9 +177,9 @@ json for later visualization in Rhino/GH.</p>
 <h2>Visualization</h2>
 <p>We can source the reachability map from the json file and use the <code class="docutils literal notranslate"><span class="pre">Artist</span></code> to
 visualize the saved frames by using the artist’s function <code class="docutils literal notranslate"><span class="pre">draw_frames</span></code>.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-<span class="n">artist</span> <span class="o">=</span> <span class="n">Artist</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
-<span class="n">frames</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">draw_frames</span><span class="p">()</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">artist</span> <span class="o">=</span> <span class="n">Artist</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>                       
+<span class="gp">&gt;&gt;&gt; </span><span class="n">frames</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">draw_frames</span><span class="p">()</span>              
 </code></pre></div>
 </div>
 <figure class="figure align-default">
@@ -306,6 +313,7 @@ collision objects.</p>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.rhino.html">compas_fab.rhino</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.utilities.html">compas_fab.utilities</a></li>

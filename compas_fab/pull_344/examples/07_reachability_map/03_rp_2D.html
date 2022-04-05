@@ -102,7 +102,11 @@ these for the calculation (2D).</p>
 <h2>Example 02: reachability map 2D with deviation vectors</h2>
 <p>Additionally to the <code class="docutils literal notranslate"><span class="pre">points_on_sphere_generator</span></code> from Example 01, we create a
 <code class="docutils literal notranslate"><span class="pre">deviation_vector_generator</span></code>.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="k">def</span> <span class="nf">deviation_vector_generator</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
+<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">DeviationVectorsGenerator</span>
+
+<span class="k">def</span> <span class="nf">deviation_vector_generator</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">xaxis</span> <span class="ow">in</span> <span class="n">DeviationVectorsGenerator</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">xaxis</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span> <span class="mi">1</span><span class="p">):</span>
         <span class="n">yaxis</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">xaxis</span><span class="p">)</span>
         <span class="k">yield</span> <span class="n">Frame</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">xaxis</span><span class="p">,</span> <span class="n">yaxis</span><span class="p">)</span>
@@ -115,9 +119,9 @@ these for the calculation (2D).</p>
 </code></pre></div>
 </div>
 <p>The robot is set up as in Example 01 and we calculate the reachability map as follows.</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="p">()</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">generator</span><span class="p">(),</span> <span class="n">robot</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="s2">&quot;reachability&quot;</span><span class="p">,</span> <span class="s2">&quot;map2D_deviation.json&quot;</span><span class="p">))</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="p">()</span>                                                      
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">calculate</span><span class="p">(</span><span class="n">generator</span><span class="p">(),</span> <span class="n">robot</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>                                   
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DATA</span><span class="p">,</span> <span class="s2">&quot;reachability&quot;</span><span class="p">,</span> <span class="s2">&quot;map2D_deviation.json&quot;</span><span class="p">))</span>      
 </code></pre></div>
 </div>
 <p>The visualization of the results in Rhino/GH looks different than in Example 01, as the scores per evaluated point are now more scattered and range between 16 (dark purple) and 26 (yellow).</p>
@@ -130,7 +134,10 @@ these for the calculation (2D).</p>
 <h2>Example 03: reachability map 2D with sphere points</h2>
 <p>In this example, we want to know the best reachable sphere from Example 01.
 Therefore, we create a sphere generator:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="k">def</span> <span class="nf">sphere_generator</span><span class="p">():</span>
+<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Sphere</span>
+<span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Vector</span>
+
+<span class="k">def</span> <span class="nf">sphere_generator</span><span class="p">():</span>
     <span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">((</span><span class="mf">0.35</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mf">0.15</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
@@ -152,15 +159,15 @@ Therefore, we create a sphere generator:</p>
 <img alt="../../_images/09_example_03_frames.jpg" class="figure-img img-fluid" src="../../_images/09_example_03_frames.jpg" />
 </figure>
 <p>We can easily check the shape of the reachability as follows:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">shape</span>
-<span class="go">(35, 163)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">shape</span>       
+<span class="go">(35, 163)           </span>
 </code></pre></div>
 </div>
 <p>Visualizing the results in Rhino/GH gives an indication of the best position for
 the tested spheres. The score ranges now from 436 to 937. We can ask the map for the
 best core, returning the score and the index:</p>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">best_score</span>
-<span class="go">(937, 20)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">map</span><span class="o">.</span><span class="n">best_score</span>  
+<span class="go">(937, 20)           </span>
 </code></pre></div>
 </div>
 <figure class="figure align-default">
@@ -172,7 +179,7 @@ best core, returning the score and the index:</p>
 point of each of the 2D lists and NOT the sphere center. This can however be
 changed by passing the <code class="docutils literal notranslate"><span class="pre">sphere_centers</span></code> for the artist to override.</p>
 </div>
-<div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">points</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">sphere_centers</span><span class="p">)</span>
+<div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">points</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">sphere_centers</span><span class="p">)</span>   
 </code></pre></div>
 </div>
 <figure class="figure align-default">
@@ -257,6 +264,7 @@ changed by passing the <code class="docutils literal notranslate"><span class="p
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.blender.html">compas_fab.blender</a></li>
+<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.rhino.html">compas_fab.rhino</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.utilities.html">compas_fab.utilities</a></li>
