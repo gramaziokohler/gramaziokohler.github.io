@@ -50,7 +50,7 @@
         <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            0.22.0
+            0.23.0
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -135,8 +135,8 @@ because the <code class="docutils literal notranslate"><span class="pre">Reachab
             <span class="n">axis</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">point</span> <span class="o">-</span> <span class="n">point</span>
             <span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">axis</span><span class="p">)</span>
             <span class="n">f</span> <span class="o">=</span> <span class="n">Frame</span><span class="o">.</span><span class="n">from_plane</span><span class="p">(</span><span class="n">plane</span><span class="p">)</span>
-            <span class="c1"># for UR5 is zaxis the xaxis</span>
-            <span class="k">yield</span> <span class="n">Frame</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">yaxis</span><span class="p">)</span>
+            <span class="c1"># for the old UR5 model from ROS Kinetic is zaxis the xaxis</span>
+            <span class="k">yield</span> <span class="p">[</span><span class="n">Frame</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">point</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">zaxis</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">yaxis</span><span class="p">)]</span>
 </code></pre></div>
 </div>
 <p>Then we create a <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> (for collision checking), load the UR5 robot,
@@ -168,11 +168,10 @@ json for later visualization in Rhino/GH.</p>
 </section>
 <section id="visualization">
 <h2>Visualization</h2>
-<p>In Grasshopper, we can source the reachability map from the json file and use
-the <code class="docutils literal notranslate"><span class="pre">ReachabilityMapArtist</span></code> to visualize the saved frames by using the
-artist’s function <code class="docutils literal notranslate"><span class="pre">draw_frames</span></code>.</p>
+<p>We can source the reachability map from the json file and use the <code class="docutils literal notranslate"><span class="pre">Artist</span></code> to
+visualize the saved frames by using the artist’s function <code class="docutils literal notranslate"><span class="pre">draw_frames</span></code>.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nb">map</span> <span class="o">=</span> <span class="n">ReachabilityMap</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-<span class="n">artist</span> <span class="o">=</span> <span class="n">ReachabilityMapArtist</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
+<span class="n">artist</span> <span class="o">=</span> <span class="n">Artist</span><span class="p">(</span><span class="nb">map</span><span class="p">)</span>
 <span class="n">frames</span> <span class="o">=</span> <span class="n">artist</span><span class="o">.</span><span class="n">draw_frames</span><span class="p">()</span>
 </code></pre></div>
 </div>
@@ -188,7 +187,7 @@ the number of valid IK solutions for a frame. The default colormap is ‘viridis
 <img alt="../../_images/01_robot_map1D.jpg" class="figure-img img-fluid" src="../../_images/01_robot_map1D.jpg" />
 </figure>
 <p>If you want to visualize the frames at a specific IK index (= number between 0-7), use the method
-<code class="docutils literal notranslate"><span class="pre">artist.draw_frames_at_ik_index(ik_index)</span></code>. If you compare the figure below
+<code class="docutils literal notranslate"><span class="pre">artist.draw_frames(ik_index=ik_index)</span></code>. If you compare the figure below
 with the figure of <code class="docutils literal notranslate"><span class="pre">draw_frames</span></code>, you will see that a certain portion is not
 reachable at the selected IK index.</p>
 <figure class="figure align-default">
@@ -199,14 +198,26 @@ reachable at the selected IK index.</p>
 <h2>Projects where the reachability map was applied</h2>
 <section id="id1">
 <h3><a class="reference external" href="https://gramaziokohler.arch.ethz.ch/web/forschung/e/0/0/0/361.html">Adaptive Detailing</a></h3>
-<p>In this project, connections between structural elements are 3D printed in place, directly on top of parts, i.e. collision objects. A <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code> was created to capture the space where connections can be placed and ultimately find connecting geometries that the robot can print in between these objects. Printing process constraints can be included in the reachability map by choosing a meaningful <code class="docutils literal notranslate"><span class="pre">max_alpha</span></code> in the <code class="docutils literal notranslate"><span class="pre">DeviationVectorsGenerator</span></code>.</p>
+<p>In this project, connections between structural elements are 3D printed in place,
+directly on top of parts, i.e. collision objects. A <code class="docutils literal notranslate"><span class="pre">ReachabilityMap</span></code> was created
+to capture the space where connections can be placed and ultimately find connecting
+geometries that the robot can print in between these objects. Printing process
+constraints can be included in the reachability map by choosing a meaningful
+<code class="docutils literal notranslate"><span class="pre">max_alpha</span></code> in the <code class="docutils literal notranslate"><span class="pre">DeviationVectorsGenerator</span></code>.</p>
+<figure class="figure align-default">
+<img alt="../../_images/adaptive_detailing.png" class="figure-img img-fluid" src="../../_images/adaptive_detailing.png" />
+</figure>
 </section>
 <section id="id2">
 <h3><a class="reference external" href="https://gramaziokohler.arch.ethz.ch/web/lehre/e/0/0/0/439.html">Robotic 360° Light Painting Workshop</a></h3>
 <p>This project served as inspiration for the presented examples 01-03. The robot TCP
 had to be oriented towards the 360° camera. The light paths were mapped on a hemisphere
 to maintain equal distance to the camera and little distortion of the designed paths.
-The reachability map was used to determine the best position and radius for the sphere with the UR5e robot model, the light tool, and the camera and tripods as collision objects.</p>
+The reachability map was used to determine the best position and radius for the
+sphere with the UR5e robot model, the light tool, and the camera and tripods as
+collision objects.</p>
+<a class="reference internal image-reference" href="../../_images/workshop_sjsu_1.png"><img alt="../../_images/workshop_sjsu_1.png" src="../../_images/workshop_sjsu_1.png" style="width: 40%;" /></a>
+<a class="reference internal image-reference" href="../../_images/workshop_sjsu_2.jpg"><img alt="../../_images/workshop_sjsu_2.jpg" src="../../_images/workshop_sjsu_2.jpg" style="width: 40%;" /></a>
 </section>
 </section>
 </section>
@@ -286,7 +297,6 @@ The reachability map was used to determine the best position and radius for the 
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.robots.html">compas_fab.robots</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.blender.html">compas_fab.blender</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.rhino.html">compas_fab.rhino</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="../../api/compas_fab.utilities.html">compas_fab.utilities</a></li>

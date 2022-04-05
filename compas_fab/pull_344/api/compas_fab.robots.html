@@ -50,7 +50,7 @@
         <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            0.22.0
+            0.23.0
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -99,7 +99,7 @@
 simulation, planning and execution backends to exchange information.</p>
 <section id="main-classes">
 <h2>Main classes</h2>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -126,12 +126,18 @@ simulation, planning and execution backends to exchange information.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.ReachabilityMap.html#compas_fab.robots.ReachabilityMap" title="compas_fab.robots.ReachabilityMap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReachabilityMap</span></code></a></p></td>
 <td><p>The ReachabilityMap describes the reachability of a robot.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.DeviationVectorsGenerator.html#compas_fab.robots.DeviationVectorsGenerator" title="compas_fab.robots.DeviationVectorsGenerator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeviationVectorsGenerator</span></code></a></p></td>
+<td><p>Calculates equally distributed vectors that deviate from the specified one by a maximal angle of <cite>max_alpha</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.OrthonormalVectorsFromAxisGenerator.html#compas_fab.robots.OrthonormalVectorsFromAxisGenerator" title="compas_fab.robots.OrthonormalVectorsFromAxisGenerator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrthonormalVectorsFromAxisGenerator</span></code></a></p></td>
+<td><p>Generate vectors that are orthonormal to an axis.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="path-planning">
 <h2>Path planning</h2>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -154,14 +160,14 @@ simulation, planning and execution backends to exchange information.</p>
 </section>
 <section id="planning-scene">
 <h2>Planning scene</h2>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.robots.AttachedCollisionMesh.html#compas_fab.robots.AttachedCollisionMesh" title="compas_fab.robots.AttachedCollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></a></p></td>
-<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>'s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
+<td><p>Represents a collision mesh that is attached to a <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a>'s <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Link.html#compas.robots.Link" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Link</span></code></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.robots.CollisionMesh.html#compas_fab.robots.CollisionMesh" title="compas_fab.robots.CollisionMesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionMesh</span></code></a></p></td>
 <td><p>Represents a collision mesh.</p></td>
@@ -174,7 +180,7 @@ simulation, planning and execution backends to exchange information.</p>
 </section>
 <section id="constraints">
 <h2>Constraints</h2>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -202,7 +208,7 @@ simulation, planning and execution backends to exchange information.</p>
 <h2>Unit conversion</h2>
 <p>The unit systems most commonly used in <strong>COMPAS FAB</strong> are <strong>meters</strong> and <strong>radians</strong>.
 The following functions help with converting units from one system to the other.</p>
-<table class="longtable docutils align-default">
+<table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
@@ -294,7 +300,6 @@ The following functions help with converting units from one system to the other.
 <li class="toctree-l3 nav-item active"><a class="nav-link active reference internal" href="#">compas_fab.robots</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.backends.html">compas_fab.backends</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.blender.html">compas_fab.blender</a></li>
-<li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.ghpython.html">compas_fab.ghpython</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.rhino.html">compas_fab.rhino</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.sensors.html">compas_fab.sensors</a></li>
 <li class="toctree-l3 nav-item"><a class="nav-link reference internal" href="compas_fab.utilities.html">compas_fab.utilities</a></li>
