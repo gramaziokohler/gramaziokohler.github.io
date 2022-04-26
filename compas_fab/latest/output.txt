@@ -1,5 +1,5 @@
-contributing.rst:57: [redirected with Found] http://docs.pyinvoke.org/ to https://docs.pyinvoke.org/en/stable/
 api\generated\compas_fab.robots.Inertia.rst:28: [redirected permanently] http://gazebosim.org/tutorials?tut=inertia to https://classic.gazebosim.org/tutorials?tut=inertia
+contributing.rst:57: [redirected with Found] http://docs.pyinvoke.org/ to https://docs.pyinvoke.org/en/stable/
 api\compas_fab.backends.rst:29: [redirected permanently] http://pybullet.org/ to https://pybullet.org/wordpress/
 backends\ros.rst:143: [redirected permanently] https://docs.microsoft.com/en-us/windows/wsl/install-win10 to https://docs.microsoft.com/en-us/windows/wsl/install
 getting_started.rst:13: [redirected with Found] https://conda.io/docs/ to https://conda.io/en/latest/
