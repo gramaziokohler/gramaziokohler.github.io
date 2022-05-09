@@ -97,8 +97,17 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <section id="unreleased">
 <h2>Unreleased</h2>
 <p><strong>Added</strong></p>
+<ul class="simple">
+<li><p>Added a <code class="docutils literal notranslate"><span class="pre">Robot().attached_tools</span></code> property to allow attaching tools to multiple planning groups simultaneously.</p></li>
+</ul>
 <p><strong>Changed</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Robot().attached_tool</span></code> now points to the tool attached to the <code class="docutils literal notranslate"><span class="pre">robot.main_group_name</span></code>.</p></li>
+</ul>
 <p><strong>Fixed</strong></p>
+<ul class="simple">
+<li><p>Attaching a tool to a planning group doesn’t overwrite the tool attached to other groups.</p></li>
+</ul>
 <p><strong>Deprecated</strong></p>
 <p><strong>Removed</strong></p>
 </section>
