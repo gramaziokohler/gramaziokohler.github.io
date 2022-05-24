@@ -116,6 +116,12 @@ scene, download the generic container: <code class="docutils literal notranslate
 to <a class="reference external" href="https://www.coppeliarobotics.com/downloads">download V-REP</a> and
 install it as a normal application.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>vrep.py</cite> uses <a class="reference external" href="https://www.coppeliarobotics.com/helpFiles/en/remoteApiOverview.htm">remoteApi</a> to communicate with the simulator’s instance. For this purpose, the <cite>remoteApi</cite>
+shared library is expected in the same path as this module. The library can be obtained from the installation path
+of the simulator and has to be copied or symlinked to <cite>compas_fab/backends/vrep/remote_api/</cite>.</p>
+</div>
 <section id="next-steps">
 <h2>Next Steps</h2>
 <ul class="simple">
