@@ -100,14 +100,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.backends.RosClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">RosClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9090</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_secure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planner_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'moveit'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/ros/client.py#L106"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros" title="(in roslibpy v1.3.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">roslibpy.ros.Ros</span></code></a>, <a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.client.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.client.ClientInterface</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://roslibpy.readthedocs.io/en/latest/reference/index.html#roslibpy.Ros" title="(in roslibpy v1.3.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ros</span></code></a>, <a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.client.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientInterface</span></code></a></p>
 <p>Interface to use ROS as backend via the <strong>rosbridge</strong>.</p>
 <p>The connection is managed by <code class="docutils literal notranslate"><span class="pre">roslibpy</span></code>.</p>
 <p><a class="reference internal" href="#compas_fab.backends.RosClient" title="compas_fab.backends.RosClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">RosClient</span></code></a> is a context manager type, so it’s best
 used in combination with the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement to ensure
 resource deallocation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>host</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – ROS bridge host. Defaults to <code class="docutils literal notranslate"><span class="pre">localhost</span></code>.</p></li>
 <li><p><strong>port</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – Port of the ROS Bridge. Defaults to <code class="docutils literal notranslate"><span class="pre">9090</span></code>.</p></li>
@@ -131,10 +131,6 @@ making use of <a class="reference internal" href="compas_fab.backends.MoveItPlan
 </div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.execute_joint_trajectory.html#compas_fab.backends.RosClient.execute_joint_trajectory" title="compas_fab.backends.RosClient.execute_joint_trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execute_joint_trajectory</span></code></a></p></td>
 <td><p>Execute a joint trajectory via the MoveIt infrastructure.</p></td>
@@ -155,10 +151,6 @@ making use of <a class="reference internal" href="compas_fab.backends.MoveItPlan
 </table>
 <p class="rubric">Inherited Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.RosClient.add_attached_collision_mesh.html#compas_fab.backends.RosClient.add_attached_collision_mesh" title="compas_fab.backends.RosClient.add_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attached_collision_mesh</span></code></a></p></td>
 <td><p>Forwards call to appropriate method in the planner.</p></td>

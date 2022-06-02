@@ -104,7 +104,7 @@
 <span class="sig-prename descclassname"><span class="pre">Robot.</span></span><span class="sig-name descname"><span class="pre">plan_cartesian_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames_WCF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_configuration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/robot.py#L1419"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate a cartesian motion path (linear in tool space).</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul>
 <li><p><strong>frames_WCF</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frames through which the path is defined.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>, optional) – The robot’s full configuration, i.e. values for all configurable
@@ -139,7 +139,7 @@ for more details.</p>
 </li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectory</span></code></a> – The calculated trajectory.</p>
 </dd>
 </dl>

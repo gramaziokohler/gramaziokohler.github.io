@@ -111,7 +111,7 @@ iterator and keep returning results yielded by it, one at a time. This is true o
 the request is identical to the last one. If the arguments change, the last generator
 is discarded and the client IK implementation is invoked again.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse kinematic for.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>, optional) – If passed, the inverse will be calculated such that the calculated
@@ -126,10 +126,10 @@ The valid options are specific to the backend in use.
 Check the API reference of the IK backend implementation for more details.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="compas_fab.backends.BackendError.html#compas_fab.backends.BackendError" title="compas_fab.backends.BackendError"><strong>compas_fab.backends.BackendError</strong></a> – If no configuration can be found.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code> – An inverse kinematic solution represented as a configuration.</p>
 </dd>
 </dl>

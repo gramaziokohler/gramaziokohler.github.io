@@ -100,10 +100,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.backends.AnalyticalInverseKinematics">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">AnalyticalInverseKinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/kinematics/analytical_inverse_kinematics.py#L10"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.InverseKinematics.html#compas_fab.backends.interfaces.InverseKinematics" title="compas_fab.backends.interfaces.backend_features.InverseKinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.backend_features.InverseKinematics</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.InverseKinematics.html#compas_fab.backends.interfaces.InverseKinematics" title="compas_fab.backends.interfaces.backend_features.InverseKinematics"><code class="xref py py-class docutils literal notranslate"><span class="pre">InverseKinematics</span></code></a></p>
 <p>Callable to calculate the robot’s inverse kinematics for a given frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>client</strong> (<a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.backends.interfaces.ClientInterface</span></code></a>, optional) – The backend client to use for communication.</p></li>
 <li><p><strong>solver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) – The solver to use to calculate IK.</p></li>
@@ -116,10 +116,6 @@ If <code class="docutils literal notranslate"><span class="pre">check_collision<
 that supports <code class="docutils literal notranslate"><span class="pre">&quot;check_collision&quot;</span></code>, so for now only the <cite>PyBulletClient</cite>.</p>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.AnalyticalInverseKinematics.inverse_kinematics.html#compas_fab.backends.AnalyticalInverseKinematics.inverse_kinematics" title="compas_fab.backends.AnalyticalInverseKinematics.inverse_kinematics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">inverse_kinematics</span></code></a></p></td>
 <td><p>Calculate the robot's inverse kinematic (IK) for a given frame.</p></td>
