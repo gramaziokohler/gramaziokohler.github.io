@@ -100,10 +100,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.PositionConstraint">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">PositionConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounding_volume</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/constraints.py#L408"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.constraints.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.constraints.Constraint</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.constraints.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constraint</span></code></a></p>
 <p>Constrains a link to be within a certain bounding volume.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>link_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the link this contraint refers to.</p></li>
 <li><p><strong>bounding_volume</strong> (<a class="reference internal" href="compas_fab.robots.BoundingVolume.html#compas_fab.robots.BoundingVolume" title="compas_fab.robots.BoundingVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">BoundingVolume</span></code></a>) – The volume this constraint refers to.</p></li>
@@ -112,7 +112,7 @@ other constraints. Closer to zero means less important. Defaults to
 <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>link_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – The name of the link this contraint refers to.</p></li>
 <li><p><strong>bounding_volume</strong> (<a class="reference internal" href="compas_fab.robots.BoundingVolume.html#compas_fab.robots.BoundingVolume" title="compas_fab.robots.BoundingVolume"><code class="xref py py-class docutils literal notranslate"><span class="pre">BoundingVolume</span></code></a>) – The volume this constraint refers to.</p></li>
@@ -131,10 +131,6 @@ other constraints. Closer to zero means less important.</p></li>
 </div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.copy.html#compas_fab.robots.PositionConstraint.copy" title="compas_fab.robots.PositionConstraint.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
 <td><p>Create a copy of this <a class="reference internal" href="#compas_fab.robots.PositionConstraint" title="compas_fab.robots.PositionConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">PositionConstraint</span></code></a>.</p></td>
@@ -158,10 +154,6 @@ other constraints. Closer to zero means less important.</p></li>
 </table>
 <p class="rubric">Inherited Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.PositionConstraint.scaled.html#compas_fab.robots.PositionConstraint.scaled" title="compas_fab.robots.PositionConstraint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a></p></td>
 <td><p>Get a scaled copy of this <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constraint</span></code></a>.</p></td>

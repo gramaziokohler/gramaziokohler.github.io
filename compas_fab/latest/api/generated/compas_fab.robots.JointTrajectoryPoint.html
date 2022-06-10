@@ -100,14 +100,14 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.JointTrajectoryPoint">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">JointTrajectoryPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accelerations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_from_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/trajectory.py#L17"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.configuration.Configuration</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a></p>
 <p>Defines a point within a trajectory.</p>
 <p>A trajectory point is a sub-class of <code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code> extended
 with acceleration, effort and time from start information.</p>
 <p>Trajectory points are defined either as <em>joint_values + velocities and
 accelerations</em>, or as <em>joint_values + efforts</em>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>joint_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) – Joint values expressed in radians or meters, depending on the respective
 type.</p></li>
@@ -119,7 +119,7 @@ type.</p></li>
 <li><p><strong>time_from_start</strong> (<a class="reference internal" href="compas_fab.robots.Duration.html#compas_fab.robots.Duration" title="compas_fab.robots.Duration"><code class="xref py py-class docutils literal notranslate"><span class="pre">Duration</span></code></a>, optional) – Duration of trajectory point counting from the start.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Attributes</dt>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>joint_values</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – Joint values expressed in radians or meters, depending on the respective
 type.</p></li>
@@ -136,10 +136,6 @@ type.</p></li>
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.copy.html#compas_fab.robots.JointTrajectoryPoint.copy" title="compas_fab.robots.JointTrajectoryPoint.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
 <td><p>Create a copy of this <a class="reference internal" href="#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a>.</p></td>
@@ -151,10 +147,6 @@ type.</p></li>
 </table>
 <p class="rubric">Inherited Methods</p>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.check_joint_names.html#compas_fab.robots.JointTrajectoryPoint.check_joint_names" title="compas_fab.robots.JointTrajectoryPoint.check_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_joint_names</span></code></a></p></td>
 <td><p>Raises an error if there is not a joint name for every value.</p></td>

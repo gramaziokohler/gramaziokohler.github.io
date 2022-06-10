@@ -104,7 +104,7 @@
 <span class="sig-prename descclassname"><span class="pre">Robot.</span></span><span class="sig-name descname"><span class="pre">constraints_from_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_WCF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerances_axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/robot.py#L992"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Create a position and an orientation constraint from a frame calculated for the group’s end-effector link.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame from which we create position and orientation constraints.</p></li>
 <li><p><strong>tolerance_position</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) – The allowed tolerance to the frame’s position (defined in the
@@ -115,7 +115,7 @@ radians. If only one value is passed it will be uses for all 3 axes.</p></li>
 the robot’s main planning group.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference internal" href="compas_fab.robots.Constraint.html#compas_fab.robots.Constraint" title="compas_fab.robots.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constraint</span></code></a></p>
 </dd>
 </dl>
