@@ -100,7 +100,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.JointTrajectoryPoint">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">JointTrajectoryPoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocities</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accelerations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_from_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/trajectory.py#L17"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.robots.Configuration.html#compas.robots.Configuration" title="(in COMPAS v1.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code></a></p>
 <p>Defines a point within a trajectory.</p>
 <p>A trajectory point is a sub-class of <code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code> extended
 with acceleration, effort and time from start information.</p>
@@ -148,50 +148,56 @@ type.</p></li>
 <p class="rubric">Inherited Methods</p>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.check_joint_names.html#compas_fab.robots.JointTrajectoryPoint.check_joint_names" title="compas_fab.robots.JointTrajectoryPoint.check_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_joint_names</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.ToString.html#compas_fab.robots.JointTrajectoryPoint.ToString" title="compas_fab.robots.JointTrajectoryPoint.ToString"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToString</span></code></a></p></td>
+<td><p>Converts the instance to a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.check_joint_names.html#compas_fab.robots.JointTrajectoryPoint.check_joint_names" title="compas_fab.robots.JointTrajectoryPoint.check_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_joint_names</span></code></a></p></td>
 <td><p>Raises an error if there is not a joint name for every value.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.close_to.html#compas_fab.robots.JointTrajectoryPoint.close_to" title="compas_fab.robots.JointTrajectoryPoint.close_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close_to</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.close_to.html#compas_fab.robots.JointTrajectoryPoint.close_to" title="compas_fab.robots.JointTrajectoryPoint.close_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close_to</span></code></a></p></td>
 <td><p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the other <cite>Configuration</cite>'s joint_values are within a certain range.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_data.html#compas_fab.robots.JointTrajectoryPoint.from_data" title="compas_fab.robots.JointTrajectoryPoint.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_data.html#compas_fab.robots.JointTrajectoryPoint.from_data" title="compas_fab.robots.JointTrajectoryPoint.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a></p></td>
 <td><p>Construct an object of this type from the provided data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_json.html#compas_fab.robots.JointTrajectoryPoint.from_json" title="compas_fab.robots.JointTrajectoryPoint.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_json.html#compas_fab.robots.JointTrajectoryPoint.from_json" title="compas_fab.robots.JointTrajectoryPoint.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a></p></td>
 <td><p>Construct an object from serialized data contained in a JSON file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_jsonstring.html#compas_fab.robots.JointTrajectoryPoint.from_jsonstring" title="compas_fab.robots.JointTrajectoryPoint.from_jsonstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_jsonstring</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_jsonstring.html#compas_fab.robots.JointTrajectoryPoint.from_jsonstring" title="compas_fab.robots.JointTrajectoryPoint.from_jsonstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_jsonstring</span></code></a></p></td>
 <td><p>Construct an object from serialized data contained in a JSON string.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_prismatic_and_revolute_values</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_prismatic_and_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_prismatic_and_revolute_values</span></code></a></p></td>
 <td><p>Construct a configuration from prismatic and revolute joint values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.from_revolute_values.html#compas_fab.robots.JointTrajectoryPoint.from_revolute_values" title="compas_fab.robots.JointTrajectoryPoint.from_revolute_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_revolute_values</span></code></a></p></td>
 <td><p>Construct a configuration from revolute joint values in radians.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.get.html#compas_fab.robots.JointTrajectoryPoint.get" title="compas_fab.robots.JointTrajectoryPoint.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.get.html#compas_fab.robots.JointTrajectoryPoint.get" title="compas_fab.robots.JointTrajectoryPoint.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.items.html#compas_fab.robots.JointTrajectoryPoint.items" title="compas_fab.robots.JointTrajectoryPoint.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.items.html#compas_fab.robots.JointTrajectoryPoint.items" title="compas_fab.robots.JointTrajectoryPoint.items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">items</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.iter_differences.html#compas_fab.robots.JointTrajectoryPoint.iter_differences" title="compas_fab.robots.JointTrajectoryPoint.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.iter_differences.html#compas_fab.robots.JointTrajectoryPoint.iter_differences" title="compas_fab.robots.JointTrajectoryPoint.iter_differences"><code class="xref py py-obj docutils literal notranslate"><span class="pre">iter_differences</span></code></a></p></td>
 <td><p>Generator over the differences to another <cite>Configuration</cite>'s joint_values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.keys.html#compas_fab.robots.JointTrajectoryPoint.keys" title="compas_fab.robots.JointTrajectoryPoint.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.keys.html#compas_fab.robots.JointTrajectoryPoint.keys" title="compas_fab.robots.JointTrajectoryPoint.keys"><code class="xref py py-obj docutils literal notranslate"><span class="pre">keys</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.max_difference.html#compas_fab.robots.JointTrajectoryPoint.max_difference" title="compas_fab.robots.JointTrajectoryPoint.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.max_difference.html#compas_fab.robots.JointTrajectoryPoint.max_difference" title="compas_fab.robots.JointTrajectoryPoint.max_difference"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_difference</span></code></a></p></td>
 <td><p>Returns the maximum difference to another <cite>Configuration</cite>'s joint values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.merge.html#compas_fab.robots.JointTrajectoryPoint.merge" title="compas_fab.robots.JointTrajectoryPoint.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.merge.html#compas_fab.robots.JointTrajectoryPoint.merge" title="compas_fab.robots.JointTrajectoryPoint.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">merge</span></code></a></p></td>
 <td><p>Merge the configuration with another configuration in place along joint names.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scale.html#compas_fab.robots.JointTrajectoryPoint.scale" title="compas_fab.robots.JointTrajectoryPoint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scale.html#compas_fab.robots.JointTrajectoryPoint.scale" title="compas_fab.robots.JointTrajectoryPoint.scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scale</span></code></a></p></td>
 <td><p>Scales the joint positions of the current configuration.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scaled.html#compas_fab.robots.JointTrajectoryPoint.scaled" title="compas_fab.robots.JointTrajectoryPoint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.scaled.html#compas_fab.robots.JointTrajectoryPoint.scaled" title="compas_fab.robots.JointTrajectoryPoint.scaled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scaled</span></code></a></p></td>
 <td><p>Return a scaled copy of this configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.sha256.html#compas_fab.robots.JointTrajectoryPoint.sha256" title="compas_fab.robots.JointTrajectoryPoint.sha256"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sha256</span></code></a></p></td>
+<td><p>Compute a hash of the data for comparison during version control using the sha256 algorithm.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.to_data.html#compas_fab.robots.JointTrajectoryPoint.to_data" title="compas_fab.robots.JointTrajectoryPoint.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a></p></td>
 <td><p>Convert an object to its native data representation.</p></td>
