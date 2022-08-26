@@ -98,23 +98,27 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following examples use the <a class="reference external" href="https://www.ros.org/">ROS</a> backend
-and the MoveIt! planner for UR5 robots. Before running them, please
+and the MoveIt! planner for UR5e robots. Before running them, please
 make sure you have the <a class="reference internal" href="../../backends/ros.html#ros-backend"><span class="std std-ref">ROS backend</span></a> correctly
-configured and the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">UR5 Demo</span></a> started.</p>
+configured and the <a class="reference internal" href="../../backends/ros.html#ros-bundles-list"><span class="std std-ref">UR5e Demo</span></a> started.</p>
 </div>
+<dl class="simple">
+<dt>There are two types of collision meshes:</dt><dd><ol class="arabic simple">
+<li><p>Non-attached collision meshes</p></li>
+<li><p>Attached collision meshes</p></li>
+</ol>
+</dd>
+</dl>
 <p>To plan motion paths that avoid collisions with other objects than the robot
 itself, the backend’s planning scene has to be updated.</p>
-<p>This is the representation of the planning scene in RViz with the UR5.</p>
+<p>After the planner starts, the scene will only contain the robot:</p>
 <figure class="figure align-default">
-<img alt="../../_images/05_collision_objects_attached_without.jpg" class="figure-img img-fluid" src="../../_images/05_collision_objects_attached_without.jpg" />
+<img alt="../../_images/05_collision_objects_attached_empty.jpg" class="figure-img img-fluid" src="../../_images/05_collision_objects_attached_empty.jpg" />
 </figure>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If using Docker to run ROS, you can open
-<a class="reference external" href="http://localhost:8080/vnc.html?resize=scale&amp;autoconnect=true">RViz on your browser</a>.</p>
-</div>
-<section id="collision-meshes">
-<h2>Collision meshes</h2>
+<section id="non-attached-collision-meshes">
+<h2>1. Non-attached Collision meshes</h2>
+<section id="add-remove-a-single-mesh">
+<h3>Add/remove a single mesh</h3>
 <p>The following script adds and then removes a floor to the planning scene.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
@@ -144,6 +148,9 @@ itself, the backend’s planning scene has to be updated.</p>
 <figure class="figure align-default">
 <img alt="../../_images/05_collision_objects.jpg" class="figure-img img-fluid" src="../../_images/05_collision_objects.jpg" />
 </figure>
+</section>
+<section id="add-remove-several-meshes">
+<h3>Add/remove several meshes</h3>
 <p>The following script adds several boxes (bricks) to the planning scene. Here,
 we use <code class="docutils literal notranslate"><span class="pre">append</span></code> instead of <code class="docutils literal notranslate"><span class="pre">add</span></code> to have multiple collision objects
 clustered under the same identifier. Like that, we don’t need to keep track of
@@ -178,16 +185,18 @@ all identifiers when we later remove them.</p>
     <span class="n">scene</span><span class="o">.</span><span class="n">remove_collision_mesh</span><span class="p">(</span><span class="s1">&#39;brick&#39;</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>The backend’s updated planning scene while executing the above script. Note the
-red robot link indicating the collision.</p>
+<p>The backend’s updated planning scene while executing the above script.</p>
 <figure class="figure align-default">
 <img alt="../../_images/05_collision_objects_append.jpg" class="figure-img img-fluid" src="../../_images/05_collision_objects_append.jpg" />
 </figure>
 </section>
-<section id="attach-tool-to-a-robot-s-end-effector">
-<h2>Attach tool to a robot’s end-effector</h2>
-<p>The following script defines a tool, described by a collision mesh and a frame, and
-attaches and removes it to the robot’s end-effector.</p>
+</section>
+<section id="attached-collision-meshes">
+<h2>2. Attached collision meshes</h2>
+<section id="attach-end-effector">
+<h3>Attach end-effector</h3>
+<p>The following script defines a tool -also called end effector- which is described by a collision mesh and a frame, and
+attaches it to the robot.</p>
 <div class="language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">compas.datastructures</span> <span class="kn">import</span> <span class="n">Mesh</span>
@@ -195,39 +204,38 @@ attaches and removes it to the robot’s end-effector.</p>
 
 <span class="kn">import</span> <span class="nn">compas_fab</span>
 <span class="kn">from</span> <span class="nn">compas_fab.backends</span> <span class="kn">import</span> <span class="n">RosClient</span>
-<span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">PlanningScene</span>
 <span class="kn">from</span> <span class="nn">compas_fab.robots</span> <span class="kn">import</span> <span class="n">Tool</span>
 
 <span class="k">with</span> <span class="n">RosClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">load_robot</span><span class="p">()</span>
-    <span class="n">scene</span> <span class="o">=</span> <span class="n">PlanningScene</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">robot</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;ur5_robot&#39;</span>
 
     <span class="c1"># create collision object</span>
     <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="o">.</span><span class="n">from_stl</span><span class="p">(</span><span class="n">compas_fab</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;planning_scene/cone.stl&#39;</span><span class="p">))</span>
-    <span class="n">t1cf</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>          <span class="c1"># TODO: check this frame!</span>
+    <span class="n">t1cf</span> <span class="o">=</span> <span class="n">Frame</span><span class="p">([</span><span class="mf">0.14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
     <span class="n">tool</span> <span class="o">=</span> <span class="n">Tool</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">t1cf</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;tip&#39;</span><span class="p">)</span>
-    <span class="n">scene</span><span class="o">.</span><span class="n">add_attached_tool</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span>
-
-    <span class="c1"># sleep a bit before removing the tip</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># check if it&#39;s really there</span>
-    <span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
-    <span class="n">acm</span> <span class="o">=</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span>
-    <span class="k">assert</span> <span class="n">acm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;tip_&#39;</span><span class="p">)</span>
-
-    <span class="n">scene</span><span class="o">.</span><span class="n">remove_attached_tool</span><span class="p">()</span>
-
-    <span class="n">planning_scene</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_planning_scene</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">acm</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">planning_scene</span><span class="o">.</span><span class="n">robot_state</span><span class="o">.</span><span class="n">attached_collision_objects</span><span class="p">]</span>
+    <span class="n">robot</span><span class="o">.</span><span class="n">attach_tool</span><span class="p">(</span><span class="n">tool</span><span class="p">)</span>
 </code></pre></div>
 </div>
-<p>The backend’s updated planning scene while executing the above script.</p>
+<p>In this case, we are not adding it to the planning scene explicitely, only attaching it to the robot instance itself.</p>
 <figure class="figure align-default">
 <img alt="../../_images/05_collision_objects_attached.jpg" class="figure-img img-fluid" src="../../_images/05_collision_objects_attached.jpg" />
 </figure>
 </section>
+</section>
+<section id="grasshopper-example">
+<h2>Grasshopper example</h2>
+<p>The following Grasshopper document showcases all the options described above:</p>
+<figure class="figure align-default">
+<img alt="../../_images/05_grasshopper_collision_objects.jpg" class="figure-img img-fluid" src="../../_images/05_grasshopper_collision_objects.jpg" />
+</figure>
+<div class="card bg-light">
+<div class="card-body">
+<div class="card-title">Download</div><ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../_downloads/5464b437ec27284adac31409c2df391e/05_grasshopper_collision_objects.ghx"><code class="xref download docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">playground</span> <span class="pre">(Grasshopper)</span> <span class="pre">(.GHX)</span></code></a></p></li>
+</ul>
+</div>
+</div></section>
 </section>
 
         
@@ -347,8 +355,16 @@ attaches and removes it to the robot’s end-effector.</p>
         
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">Planning scene and collision objects</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#collision-meshes">Collision meshes</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#attach-tool-to-a-robot-s-end-effector">Attach tool to a robot’s end-effector</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#non-attached-collision-meshes">1. Non-attached Collision meshes</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#add-remove-a-single-mesh">Add/remove a single mesh</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#add-remove-several-meshes">Add/remove several meshes</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#attached-collision-meshes">2. Attached collision meshes</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#attach-end-effector">Attach end-effector</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#grasshopper-example">Grasshopper example</a></li>
 </ul>
 </li>
 </ul>
