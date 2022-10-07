@@ -105,7 +105,8 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <p><strong>Changed</strong></p>
 <ul class="simple">
 <li><p>Changed behavior of <code class="docutils literal notranslate"><span class="pre">Attach</span> <span class="pre">Tool</span></code> GH component to only attach the tool but not add it to the planning scene state.</p></li>
-<li><p>Duration class takes floats as <code class="docutils literal notranslate"><span class="pre">sec</span></code> variable</p></li>
+<li><p>Duration class takes floats as <code class="docutils literal notranslate"><span class="pre">sec</span></code> variable.</p></li>
+<li><p>Changed the behavior of <code class="docutils literal notranslate"><span class="pre">forward_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">iter_inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and constraints construction methods (<code class="docutils literal notranslate"><span class="pre">orientation_constraint_from_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">position_constraint_from_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">constraints_from_frame</span></code>) in <code class="docutils literal notranslate"><span class="pre">Robot</span></code> class to use the frame of the attached tool if a tool is attached. This behavior can be reverted back (ie. only calculate T0CF) using the flag <code class="docutils literal notranslate"><span class="pre">use_attached_tool_frame</span></code> of all these methods.</p></li>
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
