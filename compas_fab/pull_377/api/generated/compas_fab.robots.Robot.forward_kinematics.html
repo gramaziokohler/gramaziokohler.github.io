@@ -104,7 +104,7 @@
 <span class="sig-prename descclassname"><span class="pre">Robot.</span></span><span class="sig-name descname"><span class="pre">forward_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_attached_tool_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/robot.py#L1412"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate the robot’s forward kinematic.</p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul>
 <li><p><strong>configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code>) – The full configuration to calculate the forward kinematic for. If no
 full configuration is passed, the zero-joint state for the other
@@ -132,10 +132,10 @@ Check the API reference of the FK backend implementation for more details.</p>
 </li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a> – The frame in the world’s coordinate system (WCF).</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If <cite>link_name</cite> doesn’t match any of the <a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> instance’s links.</p></li>
 <li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.10)"><strong>NotImplementedError</strong></a> – If forward kinematic method for given <cite>backend</cite> is not implemented.</p></li>
@@ -272,10 +272,7 @@ Check the API reference of the FK backend implementation for more details.</p>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Robot.forward_kinematics</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.robots.Robot.forward_kinematics"><code class="docutils literal notranslate"><span class="pre">Robot.forward_kinematics()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">Robot.forward_kinematics</a></li>
 </ul>
 
       </div>

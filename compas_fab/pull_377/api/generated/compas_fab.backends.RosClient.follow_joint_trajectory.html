@@ -104,7 +104,7 @@
 <span class="sig-prename descclassname"><span class="pre">RosClient.</span></span><span class="sig-name descname"><span class="pre">follow_joint_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_trajectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/joint_trajectory_action'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feedback_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60000</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/ros/client.py#L269"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Follow the joint trajectory as computed by MoveIt planner.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>joint_trajectory</strong> (<a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a>) – Instance of joint trajectory. Note: for backwards compatibility, this supports a ROS Msg being passed as well.</p></li>
 <li><p><strong>action_name</strong> (<em>string</em>) – ROS action name, defaults to <code class="docutils literal notranslate"><span class="pre">/joint_trajectory_action</span></code> but some drivers need <code class="docutils literal notranslate"><span class="pre">/follow_joint_trajectory</span></code>.</p></li>
@@ -116,7 +116,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
 <li><p><strong>timeout</strong> (<em>int</em>) – Timeout for goal completion in milliseconds.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CancellableTask</span></code> – An instance of a cancellable tasks.</p>
 </dd>
 </dl>
@@ -240,10 +240,7 @@ one position parameter <code class="docutils literal notranslate"><span class="p
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">RosClient.follow_joint_trajectory</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.backends.RosClient.follow_joint_trajectory"><code class="docutils literal notranslate"><span class="pre">RosClient.follow_joint_trajectory()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">RosClient.follow_joint_trajectory</a></li>
 </ul>
 
       </div>
