@@ -101,7 +101,7 @@
 <h1>JointTrajectoryPoint.merge</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.robots.JointTrajectoryPoint.merge">
-<span class="sig-prename descclassname"><span class="pre">JointTrajectoryPoint.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/trajectory.py#L557"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">JointTrajectoryPoint.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas/robots/configuration.py#L557"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Merge the configuration with another configuration in place along joint names.
 The other configuration takes precedence over this configuration in
 case a joint value is present in both.</p>
@@ -110,11 +110,11 @@ case a joint value is present in both.</p>
 <p>Caution: <code class="docutils literal notranslate"><span class="pre">joint_names</span></code> may be rearranged.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>other</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Configuration</span></code>) – The configuration to be merged.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If the configuration or the <code class="docutils literal notranslate"><span class="pre">other</span></code> configuration does not specify
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the configuration or the <code class="docutils literal notranslate"><span class="pre">other</span></code> configuration does not specify
     joint names for all joint values.</p>
 </dd>
 </dl>
@@ -238,10 +238,7 @@ case a joint value is present in both.</p>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">JointTrajectoryPoint.merge</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.robots.JointTrajectoryPoint.merge"><code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint.merge()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">JointTrajectoryPoint.merge</a></li>
 </ul>
 
       </div>

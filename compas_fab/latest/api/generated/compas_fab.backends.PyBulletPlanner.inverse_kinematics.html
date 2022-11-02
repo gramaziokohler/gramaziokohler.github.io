@@ -101,10 +101,10 @@
 <h1>PyBulletPlanner.inverse_kinematics</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.backends.PyBulletPlanner.inverse_kinematics">
-<span class="sig-prename descclassname"><span class="pre">PyBulletPlanner.</span></span><span class="sig-name descname"><span class="pre">inverse_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/pybullet/planner.py#L49"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PyBulletPlanner.</span></span><span class="sig-name descname"><span class="pre">inverse_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/pybullet/planner.py#L54"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate the robot’s inverse kinematic for a given frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which inverse kinematics is being calculated.</p></li>
 <li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
@@ -115,32 +115,32 @@ Defaults to the zero configuration.</p></li>
 the <code class="docutils literal notranslate"><span class="pre">start_configuration</span></code>. Defaults to the robot’s main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict, optional</em>) – Dictionary containing the following key-value pairs:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link_name&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) Name of the link for which
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link_name&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) Name of the link for which
 to compute the inverse kinematics.  Defaults to the given group’s end
 effector.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;semi-constrained&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;semi-constrained&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, only the
 position and not the orientation of <code class="docutils literal notranslate"><span class="pre">frame_WCF</span></code> will not be considered
 in the calculation.  Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;enforce_joint_limits&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;enforce_joint_limits&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, the
 robot’s joint limits will be ignored in the calculation.  Defaults to
 <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, the
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, the
 solver will iteratively try to approach minimum deviation from the requested
 target frame.  Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy_threshold&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) Defines the maximum
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy_threshold&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) Defines the maximum
 acceptable distance threshold for the high accuracy solver. Defaults to <code class="docutils literal notranslate"><span class="pre">1e-6</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy_max_iter&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) Defines the maximum
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;high_accuracy_max_iter&quot;</span></code>:  (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>, optional) Defines the maximum
 number of iterations to use for the high accuracy solver. Defaults to <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;max_results&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) Maximum number of results to return.
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;max_results&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) Maximum number of results to return.
 Defaults to <code class="docutils literal notranslate"><span class="pre">100</span></code>.</p></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt class="field-even">Yields<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list of matching joint names.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="compas_fab.backends.InverseKinematicsError.html#compas_fab.backends.InverseKinematicsError" title="compas_fab.backends.InverseKinematicsError"><strong>compas_fab.backends.InverseKinematicsError</strong></a> – </p>
 </dd>
 </dl>
@@ -264,10 +264,7 @@ Defaults to <code class="docutils literal notranslate"><span class="pre">100</sp
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">PyBulletPlanner.inverse_kinematics</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.backends.PyBulletPlanner.inverse_kinematics"><code class="docutils literal notranslate"><span class="pre">PyBulletPlanner.inverse_kinematics()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">PyBulletPlanner.inverse_kinematics</a></li>
 </ul>
 
       </div>

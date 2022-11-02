@@ -99,18 +99,18 @@
 <h1>VrepClient</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.backends.VrepClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">VrepClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'127.0.0.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">19997</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lua_script</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RFL'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/vrep/client.py#L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.backends.</span></span><span class="sig-name descname"><span class="pre">VrepClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'127.0.0.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">19997</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lua_script</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RFL'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/vrep/client.py#L30"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../developer/generated/compas_fab.backends.interfaces.ClientInterface.html#compas_fab.backends.interfaces.ClientInterface" title="compas_fab.backends.interfaces.client.ClientInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClientInterface</span></code></a></p>
 <p>Interface to run simulations using VREP as
 the engine for kinematics and path planning.</p>
 <p><a class="reference internal" href="#compas_fab.backends.VrepClient" title="compas_fab.backends.VrepClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">VrepClient</span></code></a> is a context manager type, so it’s best used in combination
 with the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement to ensure resource deallocation.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>host (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): IP address or DNS name of the V-REP simulator.
-port (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Port of the V-REP simulator.
-scale (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Scaling of the model. Defaults to meters (<code class="docutils literal notranslate"><span class="pre">1</span></code>).
-lua_script (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): Name of the LUA script on the V-REP scene.
-debug (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>): True to enable debug messages, False otherwise.</p>
+<dt>Args:</dt><dd><p>host (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): IP address or DNS name of the V-REP simulator.
+port (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Port of the V-REP simulator.
+scale (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>): Scaling of the model. Defaults to meters (<code class="docutils literal notranslate"><span class="pre">1</span></code>).
+lua_script (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>): Name of the LUA script on the V-REP scene.
+debug (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>): True to enable debug messages, False otherwise.</p>
 </dd>
 </dl>
 <p>Examples:</p>
@@ -126,6 +126,10 @@ debug (<a class="reference external" href="https://docs.python.org/3/library/fun
 </dl>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.find_raw_robot_states.html#compas_fab.backends.VrepClient.find_raw_robot_states" title="compas_fab.backends.VrepClient.find_raw_robot_states"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_raw_robot_states</span></code></a></p></td>
 <td><p></p></td>
@@ -158,6 +162,10 @@ debug (<a class="reference external" href="https://docs.python.org/3/library/fun
 </table>
 <p class="rubric">Inherited Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.backends.VrepClient.add_attached_collision_mesh.html#compas_fab.backends.VrepClient.add_attached_collision_mesh" title="compas_fab.backends.VrepClient.add_attached_collision_mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_attached_collision_mesh</span></code></a></p></td>
 <td><p>Forwards call to appropriate method in the planner.</p></td>
@@ -315,7 +323,6 @@ debug (<a class="reference external" href="https://docs.python.org/3/library/fun
         
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">VrepClient</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.backends.VrepClient"><code class="docutils literal notranslate"><span class="pre">VrepClient</span></code></a></li>
 </ul>
 </li>
 </ul>

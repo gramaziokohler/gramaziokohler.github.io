@@ -101,7 +101,7 @@
 <h1>VrepClient.set_robot_metric</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.backends.VrepClient.set_robot_metric">
-<span class="sig-prename descclassname"><span class="pre">VrepClient.</span></span><span class="sig-name descname"><span class="pre">set_robot_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_values</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/vrep/client.py#L158"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">VrepClient.</span></span><span class="sig-name descname"><span class="pre">set_robot_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_values</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/backends/vrep/client.py#L163"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Assigns a metric defining relations between axis values of a robot.</p>
 <p>It takes a list containing one value per configurable joint. Each value
 ranges from 0 to 1, where 1 indicates the axis is blocked and cannot
@@ -109,7 +109,7 @@ move during inverse kinematic solving. A value of 1 on any of these
 effectively removes one degree of freedom (DOF).</p>
 <dl>
 <dt>Args:</dt><dd><p>robot (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>): Robot instance.
-metric_values (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>): List containing one value</p>
+metric_values (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>): List containing one value</p>
 <blockquote>
 <div><p>per configurable joint. Each value ranges from 0 to 1.</p>
 </div></blockquote>
@@ -235,10 +235,7 @@ metric_values (<a class="reference external" href="https://docs.python.org/3/lib
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">VrepClient.set_robot_metric</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.backends.VrepClient.set_robot_metric"><code class="docutils literal notranslate"><span class="pre">VrepClient.set_robot_metric()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">VrepClient.set_robot_metric</a></li>
 </ul>
 
       </div>

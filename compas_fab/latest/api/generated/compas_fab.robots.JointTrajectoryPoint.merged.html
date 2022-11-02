@@ -101,7 +101,7 @@
 <h1>JointTrajectoryPoint.merged</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.robots.JointTrajectoryPoint.merged">
-<span class="sig-prename descclassname"><span class="pre">JointTrajectoryPoint.</span></span><span class="sig-name descname"><span class="pre">merged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/trajectory.py#L185"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">JointTrajectoryPoint.</span></span><span class="sig-name descname"><span class="pre">merged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/trajectory.py#L193"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Get a new <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> with this <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> merged
 with another <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>.  The other <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>
 takes precedence over this <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> in case a joint value is present in both.</p>
@@ -110,14 +110,14 @@ takes precedence over this <code class="docutils literal notranslate"><span clas
 <p>Caution: <code class="docutils literal notranslate"><span class="pre">joint_names</span></code> may be rearranged.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a>) – The <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> to be merged.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><a class="reference internal" href="compas_fab.robots.JointTrajectoryPoint.html#compas_fab.robots.JointTrajectoryPoint" title="compas_fab.robots.JointTrajectoryPoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code></a> – A <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> with values for all included joints.</p>
 </dd>
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.10)"><strong>ValueError</strong></a> – If the <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> or the other <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> does not specify
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If the <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> or the other <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code> does not specify
     joint names for all joint values.</p>
 </dd>
 </dl>
@@ -241,10 +241,7 @@ takes precedence over this <code class="docutils literal notranslate"><span clas
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">JointTrajectoryPoint.merged</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.robots.JointTrajectoryPoint.merged"><code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint.merged()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">JointTrajectoryPoint.merged</a></li>
 </ul>
 
       </div>

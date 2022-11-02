@@ -101,25 +101,25 @@
 <h1>PosCon3D.send_command</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.sensors.PosCon3D.send_command">
-<span class="sig-prename descclassname"><span class="pre">PosCon3D.</span></span><span class="sig-name descname"><span class="pre">send_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/sensors/baumer.py#L106"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">PosCon3D.</span></span><span class="sig-name descname"><span class="pre">send_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/sensors/baumer.py#L111"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Sends a command to the sensor’s address specified. The command
 can optionally contain a data string.</p>
 <p>This method is mostly for internal use, as the higher-level API is
 exposed via dedicated methods.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosCon3D sensors have an address assigned, which defaults to 1.
+<li><p><strong>address</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) – PosCon3D sensors have an address assigned, which defaults to 1.
 There’s also a broadcast address (<code class="docutils literal notranslate"><span class="pre">PosCon3D.BROADCAST_ADDRESS</span></code>)
 that can be used to query the address of the sensor connected to
 the RS-485 bus. Only one sensor can be in the bus when using the
 broadcast address to query for sensor’s address.</p></li>
-<li><p><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string</span></code></a>) – A string indicating the command number to be executed.</p></li>
-<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string</span></code></a>) – An optional string of data that is sent together with
+<li><p><strong>command</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string</span></code></a>) – A string indicating the command number to be executed.</p></li>
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">string</span></code></a>) – An optional string of data that is sent together with
 the command.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p><cite>list</cite> or value – Result of the command. It can be a list or a single value depending on the operation.</p>
 </dd>
 </dl>
@@ -243,10 +243,7 @@ the command.</p></li>
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">PosCon3D.send_command</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.sensors.PosCon3D.send_command"><code class="docutils literal notranslate"><span class="pre">PosCon3D.send_command()</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">PosCon3D.send_command</a></li>
 </ul>
 
       </div>

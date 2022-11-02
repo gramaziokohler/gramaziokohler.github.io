@@ -100,10 +100,10 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.Wrench">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">Wrench</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torque</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/wrench.py#L23"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A wrench represents force in free space, separated into its linear (force) and angular (torque) parts.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>force</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – [Fx, Fy, Fz] force vector in Newtons</p></li>
 <li><p><strong>torque</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – [Tx, Ty, Tz] moments vector in Newton-meters</p></li>
@@ -118,6 +118,10 @@
 </div>
 <p class="rubric">Methods</p>
 <table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Wrench.by_samples.html#compas_fab.robots.Wrench.by_samples" title="compas_fab.robots.Wrench.by_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">by_samples</span></code></a></p></td>
 <td><p>Construct the wrench by sampled data, allowing to filter.</p></td>
@@ -129,7 +133,7 @@
 <td><p>Construct a wrench from its data representation.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.Wrench.from_list.html#compas_fab.robots.Wrench.from_list" title="compas_fab.robots.Wrench.from_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_list</span></code></a></p></td>
-<td><p>Construct a wrench from a list of 6 <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> values.</p></td>
+<td><p>Construct a wrench from a list of 6 <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.Wrench.gravity_compensated.html#compas_fab.robots.Wrench.gravity_compensated" title="compas_fab.robots.Wrench.gravity_compensated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gravity_compensated</span></code></a></p></td>
 <td><p>Removes the force and torque in effect of gravity from the wrench.</p></td>
@@ -265,10 +269,7 @@
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">Wrench</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#compas_fab.robots.Wrench"><code class="docutils literal notranslate"><span class="pre">Wrench</span></code></a></li>
-</ul>
-</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">Wrench</a></li>
 </ul>
 
       </div>
