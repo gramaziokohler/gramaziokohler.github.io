@@ -173,41 +173,41 @@ operations and to parameterize macros simply by using <code class="docutils lite
 </div>
 <p>Paste the following into the file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
-  <span class="cm">&lt;!-- Here we define the 2 parameters of the macro --&gt;</span>
-  <span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;measurement_tool&quot;</span> <span class="na">params=</span><span class="s">&quot;prefix connected_to&quot;</span><span class="nt">&gt;</span>
-    <span class="cm">&lt;!-- Create a fixed joint with a parameterized name. --&gt;</span>
-    <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;${prefix}measurement_tool_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
-      <span class="cm">&lt;!-- The parent link must be read from the robot model it is attached to. --&gt;</span>
-      <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${connected_to}&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">/&gt;</span>
-      <span class="cm">&lt;!-- The tool is directly attached to the flange. --&gt;</span>
-      <span class="nt">&lt;origin</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/joint&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;visual&gt;</span>
-        <span class="nt">&lt;geometry&gt;</span>
-          <span class="cm">&lt;!-- The path to the visual meshes in the package. --&gt;</span>
-          <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur5_with_measurement_tool/meshes/visual/measurement_tool.stl&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/geometry&gt;</span>
-      <span class="nt">&lt;/visual&gt;</span>
-      <span class="nt">&lt;collision&gt;</span>
-        <span class="nt">&lt;geometry&gt;</span>
-          <span class="cm">&lt;!-- The path to the collision meshes in the package. --&gt;</span>
-          <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur5_with_measurement_tool/meshes/collision/measurement_tool.stl&quot;</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;/geometry&gt;</span>
-      <span class="nt">&lt;/collision&gt;</span>
-    <span class="nt">&lt;/link&gt;</span>
+<span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- Here we define the 2 parameters of the macro --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;measurement_tool&quot;</span><span class="w"> </span><span class="na">params=</span><span class="s">&quot;prefix connected_to&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Create a fixed joint with a parameterized name. --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}measurement_tool_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- The parent link must be read from the robot model it is attached to. --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${connected_to}&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- The tool is directly attached to the flange. --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;visual&gt;</span>
+<span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">          </span><span class="cm">&lt;!-- The path to the visual meshes in the package. --&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur5_with_measurement_tool/meshes/visual/measurement_tool.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/visual&gt;</span>
+<span class="w">      </span><span class="nt">&lt;collision&gt;</span>
+<span class="w">        </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">          </span><span class="cm">&lt;!-- The path to the collision meshes in the package. --&gt;</span>
+<span class="w">          </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur5_with_measurement_tool/meshes/collision/measurement_tool.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/collision&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/link&gt;</span>
 
-    <span class="cm">&lt;!-- TCP frame --&gt;</span>
-    <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;${prefix}tcp_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0.116&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;${prefix}tcp&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/joint&gt;</span>
-    <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;${prefix}tcp&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- TCP frame --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}tcp_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 0.116&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}measurement_tool&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}tcp&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/joint&gt;</span>
+<span class="w">    </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}tcp&quot;</span><span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;/xacro:macro&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/xacro:macro&gt;</span>
 <span class="nt">&lt;/robot&gt;</span>
 </code></pre></div>
 </div>
@@ -228,28 +228,28 @@ urdf.</p>
 </div>
 <p>Paste the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span> <span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur5_with_measurement_tool&quot;</span><span class="nt">&gt;</span>
 
-  <span class="cm">&lt;!-- ur5 --&gt;</span>
-  <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur5.urdf.xacro&quot;</span> <span class="nt">/&gt;</span>
-  <span class="cm">&lt;!-- end-effector --&gt;</span>
-  <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;measurement_tool.xacro&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- ur5 --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur5.urdf.xacro&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- end-effector --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;measurement_tool.xacro&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-  <span class="cm">&lt;!-- ur5 --&gt;</span>
-  <span class="cm">&lt;!-- The ur5 xacro must be included with passing parameters --&gt;</span>
-  <span class="nt">&lt;xacro:ur5_robot</span> <span class="na">prefix=</span><span class="s">&quot;&quot;</span> <span class="na">joint_limited=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
-  <span class="cm">&lt;!-- end-effector --&gt;</span>
-  <span class="cm">&lt;!-- Here we include the end-effector by setting the parameters --&gt;</span>
-  <span class="cm">&lt;!-- TODO: check end-effector link name of robot --&gt;</span>
-  <span class="nt">&lt;xacro:measurement_tool</span> <span class="na">prefix=</span><span class="s">&quot;&quot;</span> <span class="na">connected_to=</span><span class="s">&quot;tool0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- ur5 --&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- The ur5 xacro must be included with passing parameters --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:ur5_robot</span><span class="w"> </span><span class="na">prefix=</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="na">joint_limited=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- end-effector --&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- Here we include the end-effector by setting the parameters --&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- TODO: check end-effector link name of robot --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;xacro:measurement_tool</span><span class="w"> </span><span class="na">prefix=</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="na">connected_to=</span><span class="s">&quot;tool0&quot;</span><span class="nt">/&gt;</span>
 
-  <span class="cm">&lt;!-- define the ur5&#39;s position and orientation in the world coordinate system --&gt;</span>
-  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;world&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;world_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;world&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;base_link&quot;</span> <span class="nt">/&gt;</span> <span class="cm">&lt;!-- TODO: check base_link name of robot --&gt;</span>
-    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;/joint&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- define the ur5&#39;s position and orientation in the world coordinate system --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="w"> </span><span class="nt">/&gt;</span><span class="w"> </span><span class="cm">&lt;!-- TODO: check base_link name of robot --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/joint&gt;</span>
 <span class="nt">&lt;/robot&gt;</span>
 </code></pre></div>
 </div>
@@ -316,16 +316,16 @@ is never child to a joint (first link).</p>
 that they match the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nt">&lt;launch&gt;</span>
 
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find ur5_with_measurement_tool)/urdf/ur5_with_measurement_tool.urdf&quot;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;rvizconfig&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find ur5_with_measurement_tool)/rviz/urdf.rviz&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur5_with_measurement_tool)/urdf/ur5_with_measurement_tool.urdf&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gui&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rvizconfig&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur5_with_measurement_tool)/rviz/urdf.rviz&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;use_gui&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_description&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_gui&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rviz&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span> <span class="na">type=</span><span class="s">&quot;rviz&quot;</span> <span class="na">args=</span><span class="s">&quot;-d $(arg rvizconfig)&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-d $(arg rvizconfig)&quot;</span><span class="w"> </span><span class="na">required=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>

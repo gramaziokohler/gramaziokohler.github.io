@@ -129,12 +129,12 @@ as administrator.</p></li>
 <p>Finally, set the <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> variable to point to your <code class="docutils literal notranslate"><span class="pre">X11</span></code> server as follows
 replacing <code class="docutils literal notranslate"><span class="pre">YOUR_IP_ADDRESS</span></code> with your current IP.</p>
 <p>For usage from WSL, set it using the following command:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nb">export</span> <span class="nv">DISPLAY</span><span class="o">=</span>YOUR_IP_ADDRESS:0.0
+<div class="language-bash notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>YOUR_IP_ADDRESS:0.0
 </code></pre></div>
 </div>
 <p>For usage from Docker, set it adding the following environment
 variable to the <code class="docutils literal notranslate"><span class="pre">moveit</span></code> service in the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file:</p>
-<div class="language-bash notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span>- <span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0
+<div class="language-bash notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span>-<span class="w"> </span><span class="nv">DISPLAY</span><span class="o">=</span>host.docker.internal:0.0
 </code></pre></div>
 </div>
 </section>

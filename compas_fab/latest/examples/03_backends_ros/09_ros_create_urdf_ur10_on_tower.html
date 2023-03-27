@@ -167,79 +167,79 @@ the line <code class="docutils literal notranslate"><span class="pre">&lt;buildt
 </div>
 <p>Paste the following into the file:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-    <span class="nt">&lt;robot</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;xacro:macro</span> <span class="na">name=</span><span class="s">&quot;tower&quot;</span> <span class="na">params=</span><span class="s">&quot;prefix&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;${prefix}tower&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;visual&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/tower.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                    <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-                        <span class="nt">&lt;color</span> <span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/material&gt;</span>
-                <span class="nt">&lt;/visual&gt;</span>
-                <span class="nt">&lt;collision&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/tower.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                <span class="nt">&lt;/collision&gt;</span>
-            <span class="nt">&lt;/link&gt;</span>
+<span class="w">    </span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xacro:macro</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;tower&quot;</span><span class="w"> </span><span class="na">params=</span><span class="s">&quot;prefix&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}tower&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;visual&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/tower.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;color</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/material&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/visual&gt;</span>
+<span class="w">                </span><span class="nt">&lt;collision&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/tower.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/collision&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/link&gt;</span>
 
-            <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;${prefix}axis1_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;prismatic&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${prefix}tower&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">/&gt;</span>
-                <span class="cm">&lt;!-- Here we enter the joint position just defined before --&gt;</span>
-                <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 -0.121 0.537&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
-                <span class="cm">&lt;!-- Here we define the axis along which the geometry is moved --&gt;</span>
-                <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
-                <span class="cm">&lt;!-- Here we define the joint&#39;s upper and lower limits --&gt;</span>
-                <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="na">lower=</span><span class="s">&quot;0.0&quot;</span> <span class="na">upper=</span><span class="s">&quot;1.86&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/joint&gt;</span>
+<span class="w">            </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}axis1_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;prismatic&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}tower&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="cm">&lt;!-- Here we enter the joint position just defined before --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 -0.121 0.537&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="cm">&lt;!-- Here we define the axis along which the geometry is moved --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="cm">&lt;!-- Here we define the joint&#39;s upper and lower limits --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;limit</span><span class="w"> </span><span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span><span class="w"> </span><span class="na">lower=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="na">upper=</span><span class="s">&quot;1.86&quot;</span><span class="w"> </span><span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/joint&gt;</span>
 
-            <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;visual&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/axis1_plate.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                    <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-                        <span class="nt">&lt;color</span> <span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/material&gt;</span>
-                <span class="nt">&lt;/visual&gt;</span>
-                <span class="nt">&lt;collision&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/axis1_plate.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                <span class="nt">&lt;/collision&gt;</span>
-            <span class="nt">&lt;/link&gt;</span>
+<span class="w">            </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;visual&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/axis1_plate.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;color</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/material&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/visual&gt;</span>
+<span class="w">                </span><span class="nt">&lt;collision&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/axis1_plate.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/collision&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/link&gt;</span>
 
-            <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;${prefix}axis2_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;prismatic&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;${prefix}axis2&quot;</span><span class="nt">/&gt;</span>
-                 <span class="cm">&lt;!-- Here we enter the joint position just defined before --&gt;</span>
-                <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.467 -0.054 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
-                <span class="cm">&lt;!-- Here we define the axis along which the geometry is moved --&gt;</span>
-                <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;1 0 0&quot;</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span> <span class="na">lower=</span><span class="s">&quot;0.0&quot;</span> <span class="na">upper=</span><span class="s">&quot;1.07&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/joint&gt;</span>
+<span class="w">            </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}axis2_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;prismatic&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}axis1&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;${prefix}axis2&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                 </span><span class="cm">&lt;!-- Here we enter the joint position just defined before --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.467 -0.054 0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="cm">&lt;!-- Here we define the axis along which the geometry is moved --&gt;</span>
+<span class="w">                </span><span class="nt">&lt;axis</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;1 0 0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                </span><span class="nt">&lt;limit</span><span class="w"> </span><span class="na">effort=</span><span class="s">&quot;1000.0&quot;</span><span class="w"> </span><span class="na">lower=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="na">upper=</span><span class="s">&quot;1.07&quot;</span><span class="w"> </span><span class="na">velocity=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/joint&gt;</span>
 
-            <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;${prefix}axis2&quot;</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;visual&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/axis2.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                    <span class="nt">&lt;material</span> <span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-                        <span class="nt">&lt;color</span> <span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/material&gt;</span>
-                <span class="nt">&lt;/visual&gt;</span>
-                <span class="nt">&lt;collision&gt;</span>
-                    <span class="nt">&lt;geometry&gt;</span>
-                        <span class="nt">&lt;mesh</span> <span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/axis2.stl&quot;</span><span class="nt">/&gt;</span>
-                    <span class="nt">&lt;/geometry&gt;</span>
-                <span class="nt">&lt;/collision&gt;</span>
-            <span class="nt">&lt;/link&gt;</span>
+<span class="w">            </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;${prefix}axis2&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;visual&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/visual/axis2.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;material</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;color</span><span class="w"> </span><span class="na">rgba=</span><span class="s">&quot;1.0 1.0 1.0 1.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/material&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/visual&gt;</span>
+<span class="w">                </span><span class="nt">&lt;collision&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;geometry&gt;</span>
+<span class="w">                        </span><span class="nt">&lt;mesh</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;package://ur10_tower/meshes/collision/axis2.stl&quot;</span><span class="nt">/&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;/geometry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;/collision&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/link&gt;</span>
 
-        <span class="nt">&lt;/xacro:macro&gt;</span>
-    <span class="nt">&lt;/robot&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/xacro:macro&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/robot&gt;</span>
 </code></pre></div>
 </div>
 </section>
@@ -272,31 +272,31 @@ the minimal and maximal position (translation) of the joint.</p></li>
 </div>
 <p>Paste the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-    <span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;ur10_tower&quot;</span> <span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
-        <span class="cm">&lt;!-- tower --&gt;</span>
-        <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;tower.xacro&quot;</span><span class="nt">/&gt;</span>
-        <span class="cm">&lt;!-- ur10 --&gt;</span>
-        <span class="nt">&lt;xacro:include</span> <span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur10.urdf.xacro&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;robot</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;ur10_tower&quot;</span><span class="w"> </span><span class="na">xmlns:xacro=</span><span class="s">&quot;https://ros.org/wiki/xacro&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- tower --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;tower.xacro&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- ur10 --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xacro:include</span><span class="w"> </span><span class="na">filename=</span><span class="s">&quot;$(find ur_description)/urdf/ur10.urdf.xacro&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;world&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;link</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;world_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;world&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;tower&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/joint&gt;</span>
+<span class="w">        </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;world_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;world&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;tower&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/joint&gt;</span>
 
-        <span class="nt">&lt;xacro:tower</span> <span class="na">prefix=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xacro:tower</span><span class="w"> </span><span class="na">prefix=</span><span class="s">&quot;&quot;</span><span class="nt">/&gt;</span>
 
-        <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;attachment_joint&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;axis2&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;base_link&quot;</span> <span class="nt">/&gt;</span>
-            <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;${pi/2} 0.0 ${pi/2}&quot;</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/joint&gt;</span>
+<span class="w">        </span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;attachment_joint&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;parent</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;axis2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;child</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.0 0.0 0.0&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;${pi/2} 0.0 ${pi/2}&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/joint&gt;</span>
 
-        <span class="nt">&lt;xacro:ur10_robot</span> <span class="na">prefix=</span><span class="s">&quot;&quot;</span> <span class="na">joint_limited=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;xacro:ur10_robot</span><span class="w"> </span><span class="na">prefix=</span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="na">joint_limited=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
 
-    <span class="nt">&lt;/robot&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/robot&gt;</span>
 </code></pre></div>
 </div>
 </section>
@@ -375,18 +375,18 @@ side. The rotation is expressed in static “xyz” euler angles.</p>
 that they match the following:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="nt">&lt;launch&gt;</span>
 
-      <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find ur10_tower)/urdf/ur10_tower.urdf&quot;</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;rvizconfig&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find ur10_tower)/rviz/urdf.rviz&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;model&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur10_tower)/urdf/ur10_tower.urdf&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;gui&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rvizconfig&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;$(find ur10_tower)/rviz/urdf.rviz&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-      <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;use_gui&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_description&quot;</span><span class="w"> </span><span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_gui&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
 
-      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rviz&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span> <span class="na">type=</span><span class="s">&quot;rviz&quot;</span> <span class="na">args=</span><span class="s">&quot;-d $(arg rvizconfig)&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;node</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="w"> </span><span class="na">args=</span><span class="s">&quot;-d $(arg rvizconfig)&quot;</span><span class="w"> </span><span class="na">required=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;/launch&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/launch&gt;</span>
 </code></pre></div>
 </div>
 <p>Now we need to source the package path in our catkin workspace:</p>
