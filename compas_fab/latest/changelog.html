@@ -50,7 +50,7 @@
         <meta id="doc_versions" data-url="https://gramaziokohler.github.io/compas_fab/doc_versions.txt" data-docs="https://gramaziokohler.github.io/compas_fab/">
         <li class="nav-item nav-versions dropdown">
           <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            0.27.0
+            0.28.0
           </a>
           <div id="doc_version_list" class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions"></div>
         </li>
@@ -98,11 +98,23 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <h2>Unreleased</h2>
 <section id="added">
 <h3>Added</h3>
+</section>
+<section id="changed">
+<h3>Changed</h3>
+</section>
+<section id="removed">
+<h3>Removed</h3>
+</section>
+</section>
+<section id="id1">
+<h2>[0.28.0] 2023-05-10</h2>
+<section id="id2">
+<h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">Forward</span> <span class="pre">Kinematics</span></code> GH component.</p></li>
 </ul>
 </section>
-<section id="changed">
+<section id="id3">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated install process of GH components.</p></li>
@@ -115,16 +127,10 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed pre-Noetic support on the MoveIt planner when a tool is attached to the robot.</p></li>
 </ul>
 </section>
-<section id="deprecated">
-<h3>Deprecated</h3>
 </section>
-<section id="removed">
-<h3>Removed</h3>
-</section>
-</section>
-<section id="id1">
+<section id="id4">
 <h2>0.27.0</h2>
-<section id="id2">
+<section id="id5">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added support for attached and non-attached collision mesh visualization to the <code class="docutils literal notranslate"><span class="pre">Robot</span> <span class="pre">Visualize</span></code> GH component.</p></li>
@@ -132,7 +138,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">append</span></code> to the operations of the <code class="docutils literal notranslate"><span class="pre">Collision</span> <span class="pre">Mesh</span></code> GH component.</p></li>
 </ul>
 </section>
-<section id="id3">
+<section id="id6">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Changed behavior of <code class="docutils literal notranslate"><span class="pre">Attach</span> <span class="pre">Tool</span></code> GH component to only attach the tool but not add it to the planning scene state.</p></li>
@@ -141,7 +147,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed usage of <code class="docutils literal notranslate"><span class="pre">tangent_points_to_circle_xy</span></code> in Spherical Wrist solver to work with COMPAS v1.16 and older.</p></li>
 </ul>
 </section>
-<section id="id4">
+<section id="id7">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed DH params for analytical IK solver of UR3e and UR10e.</p></li>
@@ -149,16 +155,16 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">Publish</span> <span class="pre">to</span> <span class="pre">topic</span></code> Grasshopper component when the <code class="docutils literal notranslate"><span class="pre">ros_client</span></code> has been replaced (eg. disconnected and reconnected).</p></li>
 </ul>
 </section>
-<section id="id5">
+<section id="deprecated">
 <h3>Deprecated</h3>
 </section>
-<section id="id6">
+<section id="id8">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id7">
+<section id="id9">
 <h2>0.26.0</h2>
-<section id="id8">
+<section id="id10">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added a new GH component - <code class="docutils literal notranslate"><span class="pre">ConstraintsFromTargetConfiguration</span></code></p></li>
@@ -166,7 +172,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added a <code class="docutils literal notranslate"><span class="pre">Robot().attached_tools</span></code> property to allow attaching tools to multiple planning groups simultaneously.</p></li>
 </ul>
 </section>
-<section id="id9">
+<section id="id11">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Replaced icon for GH component - <code class="docutils literal notranslate"><span class="pre">ConstraintsFromPlane</span></code></p></li>
@@ -174,30 +180,30 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added parameter <code class="docutils literal notranslate"><span class="pre">group</span></code> to the <code class="docutils literal notranslate"><span class="pre">AttachToolComponent</span></code></p></li>
 </ul>
 </section>
-<section id="id10">
+<section id="id12">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Attaching a tool to a planning group doesn’t overwrite the tool attached to other groups.</p></li>
 <li><p>Changed <code class="docutils literal notranslate"><span class="pre">Trajectory</span></code> to inherit from <code class="docutils literal notranslate"><span class="pre">compas.data.Data</span></code> class to fix a serialization error that expects guid to be present.</p></li>
 </ul>
 </section>
-<section id="id11">
+<section id="id13">
 <h3>Deprecated</h3>
 </section>
-<section id="id12">
+<section id="id14">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id13">
+<section id="id15">
 <h2>0.25.0</h2>
-<section id="id14">
+<section id="id16">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Changed Grasshopper components to default to icon display.</p></li>
 <li><p>Changed to use <code class="docutils literal notranslate"><span class="pre">compas_rhino.conversions</span></code> to coerce frames.</p></li>
 </ul>
 </section>
-<section id="id15">
+<section id="id17">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed link parameter name when doing FK inside the GH component to display attached collision meshes.</p></li>
@@ -206,9 +212,9 @@ and this project adheres to <a class="reference external" href="https://semver.o
 </ul>
 </section>
 </section>
-<section id="id16">
+<section id="id18">
 <h2>0.24.0</h2>
-<section id="id17">
+<section id="id19">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.ReachabilityMap</span></code></p></li>
@@ -216,32 +222,32 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.OrthonormalVectorsFromAxisGenerator</span></code></p></li>
 </ul>
 </section>
-<section id="id18">
+<section id="id20">
 <h3>Changed</h3>
 </section>
-<section id="id19">
+<section id="id21">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">ROSmsg</span></code> import on GH components for publish/subscribe.</p></li>
 </ul>
 </section>
-<section id="id20">
+<section id="id22">
 <h3>Deprecated</h3>
 </section>
-<section id="id21">
+<section id="id23">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id22">
+<section id="id24">
 <h2>0.23.0</h2>
-<section id="id23">
+<section id="id25">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.PyBulletClient.load_ur5()</span></code> method to simplify some examples.</p></li>
 <li><p>Added Grasshopper components to get a zero configuration and to merge two configurations.</p></li>
 </ul>
 </section>
-<section id="id24">
+<section id="id26">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Moved all public API classes in <code class="docutils literal notranslate"><span class="pre">compas_fab.backends</span></code> to second-level imports.</p></li>
@@ -249,7 +255,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Simplified call to remove an attached tool by also removing the remaining collision mesh from the world automatically.</p></li>
 </ul>
 </section>
-<section id="id25">
+<section id="id27">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed PyBullet loading of meshes.</p></li>
@@ -258,86 +264,86 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed pose of collision mesh in ROS Noetic being ignored.</p></li>
 </ul>
 </section>
-<section id="id26">
+<section id="id28">
 <h3>Deprecated</h3>
 <ul class="simple">
 <li><p>Deprecated <code class="docutils literal notranslate"><span class="pre">compas_fab.utilities.write_data_to_json</span></code> in favor of <code class="docutils literal notranslate"><span class="pre">compas.data.json_dump</span></code>.</p></li>
 <li><p>Deprecated <code class="docutils literal notranslate"><span class="pre">compas_fab.utilities.read_data_from_json</span></code> in favor of <code class="docutils literal notranslate"><span class="pre">compas.data.json_load</span></code>.</p></li>
 </ul>
 </section>
-<section id="id27">
+<section id="id29">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id28">
+<section id="id30">
 <h2>0.22.0</h2>
-<section id="id29">
+<section id="id31">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">Attach</span> <span class="pre">Tool</span></code> GH component: crowd-coded at McNeel’s Robotic Fabrication Workshop!</p></li>
 </ul>
 </section>
-<section id="id30">
+<section id="id32">
 <h3>Changed</h3>
 </section>
-<section id="id31">
+<section id="id33">
 <h3>Fixed</h3>
 </section>
-<section id="id32">
+<section id="id34">
 <h3>Deprecated</h3>
 </section>
-<section id="id33">
+<section id="id35">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id34">
+<section id="id36">
 <h2>0.21.1</h2>
-<section id="id35">
+<section id="id37">
 <h3>Added</h3>
 </section>
-<section id="id36">
+<section id="id38">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Changed default wire visibility to hidden in some GH components for cleaner Grasshopper files.</p></li>
 </ul>
 </section>
-<section id="id37">
+<section id="id39">
 <h3>Fixed</h3>
 </section>
-<section id="id38">
+<section id="id40">
 <h3>Deprecated</h3>
 </section>
-<section id="id39">
+<section id="id41">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id40">
+<section id="id42">
 <h2>0.21.0</h2>
-<section id="id41">
+<section id="id43">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added a new backend: analytical kinematics for spherical-wrist and offset-wrist robots.</p></li>
 </ul>
 </section>
-<section id="id42">
+<section id="id44">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Consider <code class="docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code> in <code class="docutils literal notranslate"><span class="pre">AnalyticalInverseKinematics</span></code>.</p></li>
 </ul>
 </section>
 </section>
-<section id="id43">
+<section id="id45">
 <h2>0.20.1</h2>
-<section id="id44">
+<section id="id46">
 <h3>Removed</h3>
 <ul class="simple">
 <li><p>Removed the bundled binary files for the <code class="docutils literal notranslate"><span class="pre">VrepClient</span></code> remote API. To use V-REP, use the <code class="docutils literal notranslate"><span class="pre">remoteApi</span></code> binaries provided with the software.</p></li>
 </ul>
 </section>
 </section>
-<section id="id45">
+<section id="id47">
 <h2>0.20.0</h2>
-<section id="id46">
+<section id="id48">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">PoseArray</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayDimension</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiArrayLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">Int8MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Float32MultiArray</span></code>, <code class="docutils literal notranslate"><span class="pre">Int32</span></code> to <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.ros.messages</span></code></p></li>
@@ -346,7 +352,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">Robot.iter_inverse_kinematics</span></code> to allow iterating over all IK solutions provided by a solver</p></li>
 </ul>
 </section>
-<section id="id47">
+<section id="id49">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Changed the backend feature <code class="docutils literal notranslate"><span class="pre">InverseKinematics.inverse_kinematics</span></code> to be a generator. As a consequence of this, <code class="docutils literal notranslate"><span class="pre">ClientInterface.inverse_kinematics</span></code> and <code class="docutils literal notranslate"><span class="pre">PlannerInterface.inverse_kinematics</span></code> have changed to generators as well</p></li>
@@ -354,7 +360,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added iterative accurate IK resolution for PyBullet</p></li>
 </ul>
 </section>
-<section id="id48">
+<section id="id50">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">UnsupportedOperation</span></code> error when using <code class="docutils literal notranslate"><span class="pre">PyBulletClient</span></code> in Jupyter notebook (raised by <code class="docutils literal notranslate"><span class="pre">redirect_stdout</span></code>)</p></li>
@@ -362,114 +368,114 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">JointTrajectory.from_data</span></code> to be backward-compatible with JSON data generated before <code class="docutils literal notranslate"><span class="pre">compas_fab</span></code> 0.17</p></li>
 </ul>
 </section>
-<section id="id49">
+<section id="id51">
 <h3>Deprecated</h3>
 </section>
-<section id="id50">
+<section id="id52">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id51">
+<section id="id53">
 <h2>0.19.1</h2>
-<section id="id52">
+<section id="id54">
 <h3>Added</h3>
 </section>
-<section id="id53">
+<section id="id55">
 <h3>Changed</h3>
 </section>
-<section id="id54">
+<section id="id56">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed bundling of ghuser components</p></li>
 </ul>
 </section>
-<section id="id55">
+<section id="id57">
 <h3>Deprecated</h3>
 </section>
-<section id="id56">
+<section id="id58">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id57">
+<section id="id59">
 <h2>0.19.0</h2>
-<section id="id58">
+<section id="id60">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added documentation for Grasshopper components.</p></li>
 <li><p>Added Grasshopper components to publish and subscribe to ROS topics.</p></li>
 </ul>
 </section>
-<section id="id59">
+<section id="id61">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated <code class="docutils literal notranslate"><span class="pre">build-ghuser-components</span></code> task</p></li>
 <li><p>Updated to COMPAS 1.7</p></li>
 </ul>
 </section>
-<section id="id60">
+<section id="id62">
 <h3>Fixed</h3>
 </section>
-<section id="id61">
+<section id="id63">
 <h3>Deprecated</h3>
 </section>
-<section id="id62">
+<section id="id64">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id63">
+<section id="id65">
 <h2>0.18.3</h2>
-<section id="id64">
+<section id="id66">
 <h3>Added</h3>
 </section>
-<section id="id65">
+<section id="id67">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Made consistent use of <code class="docutils literal notranslate"><span class="pre">repr</span></code> in nested objects</p></li>
 </ul>
 </section>
-<section id="id66">
+<section id="id68">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">compas.backends.PyBulletClient.convert_mesh_to_body</span></code> circumventing PyBullet’s propensity to cache</p></li>
 </ul>
 </section>
-<section id="id67">
+<section id="id69">
 <h3>Deprecated</h3>
 </section>
-<section id="id68">
+<section id="id70">
 <h3>Removed</h3>
 </section>
-</section>
-<section id="id69">
-<h2>0.18.2</h2>
-<section id="id70">
-<h3>Added</h3>
 </section>
 <section id="id71">
-<h3>Changed</h3>
-</section>
+<h2>0.18.2</h2>
 <section id="id72">
-<h3>Fixed</h3>
+<h3>Added</h3>
 </section>
 <section id="id73">
-<h3>Deprecated</h3>
+<h3>Changed</h3>
 </section>
 <section id="id74">
+<h3>Fixed</h3>
+</section>
+<section id="id75">
+<h3>Deprecated</h3>
+</section>
+<section id="id76">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id75">
+<section id="id77">
 <h2>0.18.1</h2>
-<section id="id76">
+<section id="id78">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fix error message during uninstall of Grasshopper components</p></li>
 </ul>
 </section>
 </section>
-<section id="id77">
+<section id="id79">
 <h2>0.18.0</h2>
-<section id="id78">
+<section id="id80">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Grasshopper components now also for Mac</p></li>
@@ -477,14 +483,14 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added support for Python 3.9</p></li>
 </ul>
 </section>
-<section id="id79">
+<section id="id81">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">Configuration</span></code> class has moved to <code class="docutils literal notranslate"><span class="pre">compas.robots</span></code>, but is still aliased within <code class="docutils literal notranslate"><span class="pre">compas_fab.robots</span></code></p></li>
 <li><p>Lazily load <code class="docutils literal notranslate"><span class="pre">V-REP</span> <span class="pre">remoteApi</span></code> library</p></li>
 </ul>
 </section>
-<section id="id80">
+<section id="id82">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">repr()</span></code> of <code class="docutils literal notranslate"><span class="pre">ROSmsg</span></code> class</p></li>
@@ -494,16 +500,16 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed deserialization of <code class="docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code></p></li>
 </ul>
 </section>
-<section id="id81">
+<section id="id83">
 <h3>Deprecated</h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code> is being deprecated in favor of <code class="docutils literal notranslate"><span class="pre">compas.robots.Configuration</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id82">
+<section id="id84">
 <h2>0.17.0</h2>
-<section id="id83">
+<section id="id85">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added python components library for Grasshopper</p></li>
@@ -516,14 +522,14 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added length limitations to attributes of <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
 </ul>
 </section>
-<section id="id84">
+<section id="id86">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.1</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Configuration</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>: the attributes <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">types</span></code> changed to <code class="docutils literal notranslate"><span class="pre">joint_values</span></code> and <code class="docutils literal notranslate"><span class="pre">joint_types</span></code> respectively.</p></li>
 </ul>
 </section>
-<section id="id85">
+<section id="id87">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed bug in the PyBullet client where one could not update the configuration of a robot with an attached collision mesh</p></li>
@@ -531,78 +537,78 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Fixed bug when keys with <code class="docutils literal notranslate"><span class="pre">None</span></code> values were passed to the planner.</p></li>
 </ul>
 </section>
-<section id="id86">
+<section id="id88">
 <h3>Deprecated</h3>
 </section>
-<section id="id87">
+<section id="id89">
 <h3>Removed</h3>
 <ul class="simple">
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectoryPoint.merge</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id88">
+<section id="id90">
 <h2>0.16.0</h2>
-<section id="id89">
+<section id="id91">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">1.0</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id90">
+<section id="id92">
 <h2>0.15.0</h2>
-<section id="id91">
+<section id="id93">
 <h3>Added</h3>
 </section>
-<section id="id92">
+<section id="id94">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.19</span></code></p></li>
 </ul>
 </section>
-<section id="id93">
+<section id="id95">
 <h3>Fixed</h3>
 </section>
-<section id="id94">
+<section id="id96">
 <h3>Deprecated</h3>
 </section>
-<section id="id95">
+<section id="id97">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id96">
+<section id="id98">
 <h2>0.14.0</h2>
-<section id="id97">
+<section id="id99">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added new backend feature <code class="docutils literal notranslate"><span class="pre">ResetPlanningScene</span></code></p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">MoveItResetPlanningScene</span></code></p></li>
 </ul>
 </section>
-<section id="id98">
+<section id="id100">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.18</span></code></p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">compas.IPY</span></code> to check for IronPython</p></li>
 </ul>
 </section>
-<section id="id99">
+<section id="id101">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">remove_attached_tool</span></code> of <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id100">
+<section id="id102">
 <h2>0.13.1</h2>
-<section id="id101">
+<section id="id103">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">name</span></code> property to <code class="docutils literal notranslate"><span class="pre">Tool</span></code> class.</p></li>
 </ul>
 </section>
-<section id="id102">
+<section id="id104">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed bug in <code class="docutils literal notranslate"><span class="pre">add_attached_tool</span></code> of <code class="docutils literal notranslate"><span class="pre">PlanningScene</span></code></p></li>
@@ -611,18 +617,18 @@ and this project adheres to <a class="reference external" href="https://semver.o
 </ul>
 </section>
 </section>
-<section id="id103">
+<section id="id105">
 <h2>0.13.0</h2>
-<section id="id104">
+<section id="id106">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.17</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id105">
+<section id="id107">
 <h2>0.12.0</h2>
-<section id="id106">
+<section id="id108">
 <h3>Added</h3>
 <ul class="simple">
 <li><p><strong>PyBullet integration</strong>: added support for PyBullet client and forward/inverse kinematic solver</p></li>
@@ -641,7 +647,7 @@ and this project adheres to <a class="reference external" href="https://semver.o
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot.get_configuration_from_group_state</span></code></p></li>
 </ul>
 </section>
-<section id="id107">
+<section id="id109">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.16.9</span></code></p></li>
@@ -659,13 +665,13 @@ the fact they depend on <code class="docutils literal notranslate"><span class="
 <li><p>Changed ROS planning scene methods to be synchronous.</p></li>
 </ul>
 </section>
-<section id="id108">
+<section id="id110">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Attached collision meshes are included in inverse kinematics calculations in ROS</p></li>
 </ul>
 </section>
-<section id="id109">
+<section id="id111">
 <h3>Deprecated</h3>
 <ul class="simple">
 <li><p>The methods <code class="docutils literal notranslate"><span class="pre">forward_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code>
@@ -674,13 +680,13 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 <li><p><code class="docutils literal notranslate"><span class="pre">RobotArtist</span></code> are deprecated in favor of <code class="docutils literal notranslate"><span class="pre">RobotModelArtist</span></code>.</p></li>
 </ul>
 </section>
-<section id="id110">
+<section id="id112">
 <h3>Removed</h3>
 </section>
 </section>
-<section id="id111">
+<section id="id113">
 <h2>0.11.0</h2>
-<section id="id112">
+<section id="id114">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added optional <code class="docutils literal notranslate"><span class="pre">joint_names</span></code> to <code class="docutils literal notranslate"><span class="pre">Configuration</span></code></p></li>
@@ -689,7 +695,7 @@ signatures still exists suffixed by <code class="docutils literal notranslate"><
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">Semantics.get_all_configurable_joints</span></code></p></li>
 </ul>
 </section>
-<section id="id113">
+<section id="id115">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.15</span></code></p></li>
@@ -710,7 +716,7 @@ function with <code class="docutils literal notranslate"><span class="pre">toler
 instead of a <a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Scale.html#compas.geometry.Scale" title="(in COMPAS v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Scale</span></code></a> instance as an argument.</p></li>
 </ul>
 </section>
-<section id="id114">
+<section id="id116">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Convert constraints on inverse kinematics and cartesian planner to ROS messages</p></li>
@@ -718,24 +724,24 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 </ul>
 </section>
 </section>
-<section id="id115">
+<section id="id117">
 <h2>0.10.2</h2>
-<section id="id116">
+<section id="id118">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added Python 3.8 support</p></li>
 </ul>
 </section>
-<section id="id117">
+<section id="id119">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.13</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id118">
+<section id="id120">
 <h2>0.10.1</h2>
-<section id="id119">
+<section id="id121">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fix DAE parser to handle <code class="docutils literal notranslate"><span class="pre">polylist</span></code> meshes</p></li>
@@ -743,9 +749,9 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 </ul>
 </section>
 </section>
-<section id="id120">
+<section id="id122">
 <h2>0.10.0</h2>
-<section id="id121">
+<section id="id123">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">attach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">detach_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">draw_attached_tool</span></code>, <code class="docutils literal notranslate"><span class="pre">from_tool0_to_attached_tool</span></code> and <code class="docutils literal notranslate"><span class="pre">from_attached_tool_to_tool0</span></code> to <code class="docutils literal notranslate"><span class="pre">Robot</span></code></p></li>
@@ -755,13 +761,13 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Added material/color support for DAE files on ROS file loader</p></li>
 </ul>
 </section>
-<section id="id122">
+<section id="id124">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Changed <code class="docutils literal notranslate"><span class="pre">inverse_kinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code> and <code class="docutils literal notranslate"><span class="pre">plan_motion</span></code> to use the attached_tool’s <code class="docutils literal notranslate"><span class="pre">AttachedCollisionMesh</span></code> if set</p></li>
 </ul>
 </section>
-<section id="id123">
+<section id="id125">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed mutable init parameters of <code class="docutils literal notranslate"><span class="pre">Configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectoryPoint</span></code>, <code class="docutils literal notranslate"><span class="pre">JointTrajectory</span></code> and <code class="docutils literal notranslate"><span class="pre">Robot.basic</span></code>.</p></li>
@@ -770,9 +776,9 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 </ul>
 </section>
 </section>
-<section id="id124">
+<section id="id126">
 <h2>0.9.0</h2>
-<section id="id125">
+<section id="id127">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">load_robot</span></code> method to ROS client to simplify loading robots from running ROS setup.</p></li>
@@ -780,23 +786,23 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Inertia</span></code>: a Inertia class representing spatial distribution of mass in a rigid body</p></li>
 </ul>
 </section>
-<section id="id126">
+<section id="id128">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.11</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id127">
+<section id="id129">
 <h2>0.8.0</h2>
-<section id="id128">
+<section id="id130">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.10</span></code></p></li>
 <li><p>Add better support for passive joints on IK, Cartesian and Kinematic planning</p></li>
 </ul>
 </section>
-<section id="id129">
+<section id="id131">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Use WorldXY’s origin as default for robots that are have no parent join on their base</p></li>
@@ -805,9 +811,9 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 </ul>
 </section>
 </section>
-<section id="id130">
+<section id="id132">
 <h2>0.7.0</h2>
-<section id="id131">
+<section id="id133">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Fixed Python 2 vs Python 3 incompatibilities in <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors</span></code> module</p></li>
@@ -819,7 +825,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>ROS client: changed return type of trajectory execution methods to <code class="docutils literal notranslate"><span class="pre">CancellableFutureResult</span></code></p></li>
 </ul>
 </section>
-<section id="id132">
+<section id="id134">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosCon3D.reset()</span></code></p></li>
@@ -828,23 +834,23 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">compas_fab.backends.FutureResult</span></code> class to deal with long-running async tasks</p></li>
 </ul>
 </section>
-<section id="id133">
+<section id="id135">
 <h3>Removed</h3>
 <ul class="simple">
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.sensors.baumer.PosConCM.get_live_monitor_data()</span></code></p></li>
 <li><p>Removed non-implemented methods from <code class="docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code>: <code class="docutils literal notranslate"><span class="pre">send_frame</span></code>, <code class="docutils literal notranslate"><span class="pre">send_configuration</span></code>, <code class="docutils literal notranslate"><span class="pre">send_trajectory</span></code></p></li>
 </ul>
 </section>
-<section id="id134">
+<section id="id136">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed missing planner initialization when used without context manager.</p></li>
 </ul>
 </section>
 </section>
-<section id="id135">
+<section id="id137">
 <h2>0.6.0</h2>
-<section id="id136">
+<section id="id138">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated <code class="docutils literal notranslate"><span class="pre">COMPAS</span></code> dependency to <code class="docutils literal notranslate"><span class="pre">0.8.1</span></code></p></li>
@@ -856,7 +862,7 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Fixed delays when modifying the planning scene of ROS.</p></li>
 </ul>
 </section>
-<section id="id137">
+<section id="id139">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">jump_threshold</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></p></li>
@@ -864,16 +870,16 @@ instead of a <a class="reference external" href="https://compas.dev/compas/lates
 <li><p>Added support to retrieve the full planning scene.</p></li>
 </ul>
 </section>
-<section id="id138">
+<section id="id140">
 <h3>Removed</h3>
 <ul class="simple">
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">compas_fab.Robot.get_configuration</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id139">
+<section id="id141">
 <h2>0.5.0</h2>
-<section id="id140">
+<section id="id142">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>ROS Client: renamed <code class="docutils literal notranslate"><span class="pre">compute_cartesian_path</span></code> to <code class="docutils literal notranslate"><span class="pre">plan_cartesian_motion</span></code></p></li>
@@ -896,7 +902,7 @@ to the new trajectory classes.</p></li>
 <li><p>Changed <code class="docutils literal notranslate"><span class="pre">PathPlan</span></code> class to use the new trajectory classes</p></li>
 </ul>
 </section>
-<section id="id141">
+<section id="id143">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">scale</span></code> method to <code class="docutils literal notranslate"><span class="pre">Configuration</span></code></p></li>
@@ -907,46 +913,46 @@ to the new trajectory classes.</p></li>
 <li><p>Added several doc examples</p></li>
 </ul>
 </section>
-<section id="id142">
+<section id="id144">
 <h3>Removed</h3>
 <ul class="simple">
 <li><p>Aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code>. Import from <code class="docutils literal notranslate"><span class="pre">compas.geometry</span></code> instead.</p></li>
 </ul>
 </section>
 </section>
-<section id="id143">
+<section id="id145">
 <h2>0.4.1</h2>
-<section id="id144">
+<section id="id146">
 <h3>Fixed</h3>
 <ul class="simple">
 <li><p>Fixed missing library for V-REP on macOS</p></li>
 </ul>
 </section>
-<section id="id145">
+<section id="id147">
 <h3>Deprecated</h3>
 <ul class="simple">
 <li><p>The aliases for <code class="docutils literal notranslate"><span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Transformation</span></code> will be removed, in the future, import directly from <code class="docutils literal notranslate"><span class="pre">compas</span></code> core.</p></li>
 </ul>
 </section>
 </section>
-<section id="id146">
+<section id="id148">
 <h2>0.4.0</h2>
-<section id="id147">
+<section id="id149">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Color parameter to Rhino robot artist</p></li>
 </ul>
 </section>
-<section id="id148">
+<section id="id150">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Updated to <code class="docutils literal notranslate"><span class="pre">COMPAS</span> <span class="pre">0.4.10</span></code></p></li>
 </ul>
 </section>
 </section>
-<section id="id149">
+<section id="id151">
 <h2>0.3.0</h2>
-<section id="id150">
+<section id="id152">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Deeper integration with MoveIt! motion planning services</p></li>
@@ -954,7 +960,7 @@ to the new trajectory classes.</p></li>
 <li><p>Added support for cancellable tasks/actions</p></li>
 </ul>
 </section>
-<section id="id151">
+<section id="id153">
 <h3>Changed</h3>
 <ul class="simple">
 <li><p>Renamed <code class="docutils literal notranslate"><span class="pre">UrdfImporter</span></code> to <code class="docutils literal notranslate"><span class="pre">RosFileServerLoader</span></code></p></li>
@@ -962,18 +968,18 @@ to the new trajectory classes.</p></li>
 </ul>
 </section>
 </section>
-<section id="id152">
+<section id="id154">
 <h2>0.2.1</h2>
-<section id="id153">
+<section id="id155">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Robot artist for Blender</p></li>
 </ul>
 </section>
 </section>
-<section id="id154">
+<section id="id156">
 <h2>0.2.0</h2>
-<section id="id155">
+<section id="id157">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>First open source release!</p></li>
@@ -982,9 +988,9 @@ to the new trajectory classes.</p></li>
 </ul>
 </section>
 </section>
-<section id="id156">
+<section id="id158">
 <h2>0.1.0</h2>
-<section id="id157">
+<section id="id159">
 <h3>Added</h3>
 <ul class="simple">
 <li><p>Initial version</p></li>
@@ -1113,242 +1119,246 @@ to the new trajectory classes.</p></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#unreleased">Unreleased</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#added">Added</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#changed">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#fixed">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#deprecated">Deprecated</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#removed">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id1">0.27.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id1">[0.28.0] 2023-05-10</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#id2">Added</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#id3">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id4">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id5">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id6">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id7">0.26.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id8">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id9">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id10">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id11">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id12">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id4">0.27.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id5">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id6">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id7">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#deprecated">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id8">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id13">0.25.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id14">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id15">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id9">0.26.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id10">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id11">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id12">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id13">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id14">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id16">0.24.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id17">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id18">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id19">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id20">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id21">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id15">0.25.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id16">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id17">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id22">0.23.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id23">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id24">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id25">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id26">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id27">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id18">0.24.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id19">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id20">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id21">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id22">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id23">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id28">0.22.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id29">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id30">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id31">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id32">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id33">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id24">0.23.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id25">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id26">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id27">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id28">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id29">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id34">0.21.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id35">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id36">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id37">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id38">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id39">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id30">0.22.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id31">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id32">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id33">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id34">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id35">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id40">0.21.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id41">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id42">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id36">0.21.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id37">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id38">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id39">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id40">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id41">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id43">0.20.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id44">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id42">0.21.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id43">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id44">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id45">0.20.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id46">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id47">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id48">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id49">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id50">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id45">0.20.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id46">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id51">0.19.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id52">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id53">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id54">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id55">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id56">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id47">0.20.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id48">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id49">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id50">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id51">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id52">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id57">0.19.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id58">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id59">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id60">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id61">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id62">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id53">0.19.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id54">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id55">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id56">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id57">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id58">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id63">0.18.3</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id64">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id65">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id66">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id67">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id68">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id59">0.19.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id60">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id61">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id62">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id63">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id64">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id69">0.18.2</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id70">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id71">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id72">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id73">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id74">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id65">0.18.3</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id66">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id67">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id68">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id69">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id70">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id75">0.18.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id76">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id71">0.18.2</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id72">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id73">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id74">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id75">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id76">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id77">0.18.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id78">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id79">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id80">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id81">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id77">0.18.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id78">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id82">0.17.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id83">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id84">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id85">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id86">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id87">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id79">0.18.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id80">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id81">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id82">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id83">Deprecated</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id88">0.16.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id89">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id84">0.17.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id85">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id86">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id87">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id88">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id89">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id90">0.15.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id91">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id92">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id93">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id94">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id95">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id90">0.16.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id91">Changed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id96">0.14.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id97">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id98">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id99">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id92">0.15.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id93">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id94">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id95">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id96">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id97">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id100">0.13.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id101">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id102">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id98">0.14.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id99">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id100">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id101">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id103">0.13.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id104">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id102">0.13.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id103">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id104">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id105">0.12.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id106">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id107">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id108">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id109">Deprecated</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id110">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id105">0.13.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id106">Changed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id111">0.11.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id112">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id113">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id114">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id107">0.12.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id108">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id109">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id110">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id111">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id112">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id115">0.10.2</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id116">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id117">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id113">0.11.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id114">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id115">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id116">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id118">0.10.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id119">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id117">0.10.2</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id118">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id119">Changed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id120">0.10.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id121">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id122">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id123">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id120">0.10.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id121">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id124">0.9.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id125">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id126">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id122">0.10.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id123">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id124">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id125">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id127">0.8.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id126">0.9.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id127">Added</a></li>
 <li class="nav-item"><a class="nav-link reference internal" href="#id128">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id129">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id130">0.7.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id131">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id132">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id133">Removed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id134">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id129">0.8.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id130">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id131">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id135">0.6.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id136">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id137">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id138">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id132">0.7.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id133">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id134">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id135">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id136">Fixed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id139">0.5.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id140">Changed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id141">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id142">Removed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id137">0.6.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id138">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id139">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id140">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id143">0.4.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id144">Fixed</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id145">Deprecated</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id141">0.5.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id142">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id143">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id144">Removed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id146">0.4.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id147">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id148">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id145">0.4.1</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id146">Fixed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id147">Deprecated</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id149">0.3.0</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id150">Added</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id151">Changed</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id148">0.4.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id149">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id150">Changed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id152">0.2.1</a><ul class="nav flex-column">
-<li class="nav-item"><a class="nav-link reference internal" href="#id153">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id151">0.3.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id152">Added</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id153">Changed</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id154">0.2.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id154">0.2.1</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#id155">Added</a></li>
 </ul>
 </li>
-<li class="nav-item"><a class="nav-link reference internal" href="#id156">0.1.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id156">0.2.0</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#id157">Added</a></li>
+</ul>
+</li>
+<li class="nav-item"><a class="nav-link reference internal" href="#id158">0.1.0</a><ul class="nav flex-column">
+<li class="nav-item"><a class="nav-link reference internal" href="#id159">Added</a></li>
 </ul>
 </li>
 </ul>
