@@ -117,19 +117,19 @@ the list of solutions, they are set to <code class="docutils literal notranslate
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul>
 <li><p><strong>robot</strong> (<a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>) – The robot instance for which inverse kinematics is being calculated.</p></li>
-<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/api/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
+<li><p><strong>frame_WCF</strong> (<a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The frame to calculate the inverse for.</p></li>
 <li><p><strong>start_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Configuration</span></code>, optional) – The start_configuration of the robot.</p></li>
 <li><p><strong>group</strong> (<em>str, optional</em>) – The planning group used for determining the end effector and labeling
 the <code class="docutils literal notranslate"><span class="pre">start_configuration</span></code>. Defaults to the robot’s main planning group.</p></li>
 <li><p><strong>options</strong> (<em>dict</em>) – Dictionary containing the following key-value pairs:
-- <code class="docutils literal notranslate"><span class="pre">&quot;solver&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) The solver to use to calculate IK.
-- <code class="docutils literal notranslate"><span class="pre">&quot;check_collision&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, checks</p>
+- <code class="docutils literal notranslate"><span class="pre">&quot;solver&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) The solver to use to calculate IK.
+- <code class="docutils literal notranslate"><span class="pre">&quot;check_collision&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) When <code class="docutils literal notranslate"><span class="pre">True</span></code>, checks</p>
 <blockquote>
 <div><p>if the robot is in collision. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </div></blockquote>
 <ul class="simple">
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">&quot;keep_order&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, removes the</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>- solutions. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">&quot;keep_order&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional ) When <code class="docutils literal notranslate"><span class="pre">False</span></code>, removes the</dt><dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code>- solutions. Defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
 </dl>
 </li>
@@ -138,7 +138,7 @@ the <code class="docutils literal notranslate"><span class="pre">start_configura
 </ul>
 </dd>
 <dt class="field-even">Yields</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> – A tuple of 2 elements containing a list of joint positions and a list
 of matching joint names. If <code class="docutils literal notranslate"><span class="pre">&quot;keep_order&quot;</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> this list
 contains also <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
