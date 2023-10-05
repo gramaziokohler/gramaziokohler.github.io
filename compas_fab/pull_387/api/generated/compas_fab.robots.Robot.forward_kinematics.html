@@ -101,7 +101,7 @@
 <h1>Robot.forward_kinematics</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.robots.Robot.forward_kinematics">
-<span class="sig-prename descclassname"><span class="pre">Robot.</span></span><span class="sig-name descname"><span class="pre">forward_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_attached_tool_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/robot.py#L1444"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">Robot.</span></span><span class="sig-name descname"><span class="pre">forward_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_attached_tool_frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/robot.py#L1442"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Calculate the robot’s forward kinematic.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -111,16 +111,16 @@ full configuration is passed, the zero-joint state for the other
 configurable joints is assumed.</p></li>
 <li><p><strong>group</strong> (obj:<cite>str</cite>, optional) – The planning group used for the calculation. Defaults to the robot’s
 main planning group.</p></li>
-<li><p><strong>use_attached_tool_frame</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> and there is a tool attached to the planning group, FK will return
+<li><p><strong>use_attached_tool_frame</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>, optional) – If <code class="docutils literal notranslate"><span class="pre">True</span></code> and there is a tool attached to the planning group, FK will return
 the TCF of the attached tool instead of the T0CF. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 <li><p><strong>options</strong> (obj:<cite>dict</cite>, optional) – Dictionary containing the following key-value pairs:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;solver&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) If <code class="docutils literal notranslate"><span class="pre">None</span></code> calculates FK
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;solver&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) If <code class="docutils literal notranslate"><span class="pre">None</span></code> calculates FK
 with the client if it exists or with the robot model.
 If <code class="docutils literal notranslate"><span class="pre">'model'</span></code> use the robot model to calculate FK.
 Other values depend on specific backend implementation, some backends might
 allow selecting different FK solvers dynamically.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;link&quot;</span></code>: (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, optional) The name of the link to
 calculate the forward kinematics for. Defaults to the group’s end
 effector link.
 Backwards compatibility note: if there’s no <code class="docutils literal notranslate"><span class="pre">link</span></code> option, the
@@ -137,8 +137,8 @@ Check the API reference of the FK backend implementation for more details.</p>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> – If <cite>link_name</cite> doesn’t match any of the <a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> instance’s links.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – If forward kinematic method for given <cite>backend</cite> is not implemented.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If <cite>link_name</cite> doesn’t match any of the <a class="reference internal" href="compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">Robot</span></code></a> instance’s links.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.12)"><strong>NotImplementedError</strong></a> – If forward kinematic method for given <cite>backend</cite> is not implemented.</p></li>
 </ul>
 </dd>
 </dl>
