@@ -20,11 +20,11 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-  <link rel="next" title="RobotSemantics.from_srdf_file" href="compas_fab.robots.RobotSemantics.from_srdf_file.html" />
+  <link rel="next" title="RobotSemantics.from_data" href="compas_fab.robots.RobotSemantics.from_data.html" />
   
 
   
-  <link rel="prev" title="Robot.zero_configuration" href="compas_fab.robots.Robot.zero_configuration.html" />
+  <link rel="prev" title="Robot.validate_json" href="compas_fab.robots.Robot.validate_json.html" />
   
 
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -99,8 +99,8 @@
 <h1>RobotSemantics</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.robots.RobotSemantics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">RobotSemantics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_group_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_effectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/semantics.py#L12"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.robots.</span></span><span class="sig-name descname"><span class="pre">RobotSemantics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">main_group_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passive_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_effectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/robots/semantics.py#L13"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.data.Data.html#compas.data.Data" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
 <p>Represents semantic information of a robot.</p>
 <p>The semantic model is based on the
 <cite>Semantic Robot Description Format</cite> (<a class="reference external" href="https://wiki.ros.org/srdf">SRDF</a>).</p>
@@ -112,29 +112,71 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file" title="compas_fab.robots.RobotSemantics.from_srdf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_file</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_data.html#compas_fab.robots.RobotSemantics.from_data" title="compas_fab.robots.RobotSemantics.from_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_data</span></code></a></p></td>
+<td><p>Construct an object of this type from the provided data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_file.html#compas_fab.robots.RobotSemantics.from_srdf_file" title="compas_fab.robots.RobotSemantics.from_srdf_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_file</span></code></a></p></td>
 <td><p>Create an instance of semantics based on an SRDF file path or file-like object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string" title="compas_fab.robots.RobotSemantics.from_srdf_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_string</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_srdf_string.html#compas_fab.robots.RobotSemantics.from_srdf_string" title="compas_fab.robots.RobotSemantics.from_srdf_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_srdf_string</span></code></a></p></td>
 <td><p>Create an instance of semantics based on an SRDF string.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_xml.html#compas_fab.robots.RobotSemantics.from_xml" title="compas_fab.robots.RobotSemantics.from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_xml</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_xml.html#compas_fab.robots.RobotSemantics.from_xml" title="compas_fab.robots.RobotSemantics.from_xml"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_xml</span></code></a></p></td>
 <td><p>Create an instance of semantics based on an XML object.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints" title="compas_fab.robots.RobotSemantics.get_all_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_configurable_joints</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_all_configurable_joints.html#compas_fab.robots.RobotSemantics.get_all_configurable_joints" title="compas_fab.robots.RobotSemantics.get_all_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_configurable_joints</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_base_link_name.html#compas_fab.robots.RobotSemantics.get_base_link_name" title="compas_fab.robots.RobotSemantics.get_base_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_base_link_name</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joint_names.html#compas_fab.robots.RobotSemantics.get_configurable_joint_names" title="compas_fab.robots.RobotSemantics.get_configurable_joint_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joint_names</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_configurable_joints.html#compas_fab.robots.RobotSemantics.get_configurable_joints" title="compas_fab.robots.RobotSemantics.get_configurable_joints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_configurable_joints</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.get_end_effector_link_name.html#compas_fab.robots.RobotSemantics.get_end_effector_link_name" title="compas_fab.robots.RobotSemantics.get_end_effector_link_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_end_effector_link_name</span></code></a></p></td>
 <td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Inherited Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.ToString.html#compas_fab.robots.RobotSemantics.ToString" title="compas_fab.robots.RobotSemantics.ToString"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToString</span></code></a></p></td>
+<td><p>Converts the instance to a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.copy.html#compas_fab.robots.RobotSemantics.copy" title="compas_fab.robots.RobotSemantics.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code></a></p></td>
+<td><p>Make an independent copy of the data object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_json.html#compas_fab.robots.RobotSemantics.from_json" title="compas_fab.robots.RobotSemantics.from_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_json</span></code></a></p></td>
+<td><p>Construct an object from serialized data contained in a JSON file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.from_jsonstring.html#compas_fab.robots.RobotSemantics.from_jsonstring" title="compas_fab.robots.RobotSemantics.from_jsonstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_jsonstring</span></code></a></p></td>
+<td><p>Construct an object from serialized data contained in a JSON string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.sha256.html#compas_fab.robots.RobotSemantics.sha256" title="compas_fab.robots.RobotSemantics.sha256"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sha256</span></code></a></p></td>
+<td><p>Compute a hash of the data for comparison during version control using the sha256 algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.to_data.html#compas_fab.robots.RobotSemantics.to_data" title="compas_fab.robots.RobotSemantics.to_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_data</span></code></a></p></td>
+<td><p>Convert an object to its native data representation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.to_json.html#compas_fab.robots.RobotSemantics.to_json" title="compas_fab.robots.RobotSemantics.to_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_json</span></code></a></p></td>
+<td><p>Serialize the data representation of an object to a JSON file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.to_jsonstring.html#compas_fab.robots.RobotSemantics.to_jsonstring" title="compas_fab.robots.RobotSemantics.to_jsonstring"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_jsonstring</span></code></a></p></td>
+<td><p>Serialize the data representation of an object to a JSON string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.validate_data.html#compas_fab.robots.RobotSemantics.validate_data" title="compas_fab.robots.RobotSemantics.validate_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_data</span></code></a></p></td>
+<td><p>Validate the object's data against its data schema.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.robots.RobotSemantics.validate_json.html#compas_fab.robots.RobotSemantics.validate_json" title="compas_fab.robots.RobotSemantics.validate_json"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_json</span></code></a></p></td>
+<td><p>Validate the object's data against its json schema.</p></td>
 </tr>
 </tbody>
 </table>
@@ -258,7 +300,9 @@
       <div class="d-none d-xl-block col-xl-2 compas-toc" role="toc">
         
         <ul class="nav flex-column" id="compas-toc">
-<li class="nav-item"><a class="nav-link reference internal" href="#">RobotSemantics</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#">RobotSemantics</a><ul class="nav flex-column">
+</ul>
+</li>
 </ul>
 
       </div>
@@ -270,20 +314,20 @@
   <footer class="compas-footer">
     <nav class="nav p-2">
       
-      <a href="compas_fab.robots.Robot.zero_configuration.html" title="Robot.zero_configuration" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
+      <a href="compas_fab.robots.Robot.validate_json.html" title="Robot.validate_json" class="nav-link footer-link float-start text-left d-flex w-50" rel="prev">
         <div class="nav-button p-2 m-2"><i class="fas fa-arrow-left"></i></div>
         <div class="nav-title flex-grow-1 align-self-center">
           <div class="nav-direction small font-weight-light">Previous</div>
-          Robot.zero_configuration
+          Robot.validate_json
         </div>
       </a>
       
 
       
-      <a href="compas_fab.robots.RobotSemantics.from_srdf_file.html" title="RobotSemantics.from_srdf_file" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+      <a href="compas_fab.robots.RobotSemantics.from_data.html" title="RobotSemantics.from_data" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
         <div class="nav-title footer-link flex-grow-1 align-self-center">
           <div class="nav-direction small font-weight-light">Next</div>
-          RobotSemantics.from_srdf_file
+          RobotSemantics.from_data
         </div>
         <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
       </a>
