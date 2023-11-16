@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-  <link rel="next" title="CloseGripper.apply_to" href="compas_fab.planning.CloseGripper.apply_to.html" />
+  <link rel="next" title="CloseGripper.apply_effects" href="compas_fab.planning.CloseGripper.apply_effects.html" />
   
 
   
@@ -99,7 +99,7 @@
 <h1>CloseGripper</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.planning.CloseGripper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">CloseGripper</span></span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L362"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">CloseGripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attaching_workpiece_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attaching_workpiece_grasp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Transformation([[1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0],</span> <span class="pre">[0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0],</span> <span class="pre">[0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0],</span> <span class="pre">[0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0]])</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L419"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="compas_fab.planning.Action.html#compas_fab.planning.Action" title="compas_fab.planning.action.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a></p>
 <p>Action to close the gripper.</p>
 <p>If the gripper is closed around a workpiece, the workpiece is attached to the gripper.</p>
@@ -107,11 +107,11 @@
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tool_id</strong> (<em>str</em>) – The id of the gripper tool that is used.</p></li>
-<li><p><strong>attached_workpiece_id</strong> (<em>str, optional</em>) – The id of the workpiece attached to the gripper.
-If the workpiece is not specified, the gripper is assumed to be empty.</p></li>
-<li><p><strong>attached_workpiece_grasp</strong> (<a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>, optional) – The grasp frame of the workpiece relative to the robot flange.
-If the workpiece_frame is not specified, the workpiece Frame is
-assumed to be the same as the gripper’s TCP.</p></li>
+<li><p><strong>attaching_workpiece_id</strong> (<em>str, optional</em>) – The id of the workpiece attached to the gripper.
+If no workpiece is attached during the gripper closure, None.</p></li>
+<li><p><strong>attaching_workpiece_grasp</strong> (<a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.geometry.Transformation.html#compas.geometry.Transformation" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Transformation</span></code></a>, optional) – If attaching_workpiece_id is not None, the grasp frame of the workpiece
+relative to the robot flange. Default is the identity transformation.
+If attaching_workpiece_id is None, this attribute is meaningless.</p></li>
 </ul>
 </dd>
 </dl>
@@ -122,8 +122,11 @@ assumed to be the same as the gripper’s TCP.</p></li>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.planning.CloseGripper.apply_to.html#compas_fab.planning.CloseGripper.apply_to" title="compas_fab.planning.CloseGripper.apply_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_to</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.planning.CloseGripper.apply_effects.html#compas_fab.planning.CloseGripper.apply_effects" title="compas_fab.planning.CloseGripper.apply_effects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_effects</span></code></a></p></td>
 <td><p>Applies the action to a scene state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.planning.CloseGripper.check_preconditions.html#compas_fab.planning.CloseGripper.check_preconditions" title="compas_fab.planning.CloseGripper.check_preconditions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_preconditions</span></code></a></p></td>
+<td><p>Checks if the action can be applied to a scene state.</p></td>
 </tr>
 </tbody>
 </table>
@@ -314,10 +317,10 @@ assumed to be the same as the gripper’s TCP.</p></li>
       
 
       
-      <a href="compas_fab.planning.CloseGripper.apply_to.html" title="CloseGripper.apply_to" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+      <a href="compas_fab.planning.CloseGripper.apply_effects.html" title="CloseGripper.apply_effects" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
         <div class="nav-title footer-link flex-grow-1 align-self-center">
           <div class="nav-direction small font-weight-light">Next</div>
-          CloseGripper.apply_to
+          CloseGripper.apply_effects
         </div>
         <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
       </a>

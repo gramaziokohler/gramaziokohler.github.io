@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/css/compas-reference.css" />
 
   
-  <link rel="next" title="Action.apply_to" href="compas_fab.planning.Action.apply_to.html" />
+  <link rel="next" title="Action.apply_effects" href="compas_fab.planning.Action.apply_effects.html" />
   
 
   
@@ -99,7 +99,7 @@
 <h1>Action</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.planning.Action">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">Action</span></span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L28"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">Action</span></span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L29"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.data.Data.html#compas.data.Data" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Data</span></code></a></p>
 <p>Base class for all actions.</p>
 <p>The Action Classes are intended to be used to model the actions of a human operator or a robot.
@@ -109,7 +109,7 @@ Some actions contain references to workpieces, tools, or other objects in the sc
 stored in dictionaries under the Process object and are identified by their id.</p>
 <p>Actions are closely related to the <a class="reference internal" href="compas_fab.planning.SceneState.html#compas_fab.planning.SceneState" title="compas_fab.planning.SceneState"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.SceneState</span></code></a> because each action changes the scene state.
 Provided with an starting scene state, the actions can be <em>applied to</em> create the ending scene state.
-The only exception are robotic configurations that are changed by <a class="reference internal" href="compas_fab.planning.RoboticMovement.html#compas_fab.planning.RoboticMovement" title="compas_fab.planning.RoboticMovement"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticMovement</span></code></a> actions.
+The only exception are robotic configurations that are changed by <a class="reference internal" href="compas_fab.planning.RoboticAction.html#compas_fab.planning.RoboticAction" title="compas_fab.planning.RoboticAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction</span></code></a> actions.
 Those actions changes the robot configuration and their effect is not known until after the planning process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
@@ -126,8 +126,11 @@ Those actions changes the robot configuration and their effect is not known unti
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.planning.Action.apply_to.html#compas_fab.planning.Action.apply_to" title="compas_fab.planning.Action.apply_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_to</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="compas_fab.planning.Action.apply_effects.html#compas_fab.planning.Action.apply_effects" title="compas_fab.planning.Action.apply_effects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">apply_effects</span></code></a></p></td>
 <td><p>Applies the action to a scene state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="compas_fab.planning.Action.check_preconditions.html#compas_fab.planning.Action.check_preconditions" title="compas_fab.planning.Action.check_preconditions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_preconditions</span></code></a></p></td>
+<td><p>Checks if the action can be applied to a scene state.</p></td>
 </tr>
 </tbody>
 </table>
@@ -318,10 +321,10 @@ Those actions changes the robot configuration and their effect is not known unti
       
 
       
-      <a href="compas_fab.planning.Action.apply_to.html" title="Action.apply_to" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
+      <a href="compas_fab.planning.Action.apply_effects.html" title="Action.apply_effects" class="nav-link footer-link float-end text-right d-flex w-50" rel="next">
         <div class="nav-title footer-link flex-grow-1 align-self-center">
           <div class="nav-direction small font-weight-light">Next</div>
-          Action.apply_to
+          Action.apply_effects
         </div>
         <div class="nav-button p-2 m-2"><i class="fas fa-arrow-right"></i></div>
       </a>
