@@ -109,7 +109,7 @@ in the process. The resulting state of the first action is used as the initial s
 action, and so on. See tutorial on <span class="xref std std-ref">planning_process</span> for more details.</p>
 <section id="actions">
 <h2>Actions</h2>
-<p>Actions are abstractions of the robot’s (and, or operator’s) capability to manupulate tools and
+<p>Action classes are abstractions of the robot’s (and, or the operator’s) capability to manupulate tools and
 workpieces in the scene. Action classes are used for modelling a process for the following purpose:</p>
 <ul class="simple">
 <li><p>To plan trajectories for robotic motions</p></li>
@@ -138,13 +138,13 @@ workpieces in the scene. Action classes are used for modelling a process for the
 <td><p>Action to close the gripper.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.ManuallyMoveWorkpiece.html#compas_fab.planning.ManuallyMoveWorkpiece" title="compas_fab.planning.ManuallyMoveWorkpiece"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManuallyMoveWorkpiece</span></code></a></p></td>
-<td><p>Action to load a workpiece, assumed to be performed by a human operator.</p></td>
+<td><p>Operator action to move a workpiece from one place to another.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="state">
-<h2>State</h2>
+<section id="states">
+<h2>States</h2>
 <p>State classes are used to model the static state of objects in the planning scene. This include:
 <a class="reference internal" href="generated/compas_fab.planning.RobotState.html#compas_fab.planning.RobotState" title="compas_fab.planning.RobotState"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotState</span></code></a> for <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>,
 <a class="reference internal" href="generated/compas_fab.planning.ToolState.html#compas_fab.planning.ToolState" title="compas_fab.planning.ToolState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolState</span></code></a> for <a class="reference internal" href="generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Tool</span></code></a> and
@@ -297,7 +297,7 @@ actions in the process. See tutorial on <span class="xref std std-ref">planning_
         <ul class="nav flex-column" id="compas-toc">
 <li class="nav-item"><a class="nav-link reference internal" href="#">compas_fab.planning</a><ul class="nav flex-column">
 <li class="nav-item"><a class="nav-link reference internal" href="#actions">Actions</a></li>
-<li class="nav-item"><a class="nav-link reference internal" href="#state">State</a></li>
+<li class="nav-item"><a class="nav-link reference internal" href="#states">States</a></li>
 </ul>
 </li>
 </ul>
