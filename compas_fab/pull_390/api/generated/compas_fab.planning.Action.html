@@ -104,12 +104,16 @@
 <p>Base class for all actions.</p>
 <p>The Action Classes are intended to be used to model the actions of a human operator or a robot.
 Current Implementation assumes discrete actions that are executed sequentially, aka. one after another.</p>
-<p>Actions can be created automatically or manually. They are stored in a <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.Processs</span></code>.
+<p>Actions can be created automatically or manually. They are stored in a <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.FabricationProcess</span></code>.
 Some actions contain references to workpieces, tools, or other objects in the scene. Those objects are
-stored in dictionaries under the Process object and are identified by their id.</p>
+stored in dictionaries under the FabricationProcess object and are identified by their id.</p>
 <p>Actions are closely related to the <a class="reference internal" href="compas_fab.planning.SceneState.html#compas_fab.planning.SceneState" title="compas_fab.planning.SceneState"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.SceneState</span></code></a> because each action changes the scene state.
-Provided with an starting scene state, the actions can be <em>applied to</em> create the ending scene state.
-The only exception are robotic configurations that are changed by <a class="reference internal" href="compas_fab.planning.RoboticAction.html#compas_fab.planning.RoboticAction" title="compas_fab.planning.RoboticAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction</span></code></a> actions.
+The actions can be <em>applied</em> to a starting scene state to create the ending scene state. This is done by
+calling the <a class="reference internal" href="compas_fab.planning.Action.apply_effects.html#compas_fab.planning.Action.apply_effects" title="compas_fab.planning.Action.apply_effects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.planning.Action.apply_effects()</span></code></a> method. It is also possible to check if an action can be applied
+to a scene state by calling the <a class="reference internal" href="compas_fab.planning.Action.check_preconditions.html#compas_fab.planning.Action.check_preconditions" title="compas_fab.planning.Action.check_preconditions"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.planning.Action.check_preconditions()</span></code></a> method. Users that implement their own
+actions must override these methods for the automatic planning function in the Robot class. See
+<span class="xref std std-ref">chained_planning_process</span> for more details.</p>
+<p>The only exception are robotic configurations that are changed by <a class="reference internal" href="compas_fab.planning.RoboticAction.html#compas_fab.planning.RoboticAction" title="compas_fab.planning.RoboticAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction</span></code></a> actions.
 Those actions changes the robot configuration and their effect is not known until after the planning process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Attributes</dt>
