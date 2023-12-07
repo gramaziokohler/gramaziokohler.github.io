@@ -101,7 +101,7 @@ processes with one or more workpieces (<code class="xref py py-class docutils li
 The processes contains actions that are assumed to be sequentially executed by the robot
 or by the operator (manually). Concurrent actions are not supported.</p>
 <p>The FabricationProcess class and its subclasses (such as <code class="xref py py-class docutils literal notranslate"><span class="pre">PickAndPlaceProcess</span></code> and
-<code class="xref py py-class docutils literal notranslate"><span class="pre">ExtrusionProcess</span></code>) are used to model a process. They provider helper methods for
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ExtrusionProcess</span></code>) are used to model a process. They provide helper methods for
 creating a ordered list of actions that are used for planning and execution. The beining of the
 process is defined by the initial state of the scene, which is a container for the state of all
 objects in the scene (see <a class="reference internal" href="generated/compas_fab.planning.SceneState.html#compas_fab.planning.SceneState" title="compas_fab.planning.SceneState"><code class="xref py py-class docutils literal notranslate"><span class="pre">SceneState</span></code></a>). The initial state is used to plan the first action
@@ -109,12 +109,12 @@ in the process. The resulting state of the first action is used as the initial s
 action, and so on. See tutorial on <span class="xref std std-ref">planning_process</span> for more details.</p>
 <section id="actions">
 <h2>Actions</h2>
-<p>Action classes are abstractions of the robot’s (and, or the operator’s) capability to manupulate tools and
-workpieces in the scene. Action classes are used for modelling a process for the following purpose:</p>
+<p>Action classes are abstractions of the robot’s (and, or the operator’s) capability to manipulate tools and
+workpieces in the scene. Action classes are used for modeling a process for the following purpose:</p>
 <ul class="simple">
 <li><p>To plan trajectories for robotic motions</p></li>
 <li><p>To simulate and visualize the process in a virtual environment</p></li>
-<li><p>To execute the process on a real robot (or by an operator)</p></li>
+<li><p>To execute the process on a real robot or a human-robot collaboration process</p></li>
 </ul>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
@@ -128,24 +128,24 @@ workpieces in the scene. Action classes are used for modelling a process for the
 <tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.RoboticAction.html#compas_fab.planning.RoboticAction" title="compas_fab.planning.RoboticAction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoboticAction</span></code></a></p></td>
 <td><p>Base class for all robotic movements.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.planning.FreeMotion.html#compas_fab.planning.FreeMotion" title="compas_fab.planning.FreeMotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreeMotion</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.planning.LinearMotion.html#compas_fab.planning.LinearMotion" title="compas_fab.planning.LinearMotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearMotion</span></code></a></p></td>
+<td><p>Action class to describe a Linear robotic movement.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.FreeMotion.html#compas_fab.planning.FreeMotion" title="compas_fab.planning.FreeMotion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreeMotion</span></code></a></p></td>
 <td><p>Action class for free robotic movements.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.OpenGripper.html#compas_fab.planning.OpenGripper" title="compas_fab.planning.OpenGripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenGripper</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.planning.OpenGripper.html#compas_fab.planning.OpenGripper" title="compas_fab.planning.OpenGripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenGripper</span></code></a></p></td>
 <td><p>Action to open the gripper.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/compas_fab.planning.CloseGripper.html#compas_fab.planning.CloseGripper" title="compas_fab.planning.CloseGripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloseGripper</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.CloseGripper.html#compas_fab.planning.CloseGripper" title="compas_fab.planning.CloseGripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloseGripper</span></code></a></p></td>
 <td><p>Action to close the gripper.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/compas_fab.planning.ManuallyMoveWorkpiece.html#compas_fab.planning.ManuallyMoveWorkpiece" title="compas_fab.planning.ManuallyMoveWorkpiece"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManuallyMoveWorkpiece</span></code></a></p></td>
-<td><p>Operator action to move a workpiece from one place to another.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="states">
 <h2>States</h2>
-<p>State classes are used to model the static state of objects in the planning scene. This include:
+<p>State classes are used to model the immutable, static state of objects in the planning scene. These include:
 <a class="reference internal" href="generated/compas_fab.planning.RobotState.html#compas_fab.planning.RobotState" title="compas_fab.planning.RobotState"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotState</span></code></a> for <a class="reference internal" href="generated/compas_fab.robots.Robot.html#compas_fab.robots.Robot" title="compas_fab.robots.Robot"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Robot</span></code></a>,
 <a class="reference internal" href="generated/compas_fab.planning.ToolState.html#compas_fab.planning.ToolState" title="compas_fab.planning.ToolState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolState</span></code></a> for <a class="reference internal" href="generated/compas_fab.robots.Tool.html#compas_fab.robots.Tool" title="compas_fab.robots.Tool"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Tool</span></code></a> and
 <a class="reference internal" href="generated/compas_fab.planning.WorkpieceState.html#compas_fab.planning.WorkpieceState" title="compas_fab.planning.WorkpieceState"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkpieceState</span></code></a> for <code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.Workpiece</span></code>.
