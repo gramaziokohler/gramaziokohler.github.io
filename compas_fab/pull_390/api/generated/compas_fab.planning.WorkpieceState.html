@@ -126,9 +126,9 @@ A hidden workpiece will not be included for collision detection of the scene.</p
 <div class="doctest language-python notranslate"><div class="highlight"><pre><button class="btn copy"><i class="far fa-copy"></i></button><code><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas.geometry</span> <span class="kn">import</span> <span class="n">Frame</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">compas_fab.planning</span> <span class="kn">import</span> <span class="n">WorkpieceState</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">workpiece_state</span> <span class="o">=</span> <span class="n">WorkpieceState</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">workpiece_id</span><span class="o">=</span><span class="s2">&quot;wbeam1&quot;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">frame</span><span class="o">=</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="p">)</span>
+<span class="gp">... </span>    <span class="n">workpiece_id</span><span class="o">=</span><span class="s2">&quot;wbeam1&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">frame</span><span class="o">=</span><span class="n">Frame</span><span class="o">.</span><span class="n">worldXY</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="p">)</span>
 </code></pre></div>
 </div>
 <p>Example of a workpiece state that is attached to robot:</p>
@@ -141,11 +141,11 @@ A hidden workpiece will not be included for collision detection of the scene.</p
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># The grasp transformation of the workpiece is relative to the robot flange</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">grasp</span> <span class="o">=</span> <span class="n">Transformation</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">Frame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">workpiece_state</span> <span class="o">=</span> <span class="n">WorkpieceState</span><span class="p">(</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">workpiece_id</span><span class="o">=</span><span class="s2">&quot;wbeam2&quot;</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">frame</span><span class="o">=</span><span class="n">beam_pickup_frame</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">attached_to_robot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">attached_to_robot_grasp</span><span class="o">=</span><span class="n">grasp</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">workpiece_id</span><span class="o">=</span><span class="s2">&quot;wbeam2&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">frame</span><span class="o">=</span><span class="n">beam_pickup_frame</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attached_to_robot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attached_to_robot_grasp</span><span class="o">=</span><span class="n">grasp</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
 </code></pre></div>
 </div>
 <p class="rubric">Inherited Methods</p>
