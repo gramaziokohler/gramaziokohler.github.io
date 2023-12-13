@@ -101,14 +101,17 @@
 <h1>LinearMotion.apply_effects</h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="compas_fab.planning.LinearMotion.apply_effects">
-<span class="sig-prename descclassname"><span class="pre">LinearMotion.</span></span><span class="sig-name descname"><span class="pre">apply_effects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L219"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<span class="sig-prename descclassname"><span class="pre">LinearMotion.</span></span><span class="sig-name descname"><span class="pre">apply_effects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L209"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Applies the action to a scene state.</p>
 <p>The SceneState is modified in place with the effect of the Action.
 If a fixed_trajectory or planned_trajectory is available, the robot_state.configuration is updated with the last configuration of the trajectory.
 If fixed_target_configuration is available, the robot_state.configuration is updated with the fixed_target_configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>scene_state</strong> (<a class="reference internal" href="compas_fab.planning.SceneState.html#compas_fab.planning.SceneState" title="compas_fab.planning.SceneState"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.SceneState</span></code></a>) – The scene state to apply the action to.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scene_state</strong> (<a class="reference internal" href="compas_fab.planning.SceneState.html#compas_fab.planning.SceneState" title="compas_fab.planning.SceneState"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.SceneState</span></code></a>) – The scene state to apply the action to.</p></li>
+<li><p><strong>action_plan_result</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.ActionPlanResult</span></code>, optional)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

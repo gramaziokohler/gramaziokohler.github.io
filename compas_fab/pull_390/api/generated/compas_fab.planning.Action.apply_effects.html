@@ -103,8 +103,15 @@
 <dt class="sig sig-object py" id="compas_fab.planning.Action.apply_effects">
 <span class="sig-prename descclassname"><span class="pre">Action.</span></span><span class="sig-name descname"><span class="pre">apply_effects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L105"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Applies the action to a scene state.</p>
-<p>This method is called by the assembly process to apply the action to the scene state.
-The SceneState object is modified in place.</p>
+<p>This method is called by the assembly process to apply the action to the given scene state.
+The SceneState object is modified in place to represent the state after the action is taken.</p>
+<p>If the action is a <a class="reference internal" href="compas_fab.planning.RoboticAction.html#compas_fab.planning.RoboticAction" title="compas_fab.planning.RoboticAction"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction</span></code></a>, the parameter <cite>action_plan_result</cite>
+can be provided to update the robot configuration to the last configuration of the planned trajectory.
+Otherwise, the robot configuration is not changed.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="compas_fab.planning.RoboticAction.apply_effects.html#compas_fab.planning.RoboticAction.apply_effects" title="compas_fab.planning.RoboticAction.apply_effects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction.apply_effects()</span></code></a></p>
+</div>
 </dd></dl>
 
 </section>

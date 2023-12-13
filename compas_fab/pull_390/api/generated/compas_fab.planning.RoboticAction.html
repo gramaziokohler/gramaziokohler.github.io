@@ -99,7 +99,7 @@
 <h1>RoboticAction</h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="compas_fab.planning.RoboticAction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">RoboticAction</span></span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L115"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">compas_fab.planning.</span></span><span class="sig-name descname"><span class="pre">RoboticAction</span></span><a class="reference external" href="https://github.com/compas-dev/compas_fab/blob/main/src/compas_fab/planning/action.py#L123"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Bases: <a class="reference internal" href="compas_fab.planning.Action.html#compas_fab.planning.Action" title="compas_fab.planning.action.Action"><code class="xref py py-class docutils literal notranslate"><span class="pre">Action</span></code></a></p>
 <p>Base class for all robotic movements.</p>
 <p>Robotic movements are actions that changes the robot configuration and
@@ -115,35 +115,27 @@ and can be used for visualization and execution.</p>
 attached tool and workpiece. If the trajectory have been planned, the configuration
 of the robot is updated to the last configuration of the trajectory. See
 <a class="reference internal" href="compas_fab.planning.RoboticAction.apply_effects.html#compas_fab.planning.RoboticAction.apply_effects" title="compas_fab.planning.RoboticAction.apply_effects"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compas_fab.planning.RoboticAction.apply_effects()</span></code></a> for more details.</p>
-<dl>
-<dt>target_robot_flange_frame<span class="classifier"><a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a></span></dt><dd><p>The robot flange frame of the robot at target. In world coordinate frame.</p>
-</dd>
-<dt>allowed_collision_pairs<span class="classifier">list(tuple(str,str))</span></dt><dd><p>List of pairs of collision objects that are allowed to collide.
-Objects are identified by workpiece_id, tool_id, or static_object_id.</p>
-</dd>
-<dt>fixed_target_configuration<span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Configuration</span></code>, optional</span></dt><dd><p>The configuration of the robot if the target needs a fixed configuration.
-For example, if a taught position is used as a target.</p>
-</dd>
-<dt>fixed_trajectory<span class="classifier"><a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a>, optional</span></dt><dd><p>The trajectory of the robot if the trajectory is fixed.
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_robot_flange_frame</strong> (<a class="reference external" href="https://compas.dev/compas/latest/reference/generated/compas.geometry.Frame.html#compas.geometry.Frame" title="(in COMPAS vlatest)"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas.geometry.Frame</span></code></a>) – The robot flange frame of the robot at target. In world coordinate frame.</p></li>
+<li><p><strong>allowed_collision_pairs</strong> (<em>list(tuple(str,str))</em>) – List of pairs of collision objects that are allowed to collide.
+Objects are identified by workpiece_id, tool_id, or static_object_id.</p></li>
+<li><p><strong>fixed_target_configuration</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">compas.robots.Configuration</span></code>, optional) – The configuration of the robot if the target needs a fixed configuration.
+For example, if a taught position is used as a target.</p></li>
+<li><p><strong>fixed_trajectory</strong> (<a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a>, optional) – The trajectory of the robot if the trajectory is fixed.
 For example, if a pre-planned or recorded trajectory is preferred for this action.
 Specifying a fixed trajectory will force the chained motion planner to respect this trajectory
 when planning neighbouring robotic movements. This can be used to improve repeatibility.
 Users must be careful to specify a trajectory that is collision free and does not violate
-the kinematic limits of the robot.</p>
-</dd>
-<dt>tag<span class="classifier">str</span></dt><dd><p>A human readable tag that describes the action.
-It can printed out during visualization, debugging, execution and logging.</p>
-</dd>
-</dl>
-<dl>
-<dt>planned_trajectory<span class="classifier"><a class="reference internal" href="compas_fab.robots.JointTrajectory.html#compas_fab.robots.JointTrajectory" title="compas_fab.robots.JointTrajectory"><code class="xref py py-class docutils literal notranslate"><span class="pre">compas_fab.robots.JointTrajectory</span></code></a></span></dt><dd><p>The planned trajectory of the robotic movement. Available after planning. The first and last
-trajectory points corresponds to the starting and ending configuration of the robotic movement.</p>
-</dd>
-<dt>planner_seed<span class="classifier">int</span></dt><dd><p>The random seed used by the planner to generate the trajectory. Used by some planners.</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>speed_data_id<span class="classifier">str</span></dt><dd><p>The id (or name) of the speed data to be used for execution.</p>
+the kinematic limits of the robot.</p></li>
+<li><p><strong>planning_group</strong> (<em>str, optional</em>) – The planning group to be used for planning. If None, the default planning group of the robot is used.
+It is safe to leave this as None (default), unless the robot has multiple planning groups.</p></li>
+<li><p><strong>tag</strong> (<em>str</em>) – A human readable tag that describes the action.
+It can printed out during visualization, debugging, execution and logging.</p></li>
+<li><p><strong>speed_data_id</strong> (<em>str</em>) – The id (or name) of the speed data to be used for execution.</p></li>
+<li><p><strong>———-</strong></p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
